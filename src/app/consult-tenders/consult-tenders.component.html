@@ -1,0 +1,117 @@
+Seach by
+    <br>
+<mat-form-field style="margin: 30px;">
+    <mat-label>Search by bid number</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field style="margin: 30px;">
+    <mat-label>Search by bid name</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field style="margin: 30px;" >
+    <mat-label>Buisness kind</mat-label>
+    <mat-select>
+        <mat-option>
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  style="margin: 30px;">
+    <mat-label>City</mat-label>
+    <mat-select>
+        <mat-option>
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+  <mat-form-field style="margin: 30px;">
+    <mat-label>Post date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field style="margin: 30px;" >
+    <mat-label>Deadline date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <div>Tenders :</div><br>
+<div class="table">
+
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Bid number</th>
+        <th scope="col">Institution</th>
+        <th scope="col">Bid name</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Details</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Account">001-2544-656</td>
+        <td data-label="Due Date">SONED</td>
+        <td data-label="Amount">acquisition de pièces de rechanges et pneumatiques pour les divers engins pour 2022</td>
+        <td data-label="Period">03/01/2016 - 03/31/2016</td>
+       <td data-label="Period">  <a href=""> Details</a> </td>
+
+      </tr>
+      <tr>
+          
+        <td data-label="Account">5365-5366-989</td>
+        <td data-label="Due Date">Institut supérieur des sciences biologiques appliquées de tunis</td>
+        <td data-label="Amount">acquisition de pièces de rechanges et pneumatiques pour les divers engins pour 2022</td>
+        <td data-label="Period">02/01/2016 - 02/29/2016</td>
+        <td data-label="Period">  <a href=""> Details</a> </td>
+
+      </tr>
+      <tr>
+        <td data-label="Account">9745-2544-5687</td>
+        <td data-label="Due Date">Municipalité Soukra </td>
+        <td data-label="Amount">acquisition de pièces de rechanges et pneumatiques pour les divers engins pour 2022</td>
+        <td data-label="Period">01/01/2016 - 01/31/2016</td>
+        <td data-label="Period">  <a href=""> Details</a> </td>
+
+      </tr>
+      <tr>
+        <td data-label="Account">4645-546-64568</td>
+        <td data-label="Due Date">ministre des affaires étrangères tunisie</td>
+        <td data-label="Amount">acquisition de pièces de rechanges et pneumatiques pour les divers engins pour 2022</td>
+        <td data-label="Period">03/01/2016 - 03/31/2016</td>
+        <td data-label="Period">  <a href=""> Details</a> </td>
+
+      </tr>
+      <tr>
+        <td data-label="Account">4548-5456-4564</td>
+        <td data-label="Due Date">Carthage Paleo-Christian Museum</td>
+        <td data-label="Amount">acquisition de pièces de rechanges et pneumatiques pour les divers engins pour 2022</td>
+        <td data-label="Period">02/01/2016 - 02/29/2016</td>
+        <td data-label="Period">  <a href=""> Details</a> </td>
+
+      </tr>
+      <tr>
+        <td data-label="Account">4536-78-4556</td>
+        <td data-label="Due Date">ministre des affaires étrangères tunisie</td>
+        <td data-label="Amount">acquisition de pièces de rechanges et pneumatiques pour les divers engins pour 2022</td>
+        <td data-label="Period">01/01/2016 - 01/31/2016</td>
+        <td data-label="Period">  <a href=""> Details</a> </td>
+
+      </tr>
+    
+    </tbody>
+    
+  </table>
+  </div>
+  <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+<br><br>
+<footer style="height: 190px ; background-color: #383838 ;"></footer>
