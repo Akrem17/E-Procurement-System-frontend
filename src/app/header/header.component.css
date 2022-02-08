@@ -1,0 +1,85 @@
+body {
+  
+    margin: 0%;    
+}
+.secNav {
+    margin: 0 !important;
+    padding: 20px !important;
+    width: 100%;
+}
+
+.topheader{
+
+    background-color: #383838;
+    font-family: 'Microsoft PhagsPa';
+    color : white;
+    padding: 15px 10px 15px 30px;
+    font-size:small ;
+    
+}
+.right {
+    float: right;
+   
+}
+.email{
+    margin-left: 50px;
+}
+.logo{
+margin-left: 50px;
+}
+.nav3{
+
+    background-color: #C1282A;
+
+}
+.nav-link {
+    color: white!important;
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    font-family: 'Lato', sans-serif;
+    margin-left: 10px;
+    padding: 20px
+}
+.nav-link:hover {
+    color: rgb(228, 226, 226)!important;
+    background-color: #ca2c2f;
+
+}
+.login{
+    margin-right: 30px;
+background-color: #ffffff;
+color: rgb(24, 24, 24)!important;
+padding: 10px 20px 10px 20px;
+font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+font-family: 'Lato', sans-serif;
+font-weight: bold;
+border-radius: 3%;
+float: right;
+width: 110px;
+text-align: center;
+}
+.navbar-toggler{
+
+    color: rgb(0, 0, 0) !important;
+    background-color: white !important;
+}
+.navbar-toggler-icon{
+
+    color: rgb(0, 0, 0) !important;
+    background-color: rgb(10, 10, 10) !important;
+}
+@media (max-width: 999px) { 
+
+    .login{
+        margin-right: 30px;
+    background-color: #ffffff;
+    color: rgb(24, 24, 24)!important;
+    padding: 10px 20px 10px 20px;
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    border-radius: 3%;
+    float: left;
+    width: 110px;
+    text-align: center;
+    }
+ }
