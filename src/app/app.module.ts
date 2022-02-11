@@ -15,6 +15,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SignupComponent } from './signup/signup.component';
     ConsultTendersComponent,
     FooterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
