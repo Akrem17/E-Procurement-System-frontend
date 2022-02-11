@@ -25,11 +25,13 @@ body {
     margin-left: 50px;
 }
 .logo{
-margin-left: 50px;
+
+text-align: center;
 }
 .nav3{
 
     background-color: #C1282A;
+    height: 90px;
 
 }
 .nav-link {
