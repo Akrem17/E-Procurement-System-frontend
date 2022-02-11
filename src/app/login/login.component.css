@@ -1,0 +1,59 @@
+.signin{
+    margin-top: 90%;
+
+    margin: 50px;
+    width:100% !important
+
+}
+.mat-form-field{
+    width:100% !important;
+ }
+ .login {
+     background-color: #C1282A;
+     width: 100%;
+     color: white;
+     height: 71px;
+     font-family: 'Sitka Small';
+     font-weight: 500;
+   
+ }
+.loginTitle{
+    font-size: 30px;
+}
+
+.signin{
+
+    padding-right: 150px;
+}
+ .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+ @media screen and (max-width:	720px) {
+   .col-md-7{
+    display:none
+
+   }
+   .signin{
+    padding-right: 40px;
+
+   }
+
+  
+  }
+  
+  @media screen and (max-width:	720px) {
+   .col-md-7{
+    display:none
+
+   }
+   .signin{
+    padding-right: 40px;
+
+   }
+
+  
+  }
+  
