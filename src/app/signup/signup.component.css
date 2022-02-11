@@ -17,10 +17,6 @@
      font-weight: 500;
    
  }
- a {
-    color: #C1282A;
-    text-decoration: none;
-  }
 .loginTitle{
     font-size: 30px;
 }
@@ -35,7 +31,6 @@
     margin-right: auto;
     width: 50%;
   }
-
  @media screen and (max-width:	720px) {
    .col-md-7{
     display:none
@@ -48,7 +43,10 @@
 
   
   }
-  
+  a {
+    color: #C1282A;
+    text-decoration: none;
+  }
   @media screen and (max-width:	720px) {
    .col-md-7{
     display:none
