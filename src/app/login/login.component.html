@@ -15,19 +15,19 @@
                
                <div ><span class="loginTitle grey Segoe" >SIGN IN</span></div><br>
 
-                <form >
+                <form  autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
                 <mat-form-field >
                     <mat-label>Email</mat-label>
-                    <input  type="email" matInput>
+                    <input autocomplete="false"  formControlName="email" type="email" matInput>
                   </mat-form-field><br><br>
                   <mat-form-field >
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput>
+                    <input  formControlName="password" type="password" matInput>
                   </mat-form-field><br>
                   <div class="floatright grey">Forget password</div><br>
                   <br>
                   <div style="text-align: center;">
-                  <button class="login" >Log In </button>
+                  <button type="submit" class="login" >Log In </button>
                   <br><br>
                   <div class="Segoe twenty" ><span  >You don't have an account? </span> <span class="red"> <a routerLink="/signup">Signup</a></span></div><br>
                
