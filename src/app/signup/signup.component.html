@@ -1,4 +1,4 @@
-<div class="">
+<div class=""  *ngIf="type==''">
     <div class="row" style="background-color: #f8fafb; padding-top : 100px; padding-bottom: 200px;">
         <div class="col-lg-7 col-sm-0" style="padding-top: 50px;">
             <div class="center imagelogin">
@@ -14,32 +14,32 @@
                
                <div ><span class="loginTitle grey Segoe" >SIGN UP</span></div><br>
 
-                <form >
+                <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
                 <mat-form-field >
                     <mat-label>Email</mat-label>
-                    <input  autocomplete="new-email" type="email" matInput>
+                    <input formControlName="email" autocomplete="new-email" type="email" matInput>
                   </mat-form-field><br><br>
                   <mat-form-field >
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput>
+                    <input formControlName="password" type="password" matInput>
                   </mat-form-field><br>
                   <mat-form-field >
                     <mat-label>Repeat Password</mat-label>
-                    <input type="password" matInput>
+                    <input formControlName="passwordc" type="password" matInput>
                   </mat-form-field><br>
                   
                   <mat-form-field >
                     <mat-label>Type</mat-label>
-                    <mat-select >
-                      <mat-option value="option1">Citizen</mat-option>
-                      <mat-option value="option2">Public Institute</mat-option>
-                      <mat-option value="option3">Supplier</mat-option>
+                    <mat-select formControlName="type" >
+                      <mat-option value="citizen">Citizen</mat-option>
+                      <mat-option value="Institute">Public Institute</mat-option>
+                      <mat-option value="supplier">Supplier</mat-option>
                     </mat-select>
                   </mat-form-field>
                   
                   <br>
                   <div style="text-align: center;">
-                  <button class="login" >Sign Up </button>
+                  <button type="submit" class="login" >Sign Up </button>
                   <br><br>
                   <div class="Segoe twenty" ><span  >You have an account? </span> <span class="red" > <a routerLink="/login">Login</a></span></div><br>
                
@@ -52,3 +52,6 @@
    
     </div>
   </div>
+
+  <app-citizen-signup  *ngIf="type=='citizen'" [x]="x"></app-citizen-signup>
+  <app-supplier-signup *ngIf="type=='supplier'" [x]="x"></app-supplier-signup>

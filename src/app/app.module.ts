@@ -17,6 +17,9 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CitizenSignupComponent } from './citizen-signup/citizen-signup.component';
+import { SignupHundlComponent } from './signup-hundl/signup-hundl.component';
+import { SupplierSignupComponent } from './supplier-signup/supplier-signup.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    CitizenSignupComponent,
+    SignupHundlComponent,
+    SupplierSignupComponent
   ],
   imports: [
     BrowserModule,
