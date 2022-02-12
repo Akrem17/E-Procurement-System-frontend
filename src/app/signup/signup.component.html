@@ -2,7 +2,7 @@
     <div class="row" style="background-color: #f8fafb; padding-top : 100px; padding-bottom: 200px;">
         <div class="col-lg-7 col-sm-0" style="padding-top: 50px;">
             <div class="center imagelogin">
-                <a  href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/L6T1yxWZ/logologin.png' width="100%" height="420"  alt='logologin'/></a>
+                <a  href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/L6T1yxWZ/logologin.png' width="100%" height="320"  alt='logologin'/></a>
             </div>
           </div>
           
@@ -11,24 +11,39 @@
 
             <div class="signin">
 
-               
+                
                <div ><span class="loginTitle grey Segoe" >SIGN UP</span></div><br>
 
                 <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
                 <mat-form-field >
+                  <mat-error *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
+                    Please provide an Email.
+                  </mat-error>
                     <mat-label>Email</mat-label>
                     <input formControlName="email" autocomplete="new-email" type="email" matInput>
-                  </mat-form-field><br><br>
+                    
+                  </mat-form-field>
+                  
+                  <br><br>
                   <mat-form-field >
+                    <mat-error *ngIf="myForm.get('password')?.invalid && (myForm.get('password')?.dirty || myForm.get('password')?.touched)">
+                      Please provide a password.
+                    </mat-error>
                     <mat-label>Password</mat-label>
                     <input formControlName="password" type="password" matInput>
                   </mat-form-field><br>
                   <mat-form-field >
+                    <mat-error *ngIf="myForm.get('passwordc')?.invalid && (myForm.get('passwordc')?.dirty || myForm.get('passwordc')?.touched)">
+                      Please provide a password confirmation.
+                    </mat-error>
                     <mat-label>Repeat Password</mat-label>
                     <input formControlName="passwordc" type="password" matInput>
                   </mat-form-field><br>
                   
                   <mat-form-field >
+                    <mat-error *ngIf="myForm.get('type')?.invalid && (myForm.get('type')?.dirty || myForm.get('type')?.touched)">
+                      Please provide a type.
+                    </mat-error>
                     <mat-label>Type</mat-label>
                     <mat-select formControlName="type" >
                       <mat-option value="citizen">Citizen</mat-option>
@@ -36,10 +51,10 @@
                       <mat-option value="supplier">Supplier</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  
+                  <br>
                   <br>
                   <div style="text-align: center;">
-                  <button type="submit" class="login" >Sign Up </button>
+                  <button  mat-button [disabled]="myForm.invalid" type="submit" class="login" >Sign Up </button>
                   <br><br>
                   <div class="Segoe twenty" ><span  >You have an account? </span> <span class="red" > <a routerLink="/login">Login</a></span></div><br>
                
