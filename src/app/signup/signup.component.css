@@ -31,6 +31,12 @@
     margin-right: auto;
     width: 50%;
   }
+
+  .login:disabled{
+    
+        background-color: #ff9284;
+    
+}
  @media screen and (max-width:	720px) {
    .col-md-7{
     display:none
