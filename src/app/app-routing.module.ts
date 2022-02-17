@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { ConsultTendersComponent } from './consult-tenders/consult-tenders.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -10,7 +11,7 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'consulting', component: ConsultTendersComponent },
+  { path: 'consulting', component: ConsultTendersComponent,canActivate:[AuthGuard] },
   { path: '', component: HomeComponent }
 ];
 

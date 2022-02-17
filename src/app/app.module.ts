@@ -20,6 +20,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CitizenSignupComponent } from './citizen-signup/citizen-signup.component';
 import { SignupHundlComponent } from './signup-hundl/signup-hundl.component';
 import { SupplierSignupComponent } from './supplier-signup/supplier-signup.component';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './Shared/Services/auth.service';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './Shared/Services/TokenService/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -44,10 +48,18 @@ import { SupplierSignupComponent } from './supplier-signup/supplier-signup.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
-  providers: [],
+  providers: [AuthService,AuthGuard,
+    {provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+    }
+    
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

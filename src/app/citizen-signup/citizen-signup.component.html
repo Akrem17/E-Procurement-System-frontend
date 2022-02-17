@@ -13,28 +13,44 @@
 
                 <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
                 <mat-form-field >
-                 
-                    <mat-label>First name</mat-label>
-                    <input formControlName="email" autocomplete="new-email" type="email" matInput>
+                  <mat-error
+                  *ngIf="(myForm.get('firstname')?.touched || myForm.get('firstname')?.dirty) && myForm.get('firstname')?.invalid"
+                >
+                 This field is required
+                </mat-error> 
+                    <mat-label>FirstName</mat-label>
+                    <input formControlName="firstname"  type="text" matInput>
                     
                   </mat-form-field>
                   
                   <br><br>
                   <mat-form-field >
-                   
-                    <mat-label>Last name</mat-label>
-                    <input formControlName="password" type="password" matInput>
+                    <mat-error
+                  *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.invalid"
+                >
+                 This field is required
+                </mat-error>
+                    <mat-label>LastName</mat-label>
+                    <input formControlName="lastname" type="text" matInput>
                   </mat-form-field><br>
                   <mat-form-field >
-                 
+                    <mat-error
+                    *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid"
+                  >
+                   Verify phone number
+                  </mat-error>
                     <mat-label>Phone</mat-label>
-                    <input formControlName="passwordc" type="password" matInput>
+                    <input formControlName="phone" type="number" matInput>
                   </mat-form-field><br>
                  
                   <mat-form-field >
-                 
+                    <mat-error
+                    *ngIf="(myForm.get('cin')?.touched || myForm.get('cin')?.dirty) && myForm.get('cin')?.invalid"
+                  >
+                   Verify your CIN number
+                  </mat-error>
                     <mat-label>CIN</mat-label>
-                    <input formControlName="passwordc" type="password" matInput>
+                    <input formControlName="cin" type="number" matInput>
                   </mat-form-field><br>
                  
                   <br>
