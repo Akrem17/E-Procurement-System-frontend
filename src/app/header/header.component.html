@@ -54,10 +54,13 @@
         
 
             </ul>
-            <div class="login right">
-                <a  routerLink="login" >Login</a>
+            <div *ngIf="!logged"  class="login right">
+                <a routerLink="login" >Login</a>
             </div>
-           
+            <div (click)="logout()" *ngIf="logged"  class="login btn right">
+              <a  >logout</a>
+          </div>
+         
           </div>
         </div>
       

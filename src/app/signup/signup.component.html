@@ -14,28 +14,29 @@
                 
                <div ><span class="loginTitle grey Segoe" >SIGN UP</span></div><br>
 
-                <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
+                <form autocomplete="autocomplete=" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
                 <mat-form-field >
                   <mat-error *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
                     Please provide an Email.
                   </mat-error>
                     <mat-label>Email</mat-label>
-                    <input formControlName="email" autocomplete="new-email" type="email" matInput>
+                    <input formControlName="email" autocomplete="autocomplete=" type="email" matInput>
                     
                   </mat-form-field>
                   
                   <br><br>
                   <mat-form-field >
-                    <mat-error *ngIf="myForm.get('password')?.invalid && (myForm.get('password')?.dirty || myForm.get('password')?.touched)">
-                      Please provide a password.
-                    </mat-error>
+                    <mat-error>{{ errorMessage }}</mat-error>
+
                     <mat-label>Password</mat-label>
                     <input formControlName="password" type="password" matInput>
                   </mat-form-field><br>
                   <mat-form-field >
-                    <mat-error *ngIf="myForm.get('passwordc')?.invalid && (myForm.get('passwordc')?.dirty || myForm.get('passwordc')?.touched)">
-                      Please provide a password confirmation.
-                    </mat-error>
+                    <mat-error
+                    *ngIf="(myForm.get('passwordc')?.touched || myForm.get('passwordc')?.dirty) && myForm.get('passwordc')?.invalid"
+                  >
+                    Password didn't match
+                  </mat-error> 
                     <mat-label>Repeat Password</mat-label>
                     <input formControlName="passwordc" type="password" matInput>
                   </mat-form-field><br>
@@ -68,5 +69,4 @@
     </div>
   </div>
 
-  <app-citizen-signup  *ngIf="type=='citizen'" [x]="x"></app-citizen-signup>
-  <app-supplier-signup *ngIf="type=='supplier'" [x]="x"></app-supplier-signup>
+  <app-citizen-signup [x]="x"></app-citizen-signup>
