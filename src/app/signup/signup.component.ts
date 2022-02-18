@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
+import { AuthService } from '../Shared/Services/auth.service';
+import { UserService } from '../Shared/Services/UserService/user.service';
 import { GlobalConstants } from '../Shared/user-type';
 
 export class PhoneNumberValidatorDirective implements Validator {
@@ -20,7 +22,8 @@ export class SignupComponent implements OnInit {
   myForm!: FormGroup;
   x!:FormGroup;
   type:string="";
-  constructor(private fb: FormBuilder) { }
+  emailExists=false;
+  constructor(private fb: FormBuilder,private _auth :AuthService,private _user:UserService) { }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
@@ -63,8 +66,28 @@ get errorMessage(): string {
     console.log('password', form.value.password);
     console.log('Email', form.value.email);
     console.log('Email', form.value.type);
-    this.type=form.value.type;
-    console.log(  GlobalConstants.usertype) 
-    this.x=form;
+
+   //verify email exists or not 
+
+    this._user.getUserBy(form.value.email).subscribe({
+      next:(res)=>{
+      console.log(res)
+      //@ts-ignore
+      if(res.value.length==0){
+        this.emailExists=false;
+
+        this.type=form.value.type;
+        this.x=form;
+      }else{
+        this.emailExists=true;
+        console.log("email exists please login");
+      }
+
+    },
+    error:(er)=>{},
+    complete:()=>{}});
+
+    
+   
   }
 }

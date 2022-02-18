@@ -24,6 +24,7 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './Shared/Services/auth.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './Shared/Services/TokenService/token-interceptor.service';
+import { UserService } from './Shared/Services/UserService/user.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { TokenInterceptorService } from './Shared/Services/TokenService/token-in
     HttpClientModule
 
   ],
-  providers: [AuthService,AuthGuard,
+  providers: [AuthService,AuthGuard,UserService,
     {provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true
