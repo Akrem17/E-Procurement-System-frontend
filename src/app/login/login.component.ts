@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,7 +11,18 @@ import { AuthService } from '../Shared/Services/auth.service';
 })
 export class LoginComponent implements OnInit {
   myForm!: FormGroup;
-  constructor(private fb: FormBuilder,private _auth:AuthService, private router:Router) { }
+  foundedUser:boolean=false;
+  verifiedUser:boolean=false;
+  verify:boolean=false;
+  constructor(private fb: FormBuilder,private _auth:AuthService, private router:Router) {
+
+
+
+     
+      var verify=  this.router.getCurrentNavigation()?.extras.state
+      //@ts-ignore
+      this.verify=verify?.verify;
+   }
 
   ngOnInit(): void {
 
@@ -32,14 +44,39 @@ export class LoginComponent implements OnInit {
 
   loginUser(user:any){
 
-    this._auth.loginUser(user).subscribe(
+    this._auth.loginUser(user).subscribe({
+      next: (res) => { console.log(res)
+    
+        
+        
+      localStorage.setItem('token',res.tokenString)
+      this.router.navigate(['./consulting']).then(()=>{
+        this._auth.loggedIn();
+
+      })
+    
+    }
+
+        
+      ,
+      error: (e) =>{  if (e instanceof HttpErrorResponse) {
+        if (e.status == 401) {
+         this.foundedUser=true;
+         this.verifiedUser=false;
+         this.verify=false;
+        
+        
+        }else if(e.status == 404){
+          console.log(e)
+          this.verifiedUser=true;
+          this.foundedUser=false;
+          this.verify=false;
+        }
       
-      (res)=>{
-        console.log('token',res.value.tokenString)
-        localStorage.setItem('token',res.value.tokenString)
-        this.router.navigate(['/consulting'])      
-      }
-       
-        );
-  }
+      
+      }},
+      complete: () => console.info('complete') 
+  })
+    
+}
 }

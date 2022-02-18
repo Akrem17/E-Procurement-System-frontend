@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CITIZEN } from '../Shared/Models/CITIZEN';
 import { AuthService } from '../Shared/Services/auth.service';
 import { GlobalConstants } from '../Shared/user-type';
@@ -18,7 +19,7 @@ export class CitizenSignupComponent implements OnInit {
   formCitizen!: FormGroup;
   type:string="";
 
-  constructor(private fb: FormBuilder, private _auth :AuthService) { }
+  constructor(private fb: FormBuilder, private _auth :AuthService,private _router:Router) { }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
@@ -67,6 +68,7 @@ export class CitizenSignupComponent implements OnInit {
         
         
     this.registerUser(citizen);
+    this._router.navigate(['/login'],{'state':{'verify':'true'}});
   }
 
 

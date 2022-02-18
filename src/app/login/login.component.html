@@ -16,6 +16,15 @@
                <div ><span class="loginTitle grey Segoe" >SIGN IN</span></div><br>
 
                 <form  autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
+                  <mat-error *ngIf="foundedUser">
+                   Email or Password is incorrect 
+                  </mat-error><br>
+                  <mat-error *ngIf="verify">
+                    We send you confirmation email, please check it  
+                   </mat-error><br>
+                  <mat-error *ngIf="verifiedUser">
+                    Account not verified, please check your email
+                   </mat-error><br>
                 <mat-form-field >
                     <mat-label>Email</mat-label>
                     <input autocomplete="false"  formControlName="email" type="email" matInput>

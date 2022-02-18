@@ -15,6 +15,12 @@
                <div ><span class="loginTitle grey Segoe" >SIGN UP</span></div><br>
 
                 <form autocomplete="autocomplete=" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
+                  <mat-error
+                  *ngIf="emailExists"
+                >
+                  Email Already exists,Please <span class="red" > <a routerLink="/login"> Login </a></span>
+                </mat-error> 
+<br>
                 <mat-form-field >
                   <mat-error *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
                     Please provide an Email.
