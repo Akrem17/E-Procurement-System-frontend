@@ -1,0 +1,193 @@
+<div style=" background-color: #f8fafb; padding-top: 50px;" class="" *ngIf="type==''">
+  <div class="  grey Segoe " style="text-align: center; background-color: #f8fafb; font-size: 30px;">SUPPLIER
+    REGISTRATION </div><br>
+
+  <div class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+
+
+    <div class="col-lg-4 col-sm-12">
+      <div class="container">
+
+        <div class="signin">
+
+
+          <div><span class=" red Segoe">Basic Informations</span></div><br>
+
+          <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+
+            <!-- suppleir name -->
+            <mat-form-field>
+              <mat-error
+                *ngIf="(myForm.get('supplierName')?.touched || myForm.get('supplierName')?.dirty) && myForm.get('supplierName')?.invalid">
+                Supplier Name is required.
+              </mat-error>
+              <mat-label>Supplier Name</mat-label>
+              <input matInput formControlName="supplierName" >
+            </mat-form-field>
+
+            <!-- supplier category -->
+            <mat-form-field>
+              <mat-label>Supplier Category</mat-label>
+              <mat-select formControlName="category">
+                <mat-option value="corporations">
+                  Corporations
+                </mat-option>
+                <mat-option value="craftsmen">
+                  Craftsmen,statuettes contractor
+                </mat-option>
+                <mat-option value="craft-group">
+                  Craft group
+                </mat-option>
+                <mat-option value="natural-person">
+                  natural-person
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br><br>
+
+
+            <!-- Supplier regustrationNumber -->
+            <mat-form-field>
+              <mat-error
+                *ngIf="(myForm.get('registrationNumber')?.touched || myForm.get('registrationNumber')?.dirty) && myForm.get('registrationNumber')?.invalid">
+                Registration Number is required.
+              </mat-error>
+              <mat-label>Buisness Registration Number</mat-label>
+              <input formControlName="registrationNumber" type="number" matInput>
+            </mat-form-field><br>
+
+            <!-- Supplier registrationDate -->
+            <mat-form-field>
+              <mat-error
+                *ngIf="(myForm.get('registrationDate')?.touched || myForm.get('registrationDate')?.dirty) && myForm.get('registrationDate')?.invalid">
+                Buisness Registration date is required.
+              </mat-error>
+              <mat-label>Buisness Registration date</mat-label>
+              <input formControlName="registrationDate" matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+
+            <!-- Supplier taxId -->
+            <mat-form-field>
+              <mat-error
+                *ngIf="(myForm.get('taxId')?.touched || myForm.get('taxId')?.dirty) && myForm.get('taxId')?.invalid">
+                Tax ID is required.
+              </mat-error>
+              <mat-label>Tax ID</mat-label>
+              <input formControlName="taxId" type="number" matInput>
+            </mat-form-field><br>
+
+
+            <!-- Supplier cnssID -->
+            <mat-form-field>
+              <mat-error
+              *ngIf="(myForm.get('cnssId')?.touched || myForm.get('cnssId')?.dirty) && myForm.get('cnssId')?.invalid">
+              CNSS ID is required.
+            </mat-error>
+              <mat-label>CNSS ID</mat-label>
+              <input formControlName="cnssId" type="number" matInput>
+            </mat-form-field><br>
+            <br>
+
+
+            <!-- Supplier buisnessClassification -->
+            <mat-form-field>
+              <mat-error
+              *ngIf="(myForm.get('buisnessClassification')?.touched || myForm.get('buisnessClassification')?.dirty) && myForm.get('buisnessClassification')?.invalid">
+              Buisness Classification  is required.
+            </mat-error>
+              <mat-label>Buisness Classification</mat-label>
+              <mat-select formControlName="buisnessClassification">
+                <mat-option value="b1">
+                  Buisness A
+                </mat-option>
+                <mat-option value="b2">
+                  Buisness B
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+
+            <!-- Supplier replyEmail -->
+            <mat-form-field>
+              <mat-error
+              *ngIf="(myForm.get('replyEmail')?.touched || myForm.get('replyEmail')?.dirty) && myForm.get('replyEmail')?.invalid">
+              Reply email  is required.
+            </mat-error>
+              <mat-label>Reply email</mat-label>
+              <input formControlName="replyEmail" type="text" matInput>
+            </mat-form-field>
+
+
+
+            <!-- Supplier companyName -->
+            <mat-form-field>
+              <mat-error
+              *ngIf="(myForm.get('companyName')?.touched || myForm.get('companyName')?.dirty) && myForm.get('companyName')?.invalid">
+              Reply email  is required.
+            </mat-error>
+              <mat-label>Company Name</mat-label>
+              <input formControlName="companyName" type="text" matInput>
+            </mat-form-field><br>
+
+
+
+            <!-- Supplier buisnessType -->
+            <mat-form-field>
+              <mat-error
+              *ngIf="(myForm.get('buisnessType')?.touched || myForm.get('buisnessType')?.dirty) && myForm.get('buisnessType')?.invalid">
+              Company Type is required.
+            </mat-error>
+              <mat-label>Company Type</mat-label>
+              <mat-select formControlName="buisnessType">
+                <mat-option value="type1">
+                  type 1
+                </mat-option>
+                <mat-option value="type2">
+                  type 2
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+           
+
+            <!-- Supplier phone -->
+            <mat-form-field>
+              <mat-error
+              *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid">
+              Phone is required.
+            </mat-error>
+              <mat-label>Phone</mat-label>
+              <input formControlName="phone" type="number" matInput>
+            </mat-form-field><br>
+
+
+
+            <!-- Supplier fax -->
+            <mat-form-field>
+              <mat-error
+              *ngIf="(myForm.get('fax')?.touched || myForm.get('fax')?.dirty) && myForm.get('fax')?.invalid">
+              fax is required.
+            </mat-error>
+              <mat-label>Fax</mat-label>
+              <input formControlName="fax" type="number" matInput>
+            </mat-form-field><br>
+            <br>
+            <br>
+
+
+            <div style="text-align: center;">
+              <button mat-button type="submit" class="login"  >Registration </button>
+              <br><br>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+   
+
+</div>

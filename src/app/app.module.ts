@@ -17,14 +17,15 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CitizenSignupComponent } from './citizen-signup/citizen-signup.component';
 import { SignupHundlComponent } from './signup-hundl/signup-hundl.component';
-import { SupplierSignupComponent } from './supplier-signup/supplier-signup.component';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './Shared/Services/auth.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './Shared/Services/TokenService/token-interceptor.service';
 import { UserService } from './Shared/Services/UserService/user.service';
+import { CitizenSignupComponent } from './signup/citizen-signup/citizen-signup.component';
+import { SupplierSignupComponent } from './signup/supplier-signup/supplier-signup.component';
+import { CitizenService } from './Shared/Services/CitizenService/citizen.service';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import { UserService } from './Shared/Services/UserService/user.service';
     HttpClientModule
 
   ],
-  providers: [AuthService,AuthGuard,UserService,
+  providers: [AuthService,AuthGuard,UserService,CitizenService,
     {provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true

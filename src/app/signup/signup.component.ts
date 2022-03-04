@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
-import { AuthService } from '../Shared/Services/auth.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../Shared/Services/UserService/user.service';
-import { GlobalConstants } from '../Shared/user-type';
+import { ValidatorService } from '../Shared/Services/ValidatorService/validator.service';
 
-export class PhoneNumberValidatorDirective implements Validator {
-  validate(control: AbstractControl) : {[key: string]: any} | null {
-    if (control.value && control.value.length != 10) {
-      return { 'phoneNumberInvalid': true };
-    }
-    return null;
-  }
-}
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -20,74 +12,49 @@ export class PhoneNumberValidatorDirective implements Validator {
 
 export class SignupComponent implements OnInit {
   myForm!: FormGroup;
-  x!:FormGroup;
-  type:string="";
-  emailExists=false;
-  constructor(private fb: FormBuilder,private _auth :AuthService,private _user:UserService) { }
+  user!: FormGroup;
+  type: string = "";
+  emailExists = false;
+
+  constructor(private fb: FormBuilder, private _user: UserService, private _validatorService: ValidatorService) { }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      email: ['', [Validators.required,Validators.email]],
-      password: ['', [Validators.required,this.ValidatePassword ]],
-      passwordc: ['',[Validators.required,this.ValidatePasswordConfirm]],
-      type: ['', [Validators.required ]],
-     
-      
-  
-    } );
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, this._validatorService.ValidatePassword]],
+      passwordc: ['', [Validators.required, this._validatorService.ValidatePasswordConfirm]],
+      type: ['', [Validators.required]],
+    });
   }
-  ValidatePasswordConfirm(control: AbstractControl): {[key: string]: any} | null  {
 
-  if (control.value && control.parent?.get("password")?.value !=control.value ) {
-    return { 'ValidatePassword': true };
+  //error messages list
+  get errorMessage(): string {
+    const form: FormControl = (this.myForm.get('password') as FormControl);
+    return form.hasError('required') ?
+      'Password is required' :
+      form.hasError('ValidatePassword') ?
+        'Password length should be more than 8 caracters' :
+        form.hasError('ValidatePassword') ?
+          'Passowrdr' : '';
   }
-  return null;
-}
-ValidatePassword(control: AbstractControl): {[key: string]: any} | null  {
 
-  if (control.value && control.value.length<8 ) {
-    return { 'ValidatePassword': true };
-  }
-  return null;
-}
-
-
-get errorMessage(): string {
-  const form: FormControl = (this.myForm.get('password') as FormControl);
-  return form.hasError('required') ?
-    'Password is required' :
-    form.hasError('ValidatePassword') ?
-    'Password length should be more than 8 caracters' : 
-    form.hasError('ValidatePassword') ?
-    'Passowrdr' : '';
-}
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid); // true or false
-    console.log('password', form.value.password);
-    console.log('Email', form.value.email);
-    console.log('Email', form.value.type);
+    //verify email exists or not 
+    this._user.FilterUserBy(form.value.email).subscribe({
+      next: (res) => {
+        //@ts-ignore
+        const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+        if (!response.status) {
 
-   //verify email exists or not 
+          this.emailExists = false;
+          //get the type of user to render the next signup
+          this.type = form.value.type;
+          //pass the common user form to the next signup form
+          this.user = form;
+        } else this.emailExists = true;
+      },
+      error: (er) => { console.log(er); }
+    });
 
-    this._user.getUserBy(form.value.email).subscribe({
-      next:(res)=>{
-      console.log(res)
-      //@ts-ignore
-      if(res.value.length==0){
-        this.emailExists=false;
-
-        this.type=form.value.type;
-        this.x=form;
-      }else{
-        this.emailExists=true;
-        console.log("email exists please login");
-      }
-
-    },
-    error:(er)=>{},
-    complete:()=>{}});
-
-    
-   
   }
 }

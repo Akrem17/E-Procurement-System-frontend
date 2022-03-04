@@ -1,11 +1,7 @@
-export class CITIZEN {
+import { USER } from "./USER"
 
-     public firstName!: string
-     public lastName!: string
+export class CITIZEN extends USER {
 
-     public email!: string
-     public password!: string
-     public type!: string
      public phone!: string
      public cin!: string
   

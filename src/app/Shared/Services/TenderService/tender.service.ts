@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenderService {
-  private _tenders="https://localhost:7260/api/users"
+  private tendersRoute=environment.apiUrl+"tenders" 
+  
   constructor(private http:HttpClient) { }
 
   
   getTenders(user:any){
-    return this.http.get(this._tenders);
+    return this.http.get(this.tendersRoute);
    }
 
 }
