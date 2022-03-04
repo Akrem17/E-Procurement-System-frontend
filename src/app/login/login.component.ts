@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LOGIN } from '../Shared/Models/LOGIN';
 import { AuthService } from '../Shared/Services/auth.service';
 
 @Component({
@@ -11,72 +12,66 @@ import { AuthService } from '../Shared/Services/auth.service';
 })
 export class LoginComponent implements OnInit {
   myForm!: FormGroup;
-  foundedUser:boolean=false;
-  verifiedUser:boolean=false;
-  verify:boolean=false;
-  constructor(private fb: FormBuilder,private _auth:AuthService, private router:Router) {
-
-
-
-     
-      var verify=  this.router.getCurrentNavigation()?.extras.state
-      //@ts-ignore
-      this.verify=verify?.verify;
-   }
+  verifiedUser: boolean = false;
+  verifyEmail: boolean = false;
+  error: boolean = false;
+  errorMessage!: string;
+  constructor(private fb: FormBuilder, private _auth: AuthService, private router: Router) {
+    //this will fire a message to user to verify his email after being redirected from signup user
+    var singupComponentExtras = this.router.getCurrentNavigation()?.extras.state;
+    //@ts-ignore
+    this.verifyEmail = singupComponentExtras?.verify;
+  }
 
   ngOnInit(): void {
-
     this.myForm = this.fb.group({
-      email: ['', [Validators.required,Validators.email]],
-      password: ['', [Validators.required ]]
-  
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
   }
 
 
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid); // true or false
-    console.log('password', form.value.password);
-    console.log('Email', form.value.email);
-    this.loginUser({"email":form.value.email,"password":form.value.password})
+    var login: LOGIN = new LOGIN();
+    login.email = form.value.email;
+    login.password = form.value.password;
+    this.loginUser(login)
   }
 
 
-  loginUser(user:any){
+  loginUser(userLogin: LOGIN) {
 
-    this._auth.loginUser(user).subscribe({
-      next: (res) => { console.log(res)
-    
-        
-        
-      localStorage.setItem('token',res.tokenString)
-      this.router.navigate(['./consulting']).then(()=>{
-        this._auth.loggedIn();
+    console.log(userLogin)
+    this._auth.loginUser(userLogin).subscribe({
+      next: (res) => {
 
-      })
-    
-    }
+        //@ts-ignore
+        const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+        console.log(response)
+        if (response.status) {
+          localStorage.setItem('token', response.data.tokenString)
+          this.router.navigate(['./consulting']).then(() => {
+            this._auth.loggedIn();
 
-        
-      ,
-      error: (e) =>{  if (e instanceof HttpErrorResponse) {
-        if (e.status == 401) {
-         this.foundedUser=true;
-         this.verifiedUser=false;
-         this.verify=false;
-        
-        
-        }else if(e.status == 404){
-          console.log(e)
-          this.verifiedUser=true;
-          this.foundedUser=false;
-          this.verify=false;
+          })
+        } else {
+          //in case of error from backend
+          this.error = true;
+          this.errorMessage = response.message.split('.')[1];
+          this.verifiedUser = false;
+          this.verifyEmail = false;
         }
-      
-      
-      }},
-      complete: () => console.info('complete') 
-  })
-    
-}
+      },
+      error: (e) => {
+        //handle forbidden request
+        if (e instanceof HttpErrorResponse) {
+          if (e.status == 403) {
+            this.verifiedUser = true;
+            this.verifyEmail = false;
+
+          }
+        }
+      }
+    })
+  }
 }

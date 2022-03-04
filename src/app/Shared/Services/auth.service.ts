@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _registreUrl="https://localhost:7260/signup/citizen";
-  private _loginUrl="https://localhost:7260/login"
+  
+  private _registreUrl=environment.apiUrl+"signup/citizen";
+  private _loginUrl=environment.apiUrl+"login"
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(private http:HttpClient, private router:Router) {}
 
