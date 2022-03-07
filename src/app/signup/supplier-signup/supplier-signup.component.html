@@ -1,8 +1,5 @@
-<div style=" background-color: #f8fafb; padding-top: 50px;" class="" *ngIf="type==''">
-  <div class="  grey Segoe " style="text-align: center; background-color: #f8fafb; font-size: 30px;">SUPPLIER
-    REGISTRATION </div><br>
 
-  <div class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+  <div *ngIf="!next" class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
 
 
     <div class="col-lg-4 col-sm-12">
@@ -44,6 +41,10 @@
 
             <!-- supplier category -->
             <mat-form-field>
+              <mat-error
+              *ngIf="(myForm.get('category')?.touched || myForm.get('category')?.dirty) && myForm.get('category')?.invalid">
+              Category is required.
+            </mat-error>
               <mat-label>Supplier Category</mat-label>
               <mat-select formControlName="category">
                 <mat-option value="corporations">
@@ -67,10 +68,12 @@
             <mat-form-field>
               <mat-error
                 *ngIf="(myForm.get('registrationNumber')?.touched || myForm.get('registrationNumber')?.dirty) && myForm.get('registrationNumber')?.invalid">
-                Registration Number is required.
+                Registration Number must be 10 digits.
               </mat-error>
+              <!-- <mat-error>{{ errorMessage }}</mat-error> -->
+
               <mat-label>Buisness Registration Number</mat-label>
-              <input formControlName="registrationNumber" type="text" matInput>
+              <input formControlName="registrationNumber" type="number" matInput>
             </mat-form-field><br>
 
             <!-- Supplier registrationDate -->
@@ -90,7 +93,7 @@
             <mat-form-field>
               <mat-error
                 *ngIf="(myForm.get('taxId')?.touched || myForm.get('taxId')?.dirty) && myForm.get('taxId')?.invalid">
-                Tax ID is required.
+                Tax ID Should be 7 caracters.
               </mat-error>
               <mat-label>Tax ID</mat-label>
               <input formControlName="taxId" type="text" matInput>
@@ -101,7 +104,7 @@
             <mat-form-field>
               <mat-error
               *ngIf="(myForm.get('cnssId')?.touched || myForm.get('cnssId')?.dirty) && myForm.get('cnssId')?.invalid">
-              CNSS ID is required.
+              CNSS ID Should be 10 caracters.
             </mat-error>
               <mat-label>CNSS ID</mat-label>
               <input formControlName="cnssId" type="text" matInput>
@@ -132,7 +135,7 @@
             <mat-form-field>
               <mat-error
               *ngIf="(myForm.get('replyEmail')?.touched || myForm.get('replyEmail')?.dirty) && myForm.get('replyEmail')?.invalid">
-              Reply email  is required.
+              Please provide a correct Email.
             </mat-error>
               <mat-label>Reply email</mat-label>
               <input formControlName="replyEmail" type="text" matInput>
@@ -144,7 +147,7 @@
             <mat-form-field>
               <mat-error
               *ngIf="(myForm.get('companyName')?.touched || myForm.get('companyName')?.dirty) && myForm.get('companyName')?.invalid">
-              Reply email  is required.
+              Company Name  is required.
             </mat-error>
               <mat-label>Company Name</mat-label>
               <input formControlName="companyName" type="text" matInput>
@@ -175,10 +178,10 @@
             <mat-form-field>
               <mat-error
               *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid">
-              Phone is required.
+              Verify phone number.
             </mat-error>
               <mat-label>Phone</mat-label>
-              <input formControlName="phone" type="text" matInput>
+              <input formControlName="phone" type="number" matInput>
             </mat-form-field><br>
 
 
@@ -187,10 +190,10 @@
             <mat-form-field>
               <mat-error
               *ngIf="(myForm.get('fax')?.touched || myForm.get('fax')?.dirty) && myForm.get('fax')?.invalid">
-              fax is required.
-            </mat-error>
+              Verify Fax number.
+              </mat-error>
               <mat-label>Fax</mat-label>
-              <input formControlName="fax" type="text" matInput>
+              <input formControlName="fax" type="number" matInput>
             </mat-form-field><br>
             <br>
             <br>
@@ -209,4 +212,4 @@
 
 </div>
 
-<app-supplier-signup-representative  [basicInfo]="basicInfo"></app-supplier-signup-representative>
+<app-supplier-signup-representative *ngIf="next"  [basicInfo]="basicInfo"></app-supplier-signup-representative>

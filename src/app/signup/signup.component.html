@@ -23,7 +23,7 @@
             <mat-form-field>
               <mat-error
                 *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
-                Please provide an Email.
+                Please provide a correct Email.
               </mat-error>
               <mat-label>Email</mat-label>
               <input formControlName="email" autocomplete="autocomplete=" type="email" matInput>
@@ -77,4 +77,4 @@
 </div>
 
 <app-citizen-signup *ngIf="type=='citizen'" [user]="user"></app-citizen-signup>
-<app-supplier-signup  [user]="user" ></app-supplier-signup>
+<app-supplier-signup   *ngIf="type=='supplier'"[user]="user" ></app-supplier-signup>

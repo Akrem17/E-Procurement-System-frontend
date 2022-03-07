@@ -51,7 +51,11 @@ export class SignupComponent implements OnInit {
           this.type = form.value.type;
           //pass the common user form to the next signup form
           this.user = form;
+          //scroll to the top of page when loading the next page
+          document.body.scrollTop = document.documentElement.scrollTop = 0;
+
         } else this.emailExists = true;
+
       },
       error: (er) => { console.log(er); }
     });

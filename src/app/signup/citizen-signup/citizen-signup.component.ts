@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ValidatorService } from 'src/app/Shared/Services/ValidatorService/validator.service';
 import { CITIZEN } from '../../Shared/Models/CITIZEN';
 import { AuthService } from '../../Shared/Services/auth.service';
 
@@ -32,13 +33,7 @@ export class CitizenSignupComponent implements OnInit {
     this.type = form.value.type;
     //create a citizen object
     var citizen: CITIZEN = new CITIZEN();
-    citizen.email = this.user.get("email")?.value;
-    citizen.password = this.user.get("password")?.value;
-    citizen.type = this.user.get("type")?.value;
-    citizen.firstName = form.value.firstname;
-    citizen.lastName = form.value.lastname;
-    citizen.phone = form.value.phone.toString();
-    citizen.cin = form.value.cin.toString();
+    citizen.email = this.user.get("email")?.value;citizen.password = this.user.get("password")?.value; citizen.type = this.user.get("type")?.value; citizen.firstName = form.value.firstname; citizen.lastName = form.value.lastname; citizen.phone = form.value.phone.toString(); citizen.cin = form.value.cin.toString();
 
     this._auth.registreUser(citizen).subscribe(
       {

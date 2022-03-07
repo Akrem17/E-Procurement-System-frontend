@@ -35,6 +35,14 @@ export class ValidatorService implements Validator {
     }
     return null;
   }
+  ValidateLength(control: AbstractControl): { [key: string]: any } | null {
+
+    if (control.value && control.value.toString().length != 10) {
+
+      return { 'ValidateLength': true };
+    }
+    return null;
+  }
   
   constructor() { }
 }
