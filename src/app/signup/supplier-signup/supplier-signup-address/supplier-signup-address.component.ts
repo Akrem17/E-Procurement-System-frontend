@@ -18,7 +18,7 @@ export class SupplierSignupAddressComponent implements OnInit {
   type:string="";
   @Input()
   basicInfo!: FormGroup;
-  
+  next:boolean=false;
   constructor(private fb: FormBuilder, private _auth :AuthService,private _router:Router) { }
 
   ngOnInit(): void {
@@ -73,7 +73,7 @@ export class SupplierSignupAddressComponent implements OnInit {
         
         
     this.registerSupplier(supplier);
-  //   this._router.navigate(['/login'],{'state':{'verify':'true'}});
+     this._router.navigate(['/login'],{'state':{'verify':'true'}});
         
  
   }
