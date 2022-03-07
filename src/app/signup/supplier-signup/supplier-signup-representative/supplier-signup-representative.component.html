@@ -1,13 +1,12 @@
-<div style=" background-color: #f8fafb; padding-top: 50px;" class="" *ngIf="type==''">
- 
+<div style=" background-color: #f8fafb; padding-top: 50px;" class=""  >
+
+    <div  *ngIf="!LicencePage"  class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
   
-    <div class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
   
-  
-      <div class="col-lg-4 col-sm-12">
+      <div class="col-lg-4 col-sm-12"  >
         <div class="container">
   
-          <div class="signin">
+          <div class="signin" >
   
   
             <div><span class=" red Segoe">Represntative Informations</span></div><br><br><br>
@@ -45,7 +44,7 @@
               <mat-form-field>
                 <mat-error
                   *ngIf="(myForm.get('socialSecurityNumber')?.touched || myForm.get('socialSecurityNumber')?.dirty) && myForm.get('socialSecurityNumber')?.invalid">
-                  Social Security Number is required.
+                    Social Security Number Should be 10 caracters.
                 </mat-error>
                 <mat-label>Social Security Number</mat-label>
                 <input matInput formControlName="socialSecurityNumber" >
@@ -62,12 +61,13 @@
                   *ngIf="(myForm.get('position')?.touched || myForm.get('position')?.dirty) && myForm.get('position')?.invalid">
                   Position is required.
                 </mat-error>
-                <mat-label> Registration Number</mat-label>
+                <mat-label> Position</mat-label>
                 <input formControlName="position" type="text" matInput>
               </mat-form-field><br>
   
               <!-- Supplier registrationDate -->
               <mat-form-field>
+           
                 <mat-error
                   *ngIf="(myForm.get('socialSecurityNumberDate')?.touched || myForm.get('socialSecurityNumberDate')?.dirty) && myForm.get('socialSecurityNumberDate')?.invalid">
                   SocialSecurity Number Date is required.
@@ -83,7 +83,7 @@
               <mat-form-field>
                 <mat-error
                   *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid">
-                  Phone is required.
+                  Verify phone number.
                 </mat-error>
                 <mat-label>Phone</mat-label>
                 <input formControlName="phone" type="text" matInput>
@@ -94,7 +94,7 @@
               <mat-form-field>
                 <mat-error
                 *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.invalid">
-                CNSS ID is required.
+                Please provide a correct Email.
               </mat-error>
                 <mat-label>Email</mat-label>
                 <input formControlName="email" type="email" matInput>
@@ -104,7 +104,7 @@
   
   
               <div style="text-align: center;">
-                <button mat-button type="submit" class="login"  >NEXT </button>
+                <button mat-button type="submit" class="login"   >NEXT </button>
                 <br><br>
   
               </div>
@@ -115,4 +115,4 @@
      
   
   </div>
-  <app-supplier-signup-licence [basicInfo]="basicInfo" ></app-supplier-signup-licence>
+  <app-supplier-signup-licence *ngIf="LicencePage" [basicInfo]="basicInfo" ></app-supplier-signup-licence>

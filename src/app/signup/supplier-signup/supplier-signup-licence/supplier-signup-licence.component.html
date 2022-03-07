@@ -1,7 +1,7 @@
-<div style=" background-color: #f8fafb; padding-top: 50px;" class="" *ngIf="type==''">
+<div style=" background-color: #f8fafb; padding-top: 50px;" class="" >
  
-  
-    <div class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+ 
+    <div *ngIf="!AddressPage" class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
   
   
       <div class="col-lg-4 col-sm-12">
@@ -70,7 +70,7 @@
               <mat-form-field>
                 <mat-error
                   *ngIf="(myForm.get('registrationNumber')?.touched || myForm.get('registrationNumber')?.dirty) && myForm.get('registrationNumber')?.invalid">
-                  Registration Number is required.
+                  Registration Should be 10 caracters.
                 </mat-error>
                 <mat-label>Registration Number</mat-label>
                 <input formControlName="registrationNumber" type="text" matInput>
@@ -114,7 +114,7 @@
   
   
               <div style="text-align: center;">
-                <button mat-button type="submit" class="login"  >NEXT </button>
+                <button mat-button type="submit" class="login"   >NEXT </button>
                 <br><br>
   
               </div>
@@ -126,4 +126,4 @@
   
   </div>
 
-  <app-supplier-signup-address  [basicInfo]="basicInfo"></app-supplier-signup-address>
+  <app-supplier-signup-address *ngIf="AddressPage" [basicInfo]="basicInfo"></app-supplier-signup-address>
