@@ -26,6 +26,9 @@ import { UserService } from './Shared/Services/UserService/user.service';
 import { CitizenSignupComponent } from './signup/citizen-signup/citizen-signup.component';
 import { SupplierSignupComponent } from './signup/supplier-signup/supplier-signup.component';
 import { CitizenService } from './Shared/Services/CitizenService/citizen.service';
+import { SupplierSignupRepresentativeComponent } from './signup/supplier-signup/supplier-signup-representative/supplier-signup-representative.component';
+import { SupplierSignupLicenceComponent } from './signup/supplier-signup/supplier-signup-licence/supplier-signup-licence.component';
+import { SupplierSignupAddressComponent } from './signup/supplier-signup/supplier-signup-address/supplier-signup-address.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { CitizenService } from './Shared/Services/CitizenService/citizen.service
     HomeComponent,
     CitizenSignupComponent,
     SignupHundlComponent,
-    SupplierSignupComponent
+    SupplierSignupComponent,
+    SupplierSignupRepresentativeComponent,
+    SupplierSignupLicenceComponent,
+    SupplierSignupAddressComponent
   ],
   imports: [
     BrowserModule,

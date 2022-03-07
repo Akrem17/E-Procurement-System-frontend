@@ -12,9 +12,10 @@ import { GlobalConstants } from 'src/app/Shared/user-type';
   styleUrls: ['./supplier-signup.component.css']
 })
 export class SupplierSignupComponent implements OnInit {
-  // @Input()
-  // x!: FormGroup;
- 
+
+   basicInfo!: FormGroup;
+   @Input()
+  user!: FormGroup;
   myForm!: FormGroup;
   formCitizen!: FormGroup;
   type:string="";
@@ -36,10 +37,7 @@ export class SupplierSignupComponent implements OnInit {
       phone: ['', [Validators.required]],
       fax: ['', [Validators.required]]
    
-      // postalCode: ['', [Validators.required]],
-      // country: ['', [Validators.required]],
-      // address: ['', [Validators.required]],
-      // city: ['', [Validators.required]],
+    
 
      
 
@@ -49,63 +47,19 @@ export class SupplierSignupComponent implements OnInit {
 
   
   onSubmit(form: FormGroup) {
-    // console.log('Valid?', form.valid); // true or false
-    // console.log('password', form.value);
-    // var supplier: SUPPLIER = new SUPPLIER();
-    // supplier.address=form.value.address
-    // supplier.buisnessClassification=form.value.buisnessClassification
-    // supplier.buisnessType=form.value.buisnessType
-    // supplier.category=form.value.category
-    // supplier.cnssId=form.value.cnssId
-    // supplier.companyName=form.value.companyName
-    // supplier.email=form.value.email
-    // supplier.fax=form.value.fax
-    // supplier.firstName=form.value.firstName
-    // supplier.lastName=form.value.lastName
-    // supplier.licence=form.value.licence
-    // supplier.password=form.value.password
-    // supplier.phone=form.value.phone
-    // supplier.registrationDate=form.value.registrationDate
-    // supplier.registrationNumber=form.value.registrationNumber
-    // supplier.replyEmail=form.value.replyEmail
-    // supplier.representative=form.value.representative
-    // supplier.supplierName=form.value.supplierName
-    // supplier.taxId=form.value.taxId
-    // supplier.type=form.value.type
-   // console.log(supplier)
+    console.log(form.value);
+    this.basicInfo=form;
+    console.log(this.user)
+    this.basicInfo.addControl('user', new FormGroup(this.user.controls)); 
+
+    //check buisness registration number
+    //check taxid
+    //check cnssid
+
     
 
-    // console.log('Email', form.value.email);
-    // console.log('Email', form.value.type);
-    // this.type=form.value.type;
-  //   console.log(  GlobalConstants.usertype) 
-  //  // this.formCitizen=new FormGroup({userInfo:form,citizenInfo:this.x})
-  //  // console.log(this.formCitizen.value
-  //   console.log(this.x.get("email")?.value)
-     
-     
-
-        
-        
-     
-  //      var citizen:CITIZEN = new CITIZEN();
-  //       citizen.email=this.x.get("email")?.value;
-  //       citizen.password=this.x.get("password")?.value;
-  //       citizen.type=this.x.get("type")?.value;
-  //       citizen.firstName=form.value.firstname;
-  //       citizen.lastName=form.value.lastname;
-  //       citizen.phone=form.value.phone.toString();
-  //       citizen.cin=form.value.cin.toString();
-  //       console.log(citizen);
-
-        
-        
-  //   this.registerUser(citizen);
-  //   this._router.navigate(['/login'],{'state':{'verify':'true'}});
   }
 
 
-  registerUser( citizen:CITIZEN){
-    this._auth.registreUser(citizen).subscribe(res=>console.log(res))
-  }
+ 
 }

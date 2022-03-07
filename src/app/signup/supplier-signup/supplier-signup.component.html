@@ -9,10 +9,27 @@
       <div class="container">
 
         <div class="signin">
+         
 
-
-          <div><span class=" red Segoe">Basic Informations</span></div><br>
-
+          <div><span class=" red Segoe">Basic Informations</span></div><br> <br>
+          <div class="stepper-wrapper">
+            <div class="stepper-item active">
+              <div class="step-counter">1</div>
+              <div class="step-name">Supplier</div>
+            </div>
+            <div class="stepper-item ">
+              <div class="step-counter">2</div>
+              <div class="step-name">Represntative</div>
+            </div>
+            <div class="stepper-item ">
+              <div class="step-counter">3</div>
+              <div class="step-name">Licence</div>
+            </div>
+            <div class="stepper-item ">
+              <div class="step-counter">4</div>
+              <div class="step-name">Address</div>
+            </div>
+          </div> <br> <br>
           <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
             <!-- suppleir name -->
@@ -53,7 +70,7 @@
                 Registration Number is required.
               </mat-error>
               <mat-label>Buisness Registration Number</mat-label>
-              <input formControlName="registrationNumber" type="number" matInput>
+              <input formControlName="registrationNumber" type="text" matInput>
             </mat-form-field><br>
 
             <!-- Supplier registrationDate -->
@@ -76,7 +93,7 @@
                 Tax ID is required.
               </mat-error>
               <mat-label>Tax ID</mat-label>
-              <input formControlName="taxId" type="number" matInput>
+              <input formControlName="taxId" type="text" matInput>
             </mat-form-field><br>
 
 
@@ -87,8 +104,8 @@
               CNSS ID is required.
             </mat-error>
               <mat-label>CNSS ID</mat-label>
-              <input formControlName="cnssId" type="number" matInput>
-            </mat-form-field><br>
+              <input formControlName="cnssId" type="text" matInput>
+            </mat-form-field>
             <br>
 
 
@@ -161,7 +178,7 @@
               Phone is required.
             </mat-error>
               <mat-label>Phone</mat-label>
-              <input formControlName="phone" type="number" matInput>
+              <input formControlName="phone" type="text" matInput>
             </mat-form-field><br>
 
 
@@ -173,14 +190,14 @@
               fax is required.
             </mat-error>
               <mat-label>Fax</mat-label>
-              <input formControlName="fax" type="number" matInput>
+              <input formControlName="fax" type="text" matInput>
             </mat-form-field><br>
             <br>
             <br>
 
 
             <div style="text-align: center;">
-              <button mat-button type="submit" class="login"  >Registration </button>
+              <button mat-button type="submit" class="login"  >NEXT </button>
               <br><br>
 
             </div>
@@ -191,3 +208,5 @@
    
 
 </div>
+
+<app-supplier-signup-representative  [basicInfo]="basicInfo"></app-supplier-signup-representative>
