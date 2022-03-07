@@ -11,6 +11,8 @@ export class AuthService {
 
   
   private _registreUrl=environment.apiUrl+"signup/citizen";
+  private _registreSupplier=environment.apiUrl+"signup/supplier";
+
   private _loginUrl=environment.apiUrl+"login"
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(private http:HttpClient, private router:Router) {}
@@ -43,4 +45,7 @@ export class AuthService {
     this.router.navigate(['/login'])
 
   }
+  registreSupplier(user:any){
+    return this.http.post<any>(this._registreSupplier,user);
+   }
 }
