@@ -70,8 +70,6 @@
                 *ngIf="(myForm.get('registrationNumber')?.touched || myForm.get('registrationNumber')?.dirty) && myForm.get('registrationNumber')?.invalid">
                 Registration Number must be 10 digits.
               </mat-error>
-              <!-- <mat-error>{{ errorMessage }}</mat-error> -->
-
               <mat-label>Buisness Registration Number</mat-label>
               <input formControlName="registrationNumber" type="number" matInput>
             </mat-form-field><br>
