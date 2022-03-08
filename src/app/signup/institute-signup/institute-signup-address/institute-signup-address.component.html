@@ -10,25 +10,22 @@
           <div class="signin">
   
   
-            <div><span class=" red Segoe">Address Informations</span></div><br><br><br>
+            <div><span class=" red Segoe">Address Informations</span></div><br> <br>
             <div class="stepper-wrapper">
-                <div class="stepper-item completed">
-                  <div class="step-counter">1</div>
-                  <div class="step-name">Supplier</div>
-                </div>
-                <div class="stepper-item completed">
-                  <div class="step-counter">2</div>
-                  <div class="step-name">Represntative</div>
-                </div>
-                <div class="stepper-item completed">
-                  <div class="step-counter">3</div>
-                  <div class="step-name">Licence</div>
-                </div>
-                <div class="stepper-item active">
-                    <div class="step-counter">4</div>
-                    <div class="step-name">Address</div>
-                  </div>
-              </div><br><br>
+              <div class="stepper-item completed">
+                <div class="step-counter">1</div>
+                <div class="step-name">Institute</div>
+              </div>
+              <div class="stepper-item completed ">
+                <div class="step-counter">2</div>
+                <div class="step-name">Interlocutor</div>
+              </div>
+          
+              <div class="stepper-item active">
+                <div class="step-counter">3</div>
+                <div class="step-name">Address</div>
+              </div>
+            </div> <br> <br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   
          
@@ -107,7 +104,7 @@
 
   
               <div style="text-align: center;">
-                <button mat-button type="submit" class="login"   [disabled]="myForm.invalid" >SUBMIT </button>
+                <button mat-button type="submit" class="login"   [disabled]="myForm.invalid"  >SUBMIT </button>
                 <br><br>
   
               </div>

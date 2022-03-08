@@ -17,7 +17,6 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SignupHundlComponent } from './signup-hundl/signup-hundl.component';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './Shared/Services/auth.service';
 import { AuthGuard } from './auth.guard';
@@ -29,6 +28,9 @@ import { CitizenService } from './Shared/Services/CitizenService/citizen.service
 import { SupplierSignupRepresentativeComponent } from './signup/supplier-signup/supplier-signup-representative/supplier-signup-representative.component';
 import { SupplierSignupLicenceComponent } from './signup/supplier-signup/supplier-signup-licence/supplier-signup-licence.component';
 import { SupplierSignupAddressComponent } from './signup/supplier-signup/supplier-signup-address/supplier-signup-address.component';
+import { InstituteSignupComponent } from './signup/institute-signup/institute-signup.component';
+import { InstituteSignupinterlocutorComponent } from './signup/institute-signup/institute-signupinterlocutor/institute-signupinterlocutor.component';
+import { InstituteSignupAddressComponent } from './signup/institute-signup/institute-signup-address/institute-signup-address.component';
 
 
 @NgModule({
@@ -41,11 +43,13 @@ import { SupplierSignupAddressComponent } from './signup/supplier-signup/supplie
     SignupComponent,
     HomeComponent,
     CitizenSignupComponent,
-    SignupHundlComponent,
     SupplierSignupComponent,
     SupplierSignupRepresentativeComponent,
     SupplierSignupLicenceComponent,
-    SupplierSignupAddressComponent
+    SupplierSignupAddressComponent,
+    InstituteSignupComponent,
+    InstituteSignupinterlocutorComponent,
+    InstituteSignupAddressComponent
   ],
   imports: [
     BrowserModule,

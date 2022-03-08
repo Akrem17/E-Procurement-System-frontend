@@ -59,7 +59,6 @@ export class SupplierSignupComponent implements OnInit {
     this.basicInfo.addControl('user', new FormGroup(this.user.controls)); 
     this.next=true;
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    console.log(this.next)
 
     //check buisness registration number
     //check taxid

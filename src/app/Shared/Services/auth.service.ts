@@ -12,6 +12,7 @@ export class AuthService {
   
   private _registreUrl=environment.apiUrl+"signup/citizen";
   private _registreSupplier=environment.apiUrl+"signup/supplier";
+  private _registreInstitute=environment.apiUrl+"signup/institute";
 
   private _loginUrl=environment.apiUrl+"login"
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -48,4 +49,9 @@ export class AuthService {
   registreSupplier(user:any){
     return this.http.post<any>(this._registreSupplier,user);
    }
+   registerInstitute(user:any){
+    return this.http.post<any>(this._registreInstitute,user);
+   }
+
+   
 }
