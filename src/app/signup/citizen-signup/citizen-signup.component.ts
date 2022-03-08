@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ValidatorService } from 'src/app/Shared/Services/ValidatorService/validator.service';
 import { CITIZEN } from '../../Shared/Models/CITIZEN';
 import { AuthService } from '../../Shared/Services/auth.service';
 
@@ -15,7 +14,6 @@ export class CitizenSignupComponent implements OnInit {
   @Input()
   user!: FormGroup;
   myForm!: FormGroup;
-  formCitizen!: FormGroup;
   type: string = "";
 
   constructor(private fb: FormBuilder, private _auth: AuthService, private _router: Router) { }
@@ -38,7 +36,6 @@ export class CitizenSignupComponent implements OnInit {
     this._auth.registreUser(citizen).subscribe(
       {
         next: (res) => {
-          console.log(res)
           //@ts-ignore
           const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
           if (response.status) {

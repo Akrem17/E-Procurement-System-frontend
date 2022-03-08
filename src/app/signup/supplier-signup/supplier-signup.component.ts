@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Shared/Services/auth.service';
 import { ValidatorService } from 'src/app/Shared/Services/ValidatorService/validator.service';
 
 @Component({
@@ -11,18 +10,14 @@ import { ValidatorService } from 'src/app/Shared/Services/ValidatorService/valid
 })
 export class SupplierSignupComponent implements OnInit {
 
-   basicInfo!: FormGroup;
-   @Input()
+  basicInfo!: FormGroup;
+  @Input()
   user!: FormGroup;
   myForm!: FormGroup;
-  formCitizen!: FormGroup;
   type:string="";
   next:boolean=false;
 
-  constructor(private fb: FormBuilder, private _auth :AuthService,private _router:Router, private _validatorService: ValidatorService) { 
-
-   
-  }
+  constructor(private fb: FormBuilder, private _validatorService: ValidatorService) { }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
@@ -42,32 +37,20 @@ export class SupplierSignupComponent implements OnInit {
     });
     
   }
-  // get errorMessage(): string {
-  //   const form: FormControl = (this.myForm.get('registrationNumber') as FormControl);
-  //   return form.hasError('required') ?
-  //     'registrationNumber is required' :
-  //     form.hasError('ValidateLength') ?
-  //       'registration Number length should be more than 8 caracters' :
-  //       form.hasError('ValidatePassword') ?
-  //         'Passowrdr' : '';
-  // }
-  
+
   onSubmit(form: FormGroup) {
-    console.log(form.value);
+ 
     this.basicInfo=form;
-    console.log(this.user)
     this.basicInfo.addControl('user', new FormGroup(this.user.controls)); 
+    //set the next component visibilty to true
     this.next=true;
+    //scroll to the top of page
     document.body.scrollTop = document.documentElement.scrollTop = 0;
 
     //check buisness registration number
     //check taxid
     //check cnssid
 
-    
-
   }
-
-
  
 }

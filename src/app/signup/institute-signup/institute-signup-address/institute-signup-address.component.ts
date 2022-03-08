@@ -14,7 +14,6 @@ import { AuthService } from 'src/app/Shared/Services/auth.service';
 export class InstituteSignupAddressComponent implements OnInit {
 
   myForm!: FormGroup;
-  formCitizen!: FormGroup;
   type:string="";
   @Input()
   basicInfo!: FormGroup;
@@ -28,27 +27,15 @@ export class InstituteSignupAddressComponent implements OnInit {
       city: ['', [Validators.required]],
       street1: ['', [Validators.required]],
       street2: ['', [Validators.required]],
-   
-
-     
-
+  
     });
     
   }
 
   
   onSubmit(form: FormGroup) {
-    console.log(form.value);
 
-  
      this.basicInfo.addControl('address', new FormGroup(form.controls)); 
-
-    console.log(this.basicInfo.value);
-
-
-
-
-
 
   //  //modeling address
    let adrress:ADDRESS = new ADDRESS();
@@ -78,5 +65,5 @@ export class InstituteSignupAddressComponent implements OnInit {
      this._auth.registerInstitute(institute).subscribe(res=>console.log(res))
   }
 
-  
+
 }

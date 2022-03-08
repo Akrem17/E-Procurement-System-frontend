@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SUPPLIER } from 'src/app/Shared/Models/SUPPLIER';
-import { AuthService } from 'src/app/Shared/Services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-supplier-signup-representative',
@@ -15,10 +12,9 @@ export class SupplierSignupRepresentativeComponent implements OnInit {
   
   part2Form!: FormGroup;
   myForm!: FormGroup;
-  formCitizen!: FormGroup;
   type:string="";
   LicencePage:boolean=false;
-  constructor(private fb: FormBuilder, private _auth :AuthService,private _router:Router) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -30,9 +26,6 @@ export class SupplierSignupRepresentativeComponent implements OnInit {
       socialSecurityNumberDate: ['', [Validators.required]],
       phone: ['', [Validators.required,Validators.min(20000000), Validators.max(99999999)]],
       email: ['', [Validators.required,Validators.email]],
-      
-
-     
 
     });
     
@@ -41,10 +34,12 @@ export class SupplierSignupRepresentativeComponent implements OnInit {
   
   onSubmit(form: FormGroup) {
   
-    this.basicInfo.addControl('representative', new FormGroup(form.controls)); 
-
-   console.log(this.basicInfo.value);
+    this.basicInfo.addControl('representative', new FormGroup(form.controls));
+    
+    //set the next component visibilty to true
     this.LicencePage=true;
+  
+    //scroll to the top of page
     document.body.scrollTop = document.documentElement.scrollTop = 0;
 
    //check social securty number
@@ -53,7 +48,5 @@ export class SupplierSignupRepresentativeComponent implements OnInit {
    //check registration number
    
   }
-
-
 
 }
