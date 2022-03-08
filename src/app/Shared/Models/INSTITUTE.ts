@@ -10,7 +10,6 @@ export class INSTITUTE extends USER{
     public representativeName!: string
     public notificationEmail!: string
     public phone!: string
-    public cin!: string
     public fax!: string
     public address!: ADDRESS
     public interlocutor!:REPRESENTATIVE

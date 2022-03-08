@@ -9,34 +9,31 @@
           <div class="signin" >
   
   
-            <div><span class=" red Segoe">Represntative Informations</span></div><br><br><br>
+            <div><span class=" red Segoe">Interlocutor Informations</span></div><br> <br>
             <div class="stepper-wrapper">
-                <div class="stepper-item completed">
-                  <div class="step-counter">1</div>
-                  <div class="step-name">Supplier</div>
-                </div>
-                <div class="stepper-item active">
-                  <div class="step-counter">2</div>
-                  <div class="step-name">Represntative</div>
-                </div>
-                <div class="stepper-item ">
-                  <div class="step-counter">3</div>
-                  <div class="step-name">Licence</div>
-                </div>
-                <div class="stepper-item ">
-                    <div class="step-counter">4</div>
-                    <div class="step-name">Address</div>
-                  </div>
-              </div><br><br>
+              <div class="stepper-item completed">
+                <div class="step-counter">1</div>
+                <div class="step-name">Institute</div>
+              </div>
+              <div class="stepper-item active ">
+                <div class="step-counter">2</div>
+                <div class="step-name">Interlocutor</div>
+              </div>
+          
+              <div class="stepper-item ">
+                <div class="step-counter">3</div>
+                <div class="step-name">Address</div>
+              </div>
+            </div> <br> <br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   
               <!-- suppleir name -->
               <mat-form-field>
                 <mat-error
                   *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
-                  Represntative Name is required.
+                  Interlocutor Name is required.
                 </mat-error>
-                <mat-label>Represntative Name</mat-label>
+                <mat-label>Interlocutor Name</mat-label>
                 <input matInput formControlName="name" >
               </mat-form-field>
 
@@ -104,7 +101,7 @@
   
   
               <div style="text-align: center;">
-                <button mat-button type="submit" class="login"  [disabled]="myForm.invalid"  >NEXT </button>
+                <button mat-button type="submit" class="login"  [disabled]="myForm.invalid"   >NEXT </button>
                 <br><br>
   
               </div>
@@ -115,4 +112,5 @@
      
   
   </div>
-  <app-supplier-signup-licence *ngIf="LicencePage" [basicInfo]="basicInfo" ></app-supplier-signup-licence>
+  <app-institute-signup-address  [basicInfo]="basicInfo" *ngIf="LicencePage" ></app-institute-signup-address>
+

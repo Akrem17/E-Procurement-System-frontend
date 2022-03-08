@@ -54,7 +54,7 @@
               <mat-label>Type</mat-label>
               <mat-select formControlName="type">
                 <mat-option value="citizen">Citizen</mat-option>
-                <mat-option value="Institute">Public Institute</mat-option>
+                <mat-option value="institute">Public Institute</mat-option>
                 <mat-option value="supplier">Supplier</mat-option>
               </mat-select>
             </mat-form-field>
@@ -78,3 +78,4 @@
 
 <app-citizen-signup *ngIf="type=='citizen'" [user]="user"></app-citizen-signup>
 <app-supplier-signup   *ngIf="type=='supplier'"[user]="user" ></app-supplier-signup>
+<app-institute-signup  *ngIf="type=='institute'"[user]="user" ></app-institute-signup>
