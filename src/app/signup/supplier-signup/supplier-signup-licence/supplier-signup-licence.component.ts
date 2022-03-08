@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SUPPLIER } from 'src/app/Shared/Models/SUPPLIER';
-import { AuthService } from 'src/app/Shared/Services/auth.service';
+
 
 @Component({
   selector: 'app-supplier-signup-licence',
@@ -11,12 +9,11 @@ import { AuthService } from 'src/app/Shared/Services/auth.service';
 })
 export class SupplierSignupLicenceComponent implements OnInit {
   myForm!: FormGroup;
-  formCitizen!: FormGroup;
   type:string="";
   @Input()
   basicInfo!: FormGroup;
   AddressPage:boolean=false;
-  constructor(private fb: FormBuilder, private _auth :AuthService,private _router:Router) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
@@ -26,9 +23,6 @@ export class SupplierSignupLicenceComponent implements OnInit {
       acquisitionDate: ['', [Validators.required]],
       expirationDate: ['', [Validators.required]],
       issuingInstitutionName: ['', [Validators.required]],
-   
-
-     
 
     });
     
@@ -36,21 +30,13 @@ export class SupplierSignupLicenceComponent implements OnInit {
 
   
   onSubmit(form: FormGroup) {
-    console.log(form.value);
-
-  
     this.basicInfo.addControl('licence', new FormGroup(form.controls)); 
-
-   console.log(this.basicInfo.value);
+   //set the next component visibilty to true
    this.AddressPage=true
+    //scroll to the top of page
    document.body.scrollTop = document.documentElement.scrollTop = 0;
         //check registartion number
-        //
- 
+    
   }
 
-
-  registerUser( citizen:SUPPLIER){
-    this._auth.registreUser(citizen).subscribe(res=>console.log(res))
-  }
 }

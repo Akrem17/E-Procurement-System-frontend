@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Shared/Services/auth.service';
 
 @Component({
   selector: 'app-institute-signupinterlocutor',
@@ -12,13 +10,11 @@ export class InstituteSignupinterlocutorComponent implements OnInit {
 
   @Input()
   basicInfo!: FormGroup;
-  
   part2Form!: FormGroup;
   myForm!: FormGroup;
-  formCitizen!: FormGroup;
   type:string="";
   LicencePage:boolean=false;
-  constructor(private fb: FormBuilder, private _auth :AuthService,private _router:Router) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -31,30 +27,22 @@ export class InstituteSignupinterlocutorComponent implements OnInit {
       phone: ['', [Validators.required,Validators.min(20000000), Validators.max(99999999)]],
       email: ['', [Validators.required,Validators.email]],
       
-
-     
-
     });
     
   }
 
   
   onSubmit(form: FormGroup) {
-    console.log(form.value);
-
     this.basicInfo.addControl('interlocutor', new FormGroup(form.controls)); 
-
-   console.log(this.basicInfo.value);
+   //set the next component visibilty to true
     this.LicencePage=true;
+    //scroll to the top of page
     document.body.scrollTop = document.documentElement.scrollTop = 0;
 
    //check social securty number
 
- //check social securty number
+    //check social securty number
    //check registration number
    
   }
-
-
-
 }

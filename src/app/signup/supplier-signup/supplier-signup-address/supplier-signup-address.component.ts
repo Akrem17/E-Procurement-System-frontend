@@ -14,7 +14,6 @@ import { AuthService } from 'src/app/Shared/Services/auth.service';
 })
 export class SupplierSignupAddressComponent implements OnInit {
   myForm!: FormGroup;
-  formCitizen!: FormGroup;
   type:string="";
   @Input()
   basicInfo!: FormGroup;
@@ -27,23 +26,16 @@ export class SupplierSignupAddressComponent implements OnInit {
       postalCode: ['', [Validators.required ]],
       city: ['', [Validators.required]],
       street1: ['', [Validators.required]],
-      street2: ['', [Validators.required]],
-   
-
-     
+      street2: ['', [Validators.required]],   
 
     });
-    
+  
   }
 
   
   onSubmit(form: FormGroup) {
-    console.log(form.value);
 
-  
     this.basicInfo.addControl('address', new FormGroup(form.controls)); 
-
-   console.log(this.basicInfo.value.address);
 
    //modeling address
    let adrress:ADDRESS = new ADDRESS();
@@ -63,19 +55,14 @@ export class SupplierSignupAddressComponent implements OnInit {
 
    let supplier:SUPPLIER= new SUPPLIER();
    supplier.address=adrress; supplier.licence=licence; supplier.representative=representative; supplier.buisnessClassification=this.basicInfo.value.buisnessClassification; supplier.buisnessType=this.basicInfo.value.buisnessType; supplier.category=this.basicInfo.value.category; supplier.cnssId=this.basicInfo.value.cnssId; supplier.companyName=this.basicInfo.value.companyName; supplier.email=this.basicInfo.value.user.email; supplier.fax=this.basicInfo.value.fax; supplier.firstName="test"; supplier.lastName="test"; supplier.password=this.basicInfo.value.user.password; supplier.phone=this.basicInfo.value.phone.toString(); supplier.registrationDate=this.basicInfo.value.registrationDate; supplier.registrationNumber=this.basicInfo.value.registrationNumber;supplier.replyEmail=this.basicInfo.value.replyEmail;supplier.supplierName=this.basicInfo.value.supplierName;supplier.taxId=this.basicInfo.value.taxId; supplier.type=this.basicInfo.value.user.type;
-   
-   console.log(supplier)
-     
-
-        
-        
-
         
         
     this.registerSupplier(supplier);
+
+    //the verify is a boolean state to fire the need to verify email notification
      this._router.navigate(['/login'],{'state':{'verify':'true'}});
         
- 
+
   }
 
 
