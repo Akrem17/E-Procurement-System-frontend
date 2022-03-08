@@ -59,7 +59,7 @@ export class InstituteSignupAddressComponent implements OnInit {
    let interlocutor:REPRESENTATIVE = new REPRESENTATIVE(); 
    interlocutor.email=this.basicInfo.value.interlocutor.email; interlocutor.name=this.basicInfo.value.interlocutor.name; interlocutor.phone=this.basicInfo.value.interlocutor.phone.toString(); interlocutor.position=this.basicInfo.value.interlocutor.position; interlocutor.socialSecurityNumber=this.basicInfo.value.interlocutor.socialSecurityNumber; interlocutor.socialSecurityNumberDate=this.basicInfo.value.interlocutor.socialSecurityNumberDate;
   
-   console.log(adrress,interlocutor)
+   
   //modeling institute
     let institute :INSTITUTE = new INSTITUTE();
     institute.address=adrress;institute.areaType=this.basicInfo.value.areaType;institute.email=this.basicInfo.value.user.email;institute.fax=this.basicInfo.value.fax.toString();institute.firstName="akrem";institute.interlocutor=interlocutor;institute.lastName="akrem";institute.nameAr=this.basicInfo.value.nameAr;institute.notificationEmail=this.basicInfo.value.notificationEmail;institute.nameFr=this.basicInfo.value.nameFr;institute.password=this.basicInfo.value.user.password;institute.phone=this.basicInfo.value.phone.toString();institute.representativeName=this.basicInfo.value.representativeName;institute.type=this.basicInfo.value.user.type;institute.typeOfInstitute=this.basicInfo.value.typeOfInstitute;
@@ -77,4 +77,6 @@ export class InstituteSignupAddressComponent implements OnInit {
    registerInstitute( institute:INSTITUTE){
      this._auth.registerInstitute(institute).subscribe(res=>console.log(res))
   }
+
+  
 }

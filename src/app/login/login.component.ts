@@ -2,8 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CITIZEN_FILTERS } from '../Shared/Models/CITIZEN_FILTERS';
 import { LOGIN } from '../Shared/Models/LOGIN';
 import { AuthService } from '../Shared/Services/auth.service';
+import { CitizenService } from '../Shared/Services/CitizenService/citizen.service';
+
 
 @Component({
   selector: 'app-login',
@@ -16,14 +19,19 @@ export class LoginComponent implements OnInit {
   verifyEmail: boolean = false;
   error: boolean = false;
   errorMessage!: string;
-  constructor(private fb: FormBuilder, private _auth: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private _auth: AuthService, private router: Router,private citizen:CitizenService) {
     //this will fire a message to user to verify his email after being redirected from signup user
+  
+  
     var singupComponentExtras = this.router.getCurrentNavigation()?.extras.state;
     //@ts-ignore
     this.verifyEmail = singupComponentExtras?.verify;
+  
   }
 
   ngOnInit(): void {
+
+    
     this.myForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
