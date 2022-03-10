@@ -33,31 +33,37 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-5 mb-lg-0">
-                <li class="nav-item">
+                <li class="nav-item"  *ngIf="!(loginStatus$ | async) as loginStatus" >
                     <a class="nav-link active" aria-current="page" href="">Home</a>
                   </li>
-              <li class="nav-item">
+              <li class="nav-item"  *ngIf="!(loginStatus$ | async) as loginStatus" >
                 <a class="nav-link active" routerLink="/consulting" aria-current="page" href="#">Consulting tenders</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item"  *ngIf="(loginStatus$ | async)  && (type$ | async)=='institute' "   >
+                <a class="nav-link"routerLink="/login">Add Tender</a>
+              </li>
+              <li class="nav-item"  *ngIf="!(loginStatus$ | async) as loginStatus" >
                 <a class="nav-link"routerLink="/login">Institution Space</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus"  >
                 <a class="nav-link" routerLink="/login">Supplier Space</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus"  >
                 <a class="nav-link"routerLink="/login">Citizen Space</a>
               </li>
+          
               <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
               </li>
-        
+              <li class="nav-item">
+                <a class="nav-link" href="#" *ngIf="email$ | async as email">{{email | uppercase}}</a>
+              </li>
 
             </ul>
-            <div *ngIf="!logged"  class="login right">
+            <div *ngIf="!(loginStatus$ | async) as loginStatus"  class="login right">
                 <a routerLink="login" >Login</a>
             </div>
-            <div (click)="logout()" *ngIf="logged"  class="login btn right">
+            <div (click)="logout()" *ngIf="loginStatus$ | async as loginStatus"   class="login btn right">
               <a  >logout</a>
           </div>
          

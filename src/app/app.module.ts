@@ -19,7 +19,6 @@ import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './Shared/Services/auth.service';
-import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './Shared/Services/TokenService/token-interceptor.service';
 import { UserService } from './Shared/Services/UserService/user.service';
 import { CitizenSignupComponent } from './signup/citizen-signup/citizen-signup.component';
@@ -31,6 +30,8 @@ import { SupplierSignupAddressComponent } from './signup/supplier-signup/supplie
 import { InstituteSignupComponent } from './signup/institute-signup/institute-signup.component';
 import { InstituteSignupinterlocutorComponent } from './signup/institute-signup/institute-signupinterlocutor/institute-signupinterlocutor.component';
 import { InstituteSignupAddressComponent } from './signup/institute-signup/institute-signup-address/institute-signup-address.component';
+import { AuthGuard } from './Shared/Services/GuardService/auth.guard';
+import { HasRoleGuard } from './Shared/Services/GuardService/has-role.guard';
 
 
 @NgModule({

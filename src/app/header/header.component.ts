@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from '../Shared/Services/auth.service';
 
 @Component({
@@ -7,15 +8,29 @@ import { AuthService } from '../Shared/Services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-logged:boolean | undefined
+// logged:boolean | undefined
+// userType:string;
+loginStatus$ :Observable<boolean>;
+email$:Observable<string>;
+type$:Observable<string>;
+
   constructor(private _authService:AuthService) { 
-      this._authService.isUserLoggedIn.subscribe(value => {
-        this.logged = value;})
+      // this._authService.isUserLoggedIn.subscribe(value => {
+      //   this.logged = value;})
+
+      //   this._authService.connectedUser.subscribe(user=>{
+
+      //     console.log(user?.type)
+      //   })
 
    
   }
 
+ 
   ngOnInit(): void {
+    this.loginStatus$=this._authService.isUserLoggedIn;
+    this.type$=this._authService.type;
+    this.email$=this._authService.email;
   }
 
   logout(){
