@@ -8,32 +8,21 @@ import { AuthService } from '../Shared/Services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-// logged:boolean | undefined
-// userType:string;
-loginStatus$ :Observable<boolean>;
-email$:Observable<string>;
-type$:Observable<string>;
 
-  constructor(private _authService:AuthService) { 
-      // this._authService.isUserLoggedIn.subscribe(value => {
-      //   this.logged = value;})
+  loginStatus$: Observable<boolean>;
+  email$: Observable<string>;
+  type$: Observable<string>;
 
-      //   this._authService.connectedUser.subscribe(user=>{
+  constructor(private _authService: AuthService) { }
 
-      //     console.log(user?.type)
-      //   })
 
-   
-  }
-
- 
   ngOnInit(): void {
-    this.loginStatus$=this._authService.isUserLoggedIn;
-    this.type$=this._authService.type;
-    this.email$=this._authService.email;
+    this.loginStatus$ = this._authService.isUserLoggedIn;
+    this.type$ = this._authService.type;
+    this.email$ = this._authService.email;
   }
 
-  logout(){
+  logout() {
     this._authService.logout();
   }
 }

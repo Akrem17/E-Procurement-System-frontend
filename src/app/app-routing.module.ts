@@ -11,14 +11,28 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
 
 
-  { path: 'login',  canActivate:[PreventLoggedInAccessGuard],component: LoginComponent },
-  { path: 'signup',  canActivate:[PreventLoggedInAccessGuard],component: SignupComponent },
-  { path: 'consulting', component: ConsultTendersComponent,
-  canActivate:[AuthGuard,HasRoleGuard],
-   data:{
-    type:['citizen','institute']
-  } },
-  { path: '',  canActivate:[PreventLoggedInAccessGuard],component: HomeComponent } 
+  {
+    path: 'login',
+    canActivate: [PreventLoggedInAccessGuard],
+    component: LoginComponent
+  },
+  {
+    path: 'signup',
+    canActivate: [PreventLoggedInAccessGuard],
+    component: SignupComponent
+  },
+  {
+    path: 'consulting', component: ConsultTendersComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+    }
+  },
+  {
+    path: '',
+    canActivate: [PreventLoggedInAccessGuard],
+    component: HomeComponent
+  }
 ];
 
 @NgModule({
