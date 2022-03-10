@@ -8,23 +8,21 @@ import { AuthService } from '../auth.service';
 })
 export class PreventLoggedInAccessGuard implements CanActivate {
 
-  
-  constructor(private authService: AuthService, private _router:Router) {
-    
+
+  constructor(private authService: AuthService, private _router: Router) {
+
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log( this.authService.loggedIn());
-      let isLoggedIn= this.authService.isUserLoggedIn?.value;
-      
-      if(isLoggedIn && this.authService.type.value!=null ){
-        this._router.navigate(['/consulting']);
-       
-      }
-      console.log(!isLoggedIn)
-      return !isLoggedIn;
+    let isLoggedIn = this.authService.isUserLoggedIn?.value;
+
+    if (isLoggedIn && this.authService.type.value != null) {
+      this._router.navigate(['/consulting']);
+
+    }
+    return !isLoggedIn;
 
   }
-  
+
 }

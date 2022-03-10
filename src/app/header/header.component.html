@@ -1,75 +1,78 @@
 <div class="topheader"><span>Welcome to Egovnez</span>
-    <span class="right email ">egovnez@tunisie.tn</span>
-<span class="right ">Friday,February 4,2022</span>
+  <span class="right email ">egovnez@tunisie.tn</span>
+  <span class="right ">Friday,February 4,2022</span>
 
 </div>
 <div class="secNav">
-    <div class="row align-items-start">
-      <div class="col">
-        <div class="logoTn">
-            <a href=''><img src='https://i.postimg.cc/0Q8PJXKs/logo-ar.png' width="130px" height="50px" alt='logo-ar'/></a>
-        </div>      </div>
-      <div class="col ">
-        <div class="logo ">
-            <a href=''><img src='https://i.postimg.cc/wxN38Z5W/logo.png' width="250px" height="60px" alt='logo'/></a>
-        </div>    
-      </div>
-      <div class="col">
-          <div class="right">
-            <a href='' ><img src='https://i.postimg.cc/y83vKVdJ/pps-logo-fr.png' width="150px" height="50px" alt='pps-logo-fr'/></a>
-
-          </div>
+  <div class="row align-items-start">
+    <div class="col">
+      <div class="logoTn">
+        <a href=''><img src='https://i.postimg.cc/0Q8PJXKs/logo-ar.png' width="130px" height="50px" alt='logo-ar' /></a>
       </div>
     </div>
+    <div class="col ">
+      <div class="logo ">
+        <a href=''><img src='https://i.postimg.cc/wxN38Z5W/logo.png' width="250px" height="60px" alt='logo' /></a>
+      </div>
+    </div>
+    <div class="col">
+      <div class="right">
+        <a href=''><img src='https://i.postimg.cc/y83vKVdJ/pps-logo-fr.png' width="150px" height="50px"
+            alt='pps-logo-fr' /></a>
+
+      </div>
+    </div>
+  </div>
 
 
 </div>
 <div class="thirdNav Segoe">
 
-    <nav class="navbar navbar-expand-lg  nav3 ">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-5 mb-lg-0">
-                <li class="nav-item"  *ngIf="!(loginStatus$ | async) as loginStatus" >
-                    <a class="nav-link active" aria-current="page" href="">Home</a>
-                  </li>
-              <li class="nav-item"  *ngIf="!(loginStatus$ | async) as loginStatus" >
-                <a class="nav-link active" routerLink="/consulting" aria-current="page" href="#">Consulting tenders</a>
-              </li>
-              <li class="nav-item"  *ngIf="(loginStatus$ | async)  && (type$ | async)=='institute' "   >
-                <a class="nav-link"routerLink="/login">Add Tender</a>
-              </li>
-              <li class="nav-item"  *ngIf="!(loginStatus$ | async) as loginStatus" >
-                <a class="nav-link"routerLink="/login">Institution Space</a>
-              </li>
-              <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus"  >
-                <a class="nav-link" routerLink="/login">Supplier Space</a>
-              </li>
-              <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus"  >
-                <a class="nav-link"routerLink="/login">Citizen Space</a>
-              </li>
-          
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" *ngIf="email$ | async as email">{{email | uppercase}}</a>
-              </li>
+  <nav class="navbar navbar-expand-lg  nav3 ">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-5 mb-lg-0">
+          <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus">
+            <a class="nav-link active" aria-current="page" href="">Home</a>
+          </li>
+          <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus">
+            <a class="nav-link active" routerLink="/consulting" aria-current="page" href="#">Consulting tenders</a>
+          </li>
+          <li class="nav-item" *ngIf="(loginStatus$ | async)  && (type$ | async)=='institute' ">
+            <a class="nav-link" routerLink="/login">Add Tender</a>
+          </li>
+          <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus">
+            <a class="nav-link" routerLink="/login">Institution Space</a>
+          </li>
+          <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus">
+            <a class="nav-link" routerLink="/login">Supplier Space</a>
+          </li>
+          <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus">
+            <a class="nav-link" routerLink="/login">Citizen Space</a>
+          </li>
 
-            </ul>
-            <div *ngIf="!(loginStatus$ | async) as loginStatus"  class="login right">
-                <a routerLink="login" >Login</a>
-            </div>
-            <div (click)="logout()" *ngIf="loginStatus$ | async as loginStatus"   class="login btn right">
-              <a  >logout</a>
-          </div>
-         
-          </div>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" *ngIf="email$ | async as email">{{email | uppercase}}</a>
+          </li>
+
+        </ul>
+        <div *ngIf="!(loginStatus$ | async) as loginStatus" class="login right">
+          <a routerLink="login">Login</a>
         </div>
-      
-      </nav>
-     
+        <div (click)="logout()" *ngIf="loginStatus$ | async as loginStatus" class="login btn right">
+          <a>logout</a>
+        </div>
+
+      </div>
+    </div>
+
+  </nav>
+
 </div>
