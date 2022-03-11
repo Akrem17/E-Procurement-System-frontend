@@ -17,7 +17,7 @@ export class AuthService {
   private _loginUrl = environment.apiUrl + "login"
 
 
-  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(localStorage.getItem('token') && localStorage.getItem('token') != 'undefined');
   public email: BehaviorSubject<string> = new BehaviorSubject<string>(localStorage.getItem('email'));
   public type: BehaviorSubject<string> = new BehaviorSubject<string>(localStorage.getItem('type'));
   //user!: TOKEN_INFO;
