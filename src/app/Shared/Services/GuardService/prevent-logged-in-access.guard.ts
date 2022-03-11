@@ -16,11 +16,11 @@ export class PreventLoggedInAccessGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let isLoggedIn = this.authService.isUserLoggedIn?.value;
-
+    console.log(isLoggedIn && this.authService.type.value != null)
     if (isLoggedIn && this.authService.type.value != null) {
       this._router.navigate(['/consulting']);
-
     }
+
     return !isLoggedIn;
 
   }

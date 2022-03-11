@@ -31,7 +31,8 @@ import { InstituteSignupComponent } from './signup/institute-signup/institute-si
 import { InstituteSignupinterlocutorComponent } from './signup/institute-signup/institute-signupinterlocutor/institute-signupinterlocutor.component';
 import { InstituteSignupAddressComponent } from './signup/institute-signup/institute-signup-address/institute-signup-address.component';
 import { AuthGuard } from './Shared/Services/GuardService/auth.guard';
-import { HasRoleGuard } from './Shared/Services/GuardService/has-role.guard';
+import { AddTenderComponent } from './tender/add-tender/add-tender.component';
+import { AddTenderResponsiblesComponent } from './tender/add-tender/add-tender-responsibles/add-tender-responsibles.component';
 
 
 @NgModule({
@@ -50,7 +51,9 @@ import { HasRoleGuard } from './Shared/Services/GuardService/has-role.guard';
     SupplierSignupAddressComponent,
     InstituteSignupComponent,
     InstituteSignupinterlocutorComponent,
-    InstituteSignupAddressComponent
+    InstituteSignupAddressComponent,
+    AddTenderComponent,
+    AddTenderResponsiblesComponent,
   ],
   imports: [
     BrowserModule,
