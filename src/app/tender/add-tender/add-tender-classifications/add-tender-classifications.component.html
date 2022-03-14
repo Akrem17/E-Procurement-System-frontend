@@ -1,0 +1,100 @@
+<div style=" background-color: #f8fafb; padding-top: 50px;" class="">
+
+  <div class="row"  *ngIf="!addressPage"  style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+
+
+    <div class="col-lg-12 col-sm-12">
+      <div class="container">
+
+        <div class="signin">
+
+
+          <div><span class=" red Segoe">Represntative Informations</span></div><br><br><br>
+          <div class="stepper-wrapper">
+            <div class="stepper-item completed">
+              <div class="step-counter">1</div>
+              <div class="step-name">Tender</div>
+            </div>
+             <div class="stepper-item completed ">
+                <div class="step-counter">2</div>
+                <div class="step-name"> Responsible</div>
+              </div>
+              <div class="stepper-item active">
+                <div class="step-counter">3</div>
+                <div class="step-name">Classifications</div>
+              </div>
+            <div class="stepper-item ">
+              <div class="step-counter">4</div>
+              <div class="step-name">Address</div>
+            </div>
+          </div><br><br>
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+
+
+            <div formArrayName="classification">
+              <div *ngFor="let skill of classification.controls; let i=index">
+                <div [formGroupName]="i"><br>
+                  <br>
+
+
+                  <mat-card>
+                    <mat-card-title>Classification {{i+1}}</mat-card-title>
+                    <mat-card-subtitle>Tender </mat-card-subtitle>
+                    <mat-form-field>
+                      <mat-error
+                        *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
+                        Verify phone number.
+                      </mat-error>
+                      <mat-label>Name</mat-label>
+                      <input formControlName="name" type="text" matInput>
+                    </mat-form-field><br>
+                    <!-- phone taxId -->
+                    <mat-form-field>
+                      <mat-error
+                        *ngIf="(myForm.get('description')?.touched || myForm.get('description')?.dirty) && myForm.get('description')?.invalid">
+                        Verify phone number.
+                      </mat-error>
+                      <mat-label>Description</mat-label>
+                      <input formControlName="description" type="text" matInput>
+                    </mat-form-field><br>
+                    <mat-form-field>
+                      <mat-error
+                        *ngIf="(myForm.get('amount')?.touched || myForm.get('amount')?.dirty) && myForm.get('amount')?.invalid">
+                        Verify phone number.
+                      </mat-error>
+                      <mat-label>Amount</mat-label>
+                      <input formControlName="amount" type="text" matInput>
+                    </mat-form-field><br>
+
+                    <mat-card-actions>
+                      <button mat-fab color="warn" (click)="removeSkill(i)">Remove</button>
+                    </mat-card-actions>
+                  </mat-card>
+
+
+
+                </div>
+
+              </div><br>
+              <div style="text-align: center;">
+                <button mat-fab color="primary" type="button" (click)="addSkills()">Add</button>
+                <br><br>
+
+              </div>
+              <div style="text-align: center;">
+                <button mat-button type="submit" class="login">NEXT </button>
+                <br><br>
+
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <app-add-tender-address *ngIf="addressPage" [basicInfo]="basicInfo"></app-add-tender-address>

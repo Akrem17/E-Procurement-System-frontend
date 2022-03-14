@@ -33,7 +33,7 @@ export class CitizenSignupComponent implements OnInit {
     var citizen: CITIZEN = new CITIZEN();
     citizen.email = this.user.get("email")?.value;citizen.password = this.user.get("password")?.value; citizen.type = this.user.get("type")?.value; citizen.firstName = form.value.firstname; citizen.lastName = form.value.lastname; citizen.phone = form.value.phone.toString(); citizen.cin = form.value.cin.toString();
 
-    this._auth.registreUser(citizen).subscribe(
+    this._auth.registreCitizen(citizen).subscribe(
       {
         next: (res) => {
           //@ts-ignore

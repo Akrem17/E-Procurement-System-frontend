@@ -1,6 +1,6 @@
 <div style=" background-color: #f8fafb; padding-top: 50px;" class=""  >
 
-    <div  *ngIf="!LicencePage"  class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+    <div  *ngIf="!ClassificationPage"  class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
   
   
       <div class="col-lg-12 col-sm-12"  >
@@ -11,25 +11,34 @@
   
             <div><span class=" red Segoe">Represntative Informations</span></div><br><br><br>
             <div class="stepper-wrapper">
-                <div class="stepper-item completed">
-                  <div class="step-counter">1</div>
-                  <div class="step-name">Supplier</div>
+              <div class="stepper-item completed">
+                <div class="step-counter">1</div>
+                <div class="step-name">Tender</div>
+              </div>
+              <div class="stepper-item active ">
+                <div class="step-counter">2</div>
+                <div class="step-name"> Responsible</div>
+              </div>
+              <div class="stepper-item ">
+                <div class="step-counter">3</div>
+                <div class="step-name">Classifications</div>
+              </div>
+              <div class="stepper-item ">
+                  <div class="step-counter">4</div>
+                  <div class="step-name">Address</div>
                 </div>
-                <div class="stepper-item active">
-                  <div class="step-counter">2</div>
-                  <div class="step-name">Represntative</div>
-                </div>
-                <div class="stepper-item ">
-                  <div class="step-counter">3</div>
-                  <div class="step-name">Licence</div>
-                </div>
-                <div class="stepper-item ">
-                    <div class="step-counter">4</div>
-                    <div class="step-name">Address</div>
-                  </div>
-              </div><br><br>
+            </div><br><br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   
+                <mat-form-field>
+                    <mat-error
+                      *ngIf="(myForm.get('socialSecurityNumber')?.touched || myForm.get('socialSecurityNumber')?.dirty) && myForm.get('socialSecurityNumber')?.invalid">
+                        Social Security Number Should be 10 caracters.
+                    </mat-error>
+                    <mat-label>Social Security Number</mat-label>
+                    <input (change)="checkSocial()" matInput formControlName="socialSecurityNumber" >
+                  </mat-form-field>
+                  <br>
               <!-- suppleir name -->
               <mat-form-field>
                 <mat-error
@@ -37,20 +46,11 @@
                   Represntative Name is required.
                 </mat-error>
                 <mat-label>Represntative Name</mat-label>
-                <input matInput formControlName="name" >
+                <input   matInput formControlName="name" >
               </mat-form-field>
-
+              <br>
               <!-- social Security Number  -->
-              <mat-form-field>
-                <mat-error
-                  *ngIf="(myForm.get('socialSecurityNumber')?.touched || myForm.get('socialSecurityNumber')?.dirty) && myForm.get('socialSecurityNumber')?.invalid">
-                    Social Security Number Should be 10 caracters.
-                </mat-error>
-                <mat-label>Social Security Number</mat-label>
-                <input (change)="checkSocial()" matInput formControlName="socialSecurityNumber" >
-              </mat-form-field>
-              <br><br>
-  
+        
   
               <!-- position  -->
               <mat-form-field>
@@ -59,7 +59,7 @@
                   Position is required.
                 </mat-error>
                 <mat-label> Position</mat-label>
-                <input formControlName="position" type="text" matInput>
+                <input    formControlName="position" type="text" matInput>
               </mat-form-field><br>
   
               <!-- Supplier registrationDate -->
@@ -101,7 +101,7 @@
   
   
               <div style="text-align: center;">
-                <button mat-button type="submit" class="login"  [disabled]="myForm.invalid"  >NEXT </button>
+                <button mat-button type="submit" class="login" [disabled]="myForm.invalid" >NEXT </button>
                 <br><br>
   
               </div>
@@ -112,4 +112,4 @@
      
   
   </div>
-  <app-supplier-signup-licence *ngIf="LicencePage" [basicInfo]="basicInfo" ></app-supplier-signup-licence>
+  <app-add-tender-classifications *ngIf="ClassificationPage"  [basicInfo]="basicInfo" ></app-add-tender-classifications>

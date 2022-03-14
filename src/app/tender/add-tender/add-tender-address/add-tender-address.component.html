@@ -1,0 +1,119 @@
+<div style=" background-color: #f8fafb; padding-top: 50px;"  >
+ 
+  
+    <div class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+  
+  
+      <div class="col-lg-12 col-sm-12">
+        <div class="container">
+  
+          <div class="signin">
+  
+  
+            <div><span class=" red Segoe">Address Informations</span></div><br><br><br>
+            <div class="stepper-wrapper">
+                <div class="stepper-item completed">
+                  <div class="step-counter">1</div>
+                  <div class="step-name">Supplier</div>
+                </div>
+                <div class="stepper-item completed ">
+                  <div class="step-counter">2</div>
+                  <div class="step-name"> Responsible</div>
+                </div>
+                <div class="stepper-item completed">
+                  <div class="step-counter">3</div>
+                  <div class="step-name">Classifications</div>
+                </div>
+                <div class="stepper-item active">
+                    <div class="step-counter">4</div>
+                    <div class="step-name">Address</div>
+                  </div>
+              </div><br><br>
+            <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  
+         
+              <!-- social Security Number  -->
+                      <!-- Supplier buisnessType -->
+            <mat-form-field>
+                <mat-error
+                *ngIf="(myForm.get('countryName')?.touched || myForm.get('countryName')?.dirty) && myForm.get('countryName')?.invalid">
+                Country is required.
+              </mat-error>
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="countryName">
+                  <mat-option value="type1">
+                    Tunisia
+                  </mat-option>
+              
+                </mat-select>
+              </mat-form-field>
+  
+        
+              <!-- supplier category -->
+      
+  
+              <!-- position  -->
+                      <!-- Supplier buisnessType -->
+                      <mat-form-field>
+                        <mat-error
+                        *ngIf="(myForm.get('city')?.touched || myForm.get('city')?.dirty) && myForm.get('city')?.invalid">
+                        City is required.
+                      </mat-error>
+                        <mat-label>City</mat-label>
+                        <mat-select formControlName="city">
+                          <mat-option value="type1">
+                            type 1
+                          </mat-option>
+                          <mat-option value="type2">
+                            type 2
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+          
+         <!-- suppleir name -->
+         <mat-form-field>
+            <mat-error
+              *ngIf="(myForm.get('postalCode')?.touched || myForm.get('postalCode')?.dirty) && myForm.get('postalCode')?.invalid">
+              Postal Code Name is required.
+            </mat-error>
+            <mat-label>Postal Code</mat-label>
+            <input matInput formControlName="postalCode" >
+          </mat-form-field>
+
+          <br>
+
+              <!-- phone taxId -->
+              <mat-form-field>
+                <mat-error
+                  *ngIf="(myForm.get('street1')?.touched || myForm.get('street1')?.dirty) && myForm.get('street1')?.invalid">
+                  Street1 Name is required.
+                </mat-error>
+                <mat-label>Street 1</mat-label>
+                <input formControlName="street1" type="text" matInput>
+              </mat-form-field>
+  
+                <br>
+                <!-- phone taxId -->
+                <mat-form-field>
+                    <mat-error
+                    *ngIf="(myForm.get('street2')?.touched || myForm.get('street2')?.dirty) && myForm.get('street2')?.invalid">
+                    Street2 Name is required. 
+                    </mat-error>
+                    <mat-label>Street 2</mat-label>
+                    <input formControlName="street2" type="text" matInput>
+                </mat-form-field><br>
+
+  
+              <div style="text-align: center;">
+                <button mat-button type="submit" class="login"  [disabled]="myForm.invalid" >SUBMIT </button>
+                <br><br>
+  
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+     
+  
+  </div>
+

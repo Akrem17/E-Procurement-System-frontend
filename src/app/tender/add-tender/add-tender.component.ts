@@ -8,18 +8,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddTenderComponent implements OnInit {
 
-  @Input()
+
   basicInfo!: FormGroup;
-  
+  tenderInfo!: FormGroup;
   part2Form!: FormGroup;
   myForm!: FormGroup;
   type:string="";
   LicencePage:boolean=false;
+  next:boolean=false;
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
-    console.log(this.basicInfo)
     this.myForm = this.fb.group({
       name: ['', [Validators.required]],
       businessKind: ['', [Validators.required]],
@@ -28,14 +29,7 @@ export class AddTenderComponent implements OnInit {
       startDate: ['', [Validators.required]],
       evaluationMethod: ['', [Validators.required]],
       departement: ['', [Validators.required]],
-      specificationURL: ['', [Validators.required]],
-      countryName: ['', [Validators.required]],
-      postalCode: ['', [Validators.required ]],
-      city: ['', [Validators.required]],
-      street1: ['', [Validators.required]],
-      street2: ['', [Validators.required]],   
-      responsible: ['', [Validators.required]],   
-
+      specificationURL: ['', [Validators.required]]
 
     });
     
@@ -44,11 +38,11 @@ export class AddTenderComponent implements OnInit {
   
   onSubmit(form: FormGroup) {
     
-    console.log(form.value)
-
-
-
-
+    this.basicInfo=form
+      //set the next component visibilty to true
+      this.next=true;
+         //scroll to the top of page
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
 
   }
 }

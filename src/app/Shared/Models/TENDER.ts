@@ -17,7 +17,7 @@ export class TENDER {
     public responsibleId!: number
     public Responsible!: REPRESENTATIVE
     public instituteId!: number
-    public tenderClassification!: TENDER_CLASSIFICATION
+    public tenderClassification!: TENDER_CLASSIFICATION[]
     public specificationURL!: string
 
 
