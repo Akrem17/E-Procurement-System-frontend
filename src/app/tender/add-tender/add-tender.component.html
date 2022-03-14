@@ -1,6 +1,6 @@
 <div style=" background-color: #f8fafb; padding-top: 50px;" class=""  >
 
-    <div  *ngIf="!LicencePage"  class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+    <div *ngIf="!next"  class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
   
   
       <div class="col-lg-12 col-sm-12"  >
@@ -11,23 +11,23 @@
   
             <div><span class=" red Segoe">Tender Informations</span></div><br><br><br>
             <div class="stepper-wrapper">
-                <div class="stepper-item completed">
-                  <div class="step-counter">1</div>
-                  <div class="step-name">Supplier</div>
+              <div class="stepper-item active">
+                <div class="step-counter">1</div>
+                <div class="step-name">Tender</div>
+              </div>
+              <div class="stepper-item ">
+                <div class="step-counter">2</div>
+                <div class="step-name"> Responsible</div>
+              </div>
+              <div class="stepper-item ">
+                <div class="step-counter">3</div>
+                <div class="step-name">Classifications</div>
+              </div>
+              <div class="stepper-item ">
+                  <div class="step-counter">4</div>
+                  <div class="step-name">Address</div>
                 </div>
-                <div class="stepper-item active">
-                  <div class="step-counter">2</div>
-                  <div class="step-name">Represntative</div>
-                </div>
-                <div class="stepper-item ">
-                  <div class="step-counter">3</div>
-                  <div class="step-name">Licence</div>
-                </div>
-                <div class="stepper-item ">
-                    <div class="step-counter">4</div>
-                    <div class="step-name">Address</div>
-                  </div>
-              </div><br><br>
+            </div><br><br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   
               <!-- suppleir name -->
@@ -41,27 +41,44 @@
               </mat-form-field>
 
               <!-- social Security Number  -->
+       
+                
               <mat-form-field>
                 <mat-error
-                  *ngIf="(myForm.get('businessKind')?.touched || myForm.get('businessKind')?.dirty) && myForm.get('businessKind')?.invalid">
-                  businessKind.
-                </mat-error>
+                *ngIf="(myForm.get('businessKind')?.touched || myForm.get('businessKind')?.dirty) && myForm.get('businessKind')?.invalid">
+                businessKind.
+              </mat-error>
                 <mat-label>Business Kind</mat-label>
-                <input matInput formControlName="businessKind" >
+                <mat-select formControlName="businessKind">
+                  <mat-option value="type1">
+                    type 1
+                  </mat-option>
+                  <mat-option value="type2">
+                    type 2
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
               <br><br>
   
   
               <!-- position  -->
+           
               <mat-form-field>
-                <mat-error
+                         <mat-error
                   *ngIf="(myForm.get('financing')?.touched || myForm.get('financing')?.dirty) && myForm.get('financing')?.invalid">
                   Financing.
                 </mat-error>
-                <mat-label> Financing</mat-label>
-                <input formControlName="financing" type="text" matInput>
-              </mat-form-field><br>
-  
+                <mat-label>Financing</mat-label>
+                <mat-select formControlName="financing">
+                  <mat-option value="type1">
+                    With
+                  </mat-option>
+                  <mat-option value="type2">
+                    Without
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br><br>
                 <!-- Supplier registrationDate -->
                 <mat-form-field>
                     <mat-error
@@ -85,7 +102,7 @@
               </mat-form-field>
               <br>
   
-              <!-- phone taxId -->
+              
               <mat-form-field>
                 <mat-error
                   *ngIf="(myForm.get('evaluationMethod')?.touched || myForm.get('evaluationMethod')?.dirty) && myForm.get('evaluationMethod')?.invalid">
@@ -95,16 +112,24 @@
                 <input formControlName="evaluationMethod" type="text" matInput>
               </mat-form-field><br>
   
-  
-              <!-- Email cnssID -->
               <mat-form-field>
                 <mat-error
                 *ngIf="(myForm.get('departement')?.touched || myForm.get('departement')?.dirty) && myForm.get('departement')?.invalid">
                 departement.
               </mat-error>
                 <mat-label>Departement</mat-label>
-                <input formControlName="departement" type="text" matInput>
-              </mat-form-field><br>
+                <mat-select formControlName="departement">
+                  <mat-option value="type1">
+                    type 1
+                  </mat-option>
+                  <mat-option value="type2">
+                    type 2
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+              <!-- Email cnssID -->
+              
               <br>
                <!-- Email cnssID -->
                <mat-form-field>
@@ -117,98 +142,9 @@
               </mat-form-field><br>
   
   
-              <!-- social Security Number  -->
-                      <!-- Supplier buisnessType -->
-                      <mat-form-field>
-                        <mat-error
-                        *ngIf="(myForm.get('countryName')?.touched || myForm.get('countryName')?.dirty) && myForm.get('countryName')?.invalid">
-                        Country is required.
-                      </mat-error>
-                        <mat-label>Country</mat-label>
-                        <mat-select formControlName="countryName">
-                          <mat-option value="type1">
-                            type 1
-                          </mat-option>
-                          <mat-option value="type2">
-                            type 2
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-          
-                
-                      <!-- supplier category -->
-              
-          
-                      <!-- position  -->
-                              <!-- Supplier buisnessType -->
-                              <mat-form-field>
-                                <mat-error
-                                *ngIf="(myForm.get('city')?.touched || myForm.get('city')?.dirty) && myForm.get('city')?.invalid">
-                                City is required.
-                              </mat-error>
-                                <mat-label>City</mat-label>
-                                <mat-select formControlName="city">
-                                  <mat-option value="type1">
-                                    type 1
-                                  </mat-option>
-                                  <mat-option value="type2">
-                                    type 2
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                  
-                 <!-- suppleir name -->
-                 <mat-form-field>
-                    <mat-error
-                      *ngIf="(myForm.get('postalCode')?.touched || myForm.get('postalCode')?.dirty) && myForm.get('postalCode')?.invalid">
-                      Postal Code Name is required.
-                    </mat-error>
-                    <mat-label>Postal Code</mat-label>
-                    <input matInput formControlName="postalCode" >
-                  </mat-form-field>
-        
-                  <br>
-        
-                      <!-- phone taxId -->
-                      <mat-form-field>
-                        <mat-error
-                          *ngIf="(myForm.get('street1')?.touched || myForm.get('street1')?.dirty) && myForm.get('street1')?.invalid">
-                          Street1 Name is required.
-                        </mat-error>
-                        <mat-label>Street 1</mat-label>
-                        <input formControlName="street1" type="text" matInput>
-                      </mat-form-field>
-          
-                        <br>
-                        <!-- phone taxId -->
-                        <mat-form-field>
-                            <mat-error
-                            *ngIf="(myForm.get('street2')?.touched || myForm.get('street2')?.dirty) && myForm.get('street2')?.invalid">
-                            Street2 Name is required.
-                            </mat-error>
-                            <mat-label>Street 2</mat-label>
-                            <input formControlName="street2" type="text" matInput>
-                        </mat-form-field><br>
-        
-                        <mat-form-field>
-                            <mat-error
-                            *ngIf="(myForm.get('countryName')?.touched || myForm.get('countryName')?.dirty) && myForm.get('countryName')?.invalid">
-                            Country is required.
-                          </mat-error>
-                            <mat-label>Country</mat-label>
-                            <mat-select formControlName="countryName">
-                              <mat-option value="type1">
-                                type 1
-                              </mat-option>
-                              <mat-option value="type2">
-                                type 2
-                              </mat-option>
-                            </mat-select>
-                          </mat-form-field>
-              
-                          
+             
               <div style="text-align: center;">
-                <button mat-button type="submit" class="login"  [disabled]="myForm.invalid"  >NEXT </button>
+                <button mat-button type="submit" class="login" [disabled]="myForm.invalid"  >NEXT </button>
                 <br><br>
   
               </div>
@@ -219,4 +155,4 @@
      
   
   </div>
-  <app-add-tender-responsibles></app-add-tender-responsibles>
+  <app-add-tender-responsibles *ngIf="next" [basicInfo]="basicInfo" ></app-add-tender-responsibles>

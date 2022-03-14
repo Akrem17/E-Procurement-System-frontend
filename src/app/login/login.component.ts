@@ -50,9 +50,10 @@ export class LoginComponent implements OnInit {
 
 
   loginUser(userLogin: LOGIN) {
+    console.log("res")
     this._auth.loginUser(userLogin).subscribe({
       next: (res) => {
-
+        console.log(res)
         //@ts-ignore
         const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
 

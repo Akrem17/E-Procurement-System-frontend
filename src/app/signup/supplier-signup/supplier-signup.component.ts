@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ValidatorService } from 'src/app/Shared/Services/ValidatorService/validator.service';
 
 @Component({
@@ -44,8 +43,8 @@ export class SupplierSignupComponent implements OnInit {
     this.basicInfo.addControl('user', new FormGroup(this.user.controls)); 
     //set the next component visibilty to true
     this.next=true;
-    //scroll to the top of page
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+      //scroll to the top of page
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
 
     //check buisness registration number
     //check taxid

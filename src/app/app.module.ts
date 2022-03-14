@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -33,6 +33,11 @@ import { InstituteSignupAddressComponent } from './signup/institute-signup/insti
 import { AuthGuard } from './Shared/Services/GuardService/auth.guard';
 import { AddTenderComponent } from './tender/add-tender/add-tender.component';
 import { AddTenderResponsiblesComponent } from './tender/add-tender/add-tender-responsibles/add-tender-responsibles.component';
+import { RepresentativeService } from './Shared/Services/RepresentativeService/representative.service';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import { AddTenderAddressComponent } from './tender/add-tender/add-tender-address/add-tender-address.component';
+import { AddTenderClassificationsComponent } from './tender/add-tender/add-tender-classifications/add-tender-classifications.component';
 
 
 @NgModule({
@@ -54,6 +59,8 @@ import { AddTenderResponsiblesComponent } from './tender/add-tender/add-tender-r
     InstituteSignupAddressComponent,
     AddTenderComponent,
     AddTenderResponsiblesComponent,
+    AddTenderClassificationsComponent,
+    AddTenderAddressComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,10 +73,12 @@ import { AddTenderResponsiblesComponent } from './tender/add-tender/add-tender-r
     MatNativeDateModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
   ],
-  providers: [AuthService,AuthGuard,UserService,CitizenService,
+  providers: [AuthService,AuthGuard,UserService,CitizenService,RepresentativeService,
     {provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true

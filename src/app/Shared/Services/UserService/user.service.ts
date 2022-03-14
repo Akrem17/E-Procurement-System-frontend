@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { USER } from '../../Models/USER';
 type Nullable<T> = T | null;
@@ -32,7 +33,7 @@ deleteUser(id:string){
   return this.http.delete(this.usersRoute+id)
 
 }
-FilterUserBy(email:Nullable<string>=null,confirmed:Nullable<boolean>=null  ,date:Nullable<string> =null  ){
+FilterUserBy(email:Nullable<string>=null,confirmed:Nullable<boolean>=null  ,date:Nullable<string> =null  ): Observable<any>{
   let filters=email!=null?'?email='+email:''+confirmed!=null?'&confirmed='+confirmed:''+date!=null?'&date='+date:'';
 return this.http.get(this.usersRoute+filters);
 
