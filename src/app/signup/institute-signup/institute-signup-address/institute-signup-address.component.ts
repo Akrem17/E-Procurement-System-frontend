@@ -49,7 +49,7 @@ export class InstituteSignupAddressComponent implements OnInit {
    
   //modeling institute
     let institute :INSTITUTE = new INSTITUTE();
-    institute.address=adrress;institute.areaType=this.basicInfo.value.areaType;institute.email=this.basicInfo.value.user.email;institute.fax=this.basicInfo.value.fax.toString();institute.firstName="akrem";institute.interlocutor=interlocutor;institute.lastName="akrem";institute.nameAr=this.basicInfo.value.nameAr;institute.notificationEmail=this.basicInfo.value.notificationEmail;institute.nameFr=this.basicInfo.value.nameFr;institute.password=this.basicInfo.value.user.password;institute.phone=this.basicInfo.value.phone.toString();institute.representativeName=this.basicInfo.value.representativeName;institute.type=this.basicInfo.value.user.type;institute.typeOfInstitute=this.basicInfo.value.typeOfInstitute;
+    institute.address=adrress;institute.areaType=this.basicInfo.value.areaType;institute.email=this.basicInfo.value.user.email;institute.fax=this.basicInfo.value.fax.toString();institute.interlocutor=interlocutor;institute.nameAr=this.basicInfo.value.nameAr;institute.notificationEmail=this.basicInfo.value.notificationEmail;institute.nameFr=this.basicInfo.value.nameFr;institute.password=this.basicInfo.value.user.password;institute.phone=this.basicInfo.value.phone.toString();institute.representativeName=this.basicInfo.value.representativeName;institute.type=this.basicInfo.value.user.type;institute.typeOfInstitute=this.basicInfo.value.typeOfInstitute;
     
     
     

@@ -4,7 +4,6 @@ import {MatIconModule} from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ConsultTendersComponent } from './consult-tenders/consult-tenders.component';
 import {MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -38,13 +37,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { AddTenderAddressComponent } from './tender/add-tender/add-tender-address/add-tender-address.component';
 import { AddTenderClassificationsComponent } from './tender/add-tender/add-tender-classifications/add-tender-classifications.component';
+import { ConsultTendersComponent } from './tender/consult-tenders/consult-tenders.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ConsultTendersComponent,
     FooterComponent,
     LoginComponent,
     SignupComponent,
@@ -61,6 +61,7 @@ import { AddTenderClassificationsComponent } from './tender/add-tender/add-tende
     AddTenderResponsiblesComponent,
     AddTenderClassificationsComponent,
     AddTenderAddressComponent,
+    ConsultTendersComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,10 @@ import { AddTenderClassificationsComponent } from './tender/add-tender/add-tende
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule
+    
+    
   ],
   providers: [AuthService,AuthGuard,UserService,CitizenService,RepresentativeService,
     {provide:HTTP_INTERCEPTORS,

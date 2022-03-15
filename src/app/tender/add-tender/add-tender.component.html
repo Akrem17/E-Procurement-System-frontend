@@ -101,7 +101,20 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
               <br>
+              <mat-form-field>
+           
+                <mat-error
+                  *ngIf="(myForm.get('deadLine')?.touched || myForm.get('deadLine')?.dirty) && myForm.get('deadLine')?.invalid">
+                  Deadline
+                </mat-error>
+                <mat-label>Deadline</mat-label>
+                <input formControlName="deadLine" matInput [matDatepicker]="picker2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+              <br>
   
+              
               
               <mat-form-field>
                 <mat-error

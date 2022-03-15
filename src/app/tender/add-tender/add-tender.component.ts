@@ -27,6 +27,7 @@ export class AddTenderComponent implements OnInit {
       financing: ['', [Validators.required]],
       budget: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
+      deadLine: ['', [Validators.required]],
       evaluationMethod: ['', [Validators.required]],
       departement: ['', [Validators.required]],
       specificationURL: ['', [Validators.required]]
