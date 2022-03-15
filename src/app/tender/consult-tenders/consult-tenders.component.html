@@ -1,0 +1,105 @@
+
+    <br>
+    <div style="margin: 20px;">
+<mat-form-field style="margin: 30px;">
+    <mat-label >Search by bid number</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field style="margin: 30px;">
+    <mat-label>Search by bid name</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field style="margin: 30px;" >
+    <mat-label>Buisness kind</mat-label>
+    <mat-select>
+        <mat-option>
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  style="margin: 30px;">
+    <mat-label>City</mat-label>
+    <mat-select>
+        <mat-option>
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+  <mat-form-field style="margin: 30px;">
+    <mat-label>Post date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field style="margin: 30px;" >
+    <mat-label>Deadline date</mat-label>
+    <input matInput>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+<div class="table" >
+
+
+  <table *ngIf="data.length>0" >
+    <thead>
+      <tr>
+        <th scope="col">Bid number</th>
+        <th scope="col">Institution</th>
+        <th scope="col">Bid name</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Details</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tender of data ">
+        <td data-label="Account">{{tender.id}}</td>
+        <td data-label="Due Date">{{tender.instituteName}}</td>
+        <td data-label="Amount">{{tender.name}}</td>
+        <td data-label="Period"> {{tender.deadLine}} </td>
+       <td data-label="Period">  <a href=""> Details</a> </td>
+
+      </tr>
+
+      
+    
+    </tbody>
+    
+  </table>
+  </div>
+  <mat-paginator [length]=totalRecords
+              [pageSize]=itemPerPage
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page"
+              showFirstLastButtons
+              (page)="onChangePage($event)">
+
+</mat-paginator>
+</div>
+<!-- 
+<mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code </mat-header-cell>
+      <mat-cell *matCellDef="let element">f </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="test">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ter </mat-header-cell>
+        <mat-cell *matCellDef="let element">f </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="taa">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> arer </mat-header-cell>
+        <mat-cell *matCellDef="let element">f </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="data">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> dsf </mat-header-cell>
+        <mat-cell *matCellDef="let element">f </mat-cell>
+      </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="totalRecords" [pageSize]="itemPerPage" [pageSizeOptions]="[10,20,50,100,1000]"
+    showFirstLastButtons ></mat-paginator> -->

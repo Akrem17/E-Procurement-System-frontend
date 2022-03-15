@@ -10,6 +10,7 @@ import { TENDER_CLASSIFICATION } from 'src/app/Shared/Models/TENDER_CLASSIFICATI
 import { AuthService } from 'src/app/Shared/Services/auth.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
 import { UserService } from 'src/app/Shared/Services/UserService/user.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-add-tender-address',
@@ -62,31 +63,34 @@ export class AddTenderAddressComponent implements OnInit {
   
   //modeling tender
     let tender :TENDER = new TENDER();
-    tender.AddressReceipt=adrress;tender.Responsible=responsable;tender.budget=this.basicInfo.value.budget;tender.tenderClassification=tendersClass;tender.businessKind=this.basicInfo.value.businessKind;tender.departement=this.basicInfo.value.departement;tender.evaluationMethod=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.financing;tender.name=this.basicInfo.value.name;tender.specificationURL=this.basicInfo.value.specificationURL;tender.startDate=this.basicInfo.value.startDate;
-    tender.guaranteeType="er";
- 
+    tender.AddressReceipt=adrress;tender.Responsible=responsable;tender.budget=this.basicInfo.value.budget;tender.tenderClassification=tendersClass;tender.businessKind=this.basicInfo.value.businessKind;tender.departement=this.basicInfo.value.departement;tender.evaluationMethod=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.financing;tender.name=this.basicInfo.value.name;tender.specificationURL=this.basicInfo.value.specificationURL;tender.startDate=this.basicInfo.value.startDate;tender.deadLine=this.basicInfo.value.deadLine;
+  
 
     this.userService.FilterUserBy(this._auth.email.value).subscribe(res=>{
        let response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-       tender.instituteId=response.data[0].id;
-       console.log(response.data[0].id)
-       this.tenderService.postTender(tender).subscribe(res=>{
-        console.log(res)
-      })
+       if(response.status){
+        tender.instituteId=response.data[0].id;
+        console.log(tender)
+
+        this.tenderService.postTender(tender).subscribe(res=>{
+          console.log(res)
+          if (res)
+          Swal.fire(
+            'Tender added successfully !',
+            '',
+            'success'
+          )
+       })
+       }
+       
     }
       );
 
-  //   this.registerSupplier(supplier);
 
-    //the verify is a boolean state to fire the need to verify email notification
-    // this._router.navigate(['/login'],{'state':{'verify':'true'}});
-        console.log(tender)
+     this._router.navigate(['/consulting']);
 
   }
 
 
-  registerSupplier( supplier:SUPPLIER){
-    this._auth.registreSupplier(supplier).subscribe(res=>console.log(res))
-  }
-
+  
 }

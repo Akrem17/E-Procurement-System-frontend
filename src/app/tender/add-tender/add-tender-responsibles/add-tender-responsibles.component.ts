@@ -40,14 +40,15 @@ export class AddTenderResponsiblesComponent implements OnInit {
   
   onSubmit(form: FormGroup) {
    this.myForm.enable()
+   console.log(this.myForm.getRawValue())
     Object.entries(this.myForm.getRawValue()).forEach(res=>{
       this.myForm.get(res[0]).setValue(res[1])
     }); 
     this.basicInfo?.addControl('responsable', new FormGroup(this.myForm.controls)); 
-    const test= this.myForm.getRawValue().socialSecurityNumberDate.split("/")
-    const date=new Date();
-    date.setDate(test[1]);date.setMonth(test[0]-1);date.setFullYear(test[2])
-    this.myForm.get("socialSecurityNumberDate").setValue(date)
+    // const test= this.myForm.getRawValue().socialSecurityNumberDate.split("/")
+    // const date=new Date();
+    // date.setDate(test[1]);date.setMonth(test[0]-1);date.setFullYear(test[2])
+    // this.myForm.get("socialSecurityNumberDate").setValue(date)
         //set the next component visibilty to true
         this.ClassificationPage=true;
   

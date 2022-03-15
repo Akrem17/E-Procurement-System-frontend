@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TENDER } from '../../Models/TENDER';
 
@@ -12,10 +13,12 @@ export class TenderService {
   constructor(private http:HttpClient) { }
 
   
-  getTenders(){
-    return this.http.get(this.tendersRoute);
+  getTenders(skip,page):Observable<any>{
+
+    return this.http.get(this.tendersRoute+"?skip="+skip+"&"+"take="+page);
+
    }
-   postTender(tender:TENDER){
+   postTender(tender:TENDER):Observable<any>{
     return this.http.post(this.tendersRoute,tender);
    }
 
