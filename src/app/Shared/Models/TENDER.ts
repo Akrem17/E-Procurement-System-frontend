@@ -1,4 +1,5 @@
 import { ADDRESS } from "./ADDRESS"
+import { INSTITUTE } from "./INSTITUTE"
 import { REPRESENTATIVE } from "./REPRESENTATIVE"
 import { TENDER_CLASSIFICATION } from "./TENDER_CLASSIFICATION"
 
@@ -19,7 +20,7 @@ export class TENDER {
     public instituteId!: number
     public tenderClassification!: TENDER_CLASSIFICATION[]
     public specificationURL!: string
-    public instituteName!: string
+    public institute!: INSTITUTE
 
     
 
