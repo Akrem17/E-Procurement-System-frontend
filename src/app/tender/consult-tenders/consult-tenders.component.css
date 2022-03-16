@@ -1,10 +1,12 @@
 table {
-    border: 1px solid #ccc;
+    border: 1px solid rgb(238, 238, 238);
     border-collapse: collapse;
     margin: 0;
     padding: 0;
     width: 100%;
     table-layout: fixed;
+    padding: 20px !important;
+
   }
   
   table caption {
@@ -16,6 +18,9 @@ table {
     background-color: #f8f8f8;
     border: 1px solid #ddd;
     padding: .35em;
+    color: rgb(78, 78, 78);
+    font-family:Arial,Verdana,sans-serif;
+    
   }
   
   table th,
@@ -36,6 +41,7 @@ table {
   @media screen and (max-width: 600px) {
     table {
       border: 0;
+
     }
   
     table caption {
