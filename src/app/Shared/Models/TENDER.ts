@@ -14,9 +14,9 @@ export class TENDER {
     public evaluationMethod!: string
     public departement!: string
     public addressReceiptId!: number
-    public AddressReceipt!: ADDRESS
+    public addressReceipt!: ADDRESS
     public responsibleId!: number
-    public Responsible!: REPRESENTATIVE
+    public responsible!: REPRESENTATIVE
     public instituteId!: number
     public tenderClassification!: TENDER_CLASSIFICATION[]
     public specificationURL!: string

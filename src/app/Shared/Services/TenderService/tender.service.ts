@@ -22,4 +22,9 @@ export class TenderService {
     return this.http.post(this.tendersRoute,tender);
    }
 
+   getTenderById(id:string):Observable<any>{
+
+    return this.http.get(this.tendersRoute+"/"+id);
+   }
+
 }

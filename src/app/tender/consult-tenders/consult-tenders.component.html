@@ -32,12 +32,7 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-  <mat-form-field style="margin: 30px;" >
-    <mat-label>Deadline date</mat-label>
-    <input matInput>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+
   <br>
 <div class="table" >
 
@@ -59,7 +54,7 @@
         <td data-label="Due Date">{{tender.institute.nameFr}}</td>
         <td data-label="Amount">{{tender.name}}</td>
         <td data-label="Period"> {{tender.deadLine}} </td>
-       <td data-label="Period">  <a class="mat-button" href=""><i class="fas fa-plus"></i> Details</a> </td>
+       <td data-label="Period">  <a class="mat-button" href="tender/{{tender.id}}"><i class="fas fa-plus"></i> Details</a> </td>
 
       </tr>
 

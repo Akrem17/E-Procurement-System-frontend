@@ -8,6 +8,14 @@ table {
     padding: 20px !important;
 
   }
+   thead {
+    background-color: black !important;
+  }
+  th{
+    background-color: #0c1831;
+    color:white
+
+  }
   
   table caption {
     font-size: 1.5em;
@@ -18,7 +26,7 @@ table {
     background-color: #f8f8f8;
     border: 1px solid #ddd;
     padding: .35em;
-    color: rgb(78, 78, 78);
+    color: rgb(42, 42, 42);
     font-family:Arial,Verdana,sans-serif;
     
   }
@@ -28,6 +36,7 @@ table {
     padding: .625em;
     text-align: center;
     padding: 20px !important;
+    
 
 
   }

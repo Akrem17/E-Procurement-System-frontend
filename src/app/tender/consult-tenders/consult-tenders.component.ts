@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
+import {  PageEvent } from '@angular/material/paginator';
 import * as moment from 'moment';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { TENDER } from 'src/app/Shared/Models/TENDER';
 import { InstituteService } from 'src/app/Shared/Services/InstituteService/institute.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-consult-tenders',
@@ -16,13 +14,9 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ConsultTendersComponent implements OnInit {
   data: TENDER[] = []
   tenders: TENDER[] = []
-  itemPerPage: number = 10
+  itemPerPage: number = 5
   page: number = 0
-  @ViewChild(MatSort, { static: true }) sort: MatSort
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  dataSource: MatTableDataSource<any>;
   totalRecords: number;
-  //displayedColumns: string[] = ['code','test','taa','data'];
 
   constructor(private tenderService: TenderService, private instuteService: InstituteService) { }
 
@@ -33,7 +27,7 @@ export class ConsultTendersComponent implements OnInit {
       console.log(response)
       this.totalRecords = response.data.items;
       console.log(this.totalRecords)
-      this.tenders.map(tender => {
+      this.tenders?.map(tender => {
         let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
         let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();
         tender.startDate = startDate;
@@ -51,7 +45,7 @@ export class ConsultTendersComponent implements OnInit {
   onChangePage(event: PageEvent) {
     this.data=[]
     console.log(event)
-    //this.page = event.pageIndex + 1
+    this.page = event.pageIndex + 1
     this.itemPerPage = event.pageSize
     
     this.tenderService.getTenders(this.page, this.itemPerPage).subscribe(res => {
@@ -69,7 +63,8 @@ export class ConsultTendersComponent implements OnInit {
 
     })
   })
-    
+     
+
    
 }
 
