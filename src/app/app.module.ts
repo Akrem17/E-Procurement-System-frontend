@@ -39,6 +39,12 @@ import { AddTenderAddressComponent } from './tender/add-tender/add-tender-addres
 import { AddTenderClassificationsComponent } from './tender/add-tender/add-tender-classifications/add-tender-classifications.component';
 import { ConsultTendersComponent } from './tender/consult-tenders/consult-tenders.component';
 import {MatTableModule} from '@angular/material/table';
+import { ConsultSingleTenderComponent } from './tender/consult-single-tender/consult-single-tender.component';
+import {MatListModule} from '@angular/material/list';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { EllipsisModule } from 'ngx-ellipsis';
+import { CustomCardComponent } from './custom-card/custom-card.component';
 
 
 @NgModule({
@@ -61,7 +67,9 @@ import {MatTableModule} from '@angular/material/table';
     AddTenderResponsiblesComponent,
     AddTenderClassificationsComponent,
     AddTenderAddressComponent,
-    ConsultTendersComponent
+    ConsultTendersComponent,
+    ConsultSingleTenderComponent,
+    CustomCardComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +86,11 @@ import {MatTableModule} from '@angular/material/table';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    EllipsisModule 
     
     
   ],

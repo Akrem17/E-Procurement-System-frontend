@@ -63,7 +63,7 @@ export class AddTenderAddressComponent implements OnInit {
   
   //modeling tender
     let tender :TENDER = new TENDER();
-    tender.AddressReceipt=adrress;tender.Responsible=responsable;tender.budget=this.basicInfo.value.budget;tender.tenderClassification=tendersClass;tender.businessKind=this.basicInfo.value.businessKind;tender.departement=this.basicInfo.value.departement;tender.evaluationMethod=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.financing;tender.name=this.basicInfo.value.name;tender.specificationURL=this.basicInfo.value.specificationURL;tender.startDate=this.basicInfo.value.startDate;tender.deadLine=this.basicInfo.value.deadLine;
+    tender.addressReceipt=adrress;tender.responsible=responsable;tender.budget=this.basicInfo.value.budget;tender.tenderClassification=tendersClass;tender.businessKind=this.basicInfo.value.businessKind;tender.departement=this.basicInfo.value.departement;tender.evaluationMethod=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.financing;tender.name=this.basicInfo.value.name;tender.specificationURL=this.basicInfo.value.specificationURL;tender.startDate=this.basicInfo.value.startDate;tender.deadLine=this.basicInfo.value.deadLine;
   
 
     this.userService.FilterUserBy(this._auth.email.value).subscribe(res=>{

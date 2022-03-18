@@ -4,7 +4,9 @@
     margin: 50px;
     width:100% !important
 
+
 }
+
 .mat-form-field{
     width:100% !important;
  }
@@ -35,6 +37,7 @@
     margin-right: auto;
     width: 50%;
   }
+  
 
  @media screen and (max-width:	720px) {
    .col-md-7{
