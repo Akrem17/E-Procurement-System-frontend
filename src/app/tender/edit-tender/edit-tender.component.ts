@@ -3,10 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ADDRESS } from 'src/app/Shared/Models/ADDRESS';
+import { REPRESENTATIVE } from 'src/app/Shared/Models/REPRESENTATIVE';
+import { REPRESETATIVE_FILTERS } from 'src/app/Shared/Models/REPRESENTATIVE_FILTERS';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { TENDER } from 'src/app/Shared/Models/TENDER';
 import { TENDER_CLASSIFICATION } from 'src/app/Shared/Models/TENDER_CLASSIFICATION';
 import { AddressService } from 'src/app/Shared/Services/AddressService/address.service';
+import { RepresentativeService } from 'src/app/Shared/Services/RepresentativeService/representative.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
 
 @Component({
@@ -15,42 +18,53 @@ import { TenderService } from 'src/app/Shared/Services/TenderService/tender.serv
   styleUrls: ['./edit-tender.component.css']
 })
 export class EditTenderComponent implements OnInit {
-  tender!:TENDER;
-  editFormTenderInfo:boolean=false;
+  tender!: TENDER;
+  editFormTenderInfo: boolean = false;
   TenderInfoForm!: FormGroup;
 
-  editFormRepresentative:boolean=false;
+  editFormRepresentative: boolean = false;
+  RepresentativeForm!: FormGroup;
 
-  tenderClassification:TENDER_CLASSIFICATION[]=[];
-  page_size=1;
-  id!:string;
+  tenderClassification: TENDER_CLASSIFICATION[] = [];
+  page_size = 1;
+  id!: string;
 
 
-  constructor(private tenderService:TenderService,private fb: FormBuilder,private route: ActivatedRoute,private addressService:AddressService) { }
+  constructor(private representativeService: RepresentativeService, private tenderService: TenderService, private fb: FormBuilder, private route: ActivatedRoute, private addressService: AddressService) { }
 
-   paginate(array, page_size, page_number) {
+  paginate(array, page_size, page_number) {
     // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
     return array.slice((page_number - 1) * page_size, page_number * page_size);
   }
 
 
-  loadMoreClassification(){
+  loadMoreClassification() {
     this.page_size++;
-    this.tenderClassification.push(...this.paginate(this.tender.tenderClassification,3,this.page_size));
+    this.tenderClassification.push(...this.paginate(this.tender.tenderClassification, 3, this.page_size));
 
   }
 
 
   ngOnInit(): void {
-      this.id = this.route.snapshot.paramMap.get("id");
+    this.id = this.route.snapshot.paramMap.get("id");
 
 
-    this.tenderService.getTenderById(this.id).subscribe(res=>{
+    this.tenderService.getTenderById(this.id).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
 
-      this.tender=response.data;
-      this.tenderClassification=this.paginate(this.tender.tenderClassification,3,1);
-      
+      this.tender = response.data;
+      console.log(this.tender);
+      this.tenderClassification = this.paginate(this.tender.tenderClassification, 3, 1);
+
+      this.RepresentativeForm = this.fb.group({
+        name: [this.tender.responsible.name, [Validators.required]],
+        socialSecurityNumber: [this.tender.responsible.socialSecurityNumber, [Validators.required]],
+        position: [this.tender.responsible.position, [Validators.required]],
+        socialSecurityNumberDate: [this.tender.responsible.socialSecurityNumberDate, [Validators.required]],
+        phone: [this.tender.responsible.phone, [Validators.required]],
+        email: [this.tender.responsible.email, [Validators.required]],
+
+      });
       this.TenderInfoForm = this.fb.group({
         name: [this.tender.name, [Validators.required]],
         businessKind: [this.tender.businessKind, [Validators.required]],
@@ -62,51 +76,45 @@ export class EditTenderComponent implements OnInit {
         departement: [this.tender.departement, [Validators.required]],
         city: [this.tender.addressReceipt.city, [Validators.required]],
         postalCode: [this.tender.addressReceipt.postalCode, [Validators.required]],
-        street1: [this.tender.addressReceipt.street1, [Validators.required]],
-     
-
-
+        street1: [this.tender.addressReceipt.street1, [Validators.required]]
       });
-      
- 
+
     })
 
   }
 
+  enableEditingTenderInfo() {
 
-
-  enableEditingTenderInfo(){
-
-    this.editFormTenderInfo=true
+    this.editFormTenderInfo = true
   }
-  saveTenderInfo(form){
+  saveTenderInfo(form) {
     console.log(form.value)
-    this.tender.name=form.value.name;this.tender.businessKind=form.value.businessKind;this.tender.financing=form.value.financing;this.tender.budget=form.value.budget;this.tender.evaluationMethod=form.value.evaluationMethod;this.tender.departement=form.value.departement;this.tender.startDate=form.value.startDate.toString();this.tender.deadLine=form.value.deadLine.toString();
+    this.tender.name = form.value.name; this.tender.businessKind = form.value.businessKind; this.tender.financing = form.value.financing; this.tender.budget = form.value.budget; this.tender.evaluationMethod = form.value.evaluationMethod; this.tender.departement = form.value.departement; this.tender.startDate = form.value.startDate.toString(); this.tender.deadLine = form.value.deadLine.toString();
 
-    let address:ADDRESS= new ADDRESS();
-    address.city=form.value.city;this.tender.addressReceipt.city=address.city;address.postalCode=form.value.postalCode;this.tender.addressReceipt.postalCode=address.postalCode;address.street1=form.value.street1;this.tender.addressReceipt.street1=address.street1
+    let address: ADDRESS = new ADDRESS();
+    address.city = form.value.city; this.tender.addressReceipt.city = address.city; address.postalCode = form.value.postalCode; this.tender.addressReceipt.postalCode = address.postalCode; address.street1 = form.value.street1; this.tender.addressReceipt.street1 = address.street1
 
-    address.countryName=""
-    address.street2=""
+    address.countryName = ""
+    address.street2 = ""
 
-    
-    this.addressService.updateAddress(this.tender.addressReceiptId.toString(),address).subscribe(res=>{
+
+    this.addressService.updateAddress(this.tender.addressReceiptId.toString(), address).subscribe(res => {
 
       console.log(res)
     })
-   
+
     let updatedTender;
-     updatedTender= {...this.tender};
-    updatedTender.addressReceipt=null;
-    updatedTender.institute=null;
-    updatedTender.responsible=null;
-    
+    updatedTender = { ...this.tender };
+    updatedTender.addressReceipt = null;
+    updatedTender.institute = null;
+    updatedTender.responsible = null;
 
-    
 
-    this.tenderService.updateTender(this.id,updatedTender).subscribe(res=>{
 
-      this.editFormTenderInfo=false
+
+    this.tenderService.updateTender(this.id, updatedTender).subscribe(res => {
+
+      this.editFormTenderInfo = false
 
     })
 
@@ -114,4 +122,62 @@ export class EditTenderComponent implements OnInit {
 
   }
 
+  checkSocial(){    
+    const representativeFilters:REPRESETATIVE_FILTERS= new REPRESETATIVE_FILTERS();
+    representativeFilters.socialSecurityNumber=this.RepresentativeForm.get("socialSecurityNumber").value;
+    let representative:REPRESENTATIVE=new REPRESENTATIVE();
+    this.representativeService.FilterRepresentativeBy(representativeFilters).subscribe(res=>
+     {
+     const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+     if(response.status){  
+       console.log(response)
+       representative.email=response.data[0].email;representative.name=response.data[0].name;representative.phone=response.data[0].phone;representative.position=response.data[0].position;representative.socialSecurityNumberDate=response.data[0].socialSecurityNumberDate;
+       this.RepresentativeForm.get("name").setValue(representative.name);this.RepresentativeForm.get("position").setValue(representative.position);this.RepresentativeForm.get("phone").setValue(representative.phone);this.RepresentativeForm.get("email").setValue(representative.email); this.RepresentativeForm.get("socialSecurityNumberDate").setValue(representative.socialSecurityNumberDate)
+       }else{
+
+       }
+   })      
+ }
+  saveRepresentativeInfo(form) {
+let socialNumber;
+
+    const representativeFilters:REPRESETATIVE_FILTERS= new REPRESETATIVE_FILTERS();
+    representativeFilters.socialSecurityNumber=this.RepresentativeForm.get("socialSecurityNumber").value;
+    let representative: REPRESENTATIVE = new REPRESENTATIVE();
+    representative.email = form.value.email;this.tender.responsible.email=form.value.email;representative.name = form.value.name;this.tender.responsible.name=form.value.name;representative.phone = form.value.phone;this.tender.responsible.phone=form.value.phone;representative.position = form.value.position;this.tender.responsible.position=form.value.position;representative.socialSecurityNumber = form.value.socialSecurityNumber;this.tender.responsible.socialSecurityNumber=form.value.socialSecurityNumber;representative.socialSecurityNumberDate = form.value.socialSecurityNumberDate;this.tender.responsible.socialSecurityNumberDate=form.value.socialSecurityNumberDate;
+    this.representativeService.FilterRepresentativeBy(representativeFilters).subscribe(res=>
+     
+      {
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      if(response.status){  
+        socialNumber=res.data[0].socialNumber;
+        if( this.tender.responsible.socialSecurityNumber==socialNumber){
+          //just update responsible
+          this.representativeService.updateRepresentative(this.tender.addressReceiptId.toString(), representative).subscribe(res => {
+            console.log(res)
+            this.editFormRepresentative = false;
+          })
+      
+        }else{
+         // this.tender.responsibleId=id;
+       //update responsible foreign key in tender table;
+       console.log("update responsible foreign key in tender table;")
+        }
+      
+      }else{
+        //create new responsible and assign it to tender ; 
+        console.log("/create new responsible and assign it to tender")
+            
+      }
+  
+  
+  
+
+  })
+}
+
+  enableEditingRepresentative() {
+
+    this.editFormRepresentative = true
   }
+}
