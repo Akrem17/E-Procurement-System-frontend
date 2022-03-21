@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { REPRESENTATIVE } from '../../Models/REPRESENTATIVE';
 import { REPRESETATIVE_FILTERS } from '../../Models/REPRESENTATIVE_FILTERS';
 
 @Injectable({
@@ -36,6 +37,12 @@ export class RepresentativeService {
     }); 
     return this.http.get(this.representativesRoute+"?"+filter);
   
+  }
+
+  updateRepresentative(id:string,representative:REPRESENTATIVE):Observable<any>{
+    return this.http.put(this.representativesRoute+id,representative);
+
+
   }
 
 
