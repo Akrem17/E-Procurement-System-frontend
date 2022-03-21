@@ -26,5 +26,10 @@ export class TenderService {
 
     return this.http.get(this.tendersRoute+"/"+id);
    }
+   updateTender(id:string,tender:TENDER):Observable<any>{
 
+    return this.http.put(this.tendersRoute+"/"+id,tender);
+   }
+
+  
 }

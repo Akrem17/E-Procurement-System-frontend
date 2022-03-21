@@ -37,7 +37,10 @@ export class InstituteService {
     return this.http.get(this.instituteRoute+"?"+filter);
   
   }
+  GetTendersOfInstitute(instituteId:string,itemPerPage:number,page:number):Observable<any>{
+    return this.http.get(this.instituteRoute+instituteId+'/tenders?skip='+itemPerPage+'&take='+page);
 
+   }
 
   
 

@@ -45,6 +45,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { CustomCardComponent } from './custom-card/custom-card.component';
+import { TendersOfInstituteComponent } from './tender/tenders-of-institute/tenders-of-institute.component';
+import { EditTenderComponent } from './tender/edit-tender/edit-tender.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -69,7 +72,9 @@ import { CustomCardComponent } from './custom-card/custom-card.component';
     AddTenderAddressComponent,
     ConsultTendersComponent,
     ConsultSingleTenderComponent,
-    CustomCardComponent
+    CustomCardComponent,
+    TendersOfInstituteComponent,
+    EditTenderComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,8 @@ import { CustomCardComponent } from './custom-card/custom-card.component';
     MatListModule,
     MatSnackBarModule,
     MatTooltipModule,
-    EllipsisModule 
+    EllipsisModule ,
+    MatDialogModule
     
     
   ],

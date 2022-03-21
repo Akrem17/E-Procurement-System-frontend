@@ -9,6 +9,8 @@ import { SignupComponent } from './signup/signup.component';
 import { AddTenderComponent } from './tender/add-tender/add-tender.component';
 import { ConsultSingleTenderComponent } from './tender/consult-single-tender/consult-single-tender.component';
 import { ConsultTendersComponent } from './tender/consult-tenders/consult-tenders.component';
+import { EditTenderComponent } from './tender/edit-tender/edit-tender.component';
+import { TendersOfInstituteComponent } from './tender/tenders-of-institute/tenders-of-institute.component';
 
 const routes: Routes = [
 
@@ -30,7 +32,7 @@ const routes: Routes = [
       type: ['citizen', 'institute', 'supplier']
     }
   },
-  
+
   {
     path: 'tender/:id',
     canActivate: [AuthGuard],
@@ -41,10 +43,27 @@ const routes: Routes = [
     canActivate: [PreventLoggedInAccessGuard],
     component: HomeComponent
   }
-  
+
   ,
   {
     path: 'add-tender', component: AddTenderComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+    }
+  }
+  ,
+  
+  {
+    path: 'tender/edit/:id', component: EditTenderComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+    }
+  }
+  ,
+  {
+    path: 'tenders/:id', component: TendersOfInstituteComponent,
     canActivate: [AuthGuard, HasRoleGuard],
     data: {
       type: ['citizen', 'institute', 'supplier']
