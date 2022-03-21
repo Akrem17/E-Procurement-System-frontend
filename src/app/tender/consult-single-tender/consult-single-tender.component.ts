@@ -13,6 +13,7 @@ export class ConsultSingleTenderComponent implements OnInit {
 
   constructor(private tenderService:TenderService) { }
   tender!:TENDER;
+  editForm:boolean=false;
   tenderClassification:TENDER_CLASSIFICATION[]=[];
   page_size=1;
 
@@ -38,6 +39,13 @@ export class ConsultSingleTenderComponent implements OnInit {
     })
 
 
+  }
+
+
+
+  enableEdit(){
+
+    this.editForm=true
   }
 
 }

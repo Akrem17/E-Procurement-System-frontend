@@ -15,65 +15,149 @@
                     </div>
 
                     <div class="table-responsive">
-                        <a mat-button style="float: right;" (click)="enableEdit()">
+                        <a mat-button style="float: right;" (click)="enableEditingTenderInfo()">
                             <mat-icon>edit</mat-icon>
                         </a>
+                        <form  [formGroup]="TenderInfoForm"  (ngSubmit)="saveTenderInfo(TenderInfoForm)">
                         <table class="table table-striped table-product">
                             <tbody>
                                 <tr>
                                     <td class="bold" width="400">Name : </td>
-                                    <td *ngIf="!editForm">{{tender.name}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.name}}</td>
 
-                                    <td *ngIf="editForm"><input value={{tender.name}}> </td>
+                                    <td *ngIf="editFormTenderInfo">
+                                    <mat-form-field >
+                                        <input matInput formControlName="name" >
+                                      </mat-form-field>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Business Kind : </td>
-                                    <td>{{tender.businessKind}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.businessKind}}</td>
+                                    <td *ngIf="editFormTenderInfo">
+
+                                    <mat-form-field >
+                                        <input matInput  formControlName="businessKind" >
+                                      </mat-form-field>
+                                    </td>
                                 </tr>
+
                                 <tr>
                                     <td class="bold">Financing : </td>
-                                    <td>{{tender.financing}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.financing}}</td>
+                                    <td *ngIf="editFormTenderInfo">
+                                        <mat-form-field >
+                                            <input matInput   formControlName="financing" >
+                                          </mat-form-field>
+                                        </td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Budget : </td>
-                                    <td>{{tender.budget}}</td>
+                               
+                                    <td *ngIf="!editFormTenderInfo">{{tender.budget}}</td>
+                                    <td *ngIf="editFormTenderInfo">
+                                        <mat-form-field >
+                                            <input matInput  formControlName="budget" >
+                                          </mat-form-field>
+                                        </td>
+
                                 </tr>
                                 <tr>
                                     <td class="bold">Start Date : </td>
-                                    <td>{{tender.startDate}}</td>
+                                    
+                                    <td *ngIf="!editFormTenderInfo">{{tender.startDate}}</td>
+                                    <td *ngIf="editFormTenderInfo">
+                                        <mat-form-field >
+                                            <input matInput  formControlName="startDate" [matDatepicker]="picker">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                          </mat-form-field>
+                                        </td>
+
                                 </tr>
                                 <tr>
                                     <td class="bold">Deadline : </td>
-                                    <td>{{tender.deadLine}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.deadLine}}</td>
+                                    <td *ngIf="editFormTenderInfo">
+                                        <mat-form-field >
+                                            <input matInput  formControlName="deadLine" [matDatepicker]="picker2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                          </mat-form-field>
+                                        </td>
+
+                                    
                                 </tr>
                                 <tr>
                                     <td class="bold">Evaluation Method : </td>
-                                    <td>{{tender.evaluationMethod}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.evaluationMethod}}</td>
+                                    <td *ngIf="editFormTenderInfo">
+                                        <mat-form-field >
+                                            <input matInput formControlName="evaluationMethod" >
+                                          </mat-form-field>
+                                        </td>
+
                                 </tr>
                                 <tr>
                                     <td class="bold">Departement : </td>
-                                    <td>{{tender.departement}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.departement}}</td>
+                                    <td *ngIf="editFormTenderInfo">
+                                        <mat-form-field >
+                                            <input matInput  formControlName="departement" >
+                                          </mat-form-field>
+                                        </td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Country : </td>
-                                    <td>{{tender.addressReceipt.countryName}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.addressReceipt.countryName}}</td>
+                                    <td *ngIf="editFormTenderInfo">
+                                        <mat-form-field >
+                                            <input matInput value={{tender.addressReceipt.countryName}}>
+                                          </mat-form-field>
+                                        </td>
                                 </tr>
                                 <tr>
                                     <td class="bold">City : </td>
-                                    <td>{{tender.addressReceipt.city}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.addressReceipt.city}}</td>
+
+                                    <td *ngIf="editFormTenderInfo">
+                                        
+                                        <mat-form-field >
+                                            <input  formControlName="city"  matInput >
+                                          </mat-form-field>
+                                        </td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Postal Code : </td>
-                                    <td>{{tender.addressReceipt.postalCode}}</td>
+                                    <td *ngIf="!editFormTenderInfo">{{tender.addressReceipt.postalCode}}</td>
+
+                                    <td *ngIf="editFormTenderInfo">
+                                        <mat-form-field >
+                                            <input matInput formControlName="postalCode" >
+                                          </mat-form-field>
+                                        </td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Street : </td>
-                                    <td>{{tender.addressReceipt.street1}}</td>
+
+                                
+                                      <td *ngIf="!editFormTenderInfo">{{tender.addressReceipt.street1}}</td>
+
+                                      <td *ngIf="editFormTenderInfo">
+                                          <mat-form-field >
+                                              <input matInput  formControlName="street1">
+                                            </mat-form-field>
+                                          </td>
                                 </tr>
 
                             </tbody>
                         </table>
-                        <button mat-button >Save</button>
+                        <button mat-button style="float: right;" (click)="editFormTenderInfo=false" >Cancel</button>
+
+                        <button type="submit" mat-button style="float: right;" >Save</button>
+                    </form>
+                      
+
                     </div>
 
          
@@ -85,36 +169,38 @@
                         <a mat-button style="float: right;">
                             <mat-icon>edit</mat-icon>
                         </a>
+                        <form  [formGroup]="TenderInfoForm"  (ngSubmit)="saveTenderInfo(TenderInfoForm)">
 
                         <table class="table table-striped table-product">
                             <tbody>
                                 <tr>
                                     <td class="bold" width="400">Name</td>
-                                    <td>{{tender.responsible.name}}</td>
+                                    <td>{{tender?.responsible?.name}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Social Security Number</td>
-                                    <td>{{tender.responsible.socialSecurityNumber}}</td>
+                                    <td>{{tender?.responsible?.socialSecurityNumber}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Position</td>
-                                    <td>{{tender.responsible.position}}</td>
+                                    <td>{{tender?.responsible?.position}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Social Security Number Date</td>
-                                    <td>{{tender.responsible.socialSecurityNumberDate}}</td>
+                                    <td>{{tender?.responsible?.socialSecurityNumberDate}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Phone</td>
-                                    <td>{{tender.responsible.phone}}</td>
+                                    <td>{{tender?.responsible?.phone}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Email</td>
-                                    <td>{{tender.responsible.email}}</td>
+                                    <td>{{tender?.responsible?.email}}</td>
                                 </tr>
 
                             </tbody>
                         </table>
+                        </form>
                     </div>
 
                     <div class="three">
@@ -130,31 +216,31 @@
                             <tbody>
                                 <tr>
                                     <td class="bold" width="400">Name</td>
-                                    <td>{{tender.institute.nameFr}}</td>
+                                    <td>{{tender?.institute?.nameFr}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Type Of Institute</td>
-                                    <td>{{tender.institute.typeOfInstitute}}</td>
+                                    <td>{{tender?.institute?.typeOfInstitute}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Area Type</td>
-                                    <td>{{tender.institute.areaType}}</td>
+                                    <td>{{tender?.institute?.areaType}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Representative Name</td>
-                                    <td>{{tender.institute.representativeName}}</td>
+                                    <td>{{tender?.institute?.representativeName}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Phone</td>
-                                    <td>{{tender.responsible.phone}}</td>
+                                    <td>{{tender?.responsible?.phone}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Fax</td>
-                                    <td>{{tender.institute.fax}}</td>
+                                    <td>{{tender?.institute?.fax}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Email</td>
-                                    <td>{{tender.institute.notificationEmail}}</td>
+                                    <td>{{tender?.institute?.notificationEmail}}</td>
                                 </tr>
 
 
