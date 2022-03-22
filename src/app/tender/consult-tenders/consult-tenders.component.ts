@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  PageEvent } from '@angular/material/paginator';
 import * as moment from 'moment';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { TENDER } from 'src/app/Shared/Models/TENDER';
+import { TENDER_FILTERS } from 'src/app/Shared/Models/TENDER_FILTERS';
 import { InstituteService } from 'src/app/Shared/Services/InstituteService/institute.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
 
@@ -17,8 +19,8 @@ export class ConsultTendersComponent implements OnInit {
   itemPerPage: number = 5
   page: number = 0
   totalRecords: number;
-
-  constructor(private tenderService: TenderService, private instuteService: InstituteService) { }
+  filters!:FormGroup;
+  constructor(private fb:FormBuilder, private tenderService: TenderService, private instuteService: InstituteService) { }
 
   ngOnInit(): void {
     this.tenderService.getTenders(this.page, this.itemPerPage).subscribe(res => {
@@ -37,7 +39,50 @@ export class ConsultTendersComponent implements OnInit {
     })
   })
 
+
+  this.filters = this.fb.group({
+    bidNumber: ["", [Validators.required]],
+    bidName: ["", [Validators.required]],
+    city: ["", [Validators.required]],
+    postDate: ["", [Validators.required]],
+
+  });
+
+
+  this.filters.get("bidNumber").valueChanges.subscribe(selectedValue => {
+    let filters:TENDER_FILTERS;
+    filters=this.filters.value;
+    filters.bidNumber=selectedValue;
+
+    console.log(filters)
+  })
+  this.filters.get("bidName").valueChanges.subscribe(selectedValue => {
+    let filters:TENDER_FILTERS;
+    filters=this.filters.value;
+    filters.bidName=selectedValue;
+
+    console.log(filters)
+  })
+  this.filters.get("city").valueChanges.subscribe(selectedValue => {
+    let filters:TENDER_FILTERS;
+    filters=this.filters.value;
+    filters.city=selectedValue;
+
+    console.log(filters)
+  })
+  this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
+    let filters:TENDER_FILTERS;
+    filters=this.filters.value;
+    filters.postDate=selectedValue;
+
+    console.log(filters)
+  })
+
 }
+
+  applyFilters(form){
+    console.log(form.value)
+  }
 
 
 
@@ -67,11 +112,6 @@ export class ConsultTendersComponent implements OnInit {
 
    
 }
-
-
-
-
-
 
 
 
