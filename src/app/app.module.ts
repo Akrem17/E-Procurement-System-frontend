@@ -49,6 +49,7 @@ import { TendersOfInstituteComponent } from './tender/tenders-of-institute/tende
 import { EditTenderComponent } from './tender/edit-tender/edit-tender.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditTenderClassificationComponent } from './tender/edit-tender/edit-tender-classification/edit-tender-classification.component';
+import { FormsModule } from '@angular/forms';        //import FormsModule
 
 
 @NgModule({
@@ -98,7 +99,8 @@ import { EditTenderClassificationComponent } from './tender/edit-tender/edit-ten
     MatSnackBarModule,
     MatTooltipModule,
     EllipsisModule ,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
     
     
   ],
