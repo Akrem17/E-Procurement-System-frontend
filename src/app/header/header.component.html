@@ -69,7 +69,7 @@
             <a class="nav-link" href="#" *ngIf="email$ | async as email">{{email | uppercase}}</a>
           </li>
           <li class="nav-item" >
-            <a class="nav-link" routerLink="/tenders/1">My tenders</a>
+            <a class="nav-link" routerLink="/tenders/{{instituteId}}">My tenders</a>
           </li>
         </ul>
         <div *ngIf="!(loginStatus$ | async) as loginStatus" class="login right">
