@@ -1,5 +1,5 @@
 export class REPRESENTATIVE{
-
+    public id!:string
     public name!: string
     public socialSecurityNumber!: string   
     public position!: string

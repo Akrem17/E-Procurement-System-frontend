@@ -122,62 +122,95 @@ export class EditTenderComponent implements OnInit {
 
   }
 
-  checkSocial(){    
-    const representativeFilters:REPRESETATIVE_FILTERS= new REPRESETATIVE_FILTERS();
-    representativeFilters.socialSecurityNumber=this.RepresentativeForm.get("socialSecurityNumber").value;
-    let representative:REPRESENTATIVE=new REPRESENTATIVE();
-    this.representativeService.FilterRepresentativeBy(representativeFilters).subscribe(res=>
-     {
-     const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-     if(response.status){  
-       console.log(response)
-       representative.email=response.data[0].email;representative.name=response.data[0].name;representative.phone=response.data[0].phone;representative.position=response.data[0].position;representative.socialSecurityNumberDate=response.data[0].socialSecurityNumberDate;
-       this.RepresentativeForm.get("name").setValue(representative.name);this.RepresentativeForm.get("position").setValue(representative.position);this.RepresentativeForm.get("phone").setValue(representative.phone);this.RepresentativeForm.get("email").setValue(representative.email); this.RepresentativeForm.get("socialSecurityNumberDate").setValue(representative.socialSecurityNumberDate)
-       }else{
-
-       }
-   })      
- }
-  saveRepresentativeInfo(form) {
-let socialNumber;
-
-    const representativeFilters:REPRESETATIVE_FILTERS= new REPRESETATIVE_FILTERS();
-    representativeFilters.socialSecurityNumber=this.RepresentativeForm.get("socialSecurityNumber").value;
+  //this function is to find representative data by his social security number and add put it into the form
+  checkSocial() {
+    const representativeFilters: REPRESETATIVE_FILTERS = new REPRESETATIVE_FILTERS();
+    representativeFilters.socialSecurityNumber = this.RepresentativeForm.get("socialSecurityNumber").value;
     let representative: REPRESENTATIVE = new REPRESENTATIVE();
-    representative.email = form.value.email;this.tender.responsible.email=form.value.email;representative.name = form.value.name;this.tender.responsible.name=form.value.name;representative.phone = form.value.phone;this.tender.responsible.phone=form.value.phone;representative.position = form.value.position;this.tender.responsible.position=form.value.position;representative.socialSecurityNumber = form.value.socialSecurityNumber;this.tender.responsible.socialSecurityNumber=form.value.socialSecurityNumber;representative.socialSecurityNumberDate = form.value.socialSecurityNumberDate;this.tender.responsible.socialSecurityNumberDate=form.value.socialSecurityNumberDate;
-    this.representativeService.FilterRepresentativeBy(representativeFilters).subscribe(res=>
-     
-      {
+    this.representativeService.FilterRepresentativeBy(representativeFilters).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      if(response.status){  
-        socialNumber=res.data[0].socialNumber;
-        if( this.tender.responsible.socialSecurityNumber==socialNumber){
+      if (response.status) {
+        representative.email = response.data[0].email; representative.name = response.data[0].name; representative.phone = response.data[0].phone; representative.position = response.data[0].position; representative.socialSecurityNumberDate = response.data[0].socialSecurityNumberDate;
+        this.RepresentativeForm.get("name").setValue(representative.name); this.RepresentativeForm.get("position").setValue(representative.position); this.RepresentativeForm.get("phone").setValue(representative.phone); this.RepresentativeForm.get("email").setValue(representative.email); this.RepresentativeForm.get("socialSecurityNumberDate").setValue(representative.socialSecurityNumberDate)
+      } 
+    })
+  }
+
+
+
+  saveRepresentativeInfo(form) {
+    let socialNumber;
+
+    //search representative by social security number
+    const representativeFilters: REPRESETATIVE_FILTERS = new REPRESETATIVE_FILTERS();
+    representativeFilters.socialSecurityNumber = this.RepresentativeForm.get("socialSecurityNumber").value;
+    let representative: REPRESENTATIVE = new REPRESENTATIVE();
+    this.representativeService.FilterRepresentativeBy(representativeFilters).subscribe(res => {
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      
+      if (response.status) {
+        socialNumber = res.data[0].socialSecurityNumber;
+        if (this.tender.responsible.socialSecurityNumber == socialNumber) {
+
           //just update responsible
-          this.representativeService.updateRepresentative(this.tender.addressReceiptId.toString(), representative).subscribe(res => {
-            console.log(res)
+          representative.email = form.value.email; this.tender.responsible.email = form.value.email; representative.name = form.value.name; this.tender.responsible.name = form.value.name; representative.phone = form.value.phone; this.tender.responsible.phone = form.value.phone; representative.position = form.value.position; this.tender.responsible.position = form.value.position; representative.socialSecurityNumber =  this.tender.responsible.socialSecurityNumber ;representative.socialSecurityNumberDate = form.value.socialSecurityNumberDate; this.tender.responsible.socialSecurityNumberDate = form.value.socialSecurityNumberDate;     
+          this.representativeService.updateRepresentative(this.tender.responsible.id.toString(), representative).subscribe(res => {
             this.editFormRepresentative = false;
           })
-      
-        }else{
-         // this.tender.responsibleId=id;
-       //update responsible foreign key in tender table;
-       console.log("update responsible foreign key in tender table;")
-        }
-      
-      }else{
-        //create new responsible and assign it to tender ; 
-        console.log("/create new responsible and assign it to tender")
-            
+
+        } else {
+               
+          //update representative info
+          representative.email = form.value.email;this.tender.responsible.email=form.value.email;representative.name = form.value.name;this.tender.responsible.name=form.value.name;representative.phone = form.value.phone;this.tender.responsible.phone=form.value.phone;representative.position = form.value.position;this.tender.responsible.position=form.value.position;representative.socialSecurityNumber = form.value.socialSecurityNumber;this.tender.responsible.socialSecurityNumber=form.value.socialSecurityNumber;representative.socialSecurityNumberDate = form.value.socialSecurityNumberDate;this.tender.responsible.socialSecurityNumberDate=form.value.socialSecurityNumberDate;
+          this.representativeService.updateRepresentative(response.data[0].id.toString(), representative).subscribe(res => {
+            this.editFormRepresentative = false;
+          })
+
+          //update responsible foreign key in tender table;
+          console.log("update responsible foreign key in tender table;")
+          let updatedTender:TENDER;
+          updatedTender = { ...this.tender };
+          updatedTender.addressReceipt = null;updatedTender.institute = null;updatedTender.responsible = null;
+          updatedTender.responsibleId = response.data[0].id;
+          this.tenderService.updateTender(this.id, updatedTender).subscribe(res => {
+            this.editFormRepresentative = false;
+          })
+        
       }
-  
+
+    }else {
+      //if no social security number found,create new responsible and assign it to tender ; 
+
+        console.log("/create new responsible and assign it to tender")
+        representative.email = form.value.email; this.tender.responsible.email = form.value.email; representative.name = form.value.name; this.tender.responsible.name = form.value.name; representative.phone = form.value.phone; this.tender.responsible.phone = form.value.phone; representative.position = form.value.position; this.tender.responsible.position = form.value.position; representative.socialSecurityNumber = form.value.socialSecurityNumber; this.tender.responsible.socialSecurityNumber = form.value.socialSecurityNumber; representative.socialSecurityNumberDate = form.value.socialSecurityNumberDate; this.tender.responsible.socialSecurityNumberDate = form.value.socialSecurityNumberDate;
+       
+        //create new representative (because the social security number not found)
+        this.representativeService.createRepresentative(representative).subscribe(res => {
+          console.log(res.data.representative.id)
+
+          console.log("update responsible foreign key in tender table;")
+          let updatedTender: TENDER;
+          updatedTender = { ...this.tender };
+          updatedTender.addressReceipt = null; updatedTender.institute = null; updatedTender.responsible = null;
+          updatedTender.responsibleId = res.data.representative.id;
+
+          this.tenderService.updateTender(this.id, updatedTender).subscribe(res => {
+            this.editFormRepresentative = false;
+            //update responsible foreign key in tender table;
+          })
+          console.log(representative)
+        })
+
   
   
 
-  })
+ 
 }
-
-  enableEditingRepresentative() {
-
-    this.editFormRepresentative = true
+    })
   }
+
+enableEditingRepresentative() {
+
+  this.editFormRepresentative = true
+}
 }
