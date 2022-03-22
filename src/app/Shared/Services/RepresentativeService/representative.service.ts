@@ -45,7 +45,9 @@ export class RepresentativeService {
 
   }
 
-
+  createRepresentative(representative:REPRESENTATIVE):Observable<any>{
+    return this.http.post(this.representativesRoute,representative);
+  }
   
 
 }
