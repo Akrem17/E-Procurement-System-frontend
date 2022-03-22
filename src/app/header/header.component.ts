@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   loginStatus$: Observable<boolean>;
   email$: Observable<string>;
   type$: Observable<string>;
-
+  instituteId:string="1";
   constructor(private _authService: AuthService) { }
 
 

@@ -48,6 +48,7 @@ import { CustomCardComponent } from './custom-card/custom-card.component';
 import { TendersOfInstituteComponent } from './tender/tenders-of-institute/tenders-of-institute.component';
 import { EditTenderComponent } from './tender/edit-tender/edit-tender.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { EditTenderClassificationComponent } from './tender/edit-tender/edit-tender-classification/edit-tender-classification.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     ConsultSingleTenderComponent,
     CustomCardComponent,
     TendersOfInstituteComponent,
-    EditTenderComponent
+    EditTenderComponent,
+    EditTenderClassificationComponent
   ],
   imports: [
     BrowserModule,

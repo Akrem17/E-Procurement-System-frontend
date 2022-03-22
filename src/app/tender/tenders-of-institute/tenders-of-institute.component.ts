@@ -21,11 +21,10 @@ export class TendersOfInstituteComponent implements OnInit {
   page: number = 0
   totalRecords: number;
 
-  constructor(private tenderService: TenderService, private instuteService: InstituteService,private route: ActivatedRoute) { }
+  constructor(private instuteService: InstituteService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     let  id = this.route.snapshot.paramMap.get("id");
-    console.log(id)
     this.instuteService.GetTendersOfInstitute(id,this.page,this.itemPerPage).subscribe(res=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       console.log(response)
