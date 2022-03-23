@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TENDER } from '../../Models/TENDER';
+import { TENDER_FILTERS } from '../../Models/TENDER_FILTERS';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,14 @@ export class TenderService {
 
     return this.http.put(this.tendersRoute+"/"+id,tender);
    }
-
+   FilterTenderBy(filters:TENDER_FILTERS ){
+    let filter="";
+    Object.entries(filters).forEach(res=>{
+      filter+="&"+res[0]+"="+res[1];
+   
+    }); 
+    return this.http.get(this.tendersRoute+"?"+filter);
+  
+  }
   
 }
