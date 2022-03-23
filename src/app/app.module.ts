@@ -15,7 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './Shared/Services/auth.service';
 import { TokenInterceptorService } from './Shared/Services/TokenService/token-interceptor.service';
@@ -49,7 +49,7 @@ import { TendersOfInstituteComponent } from './tender/tenders-of-institute/tende
 import { EditTenderComponent } from './tender/edit-tender/edit-tender.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditTenderClassificationComponent } from './tender/edit-tender/edit-tender-classification/edit-tender-classification.component';
-import { FormsModule } from '@angular/forms';        //import FormsModule
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 
 
 @NgModule({
@@ -100,7 +100,8 @@ import { FormsModule } from '@angular/forms';        //import FormsModule
     MatTooltipModule,
     EllipsisModule ,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MdbCheckboxModule
     
     
   ],

@@ -22,23 +22,28 @@ export class ConsultTendersComponent implements OnInit {
   filters!:FormGroup;
   constructor(private fb:FormBuilder, private tenderService: TenderService, private instuteService: InstituteService) { }
 
-  ngOnInit(): void {
-    this.tenderService.getTenders(this.page, this.itemPerPage).subscribe(res => {
-      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      this.tenders = response.data.tenders;
-      console.log(response)
-      this.totalRecords = response.data.items;
-      console.log(this.totalRecords)
-      this.tenders?.map(tender => {
-        let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
-        let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();
-        tender.startDate = startDate;
-        tender.deadLine = deadLine;
-        this.data=this.tenders;
 
+    callAllTenders(){
+      this.tenderService.getTenders(this.page, this.itemPerPage).subscribe(res => {
+        const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+        this.tenders = response.data.tenders;
+        console.log(response)
+        this.totalRecords = response.data.items;
+        console.log(this.totalRecords)
+        this.tenders?.map(tender => {
+          let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
+          let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();
+          tender.startDate = startDate;
+          tender.deadLine = deadLine;
+          this.data=this.tenders;
+  
+      })
     })
-  })
-
+  
+      
+    }
+  ngOnInit(): void {
+    this.callAllTenders()
 
   this.filters = this.fb.group({
     bidNumber: ["", [Validators.required]],
@@ -49,19 +54,35 @@ export class ConsultTendersComponent implements OnInit {
   });
 
 
-  this.filters.get("bidNumber").valueChanges.subscribe(selectedValue => {
-    let filters:TENDER_FILTERS;
-    filters=this.filters.value;
-    filters.bidNumber=selectedValue;
+    this.filters.get("bidNumber").valueChanges.subscribe(selectedValue => {
 
-    console.log(filters)
-  })
+      let filters: TENDER_FILTERS;
+      filters = this.filters.value;
+      filters.bidNumber = selectedValue;
+
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber))) {
+
+        this.callTendersWithFilters(filters)
+      }
+      else {
+        this.callAllTenders()
+      }
+    })
+
+  
   this.filters.get("bidName").valueChanges.subscribe(selectedValue => {
     let filters:TENDER_FILTERS;
     filters=this.filters.value;
     filters.bidName=selectedValue;
 
-    console.log(filters)
+
+    if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber))) {
+
+      this.callTendersWithFilters(filters)
+    }
+    else {
+      this.callAllTenders()
+    }
   })
   this.filters.get("city").valueChanges.subscribe(selectedValue => {
     let filters:TENDER_FILTERS;
@@ -78,6 +99,27 @@ export class ConsultTendersComponent implements OnInit {
     console.log(filters)
   })
 
+}
+
+
+
+callTendersWithFilters(filters:TENDER_FILTERS){
+  
+  this.tenderService.FilterTenderBy(filters).subscribe(res=>{
+    this.data=[]
+    //@ts-ignore
+    const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+    this.tenders = response.data;
+    this.tenders?.map(tender => {
+      let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
+      let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();
+      tender.startDate = startDate;
+      tender.deadLine = deadLine;
+      this.data=this.tenders;
+
+  })
+
+  })
 }
 
   applyFilters(form){
@@ -111,6 +153,18 @@ export class ConsultTendersComponent implements OnInit {
      
 
    
+}
+
+isEmptyOrNull(str:string| null):boolean{
+  if(str=="" || str==null)return true;
+  return false;
+  
+
+}
+isEmpty(filter:TENDER_FILTERS):boolean{
+  return true;
+  if (filter==null) return true
+  return false;
 }
 
 
