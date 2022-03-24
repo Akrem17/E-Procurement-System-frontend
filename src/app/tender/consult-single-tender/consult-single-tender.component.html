@@ -199,9 +199,10 @@
                     <div style="margin-top: 30px;" class="table-responsive">
                         <mat-list>
                             <div mat-subheader>Specifications:</div>
-                            <mat-list-item>
+                            <mat-list-item *ngFor="let specification of tender.specifications">
+                                
                                 <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
-                                <div mat-line>Specification1</div>
+                                <div mat-line>{{specification.fileName}}</div>
                                 <div mat-line>10Mb </div>
                             </mat-list-item>
                             <mat-list-item>
