@@ -200,10 +200,11 @@
                         <mat-list>
                             <div mat-subheader>Specifications:</div>
                             <mat-list-item *ngFor="let specification of tender.specifications">
-                                
+                                <a (click)="downloadPDF(specification.id)">
                                 <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
                                 <div mat-line>{{specification.fileName}}</div>
-                                <div mat-line>10Mb </div>
+                                <div mat-line>15Mb </div>
+                            </a>
                             </mat-list-item>
                             <mat-list-item>
                                 <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
