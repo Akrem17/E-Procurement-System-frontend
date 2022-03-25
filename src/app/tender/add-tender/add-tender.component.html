@@ -1,3 +1,4 @@
+
 <div style=" background-color: #f8fafb; padding-top: 50px;" class=""  >
 
     <div *ngIf="!next"  class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
@@ -26,6 +27,10 @@
               <div class="stepper-item ">
                   <div class="step-counter">4</div>
                   <div class="step-name">Address</div>
+                </div>
+                <div class="stepper-item ">
+                  <div class="step-counter">5</div>
+                  <div class="step-name">Specification</div>
                 </div>
             </div><br><br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
@@ -168,4 +173,5 @@
      
   
   </div>
+  
   <app-add-tender-responsibles *ngIf="next" [basicInfo]="basicInfo" ></app-add-tender-responsibles>

@@ -1,0 +1,88 @@
+<div style=" background-color: #f8fafb; padding-top: 50px;"  >
+ 
+  
+    <div class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+  
+  
+      <div class="col-lg-12 col-sm-12">
+        <div class="container">
+  
+          <div class="signin">
+  
+  
+            <div><span class=" red Segoe">Specifications</span></div><br><br><br>
+            <div class="stepper-wrapper">
+                <div class="stepper-item completed">
+                  <div class="step-counter">1</div>
+                  <div class="step-name">Supplier</div>
+                </div>
+                <div class="stepper-item completed ">
+                  <div class="step-counter">2</div>
+                  <div class="step-name"> Responsible</div>
+                </div>
+                <div class="stepper-item completed">
+                  <div class="step-counter">3</div>
+                  <div class="step-name">Classifications</div>
+                </div>
+                <div class="stepper-item completed">
+                    <div class="step-counter">4</div>
+                    <div class="step-name">Address</div>
+                  </div>
+                  <div class="stepper-item active">
+                    <div class="step-counter">5</div>
+                    <div class="step-name">Specifications</div>
+                  </div>
+              </div><br><br>
+           
+<form [formGroup]="myForm" (ngSubmit)="submit()" id="file-upload-form" class="uploader">
+    <input 
+    name="fileUpload"
+    formControlName="file"
+    id="file-upload"
+    type="file" 
+    multiple
+    class="form-control"
+    
+    (change)="onFileChange($event)">
+  
+    <label for="file-upload" id="file-drag">
+      <img id="file-image" src="#" alt="Preview" class="hidden">
+      <div id="start">
+        <i class="fa fa-download" aria-hidden="true"></i>
+        <div>Select a file or drag here</div>
+        <div id="notimage" class="hidden">Please select an image</div>
+        <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+      </div>
+      <div id="response" class="hidden">
+        <div id="messages"></div>
+        <progress class="progress" id="file-progress" value="0">
+          <span>0</span>%
+        </progress>
+      </div>
+    </label>
+    
+   <span> Files : </span>
+      <div class="list">
+        <ul  *ngFor="let n of name;let i =index " >
+          <li>
+              <mat-icon>picture_as_pdf</mat-icon>
+            {{n}}
+             <span (click)="removeFile(i)" class="cancel"><i class="material-icons">minimize</i></span></li>
+                     
+        </ul>
+      </div>
+      <div style="text-align: center;">
+        <button mat-button type="submit" class="login"  [disabled]="myForm.invalid" >SUBMIT </button>
+        <br><br>
+
+      </div>
+  
+
+</form>
+          </div>
+        </div>
+      </div>
+     
+  
+  </div>
+
