@@ -1,7 +1,7 @@
 <div style=" background-color: #f8fafb; padding-top: 50px;"  >
  
   
-    <div class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+    <div class="row"   *ngIf="!specificationPage"  style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
   
   
       <div class="col-lg-12 col-sm-12">
@@ -116,4 +116,4 @@
      
   
   </div>
-
+  <app-add-tender-specifications   *ngIf="specificationPage" [basicInfo]="basicInfo"></app-add-tender-specifications>
