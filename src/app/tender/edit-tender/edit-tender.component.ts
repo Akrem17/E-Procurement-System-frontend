@@ -1,4 +1,3 @@
-import { HeaderRowOutlet } from '@angular/cdk/table';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,13 +10,12 @@ import { TENDER } from 'src/app/Shared/Models/TENDER';
 import { TENDER_CLASSIFICATION } from 'src/app/Shared/Models/TENDER_CLASSIFICATION';
 import { AddressService } from 'src/app/Shared/Services/AddressService/address.service';
 import { RepresentativeService } from 'src/app/Shared/Services/RepresentativeService/representative.service';
+import { SpecificationService } from 'src/app/Shared/Services/SpecificationService/specification.service';
 import { TenderClassificationService } from 'src/app/Shared/Services/TenderClassificationService/tender-classification.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
 import { EditTenderClassificationComponent } from './edit-tender-classification/edit-tender-classification.component';
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { saveAs } from 'file-saver';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-edit-tender',
@@ -39,7 +37,7 @@ export class EditTenderComponent implements OnInit {
   id!: string;
 
 
-  constructor(private tinderClassificationService:TenderClassificationService, public dialog: MatDialog ,private representativeService: RepresentativeService, private tenderService: TenderService, private fb: FormBuilder, private route: ActivatedRoute, private addressService: AddressService) { }
+  constructor(private specificationService:SpecificationService,private tinderClassificationService:TenderClassificationService, public dialog: MatDialog ,private representativeService: RepresentativeService, private tenderService: TenderService, private fb: FormBuilder, private route: ActivatedRoute, private addressService: AddressService) { }
 
   paginate(array, page_size, page_number) {
     // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
@@ -150,6 +148,7 @@ export class EditTenderComponent implements OnInit {
     })
   }
 
+  
   saveRepresentativeInfo(form) {
     let socialNumber;
 
@@ -246,4 +245,65 @@ export class EditTenderComponent implements OnInit {
     });
   }
 
+
+  addSpecification(e){
+    const formData = new FormData();
+    console.log(e)
+    formData.append('MyFile', e.target.files[0]); 
+
+    console.log(formData.get("MyFile"))
+   formData.append("AltText","gf")
+   formData.append("Description","gf")
+   this.specificationService.addSpecification(this.id,formData).subscribe(res=>{
+    const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+    if (response.status)
+    this.tender.specifications.push( response.data)
+   })
+ 
+
+  }
+  deleteSpecification(id){
+
+    // console.log(id)
+ 
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.specificationService.deleteSpecification(id).subscribe(res=>{
+          const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+         if(response){
+          var removeIndex = this.tender.specifications.map(item => item.id).indexOf(id);
+          this.tender.specifications.splice(removeIndex, 1);
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+  
+         }
+        })
+      
+      }
+    })
+  
+  }
+  downloadPDF(id) {
+
+    this.specificationService.downloadSpecification(id).subscribe(file => {
+      this.specificationService.getSpecifications(id).subscribe(res => {
+        console.log(res)
+        saveAs(file, res.data.fileName);
+      })
+
+    })
+
+
+  }
 }

@@ -26,4 +26,8 @@ export class SpecificationService {
    return this.http.get(this.specificationURL+'download/'+id, {responseType: "blob", headers: {'Accept': 'application/pdf'}});
   }
   
+  deleteSpecification(id:string): Observable<any>{
+    return this.http.delete(this.specificationURL+id);
+
+  }
 }
