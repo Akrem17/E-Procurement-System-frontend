@@ -88,6 +88,9 @@ export class EditTenderComponent implements OnInit {
 
     })
 
+
+  
+
   }
 
 
@@ -148,7 +151,7 @@ export class EditTenderComponent implements OnInit {
     })
   }
 
-  
+
   saveRepresentativeInfo(form) {
     let socialNumber;
 
@@ -307,3 +310,4 @@ export class EditTenderComponent implements OnInit {
 
   }
 }
+

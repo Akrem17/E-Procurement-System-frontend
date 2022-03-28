@@ -105,6 +105,7 @@ text-align: center;
     
  .topnav {
     background-color: #ca2c2f;
+    width: 100%;
 }
   
   .topnav a {
@@ -155,7 +156,9 @@ text-align: center;
     text-align: left;
   }
 }
-
+.sublink{
+  width: 100%;
+}
 
 
 .dropbtn {

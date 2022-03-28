@@ -325,15 +325,18 @@
                             <div mat-subheader>Specifications:</div>
                           
 
-                            <mat-list-item *ngFor="let specification of tender.specifications" style="margin-bottom: 10px;">
+                            <mat-list-item *ngFor="let specification of tender.specifications" style="margin-bottom: 20px;">
+                                <mat-icon (click)="downloadPDF(specification.id)" mat-list-icon>picture_as_pdf</mat-icon>
+
                                 <a (click)="downloadPDF(specification.id)">
-                                <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
+                                    <div  >
                                 <div mat-line>{{specification.fileName}}</div>
+                                </div>
                                 <div mat-line>15Mb </div>
                             </a>
                             
                                 <div class="floatRight">
-                                    <a mat-button (click)="deleteSpecification(specification.id)"><mat-icon>delete</mat-icon></a>
+                                    <a mat-button class="delete" (click)="deleteSpecification(specification.id)"><mat-icon>delete</mat-icon></a>
                                 </div>
                             </mat-list-item>
                               <div style="padding: 10px; ">
