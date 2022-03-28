@@ -291,9 +291,11 @@
                     </div>
                     <div style="margin-top: 30px;" class="row" *ngIf="tenderClassification.length>0">
                         <div class="col-md-4" *ngFor="let classifciation of tenderClassification">
-                            <a mat-button  (click)="openDialog(classifciation)">
-                                <mat-icon>edit</mat-icon>
+                           <div >
+                            <a style="float: right; z-index: 99999999;"  mat-button (click)="openDialog(classifciation)">
+                                <mat-icon  >edit</mat-icon>
                             </a>
+                        </div>
                             <div style="margin-bottom: 30px;">
                                 
                                 <app-custom-card [title]="classifciation.name" [subtitle]="classifciation.amount"
@@ -317,34 +319,36 @@
                         <h1>Specifications</h1>
 
                     </div>
-                    <a mat-button style="float: right;">
-                        <mat-icon>edit</mat-icon>
-                    </a>
-
+              
                     <div style="margin-top: 30px;" class="table-responsive">
                         <mat-list>
                             <div mat-subheader>Specifications:</div>
-                            <mat-list-item>
+                          
+
+                            <mat-list-item *ngFor="let specification of tender.specifications" style="margin-bottom: 10px;">
+                                <a (click)="downloadPDF(specification.id)">
                                 <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
-                                <div mat-line>Specification1</div>
-                                <div mat-line>10Mb </div>
+                                <div mat-line>{{specification.fileName}}</div>
+                                <div mat-line>15Mb </div>
+                            </a>
+                            
+                                <div class="floatRight">
+                                    <a mat-button (click)="deleteSpecification(specification.id)"><mat-icon>delete</mat-icon></a>
+                                </div>
                             </mat-list-item>
-                            <mat-list-item>
-                                <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
-                                <div mat-line>Specification1</div>
-                                <div mat-line>13Mb </div>
-                            </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <div mat-subheader>Other files</div>
-                            <mat-list-item>
-                                <mat-icon mat-list-icon>note</mat-icon>
-                                <div mat-line>Notes</div>
-                                <div mat-line> 6Mb </div>
-                            </mat-list-item>
+                              <div style="padding: 10px; ">
+                                
+                                 <label  mat-button (click)="addSpecification" class="btn btn-default btn-file fileButton">
+                                    <mat-icon>add</mat-icon>
+                                     <input  (change)="addSpecification($event)"type="file" style="display: none;">
+                                  </label>
+                          
+                                </div>
                         </mat-list>
+                    </div>  
 
-                    </div>
 
+                    
                     <div class="three">
                         <h1>Participates</h1>
 

@@ -146,3 +146,16 @@ h1 {
     background-color: #333;
  
   }
+  .floatRight{
+  
+    position: absolute;  
+    right: 0;  
+    top: 0;
+  }
+  .fileButton{
+    background-color: #f1f1ee;
+  }
+  .fileButton:hover{
+    background-color: #b80000 !important;
+    color: white;
+  }
