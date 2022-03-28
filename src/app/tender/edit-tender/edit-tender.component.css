@@ -146,6 +146,9 @@ h1 {
     background-color: #333;
  
   }
+  .three{
+    margin-top: 20px;
+  }
   .floatRight{
   
     position: absolute;  
@@ -158,4 +161,7 @@ h1 {
   .fileButton:hover{
     background-color: #b80000 !important;
     color: white;
+  }
+  .delete{
+    color: red;
   }

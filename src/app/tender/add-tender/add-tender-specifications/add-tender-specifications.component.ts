@@ -37,7 +37,6 @@ export class AddTenderSpecificationsComponent implements OnInit {
  }
     name:string[]=[];
  onFileChange(event:any) {
-        console.log(event.target.files)
        for (let  i = 0; i < event.target.files.length; i++) { 
            this.myFiles.push(event.target.files[i]);
        }
@@ -63,11 +62,7 @@ export class AddTenderSpecificationsComponent implements OnInit {
 
 }
  submit(){
-  //  const formData = new FormData();
-
-  //  for (var i = 0; i < this.myFiles.length; i++) { 
-  //    formData.append("MyFile[]", this.myFiles[i]);
-  //  }
+  
    const formData = new FormData();
    this.myFiles.forEach((file) => { formData.append('MyFile', file); });
    console.log(formData.get("MyFile[]"))
