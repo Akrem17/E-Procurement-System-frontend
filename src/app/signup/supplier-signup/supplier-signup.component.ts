@@ -38,8 +38,9 @@ export class SupplierSignupComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
- 
+    form.get("fax").setValue(form.get("fax").value.toString())
     this.basicInfo=form;
+    console.log(this.basicInfo)
     this.basicInfo.addControl('user', new FormGroup(this.user.controls)); 
     //set the next component visibilty to true
     this.next=true;

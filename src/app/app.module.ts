@@ -51,6 +51,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { EditTenderClassificationComponent } from './tender/edit-tender/edit-tender-classification/edit-tender-classification.component';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { AddTenderSpecificationsComponent } from './tender/add-tender/add-tender-specifications/add-tender-specifications.component';
+import { AddOfferComponent } from './offer/add-offer/add-offer.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { AddTenderSpecificationsComponent } from './tender/add-tender/add-tender
     TendersOfInstituteComponent,
     EditTenderComponent,
     EditTenderClassificationComponent,
-    AddTenderSpecificationsComponent
+    AddTenderSpecificationsComponent,
+    AddOfferComponent
   ],
   imports: [
     BrowserModule,

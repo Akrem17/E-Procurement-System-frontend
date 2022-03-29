@@ -301,8 +301,9 @@ export class EditTenderComponent implements OnInit {
 
     this.specificationService.downloadSpecification(id).subscribe(file => {
       this.specificationService.getSpecifications(id).subscribe(res => {
-        console.log(res)
-        saveAs(file, res.data.fileName);
+        const response: RESPONSE = { status: res.status, message: res.message, data: res.data }
+        console.log(response)
+        saveAs(file, response.data.fileName);
       })
 
     })

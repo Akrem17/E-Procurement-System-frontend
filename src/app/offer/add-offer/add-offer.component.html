@@ -1,0 +1,129 @@
+
+<div style=" background-color: #f8fafb; padding-top: 50px;" class=""  >
+
+    <div *ngIf="!next"  class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
+  
+  
+      <div class="col-lg-12 col-sm-12"  >
+        <div class="container">
+  
+          <div class="signin">
+  
+            
+            <div><span class=" red Segoe">Offer Informations</span></div><br><br><br>
+            <div class="stepper-wrapper">
+              <div class="stepper-item active">
+                <div class="step-counter">1</div>
+                <div class="step-name">Offer</div>
+              </div>
+              <div class="stepper-item ">
+                <div class="step-counter">2</div>
+                <div class="step-name"> Financial</div>
+              </div>
+              <div class="stepper-item ">
+                <div class="step-counter">3</div>
+                <div class="step-name">Technical</div>
+              </div>
+              <div class="stepper-item ">
+                  <div class="step-counter">4</div>
+                  <div class="step-name">Other</div>
+                </div>
+                
+            </div><br><br>
+            <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  
+              <!-- suppleir name -->
+              <mat-form-field>
+                <mat-error
+                  *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
+                  Tender Name is required.
+                </mat-error>
+                <mat-label>Offer Name</mat-label>
+                <input matInput formControlName="name" >
+              </mat-form-field>
+
+              <!-- social Security Number  -->
+       
+              <mat-form-field>
+                <mat-error
+                  *ngIf="(myForm.get('businessKind')?.touched || myForm.get('businessKind')?.dirty) && myForm.get('businessKind')?.invalid">
+                  Tender Name is required.
+                </mat-error>
+                <mat-label>Total Amount</mat-label>
+                <input matInput formControlName="totalAmount" >
+              </mat-form-field>
+            
+              <br><br>
+ <mat-label>Financial</mat-label>
+ <br>
+    <br>
+
+    <input 
+    name="fileUpload"
+    id="file-upload"
+    type="file" 
+    multiple
+    class="form-control"
+    formControlName="financial"
+   
+    >
+    <br>
+    <mat-label>Technical</mat-label>
+    
+    <br>
+    <br>
+
+    <input 
+    name="fileUpload"
+    id="file-upload"
+    type="file" 
+    multiple
+    class="form-control"
+    formControlName="technical"
+
+    >   
+    <br>
+    <mat-label>Other</mat-label>
+    <br>
+    <br>
+
+    <input 
+    name="fileUpload"
+    id="file-upload"
+    type="file" 
+    multiple
+    class="form-control"
+    formControlName="other"
+
+    >
+    <br>
+
+   <!-- <span> Files : </span>
+      <div class="list">
+        <ul  *ngFor="let n of name;let i =index " >
+          <li>
+              <mat-icon>picture_as_pdf</mat-icon>
+            {{n}}
+             <span (click)="removeFile(i)" class="cancel"><i class="material-icons">minimize</i></span></li>
+                     
+        </ul> -->
+  
+  
+
+
+             <br>
+  
+             
+              <div style="text-align: center;">
+                <button mat-button type="submit" class="login" [disabled]="myForm.invalid"  >NEXT </button>
+                <br><br>
+  
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+     
+  
+  </div>
+  
