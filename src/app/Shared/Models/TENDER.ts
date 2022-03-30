@@ -1,5 +1,6 @@
 import { ADDRESS } from "./ADDRESS"
 import { INSTITUTE } from "./INSTITUTE"
+import { OFFER } from "./OFFER"
 import { REPRESENTATIVE } from "./REPRESENTATIVE"
 import { SPECIFICATION } from "./SPECIFICATION"
 import { TENDER_CLASSIFICATION } from "./TENDER_CLASSIFICATION"
@@ -23,6 +24,7 @@ export class TENDER {
     public specificationURL!: string
     public institute!: INSTITUTE
     public specifications!:SPECIFICATION[];
+    public offers!:OFFER[];
 
     
 

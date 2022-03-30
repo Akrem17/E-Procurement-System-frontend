@@ -11,7 +11,7 @@
   
             
             <div><span class=" red Segoe">Offer Informations</span></div><br><br><br>
-            <div class="stepper-wrapper">
+            <!-- <div class="stepper-wrapper">
               <div class="stepper-item active">
                 <div class="step-counter">1</div>
                 <div class="step-name">Offer</div>
@@ -29,7 +29,7 @@
                   <div class="step-name">Other</div>
                 </div>
                 
-            </div><br><br>
+            </div><br><br> -->
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   
               <!-- suppleir name -->
@@ -62,26 +62,24 @@
     name="fileUpload"
     id="file-upload"
     type="file" 
-    multiple
+    
     class="form-control"
     formControlName="financial"
-   
+    (change)="onFileChange($event)"
     >
     <br>
     <mat-label>Technical</mat-label>
     
     <br>
     <br>
-
+                                       
     <input 
     name="fileUpload"
     id="file-upload"
     type="file" 
-    multiple
     class="form-control"
     formControlName="technical"
-
-    >   
+    (change)="onFileChange($event)">   
     <br>
     <mat-label>Other</mat-label>
     <br>
@@ -94,22 +92,8 @@
     multiple
     class="form-control"
     formControlName="other"
-
+    (change)="onFileChange($event)"
     >
-    <br>
-
-   <!-- <span> Files : </span>
-      <div class="list">
-        <ul  *ngFor="let n of name;let i =index " >
-          <li>
-              <mat-icon>picture_as_pdf</mat-icon>
-            {{n}}
-             <span (click)="removeFile(i)" class="cancel"><i class="material-icons">minimize</i></span></li>
-                     
-        </ul> -->
-  
-  
-
 
              <br>
   

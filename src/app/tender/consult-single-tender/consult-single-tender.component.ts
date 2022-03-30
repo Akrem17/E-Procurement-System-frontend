@@ -47,7 +47,7 @@ export class ConsultSingleTenderComponent implements OnInit {
       this.tender = response.data;
       this.tenderClassification = this.paginate(this.tender.tenderClassification, 3, 1);
       //
-      console.log(this.tenderClassification);
+      console.log(this.tender);
     })
 
 

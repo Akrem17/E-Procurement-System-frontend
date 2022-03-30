@@ -75,7 +75,7 @@
     
         <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus" routerLink="login" >Login</a>
   
-        <a   class="nav-link dropdown" *ngIf="(type$ |async)=='institute'"   routerLink="login" > <i class="fa-solid fa-user-vneck"></i>Profile
+        <a   class="nav-link dropdown"  *ngIf="(loginStatus$ | async) as loginStatus"  routerLink="login" > <i class="fa-solid fa-user-vneck"></i>Profile
         
           <div class="dropdown-content">
             <a class="sublink" href="#">Edit Profile </a>
