@@ -55,7 +55,7 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'offer/add', component: AddOfferComponent,
+    path: 'offer/add/:id', component: AddOfferComponent,
     canActivate: [AuthGuard, HasRoleGuard],
     data: {
       type: ['citizen', 'institute', 'supplier']
