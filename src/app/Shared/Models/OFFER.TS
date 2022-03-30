@@ -14,6 +14,7 @@ export class OFFER {
     public tenderId:number;
     public tender:TENDER=null;
     
+    
 
 
 

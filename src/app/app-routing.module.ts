@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AddOfferComponent } from './offer/add-offer/add-offer.component';
+import { ConsultOfferComponent } from './offer/consult-offer/consult-offer.component';
 import { AuthGuard } from './Shared/Services/GuardService/auth.guard';
 import { HasRoleGuard } from './Shared/Services/GuardService/has-role.guard';
 import { PreventLoggedInAccessGuard } from './Shared/Services/GuardService/prevent-logged-in-access.guard';
@@ -78,6 +79,14 @@ const routes: Routes = [
       type: ['citizen', 'institute', 'supplier']
     }
   }
+  ,
+  {
+    path: 'offers/:id', component: ConsultOfferComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+    
+  }}
 ];
 
 @NgModule({

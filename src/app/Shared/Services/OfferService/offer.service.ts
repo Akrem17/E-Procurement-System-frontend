@@ -21,6 +21,9 @@ export class OfferService {
     return this.http.post(this.offerRoute, offer);
   }
 
+  getSingleOffer(id:string): Observable<any> {
+    return this.http.get(this.offerRoute+id);
+  }
 
   addSpecification(id: string, data: FormData) :Observable<any> {
     return this.http.post(this.offerRoute + 'files?tenderId=' + id, data);

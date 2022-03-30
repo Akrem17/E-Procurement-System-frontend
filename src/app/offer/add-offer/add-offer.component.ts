@@ -85,8 +85,8 @@ export class AddOfferComponent implements OnInit {
       
 
         this.offerService.addSpecification(res.id,formData).subscribe(res=>{
-          let response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-          if (response.status){
+          let response2: RESPONSE = { status: res.status, message: res.message, data: res.data };
+          if (response2.status){
             Swal.fire(
               'Offer added successfully',
               '',
