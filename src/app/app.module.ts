@@ -52,6 +52,7 @@ import { EditTenderClassificationComponent } from './tender/edit-tender/edit-ten
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { AddTenderSpecificationsComponent } from './tender/add-tender/add-tender-specifications/add-tender-specifications.component';
 import { AddOfferComponent } from './offer/add-offer/add-offer.component';
+import { ConsultOfferComponent } from './offer/consult-offer/consult-offer.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { AddOfferComponent } from './offer/add-offer/add-offer.component';
     EditTenderComponent,
     EditTenderClassificationComponent,
     AddTenderSpecificationsComponent,
-    AddOfferComponent
+    AddOfferComponent,
+    ConsultOfferComponent
   ],
   imports: [
     BrowserModule,
