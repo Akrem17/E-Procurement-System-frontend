@@ -1,76 +1,59 @@
-<div style=" background-color: #f8fafb; padding-top: 50px;" class=""  *ngIf="type==''">
-    <div class="  grey Segoe "  style="text-align: center; background-color: #f8fafb; font-size: 30px;" >CITIZEN INFO</div><br>
+<div class="wrapper padding50">
 
-    <div class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
-     
-      <div class="col-lg-5 col-sm-12" >
-        <div class="container">
+  <div class="grid">
+    <div class="form">
 
-            <div class="signin">
+      <div><span class=" red Segoe">Citizen Informations</span></div><br> <br>
 
-               
-                <div ><span class=" red& Segoe" >basic informations</span></div><br>
+      <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+        <mat-form-field>
+          <mat-error
+            *ngIf="(myForm.get('firstname')?.touched || myForm.get('firstname')?.dirty) && myForm.get('firstname')?.invalid">
+            This field is required
+          </mat-error>
+          <mat-label>FirstName</mat-label>
+          <input formControlName="firstname" type="text" matInput>
 
-                <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" >
-                <mat-form-field >
-                  <mat-error
-                  *ngIf="(myForm.get('firstname')?.touched || myForm.get('firstname')?.dirty) && myForm.get('firstname')?.invalid"
-                >
-                 This field is required
-                </mat-error> 
-                    <mat-label>FirstName</mat-label>
-                    <input formControlName="firstname"  type="text" matInput>
-                    
-                  </mat-form-field>
-                  
-                  <br><br>
-                  <mat-form-field >
-                    <mat-error
-                  *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.invalid"
-                >
-                 This field is required
-                </mat-error>
-                    <mat-label>LastName</mat-label>
-                    <input formControlName="lastname" type="text" matInput>
-                  </mat-form-field><br>
-                  <mat-form-field >
-                    <mat-error
-                    *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid"
-                  >
-                   Verify phone number
-                  </mat-error>
-                    <mat-label>Phone</mat-label>
-                    <input formControlName="phone" type="number" matInput>
-                  </mat-form-field><br>
-                 
-                  <mat-form-field >
-                    <mat-error
-                    *ngIf="(myForm.get('cin')?.touched || myForm.get('cin')?.dirty) && myForm.get('cin')?.invalid"
-                  >
-                   Verify your CIN number
-                  </mat-error>
-                    <mat-label>CIN</mat-label>
-                    <input formControlName="cin" type="number" matInput>
-                  </mat-form-field><br>
-                 
-                  <br>
-                  <br>
-                  <div style="text-align: center;">
-                  <button  mat-button type="submit" class="login" [disabled]="myForm.invalid" >Registration </button>
-                  <br><br>
-               
-                </div>
-                </form>
-            </div>
+        </mat-form-field>
+
+        <br><br>
+        <mat-form-field>
+          <mat-error
+            *ngIf="(myForm.get('lastname')?.touched || myForm.get('lastname')?.dirty) && myForm.get('lastname')?.invalid">
+            This field is required
+          </mat-error>
+          <mat-label>LastName</mat-label>
+          <input formControlName="lastname" type="text" matInput>
+        </mat-form-field><br>
+        <mat-form-field>
+          <mat-error
+            *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid">
+            Verify phone number
+          </mat-error>
+          <mat-label>Phone</mat-label>
+          <input formControlName="phone" type="number" matInput>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-error *ngIf="(myForm.get('cin')?.touched || myForm.get('cin')?.dirty) && myForm.get('cin')?.invalid">
+            Verify your CIN number
+          </mat-error>
+          <mat-label>CIN</mat-label>
+          <input formControlName="cin" type="number" matInput>
+        </mat-form-field><br>
+
+        <br>
+        <br>
+        <div style="text-align: center;">
+          <button mat-button type="submit" class="login" [disabled]="myForm.invalid">Registration </button>
+          <br><br>
+
         </div>
-      </div>
-   
-      <div class="col-lg-7 col-sm-0" style="padding-top: 150px;">
-        <div  style="width: 100% !important;" class="center imagelogin">
-            <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/C1SvmD7g/citizen.png' width="100% " height="320" alt='citizen'/></a>
-        </div>
-      </div>
-      
+      </form>
     </div>
-    
+    <div class="img">
+      <a><img src='https://i.postimg.cc/TwBxny39/citizen.png' 
+          alt='citizen' width="100%" /></a>
+    </div>
   </div>
+</div>

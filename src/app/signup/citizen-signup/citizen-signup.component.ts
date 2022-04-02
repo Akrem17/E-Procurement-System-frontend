@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
+import Swal from 'sweetalert2';
 import { CITIZEN } from '../../Shared/Models/CITIZEN';
 import { AuthService } from '../../Shared/Services/auth.service';
 
@@ -36,18 +38,22 @@ export class CitizenSignupComponent implements OnInit {
     this._auth.registreCitizen(citizen).subscribe(
       {
         next: (res) => {
-          //@ts-ignore
           const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-          if (response.status) {
 
-            console.log("added success", response)
-          }
-          console.log(response.message)
+            if(response.status){
+              Swal.fire(
+                'Welcome to egovnez!',
+                'signed up with success! please check your email',
+                'success'
+              ).then(()=>{
+                    //the state sent with the navigate is to popup message to user to verify his email after sending him a confirmation email(catch it in login component)
+
+                this._router.navigate(['/login'],{'state':{'verify':'true'}});
+      
+              }) }
+                      
         },
         error: (er) => { console.log(er); }
       })
-    //navigate to login
-    //the state sent with the navigate is to popup message to user to verify his email after sending him a confirmation email(catch it in login component)
-    this._router.navigate(['/login'], { 'state': { 'verify': 'true' } });
   }
 }

@@ -29,7 +29,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router,private userService:UserService) { }
 
-  registreCitizen(citizen: CITIZEN) {
+  registreCitizen(citizen: CITIZEN) :Observable<any>{
     return this.http.post<CITIZEN>(this._registreUrl, citizen);
   }
 
