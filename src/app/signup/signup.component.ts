@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../Shared/Services/UserService/user.service';
 import { ValidatorService } from '../Shared/Services/ValidatorService/validator.service';
-import {RESPONSE} from '../Shared/Models/RESPONSE'
+import { RESPONSE } from '../Shared/Models/RESPONSE'
 
 @Component({
   selector: 'app-signup',
@@ -42,7 +42,7 @@ export class SignupComponent implements OnInit {
     //verify email exists or not 
     this._user.FilterUserBy(form.value.email).subscribe({
       next: (res: RESPONSE) => {
-        
+
         const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
         if (!response.status) {
 

@@ -1,78 +1,69 @@
-<div class="" *ngIf="type==''">
-  <div class="row" style="background-color: #f8fafb; padding-top : 100px; padding-bottom: 200px;">
-    <div class="col-lg-7 col-sm-0" style="padding-top: 50px;">
-      <div class="center imagelogin">
-        <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/L6T1yxWZ/logologin.png'
-            width="100%" height="380" alt='logologin' /></a>
-      </div>
+
+<div class="wrapper" *ngIf="type==''">
+
+  <div class="grid">
+    <div>
+
+      <a><img src='https://i.postimg.cc/L6T1yxWZ/logologin.png'
+        width="100%" height="400" alt='logologin' /></a>
     </div>
+    <div class="form">
+      <div><span class="loginTitle grey Segoe">SIGN UP</span></div><br>
 
-    <div class="col-lg-5 col-sm-12">
-      <div class="container">
+      <form autocomplete="autocomplete=" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+        <mat-error *ngIf="emailExists">
+          Email Already exists,Please <span class="red"> <a routerLink="/login"> Login </a></span>
+        </mat-error>
+        <br>
+        <mat-form-field>
+          <mat-error
+            *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
+            Please provide a correct Email.
+          </mat-error>
+          <mat-label>Email</mat-label>
+          <input formControlName="email" autocomplete="autocomplete=" type="email" matInput>
 
-        <div class="signin">
+        </mat-form-field>
 
+        <br><br>
+        <mat-form-field>
+          <mat-error>{{ errorMessage }}</mat-error>
 
-          <div><span class="loginTitle grey Segoe">SIGN UP</span></div><br>
+          <mat-label>Password</mat-label>
+          <input formControlName="password" type="password" matInput>
+        </mat-form-field><br>
+        <mat-form-field>
+          <mat-error
+            *ngIf="(myForm.get('passwordc')?.touched || myForm.get('passwordc')?.dirty) && myForm.get('passwordc')?.invalid">
+            Password didn't match
+          </mat-error>
+          <mat-label>Repeat Password</mat-label>
+          <input formControlName="passwordc" type="password" matInput>
+        </mat-form-field><br>
 
-          <form autocomplete="autocomplete=" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-            <mat-error *ngIf="emailExists">
-              Email Already exists,Please <span class="red"> <a routerLink="/login"> Login </a></span>
-            </mat-error>
-            <br>
-            <mat-form-field>
-              <mat-error
-                *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
-                Please provide a correct Email.
-              </mat-error>
-              <mat-label>Email</mat-label>
-              <input formControlName="email" autocomplete="autocomplete=" type="email" matInput>
+        <mat-form-field>
+          <mat-error
+            *ngIf="myForm.get('type')?.invalid && (myForm.get('type')?.dirty || myForm.get('type')?.touched)">
+            Please provide a type.
+          </mat-error>
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option value="citizen">Citizen</mat-option>
+            <mat-option value="institute">Public Institute</mat-option>
+            <mat-option value="supplier">Supplier</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <br>
+        <div style="text-align: center;">
+          <button mat-button [disabled]="myForm.invalid" type="submit" class="login">Sign Up </button>
+          <br><br>
+          <div class="Segoe twenty"><span>You have an account? </span> <span class="red"> <a
+                routerLink="/login">Login</a></span></div><br>
 
-            </mat-form-field>
-
-            <br><br>
-            <mat-form-field>
-              <mat-error>{{ errorMessage }}</mat-error>
-
-              <mat-label>Password</mat-label>
-              <input formControlName="password" type="password" matInput>
-            </mat-form-field><br>
-            <mat-form-field>
-              <mat-error
-                *ngIf="(myForm.get('passwordc')?.touched || myForm.get('passwordc')?.dirty) && myForm.get('passwordc')?.invalid">
-                Password didn't match
-              </mat-error>
-              <mat-label>Repeat Password</mat-label>
-              <input formControlName="passwordc" type="password" matInput>
-            </mat-form-field><br>
-
-            <mat-form-field>
-              <mat-error
-                *ngIf="myForm.get('type')?.invalid && (myForm.get('type')?.dirty || myForm.get('type')?.touched)">
-                Please provide a type.
-              </mat-error>
-              <mat-label>Type</mat-label>
-              <mat-select formControlName="type">
-                <mat-option value="citizen">Citizen</mat-option>
-                <mat-option value="institute">Public Institute</mat-option>
-                <mat-option value="supplier">Supplier</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br>
-            <br>
-            <div style="text-align: center;">
-              <button mat-button [disabled]="myForm.invalid" type="submit" class="login">Sign Up </button>
-              <br><br>
-              <div class="Segoe twenty"><span>You have an account? </span> <span class="red"> <a
-                    routerLink="/login">Login</a></span></div><br>
-
-            </div>
-          </form>
         </div>
-      </div>
+      </form>
     </div>
-
-
   </div>
 </div>
 
