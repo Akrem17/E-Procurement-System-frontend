@@ -12,13 +12,6 @@ export class FooterComponent implements OnInit {
   }
   ngDoCheck() {
   }
- 
-   myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
-    } else {
-      x.className = "topnav";
-    }
-  }
+  
+  
 }

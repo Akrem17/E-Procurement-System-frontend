@@ -52,19 +52,8 @@
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Citizen Space</a>
 
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" href="#">About</a>
-    <!-- <a class="dropdown " *ngIf="(type$ |async)=='institute'">
+    <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" href="#">Contact us</a>
 
-
-      <button class="dropbtn nav-link">Tenders </button>
-      <div class="dropdown-content">
-        <a class="sublink" href="#">Consult tenders</a>
-        <a class="sublink" *ngIf="(type$ |async)=='institute'" routerLink="/add-tender">Add Tender</a>
-
-        <a class="sublink" *ngIf="(type$ |async)=='institute'" routerLink="/tenders/{{userId}}">My tenders</a>
-
-      </div>
-
-    </a> -->
 
 
     <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}">My tenders</a>
