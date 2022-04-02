@@ -64,7 +64,7 @@ export class AuthService {
 
   }
 
-  registreSupplier(supplier: SUPPLIER) {
+  registreSupplier(supplier: SUPPLIER) :Observable<any>{
     return this.http.post<any>(this._registreSupplier, supplier);
   }
   registerInstitute(institute: INSTITUTE) {
