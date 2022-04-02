@@ -40,7 +40,6 @@ export class SupplierOffersComponent implements OnInit {
           this.offers.push(element)
           console.table(this.offers)
           
-          
         });
 
       })

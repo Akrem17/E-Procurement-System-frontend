@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { ADDRESS } from 'src/app/Shared/Models/ADDRESS';
 import { INSTITUTE } from 'src/app/Shared/Models/INSTITUTE';
 import { REPRESENTATIVE } from 'src/app/Shared/Models/REPRESENTATIVE';
+import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { AuthService } from 'src/app/Shared/Services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-institute-signup-address',
@@ -50,20 +52,25 @@ export class InstituteSignupAddressComponent implements OnInit {
   //modeling institute
     let institute :INSTITUTE = new INSTITUTE();
     institute.address=adrress;institute.areaType=this.basicInfo.value.areaType;institute.email=this.basicInfo.value.user.email;institute.fax=this.basicInfo.value.fax.toString();institute.interlocutor=interlocutor;institute.nameAr=this.basicInfo.value.nameAr;institute.notificationEmail=this.basicInfo.value.notificationEmail;institute.nameFr=this.basicInfo.value.nameFr;institute.password=this.basicInfo.value.user.password;institute.phone=this.basicInfo.value.phone.toString();institute.representativeName=this.basicInfo.value.representativeName;institute.type=this.basicInfo.value.user.type;institute.typeOfInstitute=this.basicInfo.value.typeOfInstitute;
-    
-    
-    
-        
-     this.registerInstitute(institute);
-      this._router.navigate(['/login'],{'state':{'verify':'true'}});
-        
- 
+    this._auth.registerInstitute(institute).subscribe(res=>{
+      
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+
+      if(response){
+        Swal.fire(
+          'Welcome to egovnez!',
+          'signed up with success! please check your email',
+          'success'
+        ).then(()=>{
+          this._router.navigate(['/login'],{'state':{'verify':'true'}});
+
+        })
+      }
+    })
+
   }
 
 
-   registerInstitute( institute:INSTITUTE){
-     this._auth.registerInstitute(institute).subscribe(res=>console.log(res))
-  }
 
 
 }
