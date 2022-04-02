@@ -33,8 +33,7 @@ export class AuthService {
     return this.http.post<CITIZEN>(this._registreUrl, citizen);
   }
 
-  loginUser(user: LOGIN) {
-console.log( user)
+  loginUser(user: LOGIN):Observable<any> {
     return this.http.post<LOGIN>(this._loginUrl, user);
 
   }

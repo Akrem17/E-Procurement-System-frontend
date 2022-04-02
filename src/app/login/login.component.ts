@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LOGIN } from '../Shared/Models/LOGIN';
+import { RESPONSE } from '../Shared/Models/RESPONSE';
 import { AuthService } from '../Shared/Services/auth.service';
 
 
@@ -50,11 +51,8 @@ export class LoginComponent implements OnInit {
 
 
   loginUser(userLogin: LOGIN) {
-    console.log("res")
     this._auth.loginUser(userLogin).subscribe({
       next: (res) => {
-        console.log(res)
-        //@ts-ignore
         const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
 
         if (response.status) {
