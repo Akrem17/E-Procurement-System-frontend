@@ -1,8 +1,8 @@
-<div class="topheader   "><span>Welcome to Egovnez</span>
+<div class="topheader"><span>Welcome to Egovnez</span>
   <span class="right email ">egovnez@tunisie.tn</span>
-  <span class="right ">Friday,February 4,2022</span>
-
+  <span class="right ">{{date}}</span>
 </div>
+
 <div class="secNav">
   <div class="row align-items-start">
     <div class="col">
@@ -19,82 +19,80 @@
       <div class="right">
         <a href=''><img src='https://i.postimg.cc/y83vKVdJ/pps-logo-fr.png' width="150px" height="50px"
             alt='pps-logo-fr' /></a>
-
       </div>
     </div>
   </div>
-
-
 </div>
 
+
+
 <div class="menu-bar">
-<div class="topnav " id="myTopnav" style="padding: 20px;">
+  <div class="topnav padding20" id="myTopnav">
 
 
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link " aria-current="page" href="">Home</a>
 
- 
-  
-    <a  *ngIf="(type$ |async)=='institute'"  class="nav-link " routerLink="/consulting" aria-current="page" href="#">Consulting tenders</a>
 
 
-    <a  *ngIf="(type$ |async)=='institute'"  class="nav-link" routerLink="/add-tender">Add Tender</a>
-  
-    <a  *ngIf="(type$ |async)=='supplier'"  class="nav-link" routerLink="/supplier/2/offers">My Offers</a>
-  
+    <a *ngIf="(type$ |async)=='institute'" class="nav-link " routerLink="/consulting" aria-current="page"
+      href="#">Consulting tenders</a>
+
+
+    <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/add-tender">Add Tender</a>
+
+    <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/2/offers">My Offers</a>
+
 
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Institution Space</a>
 
- 
+
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Supplier Space</a>
 
- 
+
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Citizen Space</a>
 
-    <a *ngIf="!(loginStatus$ | async) as loginStatus"  class="nav-link" href="#">About</a>
-    <a class="dropdown "  *ngIf="(type$ |async)=='institute'" >
-    
-  
-      <button  class="dropbtn nav-link">Tenders </button>
-      <div class="dropdown-content">
-      <a class="sublink" href="#">Consult tenders</a>
-      <a  class="sublink" *ngIf="(type$ |async)=='institute'"   routerLink="/add-tender">Add Tender</a>
+    <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" href="#">About</a>
+    <!-- <a class="dropdown " *ngIf="(type$ |async)=='institute'">
 
-      <a  class="sublink"  *ngIf="(type$ |async)=='institute'"  routerLink="/tenders/{{instituteId}}">My tenders</a>
+
+      <button class="dropbtn nav-link">Tenders </button>
+      <div class="dropdown-content">
+        <a class="sublink" href="#">Consult tenders</a>
+        <a class="sublink" *ngIf="(type$ |async)=='institute'" routerLink="/add-tender">Add Tender</a>
+
+        <a class="sublink" *ngIf="(type$ |async)=='institute'" routerLink="/tenders/{{userId}}">My tenders</a>
 
       </div>
-   
-  </a>
-    <a    class="nav-link" routerLink="/consulting">Consult tenders</a>
 
-    
-    <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{instituteId}}">My tenders</a>
+    </a> -->
+
+
+    <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}">My tenders</a>
 
 
 
     <!-- <a class="nav-link" href="#" *ngIf="email$ | async as email">{{email | uppercase}}</a> -->
 
-    
-        <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus" routerLink="login" >Login</a>
-  
-        <a   class="nav-link dropdown"  *ngIf="(loginStatus$ | async) as loginStatus"  routerLink="login" > <i class="fa-solid fa-user-vneck"></i>Profile
-        
-          <div class="dropdown-content">
-            <a class="sublink" href="#">Edit Profile </a>
-            <a class="sublink" href="#">Edit Password</a>
-            <a  class="sublink" (click)="logout()" *ngIf="loginStatus$ | async as loginStatus" > 
-              Logout</a>
-              
-            </div>
-        </a>
+
+    <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus"
+      routerLink="login">Login</a>
+
+    <a class="nav-link dropdown" *ngIf="(loginStatus$ | async) as loginStatus" routerLink="login"> <i
+        class="fa-solid fa-user-vneck"></i>Profile
+
+      <div class="dropdown-content">
+        <a class="sublink" href="#">Edit Profile </a>
+        <a class="sublink" href="#">Edit Password</a>
+        <a class="sublink" (click)="logout()" *ngIf="loginStatus$ | async as loginStatus">
+          Logout</a>
+
+      </div>
+    </a>
 
 
-  <a href="javascript:void(0);" class="icon" (click)="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-  
+    <a href="javascript:void(0);" class="icon" (click)="toggle()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
 </div>
-
-</div>
-
-

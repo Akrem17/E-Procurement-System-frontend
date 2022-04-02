@@ -1,4 +1,4 @@
-import { DatePipe, formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../Shared/Services/auth.service';
@@ -14,21 +14,21 @@ export class HeaderComponent implements OnInit {
   loginStatus$: Observable<boolean>;
   email$: Observable<string>;
   type$: Observable<string>;
-  instituteId:string="1";
-  userId:string;
-  constructor(private datePipe: DatePipe,private _authService: AuthService, private _userService:UserService) { }
-  date! :Date;
+  userId: string;
+  date!: string;
+
+  constructor(private _authService: AuthService, private _userService: UserService) { }
 
   ngOnInit(): void {
-    this.date=new Date();
-    let latest_date =this.datePipe.transform(this.date, 'yyyy-MM-dd');
-    console.log(latest_date)
+    let date = new Date();
+    this.date = this.formatDate(date)
+
     this.loginStatus$ = this._authService.isUserLoggedIn;
     this.type$ = this._authService.type;
     this.email$ = this._authService.email;
-    this.email$.subscribe(res=>{
-      this._userService.FilterUserBy(res).subscribe(res=>{
-        this.userId= res.data[0].id;
+    this.email$.subscribe(res => {
+      this._userService.FilterUserBy(res).subscribe(res => {
+        this.userId = res.data[0].id;
       })
     })
   }
@@ -36,20 +36,33 @@ export class HeaderComponent implements OnInit {
   logout() {
     this._authService.logout();
   }
-  
-  myFunction() {
+
+  toggle() {
     var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
+    if (x.className === "topnav padding20") {
+      x.className += " responsive padding20";
     } else {
-      x.className = "topnav";
+      x.className = "topnav padding20";
     }
   }
 
-   dropdown() {
+  dropdown() {
     document.getElementById("myDropdown").classList.toggle("show");
   }
-  
+
+  formatDate(dateObj: Date) {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+
+    return this.dateOrdinal(dateObj.getDate()) + ', ' + days[dateObj.getDay()] + ' ' + months[dateObj.getMonth()] + ', ' + dateObj.getFullYear();
+  }
+  dateOrdinal(dom) {
+    if (dom == 31 || dom == 21 || dom == 1) return dom + "st";
+    else if (dom == 22 || dom == 2) return dom + "nd";
+    else if (dom == 23 || dom == 3) return dom + "rd";
+    else return dom + "th";
+  };
 
 }
 
