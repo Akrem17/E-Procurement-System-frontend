@@ -40,6 +40,8 @@
 
     <a  *ngIf="(type$ |async)=='institute'"  class="nav-link" routerLink="/add-tender">Add Tender</a>
   
+    <a  *ngIf="(type$ |async)=='supplier'"  class="nav-link" routerLink="/supplier/2/offers">My Offers</a>
+  
 
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Institution Space</a>
 

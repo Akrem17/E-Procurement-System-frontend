@@ -53,6 +53,9 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { AddTenderSpecificationsComponent } from './tender/add-tender/add-tender-specifications/add-tender-specifications.component';
 import { AddOfferComponent } from './offer/add-offer/add-offer.component';
 import { ConsultOfferComponent } from './offer/consult-offer/consult-offer.component';
+import { SupplierOffersComponent } from './offer/supplier-offers/supplier-offers.component';
+import { EditOfferComponent } from './offer/edit-offer/edit-offer.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -83,7 +86,9 @@ import { ConsultOfferComponent } from './offer/consult-offer/consult-offer.compo
     EditTenderClassificationComponent,
     AddTenderSpecificationsComponent,
     AddOfferComponent,
-    ConsultOfferComponent
+    ConsultOfferComponent,
+    SupplierOffersComponent,
+    EditOfferComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +112,8 @@ import { ConsultOfferComponent } from './offer/consult-offer/consult-offer.compo
     EllipsisModule ,
     MatDialogModule,
     FormsModule,
-    MdbCheckboxModule
+    MdbCheckboxModule,
+    
     
     
   ],
@@ -115,7 +121,7 @@ import { ConsultOfferComponent } from './offer/consult-offer/consult-offer.compo
     {provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true
-    }
+    },DatePipe
     
   
   ],
