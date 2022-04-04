@@ -15,9 +15,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <a mat-button style="float: right;" (click)="enableEdit()">
-                            <mat-icon>edit</mat-icon>
-                        </a>
+                      
                         <table  class="table table-striped table-product">
                             <tbody>
                                 <tr>
@@ -82,10 +80,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <a mat-button style="float: right;">
-                            <mat-icon>edit</mat-icon>
-                        </a>
-
+                   
                         <table class="table table-striped table-product">
                             <tbody>
                                 <tr>
@@ -122,9 +117,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <a mat-button style="float: right;">
-                            <mat-icon>edit</mat-icon>
-                        </a>
+                  
 
                         <table class="table table-striped table-product">
                             <tbody>
@@ -192,19 +185,18 @@
                         <h1>Specifications</h1>
 
                     </div>
-                    <a mat-button style="float: right;">
-                        <mat-icon>edit</mat-icon>
-                    </a>
-
+                
                     <div style="margin-top: 30px;" class="table-responsive">
                         <mat-list>
                             <div mat-subheader>Specifications:</div>
                             <mat-list-item *ngFor="let specification of tender.specifications">
-                                <a (click)="downloadPDF(specification.id)">
-                                <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
+                                <mat-icon   (click)="downloadPDF(specification.id)" mat-list-icon>picture_as_pdf</mat-icon>
+
+                                <a  href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(specification.id)">
                                 <div mat-line>{{specification.fileName}}</div>
                                 <div mat-line>15Mb </div>
                             </a>
+
                             </mat-list-item>
                             <mat-list-item>
                                 <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
@@ -230,53 +222,7 @@
                     <div style="margin-top: 30px;" class="table-responsive">
                  
 
-                        <!-- <table class="table table-striped table-product">
-                            <tbody>
-                                <tr>
-                                    <td width="400"> Participate 1 Name</td>
-                                    <td>{{tender.institute.nameFr}}</td>
-                                    <td>See details</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Type Of Institute</td>
-                                    <td>{{tender.institute.typeOfInstitute}}</td>
-                                    <td>See details</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Area Type</td>
-                                    <td>{{tender.institute.areaType}}</td>
-                                    <td>See details</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Representative Name</td>
-                                    <td>{{tender.institute.representativeName}}</td>
-                                    <td>See details</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Phone</td>
-                                    <td>{{tender.institute.phone}}</td>
-                                    <td>See details</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Fax</td>
-                                    <td>{{tender.institute.fax}}</td>
-                                    <td>See details</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>{{tender.institute.notificationEmail}}</td>
-                                    <td>See details</td>
-
-                                </tr>
-
-                            </tbody>
-                        </table> -->
+                        
                         
   <table class="table" >
     <thead>
