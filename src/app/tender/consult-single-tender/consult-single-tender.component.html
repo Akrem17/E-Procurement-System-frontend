@@ -255,7 +255,7 @@
         <td data-label="Account">{{offer.name}}</td>
         <td data-label="Due Date">{{offer.totalMontant}}</td>
         <td data-label="Amount">Not yet</td>
-       <td data-label="Period">  <a href="offers/{{offer.id}}" class="mat-button" ><i class="fas fa-plus"></i> Details</a> </td>
+       <td data-label="Period">  <a  #tooltip="matTooltip" matTooltip="See offer details"  href="offers/{{offer.id}}" class="mat-button" ><i class="fas fa-plus"></i> Details</a> </td>
 
       </tr>
     </tbody>
@@ -266,10 +266,10 @@
                         </mat-paginator>
                     </div>
                     <div class="mid">
-                        <a mat-button mat-raised-button #tooltip="matTooltip" matTooltip="See more classifications"
+                        <a mat-button mat-raised-button #tooltip="matTooltip" matTooltip="Participate to tender"
                         href="offer/add/{{tender.id}}"tender.id matTooltipHideDelay="250"
                             style="width: 200px; margin-top: 60px;" >Participate</a>
-                        <button mat-button mat-raised-button #tooltip="matTooltip" matTooltip="See more classifications"
+                        <button mat-button mat-raised-button #tooltip="matTooltip" matTooltip="Repport the tender"
                             (click)="loadMoreClassification()" matTooltipHideDelay="250"
                             style="width: 200px; margin-top: 60px;">Repport</button>
                     </div>

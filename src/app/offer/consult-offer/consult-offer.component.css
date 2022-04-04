@@ -136,6 +136,10 @@ h1 {
     
     
   }
+  a{
+    text-decoration: none;
+    color: black;
+  }
   .three h1:after {
     content: "";
     position: absolute;
