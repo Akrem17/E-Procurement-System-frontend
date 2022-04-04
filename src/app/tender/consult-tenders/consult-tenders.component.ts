@@ -131,9 +131,9 @@ callTendersWithFilters(filters:TENDER_FILTERS){
   
   onChangePage(event: PageEvent) {
     this.data=[]
-    console.log(event)
-    this.page = event.pageIndex + 1
-    this.itemPerPage = event.pageSize
+ 
+    this.page = event.pageIndex
+    this.page = (event.pageIndex + 1)*this.itemPerPage;
     
     this.tenderService.getTenders(this.page, this.itemPerPage).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };

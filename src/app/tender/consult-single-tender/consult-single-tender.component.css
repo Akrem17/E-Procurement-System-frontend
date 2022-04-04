@@ -35,6 +35,11 @@ mat-card-title, mat-card-subtitle{
     height: 20px;
     overflow: hidden;
 }
+a {
+  color: black;
+
+  text-decoration: none
+}
 .table-product.table-striped tbody tr:nth-of-type(odd) {
     background-color: #f5f5f5!important;
     color: white !important;
