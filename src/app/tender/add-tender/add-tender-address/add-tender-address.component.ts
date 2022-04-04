@@ -91,7 +91,7 @@ export class AddTenderAddressComponent implements OnInit {
   //     );
 
 
-  //    this._router.navigate(['/consulting']);
+  //    this._router.navigate(['/tenders']);
 
   }
 

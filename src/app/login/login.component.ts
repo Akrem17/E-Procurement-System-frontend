@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email', response.data.loggedUser.email)
           localStorage.setItem('type', response.data.loggedUser.type)
 
-          this.router.navigate(['./consulting']).then(() => {
+          this.router.navigate(['./tenders']).then(() => {
             this._auth.loggedIn();
 
           })

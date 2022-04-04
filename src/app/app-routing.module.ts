@@ -30,7 +30,7 @@ const routes: Routes = [
     component: SignupComponent
   },
   {
-    path: 'consulting', component: ConsultTendersComponent,
+    path: 'tenders', component: ConsultTendersComponent,
     canActivate: [AuthGuard, HasRoleGuard],
     data: {
       type: ['citizen', 'institute', 'supplier']

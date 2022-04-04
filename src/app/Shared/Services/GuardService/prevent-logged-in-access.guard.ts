@@ -18,7 +18,7 @@ export class PreventLoggedInAccessGuard implements CanActivate {
     let isLoggedIn = this.authService.isUserLoggedIn?.value;
     console.log(isLoggedIn && this.authService.type.value != null)
     if (isLoggedIn && this.authService.type.value != null) {
-      this._router.navigate(['/consulting']);
+      this._router.navigate(['/tenders']);
     }
 
     return !isLoggedIn;

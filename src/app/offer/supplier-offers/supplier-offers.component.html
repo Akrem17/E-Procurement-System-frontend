@@ -72,7 +72,7 @@
 
     </table>
   </div>
-  <mat-paginator [length]=totalRecords [pageSize]=itemPerPage [pageSizeOptions]="[5, 10, 25, 100]"
+  <mat-paginator [length]=totalRecords [pageSize]=itemPerPage [pageSizeOptions]="[1,5, 10, 25, 100]"
     aria-label="Select page" showFirstLastButtons (page)="onChangePage($event)">
 
   </mat-paginator>
