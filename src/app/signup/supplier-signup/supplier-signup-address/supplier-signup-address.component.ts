@@ -24,11 +24,11 @@ export class SupplierSignupAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      countryName: ['', [Validators.required]],
+      // countryName: ['', [Validators.required]],
       postalCode: ['', [Validators.required]],
       city: ['', [Validators.required]],
       street1: ['', [Validators.required]],
-      street2: ['', [Validators.required]],
+      // street2: ['', [Validators.required]],
 
     });
 
@@ -41,7 +41,7 @@ export class SupplierSignupAddressComponent implements OnInit {
 
     //modeling address
     let adrress: ADDRESS = new ADDRESS();
-    adrress.city = this.basicInfo.value.address.city; adrress.countryName = this.basicInfo.value.address.countryName; adrress.postalCode = this.basicInfo.value.address.postalCode; adrress.street1 = this.basicInfo.value.address.street1; adrress.street2 = this.basicInfo.value.address.street2;
+    adrress.city = this.basicInfo.value.address.city;  adrress.postalCode = this.basicInfo.value.address.postalCode; adrress.street1 = this.basicInfo.value.address.street1;
 
     //modeling licence
 
