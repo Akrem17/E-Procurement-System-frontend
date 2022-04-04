@@ -76,16 +76,21 @@ export class EditOfferComponent implements OnInit {
   saveOfferInfo(form) {
     console.log(form.value)
     let offer: OFFER = new OFFER();
-    offer.name = form.value.name; offer.totalMontant = form.value.totalMontant; offer.isAccepted = this.offer.isAccepted; offer.finalTotalMontant = this.offer.finalTotalMontant;offer.supplierId = this.offer.supplierId;offer.tenderId = this.offer.tenderId;
+    offer.name = form.value.name;this.offer.name=offer.name; offer.totalMontant = parseInt(form.value.totalMontant);this.offer.totalMontant=offer.totalMontant; offer.isAccepted = this.offer.isAccepted; offer.finalTotalMontant = this.offer.finalTotalMontant; offer.supplierId = this.offer.supplierId; offer.tenderId = this.offer.tenderId;
+ 
     this._offerService.updateOffer(this.offer.id.toString(), offer).subscribe({
-         error: () => Swal.fire('Offer not updated ','','error'),
-        next: (res) => {
-          const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-          if (response) Swal.fire('Updated successfully','','success')
-           else 
-            Swal.fire('Offer not updated ','','error')
-          }
-      });
+      error: () => Swal.fire('Offer not updated ', '', 'error'),
+      next: (res) => {
+        const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+        if (response.status) {
+          Swal.fire('Updated successfully', '', 'success')
+          this.editFormTenderInfo = false
+
+        }
+        else
+          Swal.fire('Offer not updated ', '', 'error')
+      }
+    });
   }
 
   addSpecification(e) {
@@ -123,7 +128,7 @@ export class EditOfferComponent implements OnInit {
           if (response) {
             var removeIndex = this.offer.files.map(item => item.id).indexOf(id);
             this.offer.files.splice(removeIndex, 1);
-            Swal.fire('Deleted!','Your file has been deleted.','success')
+            Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
 
           }
         })

@@ -11,25 +11,7 @@
   
             
             <div><span class=" red Segoe">Offer Informations</span></div><br><br><br>
-            <!-- <div class="stepper-wrapper">
-              <div class="stepper-item active">
-                <div class="step-counter">1</div>
-                <div class="step-name">Offer</div>
-              </div>
-              <div class="stepper-item ">
-                <div class="step-counter">2</div>
-                <div class="step-name"> Financial</div>
-              </div>
-              <div class="stepper-item ">
-                <div class="step-counter">3</div>
-                <div class="step-name">Technical</div>
-              </div>
-              <div class="stepper-item ">
-                  <div class="step-counter">4</div>
-                  <div class="step-name">Other</div>
-                </div>
-                
-            </div><br><br> -->
+     
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   
               <!-- suppleir name -->
@@ -49,7 +31,7 @@
                   *ngIf="(myForm.get('businessKind')?.touched || myForm.get('businessKind')?.dirty) && myForm.get('businessKind')?.invalid">
                   Tender Name is required.
                 </mat-error>
-                <mat-label>Total Amount</mat-label>
+                <mat-label>Total Amount (TND)</mat-label>
                 <input matInput formControlName="totalAmount" >
               </mat-form-field>
             

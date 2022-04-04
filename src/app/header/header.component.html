@@ -34,7 +34,7 @@
 
 
 
-    <a *ngIf="(type$ |async)=='institute'" class="nav-link " routerLink="/consulting" aria-current="page"
+    <a *ngIf="(loginStatus$ | async) as loginStatus" class="nav-link " routerLink="/consulting" aria-current="page"
       href="#">Consulting tenders</a>
 
 
