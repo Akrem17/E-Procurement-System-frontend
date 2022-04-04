@@ -13,19 +13,19 @@ export class SupplierSignupComponent implements OnInit {
   @Input()
   user!: FormGroup;
   myForm!: FormGroup;
-  type:string="";
-  next:boolean=false;
+  type: string = "";
+  next: boolean = false;
 
   constructor(private fb: FormBuilder, private _validatorService: ValidatorService) { }
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
       supplierName: ['', [Validators.required]],
-      category: ['', [Validators.required ]],
-      registrationNumber: ['', [Validators.required,this._validatorService.ValidateLength]],
+      category: ['', [Validators.required]],
+      registrationNumber: ['', [Validators.required, this._validatorService.ValidateLength]],
       registrationDate: ['', [Validators.required]],
-      taxId: ['', [Validators.required,Validators.maxLength(7),Validators.minLength(7)]],
-      cnssId: ['', [Validators.required,Validators.maxLength(10),Validators.minLength(10),Validators.required]],
+      taxId: ['', [Validators.required, Validators.maxLength(7), Validators.minLength(7)]],
+      cnssId: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.required]],
       companyName: ['', [Validators.required]],
       buisnessClassification: ['', [Validators.required]],
       replyEmail: ['', [Validators.required, Validators.email]],
@@ -34,23 +34,23 @@ export class SupplierSignupComponent implements OnInit {
       fax: ['', [Validators.required, Validators.min(30000000), Validators.max(99999999)]]
 
     });
-    
+
   }
 
   onSubmit(form: FormGroup) {
     form.get("fax").setValue(form.get("fax").value.toString())
-    this.basicInfo=form;
+    this.basicInfo = form;
     console.log(this.basicInfo)
-    this.basicInfo.addControl('user', new FormGroup(this.user.controls)); 
+    this.basicInfo.addControl('user', new FormGroup(this.user.controls));
     //set the next component visibilty to true
-    this.next=true;
-      //scroll to the top of page
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    this.next = true;
+    //scroll to the top of page
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
 
     //check buisness registration number
     //check taxid
     //check cnssid
 
   }
- 
+
 }

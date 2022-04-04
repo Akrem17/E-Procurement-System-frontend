@@ -1,58 +1,46 @@
-<div class="">
-  <div class="row" style="background-color: #f8fafb; padding-top : 150px; padding-bottom : 100px; ">
-    <div class="col-lg-7 col-sm-0">
-      <div class="center imagelogin">
-        <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/25RdKvHf/v1.png' width="100%"
-            height="450" alt='v1' /></a>
+<div class="wrapper">
 
-      </div>
+  <div class="grid">
+    <div class="padding6">
+      <a><img src='https://i.postimg.cc/25RdKvHf/v1.png' width="100%" height="400px" alt='v1' /></a>
     </div>
 
-    <div class="col-lg-5 col-sm-12">
-      <div class="container">
 
-        <div class="signin">
+    <div class="padding6">
+      <div><span class="loginTitle grey Segoe">SIGN IN</span></div>
 
+      <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
-          <div><span class="loginTitle grey Segoe">SIGN IN</span></div><br>
+        <mat-error *ngIf="verifyEmail">
+          Signup successfully , Please check your email to confirm
+        </mat-error><br>
+        <mat-error *ngIf="verifiedUser">
+          Account not verified, please check your email
+        </mat-error><br>
+        <mat-error *ngIf="error">
+          {{errorMessage}}
+        </mat-error><br>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input autocomplete="false" formControlName="email" type="email" matInput>
+        </mat-form-field><br><br>
+        <mat-form-field>
+          <mat-error
+            *ngIf="(myForm.get('password')?.touched || myForm.get('password')?.dirty) && myForm.get('password')?.invalid">
+            Password should be more than 5 caracters.
+          </mat-error>
+          <mat-label>Password</mat-label>
+          <input formControlName="password" type="password" matInput>
+        </mat-form-field><br>
+        <div class="floatright grey">Forget password</div><br>
+        <br>
+        <div style="text-align: center;">
+          <button type="submit" class="login">Log In </button>
+          <br><br>
+          <div class="Segoe twenty"><span>You don't have an account? </span> <span class="red"> <a
+                routerLink="/signup">Signup</a></span></div><br>
 
-          <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-
-            <mat-error *ngIf="verifyEmail">
-              Signup successfully , Please check your email to confirm
-            </mat-error><br>
-            <mat-error *ngIf="verifiedUser">
-              Account not verified, please check your email
-            </mat-error><br>
-            <mat-error *ngIf="error">
-              {{errorMessage}}
-            </mat-error><br>
-            <mat-form-field>
-              <mat-label>Email</mat-label>
-              <input autocomplete="false" formControlName="email" type="email" matInput>
-            </mat-form-field><br><br>
-            <mat-form-field>
-              <mat-error
-                *ngIf="(myForm.get('password')?.touched || myForm.get('password')?.dirty) && myForm.get('password')?.invalid">
-                Password should be more than 5 caracters.
-              </mat-error>
-              <mat-label>Password</mat-label>
-              <input formControlName="password" type="password" matInput>
-            </mat-form-field><br>
-            <div class="floatright grey">Forget password</div><br>
-            <br>
-            <div style="text-align: center;">
-              <button type="submit" class="login">Log In </button>
-              <br><br>
-              <div class="Segoe twenty"><span>You don't have an account? </span> <span class="red"> <a
-                    routerLink="/signup">Signup</a></span></div><br>
-
-            </div>
-          </form>
         </div>
-      </div>
+      </form>
     </div>
-
-
   </div>
-</div>

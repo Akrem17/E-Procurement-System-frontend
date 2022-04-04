@@ -1,5 +1,6 @@
 import { TENDER } from "./TENDER"
 import { SUPPLIER } from "./SUPPLIER"
+import { SPECIFICATION } from "./SPECIFICATION";
 
 
 export class OFFER {
@@ -13,7 +14,9 @@ export class OFFER {
     public supplier:SUPPLIER=null;
     public tenderId:number;
     public tender:TENDER=null;
-    
+    public tenderInfo:TENDER=null;
+    public files!:SPECIFICATION[];
+
     
 
 

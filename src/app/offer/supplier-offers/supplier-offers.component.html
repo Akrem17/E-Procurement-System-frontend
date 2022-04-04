@@ -34,24 +34,34 @@
 <div class="table" >
 
 
-  <table class="table" *ngIf="data.length>0" >
+  <table class="table" *ngIf="offers.length>0" >
     <thead>
       <tr>
-        <th scope="col">Bid number</th>
-        <th scope="col">Institution</th>
-        <th scope="col">Bid name</th>
-        <th scope="col">Deadline</th>
+        <th scope="col">Offer number</th>
+        <th scope="col">Tender Name</th>
+
+        <th scope="col">Post date</th>
+        <th scope="col">Status</th>
         <th scope="col">Details</th>
         
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tender of data ">
-        <td data-label="Account">{{tender.id}}</td>
-        <td data-label="Due Date">{{tender.institute.nameFr}}</td>
-        <td data-label="Amount">{{tender.name}}</td>
-        <td data-label="Period"> {{tender.deadLine}} </td>
-       <td data-label="Period">  <a class="mat-button" href="tender/{{tender.id}}"><i class="fas fa-plus"></i> Details</a> </td>
+      <tr *ngFor="let offer of offers ">
+        <td data-label="Account">{{offer.id}}</td>
+
+        <td *ngIf="offer.isAccepted==null" data-label="Amount">Not reviewed yet</td> 
+        <td *ngIf="offer.isAccepted==false" data-label="Amount">Rejected</td> 
+        <td *ngIf="offer.isAccepted==true" data-label="Amount">Accepted</td> 
+
+        <td data-label="Due Date">{{offer.tenderInfo.name}}</td>
+        <td data-label="Period"> {{offer.tenderInfo.deadLine}} </td> 
+       <td data-label="Period">  
+         <a class="mat-button" href="offers/{{offer.id}}"><i class="fas fa-plus"></i> Details</a> 
+         <a class="mat-button" href="offer/edit/{{offer.id}}"><i class="fas fa-edit"></i> Edit</a> 
+         <!-- <a class="mat-button" href="offers/{{offer.id}}"><i class="fas fa-remove"></i> Delete</a>  -->
+
+      </td>
 
       </tr>
 

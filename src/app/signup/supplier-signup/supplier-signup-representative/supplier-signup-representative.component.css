@@ -5,6 +5,27 @@
     width:100% !important
 
 }
+.wrapper {
+    margin: auto;
+    width: 70%;
+    background-color: #f8fafb;
+
+}
+.paddingtop50{
+    padding-top: 50px !important;
+}
+.stepper-wrapper{
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.wrp {
+    background-color: #f8fafb;
+}
 .mat-form-field{
     width:100% !important;
  }

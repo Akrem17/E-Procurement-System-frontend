@@ -29,12 +29,11 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router,private userService:UserService) { }
 
-  registreCitizen(citizen: CITIZEN) {
+  registreCitizen(citizen: CITIZEN) :Observable<any>{
     return this.http.post<CITIZEN>(this._registreUrl, citizen);
   }
 
-  loginUser(user: LOGIN) {
-console.log( user)
+  loginUser(user: LOGIN):Observable<any> {
     return this.http.post<LOGIN>(this._loginUrl, user);
 
   }
@@ -65,7 +64,7 @@ console.log( user)
 
   }
 
-  registreSupplier(supplier: SUPPLIER) {
+  registreSupplier(supplier: SUPPLIER) :Observable<any>{
     return this.http.post<any>(this._registreSupplier, supplier);
   }
   registerInstitute(institute: INSTITUTE) {

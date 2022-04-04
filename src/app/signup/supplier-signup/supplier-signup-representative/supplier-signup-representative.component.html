@@ -1,115 +1,99 @@
-<div style=" background-color: #f8fafb; padding-top: 50px;" class=""  >
-
-    <div  *ngIf="!LicencePage"  class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
-  
-  
-      <div class="col-lg-12 col-sm-12"  >
-        <div class="container">
-  
-          <div class="signin" >
-  
-  
-            <div><span class=" red Segoe">Represntative Informations</span></div><br><br><br>
-            <div class="stepper-wrapper">
-                <div class="stepper-item completed">
-                  <div class="step-counter">1</div>
-                  <div class="step-name">Supplier</div>
-                </div>
-                <div class="stepper-item active">
-                  <div class="step-counter">2</div>
-                  <div class="step-name">Represntative</div>
-                </div>
-                <div class="stepper-item ">
-                  <div class="step-counter">3</div>
-                  <div class="step-name">Licence</div>
-                </div>
-                <div class="stepper-item ">
-                    <div class="step-counter">4</div>
-                    <div class="step-name">Address</div>
-                  </div>
-              </div><br><br>
-            <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-  
-              <!-- suppleir name -->
-              <mat-form-field>
-                <mat-error
-                  *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
-                  Represntative Name is required.
-                </mat-error>
-                <mat-label>Represntative Name</mat-label>
-                <input matInput formControlName="name" >
-              </mat-form-field>
-
-              <!-- social Security Number  -->
-              <mat-form-field>
-                <mat-error
-                  *ngIf="(myForm.get('socialSecurityNumber')?.touched || myForm.get('socialSecurityNumber')?.dirty) && myForm.get('socialSecurityNumber')?.invalid">
-                    Social Security Number Should be 10 caracters.
-                </mat-error>
-                <mat-label>Social Security Number</mat-label>
-                <input matInput formControlName="socialSecurityNumber" >
-              </mat-form-field>
-              <br><br>
-  
-  
-              <!-- position  -->
-              <mat-form-field>
-                <mat-error
-                  *ngIf="(myForm.get('position')?.touched || myForm.get('position')?.dirty) && myForm.get('position')?.invalid">
-                  Position is required.
-                </mat-error>
-                <mat-label> Position</mat-label>
-                <input formControlName="position" type="text" matInput>
-              </mat-form-field><br>
-  
-              <!-- Supplier registrationDate -->
-              <mat-form-field>
-           
-                <mat-error
-                  *ngIf="(myForm.get('socialSecurityNumberDate')?.touched || myForm.get('socialSecurityNumberDate')?.dirty) && myForm.get('socialSecurityNumberDate')?.invalid">
-                  SocialSecurity Number Date is required.
-                </mat-error>
-                <mat-label>SocialSecurity Number Date</mat-label>
-                <input formControlName="socialSecurityNumberDate" matInput [matDatepicker]="picker">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-              <br>
-  
-              <!-- phone taxId -->
-              <mat-form-field>
-                <mat-error
-                  *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid">
-                  Verify phone number.
-                </mat-error>
-                <mat-label>Phone</mat-label>
-                <input formControlName="phone" type="text" matInput>
-              </mat-form-field><br>
-  
-  
-              <!-- Email cnssID -->
-              <mat-form-field>
-                <mat-error
-                *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.invalid">
-                Please provide a correct Email.
-              </mat-error>
-                <mat-label>Email</mat-label>
-                <input formControlName="email" type="email" matInput>
-              </mat-form-field><br>
-              <br>
-  
-  
-  
-              <div style="text-align: center;">
-                <button mat-button type="submit" class="login"  [disabled]="myForm.invalid"  >NEXT </button>
-                <br><br>
-  
-              </div>
-            </form>
-          </div>
-        </div>
+<div class="wrp paddingtop50">
+  <div class="wrapper" *ngIf="!LicencePage">
+    <div><span class=" red Segoe">Represntative Informations</span></div><br><br><br>
+    <div class="stepper-wrapper">
+      <div class="stepper-item completed">
+        <div class="step-counter">1</div>
+        <div class="step-name">Supplier</div>
       </div>
-     
-  
+      <div class="stepper-item active">
+        <div class="step-counter">2</div>
+        <div class="step-name">Represntative</div>
+      </div>
+      <div class="stepper-item ">
+        <div class="step-counter">3</div>
+        <div class="step-name">Licence</div>
+      </div>
+      <div class="stepper-item ">
+        <div class="step-counter">4</div>
+        <div class="step-name">Address</div>
+      </div>
+    </div><br><br>
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+
+      <!-- suppleir name -->
+      <mat-form-field>
+        <mat-error *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
+          Represntative Name is required.
+        </mat-error>
+        <mat-label>Represntative Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <!-- social Security Number  -->
+      <mat-form-field>
+        <mat-error
+          *ngIf="(myForm.get('socialSecurityNumber')?.touched || myForm.get('socialSecurityNumber')?.dirty) && myForm.get('socialSecurityNumber')?.invalid">
+          Social Security Number Should be 10 caracters.
+        </mat-error>
+        <mat-label>Social Security Number</mat-label>
+        <input matInput formControlName="socialSecurityNumber">
+      </mat-form-field>
+      <br><br>
+
+
+      <!-- position  -->
+      <mat-form-field>
+        <mat-error
+          *ngIf="(myForm.get('position')?.touched || myForm.get('position')?.dirty) && myForm.get('position')?.invalid">
+          Position is required.
+        </mat-error>
+        <mat-label> Position</mat-label>
+        <input formControlName="position" type="text" matInput>
+      </mat-form-field><br>
+
+      <!-- Supplier registrationDate -->
+      <mat-form-field>
+
+        <mat-error
+          *ngIf="(myForm.get('socialSecurityNumberDate')?.touched || myForm.get('socialSecurityNumberDate')?.dirty) && myForm.get('socialSecurityNumberDate')?.invalid">
+          SocialSecurity Number Date is required.
+        </mat-error>
+        <mat-label>SocialSecurity Number Date</mat-label>
+        <input formControlName="socialSecurityNumberDate" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+
+      <!-- phone taxId -->
+      <mat-form-field>
+        <mat-error *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid">
+          Verify phone number.
+        </mat-error>
+        <mat-label>Phone</mat-label>
+        <input formControlName="phone" type="text" matInput>
+      </mat-form-field><br>
+
+
+      <!-- Email cnssID -->
+      <mat-form-field>
+        <mat-error *ngIf="(myForm.get('email')?.touched || myForm.get('email')?.dirty) && myForm.get('email')?.invalid">
+          Please provide a correct Email.
+        </mat-error>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" type="email" matInput>
+      </mat-form-field><br>
+      <br>
+
+
+
+      <div style="text-align: center;">
+        <button mat-button type="submit" class="login" [disabled]="myForm.invalid">NEXT </button>
+        <br><br>
+
+      </div>
+    </form>
   </div>
-  <app-supplier-signup-licence *ngIf="LicencePage" [basicInfo]="basicInfo" ></app-supplier-signup-licence>
+</div>
+<app-supplier-signup-licence *ngIf="LicencePage" [basicInfo]="basicInfo"></app-supplier-signup-licence>

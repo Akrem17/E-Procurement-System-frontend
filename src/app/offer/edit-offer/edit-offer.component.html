@@ -1,0 +1,183 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container" *ngIf="offer">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="one">
+                    <h1>Offer details</h1>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="three">
+                        <h1>Supplier Information</h1>
+
+                    </div>
+
+                    <div class="table-responsive">
+
+
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" width="400">Name : </td>
+                                    <td>{{offer.supplier.companyName}}</td>
+
+
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">Category : </td>
+                                    <td>{{offer.supplier.category}}</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">Email : </td>
+                                    <td>{{offer.supplier.email}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="bold">Phone : </td>
+
+                                    <td>{{offer.supplier.phone}}</td>
+
+
+                                </tr>
+                                <tr>
+                                    <td class="bold">Fax : </td>
+
+                                    <td>{{offer.supplier.fax}}</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="bold">Buisness Classification : </td>
+
+                                    <td>{{offer.supplier.buisnessClassification}}</td>
+
+
+                                </tr>
+
+                                <tr>
+                                    <td class="bold">Postal Code : </td>
+                                    <td>{{this.offer.supplier.address.postalCode}}</td>
+
+
+                                </tr>
+                                <tr>
+                                    <td class="bold">Street : </td>
+                                    <td>{{this.offer.supplier.address.street1}}</td>
+
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
+
+
+                    <div class="three">
+                        <h1>Offer Informations </h1>
+                    </div><br>
+
+
+
+                    <div class="table-responsive">
+                        <a mat-button style="float: right;" (click)="enableEditingOfferInfo()">
+                            <mat-icon>edit</mat-icon>
+                        </a>
+                        <form [formGroup]="OfferInfoForm" (ngSubmit)="saveOfferInfo(OfferInfoForm)">
+                            <table class="table table-striped table-product">
+                                <tbody>
+                                    <tr>
+                                        <td class="bold" width="400">Name</td>
+                                        <td *ngIf="!editFormTenderInfo">{{offer.name}}</td>
+
+                                        <td *ngIf="editFormTenderInfo">
+                                            <mat-form-field>
+                                                <input matInput *ngIf="editFormTenderInfo" formControlName="name">
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold">Total Amount (TND) </td>
+                                        <td *ngIf="!editFormTenderInfo">{{offer.totalMontant}}</td>
+
+                                        <td *ngIf="editFormTenderInfo">
+                                            <mat-form-field>
+                                                <input matInput *ngIf="editFormTenderInfo"
+                                                    formControlName="totalMontant">
+                                            </mat-form-field>
+                                        </td>
+
+
+                                    </tr>
+
+                                    <tr>
+                                        <td class="bold">Offer Status</td>
+                                        <td *ngIf="offer.isAccepted==null">Not reviewed yet</td>
+                                        <td *ngIf="offer.isAccepted">Accepted</td>
+                                        <td *ngIf="offer.isAccepted==false">Rejected</td>
+
+
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                            <button mat-button style="float: right;" (click)="editFormTenderInfo=false">Cancel</button>
+
+                            <button type="submit" mat-button style="float: right;">Save</button>
+                        </form>
+
+                    </div>
+
+
+                    <div class="three">
+                        <h1>Specifications</h1>
+
+                                        </div>
+                    <div *ngIf="offer" style="margin-top: 30px;" class="table-responsive">
+                        <mat-list>
+
+                            <div mat-subheader>Files Added: </div>
+
+                            <mat-list-item *ngFor="let file of offer.files;" style="margin-bottom: 20px;">
+                                <div (click)="downloadPDF(file.id)">
+                                    <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
+                                    <a>
+                                        <div>
+                                            <div mat-line>{{file.fileName}}</div>
+                                        </div>
+                                        <div mat-line>15Mb </div>
+                                    </a>
+                                </div>
+                                    <div class="floatRight">
+                                        <a mat-button class="delete" (click)="deleteSpecification(file.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </a>
+                                    </div>
+                               
+                            </mat-list-item>
+
+                            <div style="padding: 10px; ">
+
+                                <label mat-button class="btn btn-default btn-file fileButton">
+                                    <mat-icon>add</mat-icon>
+                                    <input (change)="addSpecification($event)" type="file" style="display: none;">
+                                </label>
+
+                            </div>
+                        </mat-list>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,20 @@
     width:100% !important
 
 }
+.form {
+    margin: auto;
+    width: 70%;
+}
+.wrapper {
+padding: 60px;
+background-color: #f8fafb;
+
+}
+.grid{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    gap: 20px;
+}
 .mat-form-field{
     width:100% !important;
  }
@@ -49,20 +63,27 @@
 
   
   }
+  .paddingtop50{
+    padding-top: 50px !important;
+}
   a {
     color: #C1282A;
     text-decoration: none;
   }
-  @media screen and (max-width:	720px) {
-   .col-md-7{
-    display:none
+  .red{
+    color: #C1282A !important;
 
-   }
-   .signin{
-    padding-right: 40px;
 
+  }
+  @media  (max-width:	850px) {
+  
+.grid{
+    grid-template-columns: 1fr;
+    gap: 0px;
+}
    }
+
 
   
-  }
+  
   

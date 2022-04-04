@@ -1,166 +1,153 @@
-
-
-<div *ngIf="!next" class="row" style="background-color: #f8fafb; padding-top : 20px; padding-bottom: 200px;">
-
-
-    <div class="col-lg-12 col-sm-12">
-      <div class="container">
-
-        <div class="signin">
-         
-
-          <div><span class=" red Segoe">Basic Informations</span></div><br> <br>
-          <div class="stepper-wrapper">
-            <div class="stepper-item active">
-              <div class="step-counter">1</div>
-              <div class="step-name">Institute</div>
-            </div>
-            <div class="stepper-item ">
-              <div class="step-counter">2</div>
-              <div class="step-name">Interlocutor</div>
-            </div>
-        
-            <div class="stepper-item ">
-              <div class="step-counter">3</div>
-              <div class="step-name">Address</div>
-            </div>
-          </div> <br> <br>
-          <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-
-            <!-- nameFr  -->
-            <mat-form-field>
-              <mat-error
-                *ngIf="(myForm.get('nameFr')?.touched || myForm.get('nameFr')?.dirty) && myForm.get('nameFr')?.invalid">
-                French name is required.
-              </mat-error>
-              <mat-label>French name</mat-label>
-              <input matInput formControlName="nameFr" >
-            </mat-form-field>
-            <!-- nameAr -->
-     <mat-form-field>
-        <mat-error
-          *ngIf="(myForm.get('nameAr')?.touched || myForm.get('nameAr')?.dirty) && myForm.get('nameAr')?.invalid">
-          Arabic name is required.
-        </mat-error>
-        <mat-label>Arabic name</mat-label>
-        <input matInput formControlName="nameAr" >
-      </mat-form-field>
-
-    
-            <!-- nameAr -->
-            <mat-form-field>
-              <mat-error
-              *ngIf="(myForm.get('typeOfInstitute')?.touched || myForm.get('typeOfInstitute')?.dirty) && myForm.get('typeOfInstitute')?.invalid">
-              Type Of Institute is required.
-            </mat-error>
-              <mat-label>   Type Of Institute</mat-label>
-              <mat-select formControlName="typeOfInstitute">
-                <mat-option value="corporations">
-                  Corporations
-                </mat-option>
-                <mat-option value="craftsmen">
-                  Craftsmen,statuettes contractor
-                </mat-option>
-                <mat-option value="craft-group">
-                  Craft group
-                </mat-option>
-                <mat-option value="natural-person">
-                  natural-person
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <br><br>
-
-            <mat-form-field>
-                <mat-error
-                *ngIf="(myForm.get('areaType')?.touched || myForm.get('areaType')?.dirty) && myForm.get('areaType')?.invalid">
-                Area type is required.
-              </mat-error>
-                <mat-label>  Area Type</mat-label>
-                <mat-select formControlName="areaType">
-                  <mat-option value="corporations">
-                    Corporations
-                  </mat-option>
-                  <mat-option value="craftsmen">
-                    Craftsmen,statuettes contractor
-                  </mat-option>
-                  <mat-option value="craft-group">
-                    Craft group
-                  </mat-option>
-                  <mat-option value="natural-person">
-                    natural-person
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <br><br>
+<div class="wrp paddingtop50" *ngIf="!next">
+<div class="wrapper">
   
-            <!--  regustrationNumber -->
-            <mat-form-field>
-              <mat-error
-                *ngIf="(myForm.get('representativeName')?.touched || myForm.get('representativeName')?.dirty) && myForm.get('representativeName')?.invalid">
-                Representative Name is required
-              </mat-error>
-             
-
-              <mat-label>Representative Name</mat-label>
-              <input formControlName="representativeName" type="text" matInput>
-            </mat-form-field><br>
-
-       
-            <br>
-
-            <!--  taxId -->
-            <mat-form-field>
-              <mat-error
-                *ngIf="(myForm.get('notificationEmail')?.touched || myForm.get('notificationEmail')?.dirty) && myForm.get('notificationEmail')?.invalid">
-                Verify Notification Email
-              </mat-error>
-              <mat-label>Notification Email</mat-label>
-              <input formControlName="notificationEmail" type="text" matInput>
-            </mat-form-field><br>
-
-
-
-           
-
-            <!--  phone -->
-            <mat-form-field>
-              <mat-error
-              *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid">
-              Verify phone number.
-            </mat-error>
-              <mat-label>Phone</mat-label>
-              <input formControlName="phone" type="number" matInput>
-            </mat-form-field><br>
-
-
-
-            <!--  fax -->
-            <mat-form-field>
-              <mat-error
-              *ngIf="(myForm.get('fax')?.touched || myForm.get('fax')?.dirty) && myForm.get('fax')?.invalid">
-              Verify Fax number.
-              </mat-error>
-              <mat-label>Fax</mat-label>
-              <input formControlName="fax" type="number" matInput>
-            </mat-form-field><br>
-            <br>
-            <br>
-
-
-            <div style="text-align: center;">
-              <button mat-button type="submit"   [disabled]="myForm.invalid" class="login"  >NEXT </button>
-              <br><br>
-
-            </div>
-          </form>
-        </div>
-      </div>
+  <div><span class=" red Segoe">Basic Informations</span></div><br> <br>
+  <div class="stepper-wrapper">
+    <div class="stepper-item active">
+      <div class="step-counter">1</div>
+      <div class="step-name">Institute</div>
     </div>
+    <div class="stepper-item ">
+      <div class="step-counter">2</div>
+      <div class="step-name">Interlocutor</div>
+    </div>
+
+    <div class="stepper-item ">
+      <div class="step-counter">3</div>
+      <div class="step-name">Address</div>
+    </div>
+  </div> <br> <br>
+
+  <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+
+    <!-- nameFr  -->
+    <mat-form-field>
+      <mat-error
+        *ngIf="(myForm.get('nameFr')?.touched || myForm.get('nameFr')?.dirty) && myForm.get('nameFr')?.invalid">
+        French name is required.
+      </mat-error>
+      <mat-label>French name</mat-label>
+      <input matInput formControlName="nameFr" >
+    </mat-form-field>
+    <!-- nameAr -->
+<mat-form-field>
+<mat-error
+  *ngIf="(myForm.get('nameAr')?.touched || myForm.get('nameAr')?.dirty) && myForm.get('nameAr')?.invalid">
+  Arabic name is required.
+</mat-error>
+<mat-label>Arabic name</mat-label>
+<input matInput formControlName="nameAr" >
+</mat-form-field>
+
+
+    <!-- nameAr -->
+    <mat-form-field>
+      <mat-error
+      *ngIf="(myForm.get('typeOfInstitute')?.touched || myForm.get('typeOfInstitute')?.dirty) && myForm.get('typeOfInstitute')?.invalid">
+      Type Of Institute is required.
+    </mat-error>
+      <mat-label>   Type Of Institute</mat-label>
+      <mat-select formControlName="typeOfInstitute">
+        <mat-option value="corporations">
+          Corporations
+        </mat-option>
+        <mat-option value="craftsmen">
+          Craftsmen,statuettes contractor
+        </mat-option>
+        <mat-option value="craft-group">
+          Craft group
+        </mat-option>
+        <mat-option value="natural-person">
+          natural-person
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-error
+        *ngIf="(myForm.get('areaType')?.touched || myForm.get('areaType')?.dirty) && myForm.get('areaType')?.invalid">
+        Area type is required.
+      </mat-error>
+        <mat-label>  Area Type</mat-label>
+        <mat-select formControlName="areaType">
+          <mat-option value="corporations">
+            Corporations
+          </mat-option>
+          <mat-option value="craftsmen">
+            Craftsmen,statuettes contractor
+          </mat-option>
+          <mat-option value="craft-group">
+            Craft group
+          </mat-option>
+          <mat-option value="natural-person">
+            natural-person
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br><br>
+
+    <!--  regustrationNumber -->
+    <mat-form-field>
+      <mat-error
+        *ngIf="(myForm.get('representativeName')?.touched || myForm.get('representativeName')?.dirty) && myForm.get('representativeName')?.invalid">
+        Representative Name is required
+      </mat-error>
+     
+
+      <mat-label>Representative Name</mat-label>
+      <input formControlName="representativeName" type="text" matInput>
+    </mat-form-field><br>
+
+
+    <br>
+
+    <!--  taxId -->
+    <mat-form-field>
+      <mat-error
+        *ngIf="(myForm.get('notificationEmail')?.touched || myForm.get('notificationEmail')?.dirty) && myForm.get('notificationEmail')?.invalid">
+        Verify Notification Email
+      </mat-error>
+      <mat-label>Notification Email</mat-label>
+      <input formControlName="notificationEmail" type="text" matInput>
+    </mat-form-field><br>
+
+
+
    
 
+    <!--  phone -->
+    <mat-form-field>
+      <mat-error
+      *ngIf="(myForm.get('phone')?.touched || myForm.get('phone')?.dirty) && myForm.get('phone')?.invalid">
+      Verify phone number.
+    </mat-error>
+      <mat-label>Phone</mat-label>
+      <input formControlName="phone" type="number" matInput>
+    </mat-form-field><br>
+
+
+
+    <!--  fax -->
+    <mat-form-field>
+      <mat-error
+      *ngIf="(myForm.get('fax')?.touched || myForm.get('fax')?.dirty) && myForm.get('fax')?.invalid">
+      Verify Fax number.
+      </mat-error>
+      <mat-label>Fax</mat-label>
+      <input formControlName="fax" type="number" matInput>
+    </mat-form-field><br>
+    <br>
+    <br>
+
+
+    <div style="text-align: center;">
+      <button mat-button type="submit"   [disabled]="myForm.invalid" class="login"  >NEXT </button>
+      <br><br>
+
+    </div>
+  </form>
 </div>
 
-<app-institute-signupinterlocutor [basicInfo]="basicInfo" *ngIf="next" ></app-institute-signupinterlocutor>
-
-
+</div>
+<app-institute-signupinterlocutor *ngIf="next" [basicInfo]="basicInfo"  ></app-institute-signupinterlocutor>

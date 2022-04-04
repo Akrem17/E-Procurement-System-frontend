@@ -11,7 +11,7 @@ export class OfferService {
   constructor(private http: HttpClient) { }
 
 
-  updateRepresentative(id: string, offer: OFFER): Observable<any> {
+  updateOffer(id: string, offer: OFFER): Observable<any> {
     return this.http.put(this.offerRoute + id, offer);
 
 
@@ -32,5 +32,9 @@ export class OfferService {
 
   getRepresentatives() {
     return this.http.get(this.offerRoute);
+  }
+
+  getOfferBy(skip:number=null,take:number=null,supplierId:string=null,supplierEmail=null):Observable<any> {
+    return this.http.get(this.offerRoute+"?skip="+skip+"&take="+take+"&supplierId="+supplierId+"&supplierId="+supplierEmail);
   }
 }
