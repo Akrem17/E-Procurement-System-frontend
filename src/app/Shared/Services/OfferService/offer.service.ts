@@ -37,4 +37,9 @@ export class OfferService {
   getOfferBy(skip:number=null,take:number=null,supplierId:string=null,supplierEmail=null):Observable<any> {
     return this.http.get(this.offerRoute+"?skip="+skip+"&take="+take+"&supplierId="+supplierId+"&supplierId="+supplierEmail);
   }
+  deleteOffer(id):Observable<any>{
+    return this.http.delete(this.offerRoute+id);
+
+
+  }
 }

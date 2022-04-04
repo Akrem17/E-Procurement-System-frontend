@@ -59,6 +59,8 @@
        <td data-label="Period">  
          <a class="mat-button" href="offers/{{offer.id}}"><i class="fas fa-plus"></i> Details</a> 
          <a class="mat-button" href="offer/edit/{{offer.id}}"><i class="fas fa-edit"></i> Edit</a> 
+         <a style="color:red;" class="mat-button" (click)="deleteOffer(offer.id)"d><i  class="fas fa-trash"></i> Delete</a> 
+
          <!-- <a class="mat-button" href="offers/{{offer.id}}"><i class="fas fa-remove"></i> Delete</a>  -->
 
       </td>

@@ -10,6 +10,7 @@ import { TENDER_FILTERS } from 'src/app/Shared/Models/TENDER_FILTERS';
 import { InstituteService } from 'src/app/Shared/Services/InstituteService/institute.service';
 import { OfferService } from 'src/app/Shared/Services/OfferService/offer.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-supplier-offers',
@@ -167,12 +168,50 @@ isEmptyOrNull(str:string| null):boolean{
 
 }
 isEmpty(filter:TENDER_FILTERS):boolean{
-  return true;
+  
   if (filter==null) return true
   return false;
 }
 
+deleteOffer(id){
+  console.log(id)
+  
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+  
+      this._offerService.deleteOffer(id).subscribe(res=>{
+        const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+        if(response.status){
+          var removeIndex = this.offers.map(item => item.id).indexOf(id);
+          this.offers.splice(removeIndex, 1);
+          Swal.fire(
+            'Deleted successfully!',
+            '',
+            'success'
+          )
+        }else{
+       
+            Swal.fire(
+              'Error: '+response.message,
+              '',
+              'error'
+            )
 
+        }
+    
+      })
+    }
+       });
+
+}
 
 
 }

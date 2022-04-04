@@ -281,7 +281,7 @@ export class EditTenderComponent implements OnInit {
       if (result.isConfirmed) {
         this.specificationService.deleteSpecification(id).subscribe(res=>{
           const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-         if(response){
+         if(response.status){
           var removeIndex = this.tender.specifications.map(item => item.id).indexOf(id);
           this.tender.specifications.splice(removeIndex, 1);
           Swal.fire(

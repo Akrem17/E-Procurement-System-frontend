@@ -74,7 +74,9 @@ export class AddOfferComponent implements OnInit {
      console.log(offer);
      
       this.offerService.createOffer(offer).subscribe(res=>{
-        console.log(res)
+        let NewOffer: RESPONSE = { status: res.status, message: res.message, data: res.data };
+
+        console.log(NewOffer)
         
         const formData = new FormData();
         console.table(this.myFiles)
@@ -84,7 +86,7 @@ export class AddOfferComponent implements OnInit {
         formData.append("Description", "Offer files")
       
 
-        this.offerService.addSpecification(res.id,formData).subscribe(res=>{
+        this.offerService.addSpecification(NewOffer.data.id.toString(),formData).subscribe(res=>{
           let response2: RESPONSE = { status: res.status, message: res.message, data: res.data };
           if (response2.status){
             Swal.fire(
@@ -92,10 +94,17 @@ export class AddOfferComponent implements OnInit {
               '',
               'success'
             )
-          }
-          this._router.navigate(['/consulting']);
+            this._router.navigate(['/consulting']);
 
+          }else{
+            Swal.fire(
+              response2.message,
+              '',
+              'error'
+            )
           console.log(res)
+          }
+           
         
         })
       })
