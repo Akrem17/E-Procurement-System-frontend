@@ -87,7 +87,7 @@
 
 
                     <div class="table-responsive">
-                        <a mat-button style="float: right;" (click)="enableEditingOfferInfo()">
+                        <a  #tooltip="matTooltip" matTooltip="Click to edit information" mat-button style="float: right;" (click)="enableEditingOfferInfo()">
                             <mat-icon>edit</mat-icon>
                         </a>
                         <form [formGroup]="OfferInfoForm" (ngSubmit)="saveOfferInfo(OfferInfoForm)">
@@ -130,9 +130,11 @@
 
                                 </tbody>
                             </table>
+                            <div *ngIf="editFormTenderInfo">
                             <button mat-button style="float: right;" (click)="editFormTenderInfo=false">Cancel</button>
 
                             <button type="submit" mat-button style="float: right;">Save</button>
+                        </div>
                         </form>
 
                     </div>
@@ -148,7 +150,7 @@
                             <div mat-subheader>Files Added: </div>
 
                             <mat-list-item *ngFor="let file of offer.files;" style="margin-bottom: 20px;">
-                                <div (click)="downloadPDF(file.id)">
+                                <div   #tooltip="matTooltip" matTooltip="Click to download"  (click)="downloadPDF(file.id)">
                                     <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
                                     <a>
                                         <div>
@@ -158,18 +160,18 @@
                                     </a>
                                 </div>
                                     <div class="floatRight">
-                                        <a mat-button class="delete" (click)="deleteSpecification(file.id)">
+                                        <a mat-button  #tooltip="matTooltip" matTooltip="Click to delete"  class="delete" (click)="deleteSpecification(file.id)">
                                             <mat-icon>delete</mat-icon>
                                         </a>
                                     </div>
                                
                             </mat-list-item>
 
-                            <div style="padding: 10px; ">
+                            <div style="padding: 10px; " >
 
-                                <label mat-button class="btn btn-default btn-file fileButton">
-                                    <mat-icon>add</mat-icon>
-                                    <input (change)="addSpecification($event)" type="file" style="display: none;">
+                                <label #tooltip="matTooltip" matTooltip="Click to add file" mat-button class="btn btn-default btn-file fileButton">
+                                    <mat-icon >add</mat-icon>
+                                    <input    (change)="addSpecification($event)" type="file" style="display: none;">
                                 </label>
 
                             </div>

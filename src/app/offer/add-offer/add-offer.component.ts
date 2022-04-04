@@ -94,7 +94,7 @@ export class AddOfferComponent implements OnInit {
               '',
               'success'
             )
-            this._router.navigate(['/consulting']);
+            this._router.navigate(['/tenders']);
 
           }else{
             Swal.fire(

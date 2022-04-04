@@ -1,84 +1,79 @@
+<br>
 
-    <br>
- 
-    
 
-    <div style="margin: 20px;">
-      <form [formGroup]="filters" >
-<mat-form-field style="margin: 30px;">
-    <mat-label >Search by bid number</mat-label>
-    <input matInput formControlName="bidNumber">
-  </mat-form-field>
 
-  <mat-form-field style="margin: 30px;">
-    <mat-label>Search by bid name</mat-label>
-    <input matInput formControlName="bidName">
-  </mat-form-field>
+<div style="margin: 20px;">
+  <form [formGroup]="filters">
+    <mat-form-field style="margin: 30px;">
+      <mat-label>Search by bid number</mat-label>
+      <input matInput formControlName="bidNumber">
+    </mat-form-field>
 
-  <mat-form-field  style="margin: 30px;">
-    <mat-label>City</mat-label>
-    <mat-select formControlName="city">
+    <mat-form-field style="margin: 30px;">
+      <mat-label>Search by bid name</mat-label>
+      <input matInput formControlName="bidName">
+    </mat-form-field>
+
+    <mat-form-field style="margin: 30px;">
+      <mat-label>City</mat-label>
+      <mat-select formControlName="city">
         <mat-option value="sousse">
           Sousse
         </mat-option>
       </mat-select>
-  </mat-form-field>
-  <mat-form-field style="margin: 30px;">
-    <mat-label>Post date</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="postDate">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-</form>
+    </mat-form-field>
+    <mat-form-field style="margin: 30px;">
+      <mat-label>Post date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="postDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
   <br>
-<div class="table" >
+  <div class="table">
 
 
-  <table class="table" *ngIf="offers.length>0" >
-    <thead>
-      <tr>
-        <th scope="col">Offer number</th>
-        <th scope="col">Tender Name</th>
+    <table class="table" *ngIf="offers.length>0">
+      <thead>
+        <tr>
+          <th scope="col">Offer number</th>
+          <th scope="col">Tender Name</th>
 
-        <th scope="col">Post date</th>
-        <th scope="col">Status</th>
-        <th scope="col">Details</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let offer of offers ">
-        <td data-label="Account">{{offer.id}}</td>
+          <th scope="col">Post date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Details</th>
 
-        <td *ngIf="offer.isAccepted==null" data-label="Amount">Not reviewed yet</td> 
-        <td *ngIf="offer.isAccepted==false" data-label="Amount">Rejected</td> 
-        <td *ngIf="offer.isAccepted==true" data-label="Amount">Accepted</td> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let offer of offers ">
+          <td data-label="Account">{{offer.id}}</td>
 
-        <td data-label="Due Date">{{offer.tenderInfo.name}}</td>
-        <td data-label="Period"> {{offer.tenderInfo.deadLine}} </td> 
-       <td data-label="Period">  
-         <a class="mat-button" href="offers/{{offer.id}}"><i class="fas fa-plus"></i> Details</a> 
-         <a class="mat-button" href="offer/edit/{{offer.id}}"><i class="fas fa-edit"></i> Edit</a> 
-         <a style="color:red;" class="mat-button" (click)="deleteOffer(offer.id)"d><i  class="fas fa-trash"></i> Delete</a> 
+          <td *ngIf="offer.isAccepted==null" data-label="Amount">Not reviewed yet</td>
+          <td *ngIf="offer.isAccepted==false" data-label="Amount">Rejected</td>
+          <td *ngIf="offer.isAccepted==true" data-label="Amount">Accepted</td>
 
-         <!-- <a class="mat-button" href="offers/{{offer.id}}"><i class="fas fa-remove"></i> Delete</a>  -->
+          <td data-label="Due Date">{{offer.tenderInfo.name}}</td>
+          <td data-label="Period"> {{offer.tenderInfo.deadLine}} </td>
+          <td data-label="Period">
+            <a #tooltip="matTooltip" matTooltip="See details" class="mat-button" href="offers/{{offer.id}}"><i
+                class="fas fa-plus"></i> Details</a>
+            <a #tooltip="matTooltip" matTooltip="Edit your offer" class="mat-button" href="offer/edit/{{offer.id}}"><i
+                class="fas fa-edit"></i> Edit</a>
+            <a #tooltip="matTooltip" matTooltip="Delete your offer" style="color:red;" class="mat-button"
+              (click)="deleteOffer(offer.id)" d><i class="fas fa-trash"></i> Delete</a>
+          </td>
 
-      </td>
+        </tr>
 
-      </tr>
 
-      
-    
-    </tbody>
-    
-  </table>
+
+      </tbody>
+
+    </table>
   </div>
-  <mat-paginator [length]=totalRecords
-              [pageSize]=itemPerPage
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page"
-              showFirstLastButtons
-              (page)="onChangePage($event)">
+  <mat-paginator [length]=totalRecords [pageSize]=itemPerPage [pageSizeOptions]="[1,5, 10, 25, 100]"
+    aria-label="Select page" showFirstLastButtons (page)="onChangePage($event)">
 
-</mat-paginator>
+  </mat-paginator>
 </div>

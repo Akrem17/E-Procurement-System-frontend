@@ -55,7 +55,6 @@
 
                             </tbody>
                         </table>
-                        <button mat-button>Save</button>
                     </div>
 
 
@@ -142,9 +141,9 @@
                         <mat-list>
                             <div mat-subheader>Financial:</div>
                             <mat-list-item>
-                                <mat-icon mat-list-icon>picture_as_pdf</mat-icon>
+                                <mat-icon  (click)="downloadPDF(financial.id)" mat-list-icon>picture_as_pdf</mat-icon>
 
-                                <a (click)="downloadPDF(financial.id)">
+                                <a href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(financial.id)">
                                     <div mat-line>{{financial.fileName}}</div>
                                     <div mat-line>15Mb </div>
                                 </a>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as saveAs from 'file-saver';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { SPECIFICATION } from 'src/app/Shared/Models/SPECIFICATION';
@@ -75,13 +76,13 @@ export class ConsultOfferComponent implements OnInit {
 
   downloadPDF(id) {
 
-    // this.specificationService.downloadSpecification(id).subscribe(file => {
-    //   this.specificationService.getSpecifications(id).subscribe(res => {
-    //     console.log(res)
-    //     saveAs(file, res.data.fileName);
-    //   })
+    this.specificationService.downloadSpecification(id).subscribe(file => {
+      this.specificationService.getSpecifications(id).subscribe(res => {
+        console.log(res)
+        saveAs(file, res.data.fileName);
+      })
 
-    // })
+    })
 
 
   }

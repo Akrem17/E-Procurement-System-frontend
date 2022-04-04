@@ -32,12 +32,15 @@ export class SupplierOffersComponent implements OnInit {
 
 
     callOffers(skip:number=0,take:number=10,supplierId:string=null,supplierEmail=null){
+      
        supplierId = this.route.snapshot.paramMap.get("id");
 
       this._offerService.getOfferBy(skip,take,supplierId,supplierEmail).subscribe(res=>{
+
         const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-        response.data.forEach(element => {
-          console.log(element)
+        this.totalRecords=response.data.itemsNumber
+
+        response.data.offer.forEach(element => {
           this.offers.push(element)
           console.table(this.offers)
           
@@ -136,16 +139,22 @@ callTendersWithFilters(filters:TENDER_FILTERS){
 
   
   onChangePage(event: PageEvent) {
+   let supplierId:string = this.route.snapshot.paramMap.get("id"); 
+   let supplierEmail=null
     this.data=[]
-    console.log(event)
-    this.page = event.pageIndex + 1
+
     this.itemPerPage = event.pageSize
+    this.page = event.pageIndex * event.pageSize
+
     
-    this._offerService.getOfferBy(this.page, this.itemPerPage).subscribe(res => {
+
+    this._offerService.getOfferBy(this.page, this.itemPerPage,supplierId,supplierEmail).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.offers = response.data;
+      this.offers= response.data.offer
+
       console.log(response)
-      this.totalRecords = response.data.items;
+     // this.totalRecords = response.data.items;
       console.log(this.totalRecords)
       this.tenders.map(tender => {
         let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
