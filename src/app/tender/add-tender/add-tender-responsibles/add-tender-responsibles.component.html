@@ -33,9 +33,9 @@
                 <mat-form-field>
                     <mat-error
                       *ngIf="(myForm.get('socialSecurityNumber')?.touched || myForm.get('socialSecurityNumber')?.dirty) && myForm.get('socialSecurityNumber')?.invalid">
-                        Social Security Number Should be 10 caracters.
+                      CIN Should be 10 caracters.
                     </mat-error>
-                    <mat-label>Social Security Number</mat-label>
+                    <mat-label>CIN Number</mat-label>
                     <input (change)="checkSocial()" matInput formControlName="socialSecurityNumber" >
                   </mat-form-field>
                   <br>

@@ -6,6 +6,7 @@ import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { SUPPLIER } from 'src/app/Shared/Models/SUPPLIER';
 import { AuthService } from 'src/app/Shared/Services/auth.service';
 import { OfferService } from 'src/app/Shared/Services/OfferService/offer.service';
+import { SpecificationService } from 'src/app/Shared/Services/SpecificationService/specification.service';
 import { UserService } from 'src/app/Shared/Services/UserService/user.service';
 import Swal from 'sweetalert2'
 
@@ -27,7 +28,7 @@ export class AddOfferComponent implements OnInit {
   supplier!:SUPPLIER;
   myFiles:string [] = [];
 
-  constructor(private route: ActivatedRoute,private _auth :AuthService,private fb: FormBuilder,private offerService:OfferService,private userService:UserService,private _router:Router) { }
+  constructor(private specificationService:SpecificationService, private route: ActivatedRoute,private _auth :AuthService,private fb: FormBuilder,private offerService:OfferService,private userService:UserService,private _router:Router) { }
 
   ngOnInit(): void {
 
@@ -41,11 +42,26 @@ export class AddOfferComponent implements OnInit {
     });
     
   }
-  onFileChange(event:any) {
-    for (let  i = 0; i < event.target.files.length; i++) { 
-        this.myFiles.push(event.target.files[i]);
-    }
-    
+ async onFileChange(event:any) {
+    const pdfBytePattern = "25504446"
+    const fileHeader = await this.specificationService. getFileHeader( event.target.files[0]).then((res)=>{
+
+      console.log(res)
+      if(res!=pdfBytePattern){
+        Swal.fire('Error!', 'Please enter only pdf files.', 'error')
+        event.target.value = null;
+
+        this.myFiles.pop()
+     
+
+
+      }else{
+        for (let  i = 0; i < event.target.files.length; i++) { 
+          this.myFiles.push(event.target.files[i]);
+      }
+      
+    }});
+    console.table(this.myFiles)
 
 }
   
@@ -80,13 +96,20 @@ export class AddOfferComponent implements OnInit {
         
         const formData = new FormData();
         console.table(this.myFiles)
-        this.myFiles.forEach((file) => { formData.append('MyFile', file); });
+        this.myFiles.forEach((file) => {
+          
+          formData.append('MyFile', file); 
+        
+        });
         
         formData.append("AltText", "File")
         formData.append("Description", "Offer files")
       
-
+      
         this.offerService.addSpecification(NewOffer.data.id.toString(),formData).subscribe(res=>{
+
+      
+
           let response2: RESPONSE = { status: res.status, message: res.message, data: res.data };
           if (response2.status){
             Swal.fire(

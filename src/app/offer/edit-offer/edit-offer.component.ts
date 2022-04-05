@@ -51,7 +51,6 @@ export class EditOfferComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id");
-    console.log(this.id)
 
     this._offerService.getSingleOffer(this.id).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
@@ -93,20 +92,35 @@ export class EditOfferComponent implements OnInit {
     });
   }
 
-  addSpecification(e) {
+    // get the file MIME type
+    
+
+  async addSpecification(e) {
+    
     const formData = new FormData();
     console.log(e)
     formData.append('MyFile', e.target.files[0]);
+    const pdfBytePattern = "25504446"
+    const fileHeader = await this.specificationService. getFileHeader( e.target.files[0]).then((res)=>{
+      console.log(res)
+      if(res!=pdfBytePattern){
+        Swal.fire('Error!', 'Please enter only pdf files.', 'error')
 
-    console.log(formData.get("MyFile"))
-    formData.append("AltText", "gf")
-    formData.append("Description", "gf")
-    this._offerService.addSpecification(this.id, formData).subscribe(res => {
-      console.log(this.id)
-      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      console.log(response)
-      this.offer.files.push(res.data)
-    })
+      }else{
+        console.log(formData.get("MyFile"))
+        formData.append("AltText", "gf")
+        formData.append("Description", "gf")
+        this._offerService.addSpecification(this.id, formData).subscribe(res => {
+          console.log(this.id)
+          const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+          this.offer.files.push(res.data)
+        })
+      }
+
+      })
+      
+    
+  
   }
 
 
@@ -137,12 +151,23 @@ export class EditOfferComponent implements OnInit {
     })
 
   }
+  
+  niceBytes(x){
+    const units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+     let l = 0, n = parseInt(x, 10) || 0;
+     while(n >= 1024 && ++l){
+         n = n/1024;
+     }
+     return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+   }
+   
   downloadPDF(id) {
 
     this.specificationService.downloadSpecification(id).subscribe(file => {
       this.specificationService.getSpecifications(id).subscribe(res => {
         const response: RESPONSE = { status: res.status, message: res.message, data: res.data }
-        console.log(response)
+        console.log(response.data)
+        
         saveAs(file, response.data.fileName);
       })
 

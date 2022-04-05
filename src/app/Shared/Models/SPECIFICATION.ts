@@ -5,5 +5,6 @@ export class SPECIFICATION{
     public mimeType:string;
     public filePath:string;
     public tenderId:number;
+    public fileSize:string;
 
 }

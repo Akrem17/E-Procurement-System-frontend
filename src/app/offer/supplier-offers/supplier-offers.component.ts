@@ -154,7 +154,7 @@ callTendersWithFilters(filters:TENDER_FILTERS){
       this.offers= response.data.offer
 
       console.log(response)
-     // this.totalRecords = response.data.items;
+     
       console.log(this.totalRecords)
       this.tenders.map(tender => {
         let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();

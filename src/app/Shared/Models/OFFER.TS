@@ -16,7 +16,6 @@ export class OFFER {
     public tender:TENDER=null;
     public tenderInfo:TENDER=null;
     public files!:SPECIFICATION[];
-
     
 
 
