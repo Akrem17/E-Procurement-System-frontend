@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { TENDER } from '../../Models/TENDER';
 import { TENDER_FILTERS } from '../../Models/TENDER_FILTERS';
@@ -9,7 +10,7 @@ import { TENDER_FILTERS } from '../../Models/TENDER_FILTERS';
   providedIn: 'root'
 })
 export class TenderService {
-  private tendersRoute=environment.apiUrl+"tenders" 
+  private tendersRoute=environment.apiUrl+Models.tenders 
   
   constructor(private http:HttpClient) { }
 
@@ -25,11 +26,11 @@ export class TenderService {
 
    getTenderById(id:string):Observable<any>{
 
-    return this.http.get(this.tendersRoute+"/"+id);
+    return this.http.get(this.tendersRoute+id);
    }
    updateTender(id:string,tender:TENDER):Observable<any>{
 
-    return this.http.put(this.tendersRoute+"/"+id,tender);
+    return this.http.put(this.tendersRoute+id,tender);
    }
    FilterTenderBy(filters:TENDER_FILTERS ){
     let filter="";

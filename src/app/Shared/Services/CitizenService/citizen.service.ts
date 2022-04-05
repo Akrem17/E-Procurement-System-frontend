@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { CITIZEN } from '../../Models/CITIZEN';
 import { CITIZEN_FILTERS } from '../../Models/CITIZEN_FILTERS';
@@ -9,7 +10,7 @@ type Nullable<T> = T | null;
   providedIn: 'root'
 })
 export class CitizenService {
-  private citizenRoute=environment.apiUrl+"citizens/" 
+  private citizenRoute=environment.apiUrl+Models.citizen; 
 
   constructor(private http:HttpClient) { }
 
@@ -33,10 +34,7 @@ export class CitizenService {
     Object.entries(filters).forEach(res=>{
       filter+="&"+res[0]+"="+res[1];
    
-    });
-
-     console.log(filter)
-    
+    });    
      //let filters=email!=null?'email='+email:'';filters+=confirmed!=null?'&confirmed='+confirmed:'';filters+=date!=null?'&date='+date:'';filters+=cin!=null?'&cin='+cin:'';filters+=phone!=null?'&phone='+phone:'';
      //email:Nullable<string>=null,confirmed:Nullable<boolean>=null ,cin:Nullable<string> =null ,phone:Nullable<string> =null ,date:Nullable<string> =null 
 

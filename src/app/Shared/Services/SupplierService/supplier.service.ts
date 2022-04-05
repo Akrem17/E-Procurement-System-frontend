@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { SUPPLIER } from '../../Models/SUPPLIER';
 import { SUPPLIER_FILTERS } from '../../Models/SUPPLIER_FILTERS';
@@ -9,7 +10,7 @@ import { SUPPLIER_FILTERS } from '../../Models/SUPPLIER_FILTERS';
 })
 export class SupplierService {
 
-  private supplierRoute=environment.apiUrl+"suppliers/" 
+  private supplierRoute=environment.apiUrl+Models.suppliers;
 
   constructor(private http:HttpClient) { }
 

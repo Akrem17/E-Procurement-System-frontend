@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { ADDRESS } from '../../Models/ADDRESS';
 
@@ -7,7 +8,7 @@ import { ADDRESS } from '../../Models/ADDRESS';
   providedIn: 'root'
 })
 export class AddressService {
-  private addressRoute=environment.apiUrl+"addresses/" 
+  private addressRoute=environment.apiUrl+Models.address 
 
   
   constructor(private http:HttpClient) { }
