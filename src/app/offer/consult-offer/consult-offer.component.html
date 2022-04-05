@@ -145,7 +145,7 @@
 
                                 <a href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(financial.id)">
                                     <div mat-line>{{financial.fileName}}</div>
-                                    <div mat-line>15Mb </div>
+                                    <div mat-line>{{niceBytes(financial.fileSize)}}</div>
                                 </a>
                             </mat-list-item>
 

@@ -36,19 +36,36 @@ export class AddTenderSpecificationsComponent implements OnInit {
    return this.myForm.controls;
  }
     name:string[]=[];
- onFileChange(event:any) {
-       for (let  i = 0; i < event.target.files.length; i++) { 
-           this.myFiles.push(event.target.files[i]);
-       }
-       
-       this.name=[];
-       this.myFiles.forEach(e=>{
-        //@ts-ignore
-        this.name.push(e.name) 
+ async onFileChange(event:any) {
+  const pdfBytePattern = "25504446"
 
-      })
+  const fileHeader = await this.specificationService. getFileHeader( event.target.files[0]).then((res)=>{
 
- }
+    console.log(res)
+    if(res!=pdfBytePattern){
+      Swal.fire('Error!', 'Please enter only pdf files.', 'error')
+      event.target.value = null;
+
+      this.myFiles.pop()
+   
+
+
+    }else{
+      for (let  i = 0; i < event.target.files.length; i++) { 
+        this.myFiles.push(event.target.files[i]);
+    }
+    
+    this.name=[];
+    this.myFiles.forEach(e=>{
+     //@ts-ignore
+     this.name.push(e.name) 
+
+   })
+    }
+      
+
+ })
+}
      
  removeFile(n){
   console.log(n)
