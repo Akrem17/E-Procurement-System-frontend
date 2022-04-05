@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { TENDER } from 'src/app/Shared/Models/TENDER';
-import { TENDER_FILTERS } from 'src/app/Shared/Models/TENDER_FILTERS';
+import { OFFER_FILTERS } from 'src/app/Shared/Models/OFFER_FILTERS';
 import { InstituteService } from 'src/app/Shared/Services/InstituteService/institute.service';
 import { OfferService } from 'src/app/Shared/Services/OfferService/offer.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
@@ -26,7 +26,7 @@ export class SupplierOffersComponent implements OnInit {
   filters!:FormGroup;
   offers:OFFER[]=[];
   constructor(private route: ActivatedRoute,private _offerService:OfferService, private fb:FormBuilder, private tenderService: TenderService, private instuteService: InstituteService) { }
-
+  supplierId:string;
 
 
 
@@ -35,8 +35,13 @@ export class SupplierOffersComponent implements OnInit {
       
        supplierId = this.route.snapshot.paramMap.get("id");
 
-      this._offerService.getOfferBy(skip,take,supplierId,supplierEmail).subscribe(res=>{
+       let filters: OFFER_FILTERS = new OFFER_FILTERS() ;
+      
 
+       filters.supplierEmail=supplierEmail;
+      filters.supplierId=supplierId;
+      this._offerService.getOfferBy(skip,take,filters).subscribe(res=>{
+        console.log(res)
         const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
         this.totalRecords=response.data.itemsNumber
 
@@ -50,28 +55,28 @@ export class SupplierOffersComponent implements OnInit {
       
     }
   ngOnInit(): void {
-
+    this.supplierId=this.route.snapshot.paramMap.get("id");
     this.callOffers()
 
 
   this.filters = this.fb.group({
-    bidNumber: ["", [Validators.required]],
-    bidName: ["", [Validators.required]],
+    offerNumber: ["", [Validators.required]],
+    tenderName: ["", [Validators.required]],
     city: ["", [Validators.required]],
     postDate: ["", [Validators.required]],
 
   });
 
 
-    this.filters.get("bidNumber").valueChanges.subscribe(selectedValue => {
+    this.filters.get("offerNumber").valueChanges.subscribe(selectedValue => {
 
-      let filters: TENDER_FILTERS;
-      filters = this.filters.value;
-      filters.bidNumber = selectedValue;
+      let filters: OFFER_FILTERS=new OFFER_FILTERS();
+      filters.offerNumber = selectedValue;
+      filters.supplierId= this.supplierId;
+      
+      if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
 
-      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber))) {
-
-        this.callTendersWithFilters(filters)
+        this.callOffersWithFilters(this.page,this.itemPerPage,filters)
       }
       else {
         //this.callAllTenders()
@@ -79,29 +84,29 @@ export class SupplierOffersComponent implements OnInit {
     })
 
   
-  this.filters.get("bidName").valueChanges.subscribe(selectedValue => {
-    let filters:TENDER_FILTERS;
+  this.filters.get("tenderName").valueChanges.subscribe(selectedValue => {
+    let filters: OFFER_FILTERS=new OFFER_FILTERS();
     filters=this.filters.value;
-    filters.bidName=selectedValue;
+    filters.tenderName=selectedValue;
 
 
-    if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber))) {
+    if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
 
-      this.callTendersWithFilters(filters)
+      this.callOffersWithFilters(this.page,this.itemPerPage,filters)
     }
     else {
       //this.callAllTenders()
     }
   })
   this.filters.get("city").valueChanges.subscribe(selectedValue => {
-    let filters:TENDER_FILTERS;
+    let filters:OFFER_FILTERS;
     filters=this.filters.value;
     filters.city=selectedValue;
 
     console.log(filters)
   })
   this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
-    let filters:TENDER_FILTERS;
+    let filters:OFFER_FILTERS;
     filters=this.filters.value;
     filters.postDate=selectedValue;
 
@@ -112,21 +117,24 @@ export class SupplierOffersComponent implements OnInit {
 
 
 
-callTendersWithFilters(filters:TENDER_FILTERS){
+callOffersWithFilters(skip:number=0,take:number=10,filters:OFFER_FILTERS){
   
-  this.tenderService.FilterTenderBy(filters).subscribe(res=>{
-    this.data=[]
-    //@ts-ignore
+  this._offerService.getOfferBy(skip,take,filters).subscribe(res=>{
+    this.offers=[]
+   
     const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-    this.tenders = response.data;
-    this.tenders?.map(tender => {
-      let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
-      let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();
-      tender.startDate = startDate;
-      tender.deadLine = deadLine;
-      this.data=this.tenders;
+    console.log(response)
+    this.totalRecords=response.data.itemsNumber
+   
+    response.data.offer.forEach(element => {
+      this.offers.push(element)
+      console.table(this.offers)
+      
+    });
 
-  })
+ 
+
+  
 
   })
 }
@@ -147,8 +155,10 @@ callTendersWithFilters(filters:TENDER_FILTERS){
     this.page = event.pageIndex * event.pageSize
 
     
-
-    this._offerService.getOfferBy(this.page, this.itemPerPage,supplierId,supplierEmail).subscribe(res => {
+    let filters: OFFER_FILTERS = new OFFER_FILTERS() ;
+    filters.supplierEmail=supplierEmail;
+    filters.supplierId=supplierId;
+    this._offerService.getOfferBy( this.page,this.itemPerPage ,filters).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.offers = response.data;
       this.offers= response.data.offer
@@ -176,7 +186,7 @@ isEmptyOrNull(str:string| null):boolean{
   
 
 }
-isEmpty(filter:TENDER_FILTERS):boolean{
+isEmpty(filter:OFFER_FILTERS):boolean{
   
   if (filter==null) return true
   return false;

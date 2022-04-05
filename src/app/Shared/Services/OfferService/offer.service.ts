@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
 import { Observable } from 'rxjs';
+import { OFFER_FILTERS } from '../../Models/OFFER_FILTERS';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,8 +35,16 @@ export class OfferService {
     return this.http.get(this.offerRoute);
   }
 
-  getOfferBy(skip:number=null,take:number=null,supplierId:string=null,supplierEmail=null):Observable<any> {
-    return this.http.get(this.offerRoute+"?skip="+skip+"&take="+take+"&supplierId="+supplierId+"&supplierId="+supplierEmail);
+  getOfferBy(skip:number=null,take:number=null,filters:OFFER_FILTERS):Observable<any> {
+    let filter="";
+    Object.entries(filters)?.forEach(res=>{
+      if(res[1]!=null && res[1]!='undifined')
+      filter+="&"+res[0]+"="+res[1];
+   
+    }); 
+    console.log(this.offerRoute+"?skip="+skip+"&take="+take+filter)
+
+    return this.http.get(this.offerRoute+"?skip="+skip+"&take="+take+filter);
   }
   deleteOffer(id):Observable<any>{
     return this.http.delete(this.offerRoute+id);
