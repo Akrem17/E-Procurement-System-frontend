@@ -251,17 +251,22 @@
        <td data-label="Period">  <a class="mat-button" ><i class="fas fa-plus"></i> Details</a> </td>
 
       </tr>
-      <tr *ngFor="let offer of tender.offers">
+      <tr *ngFor="let offer of data">
         <td data-label="Account">{{offer.name}}</td>
         <td data-label="Due Date">{{offer.totalMontant}}</td>
-        <td data-label="Amount">Not yet</td>
+    
+        <td *ngIf="offer.isAccepted==null" data-label="Amount">Not reviewed yet</td>
+        <td *ngIf="offer.isAccepted==false" data-label="Amount">Rejected</td>
+        <td *ngIf="offer.isAccepted==true" data-label="Amount">Accepted</td>
+
        <td data-label="Period">  <a  #tooltip="matTooltip" matTooltip="See offer details"  href="offers/{{offer.id}}" class="mat-button" ><i class="fas fa-plus"></i> Details</a> </td>
 
       </tr>
     </tbody>
     
   </table>
-                        <mat-paginator aria-label="Select page" showFirstLastButtons>
+                        <mat-paginator aria-label="Select page" showFirstLastButtons [length]=totalRecords [pageSize]=itemPerPage [pageSizeOptions]="[1,5, 10, 25, 100]"
+                        aria-label="Select page" showFirstLastButtons (page)="onChangePage($event)">
 
                         </mat-paginator>
                     </div>
