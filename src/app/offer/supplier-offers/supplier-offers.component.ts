@@ -23,214 +23,211 @@ export class SupplierOffersComponent implements OnInit {
   itemPerPage: number = 5
   page: number = 0
   totalRecords: number;
-  filters!:FormGroup;
-  offers:OFFER[]=[];
-  constructor(private route: ActivatedRoute,private _offerService:OfferService, private fb:FormBuilder, private tenderService: TenderService, private instuteService: InstituteService) { }
-  supplierId:string;
+  filters!: FormGroup;
+  offers: OFFER[] = [];
+  constructor(private route: ActivatedRoute, private _offerService: OfferService, private fb: FormBuilder, private tenderService: TenderService, private instuteService: InstituteService) { }
+  supplierId: string;
 
 
 
 
-    callOffers(skip:number=0,take:number=10,supplierId:string=null,supplierEmail=null){
-      
-       supplierId = this.route.snapshot.paramMap.get("id");
+  callOffers(skip: number = 0, take: number = 10, supplierId: string = null, supplierEmail = null) {
 
-       let filters: OFFER_FILTERS = new OFFER_FILTERS() ;
-      
+    supplierId = this.route.snapshot.paramMap.get("id");
 
-       filters.supplierEmail=supplierEmail;
-      filters.supplierId=supplierId;
-      this._offerService.getOfferBy(skip,take,filters).subscribe(res=>{
-        console.log(res)
-        const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-        this.totalRecords=response.data.itemsNumber
+    let filters: OFFER_FILTERS = new OFFER_FILTERS();
 
-        response.data.offer.forEach(element => {
-          this.offers.push(element)
-          console.table(this.offers)
-          
-        });
 
-      })
-      
-    }
+    filters.supplierEmail = supplierEmail;
+    filters.supplierId = supplierId;
+    this._offerService.getOfferBy(skip, take, filters).subscribe(res => {
+      console.log(res)
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      this.totalRecords = response.data.itemsNumber
+
+      response.data.offer.forEach(element => {
+        this.offers.push(element)
+        console.table(this.offers)
+
+      });
+
+    })
+
+  }
   ngOnInit(): void {
-    this.supplierId=this.route.snapshot.paramMap.get("id");
+    this.supplierId = this.route.snapshot.paramMap.get("id");
     this.callOffers()
 
 
-  this.filters = this.fb.group({
-    offerNumber: ["", [Validators.required]],
-    tenderName: ["", [Validators.required]],
-    city: ["", [Validators.required]],
-    postDate: ["", [Validators.required]],
+    this.filters = this.fb.group({
+      offerNumber: ["", [Validators.required]],
+      tenderName: ["", [Validators.required]],
+      city: ["", [Validators.required]],
+      postDate: ["", [Validators.required]],
 
-  });
+    });
 
 
     this.filters.get("offerNumber").valueChanges.subscribe(selectedValue => {
 
-      let filters: OFFER_FILTERS=new OFFER_FILTERS();
+      let filters: OFFER_FILTERS = new OFFER_FILTERS();
       filters.offerNumber = selectedValue;
-      filters.supplierId= this.supplierId;
-      
+      filters.supplierId = this.supplierId;
+
       if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
 
-        this.callOffersWithFilters(this.page,this.itemPerPage,filters)
+        this.callOffersWithFilters(this.page, this.itemPerPage, filters)
       }
       else {
         //this.callAllTenders()
       }
     })
 
-  
-  this.filters.get("tenderName").valueChanges.subscribe(selectedValue => {
-    let filters: OFFER_FILTERS=new OFFER_FILTERS();
-    filters=this.filters.value;
-    filters.tenderName=selectedValue;
+
+    this.filters.get("tenderName").valueChanges.subscribe(selectedValue => {
+      let filters: OFFER_FILTERS = new OFFER_FILTERS();
+      filters = this.filters.value;
+      filters.tenderName = selectedValue;
 
 
-    if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
+      if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
 
-      this.callOffersWithFilters(this.page,this.itemPerPage,filters)
-    }
-    else {
-      //this.callAllTenders()
-    }
-  })
-  this.filters.get("city").valueChanges.subscribe(selectedValue => {
-    let filters:OFFER_FILTERS;
-    filters=this.filters.value;
-    filters.city=selectedValue;
+        this.callOffersWithFilters(this.page, this.itemPerPage, filters)
+      }
+      else {
+        //this.callAllTenders()
+      }
+    })
+    this.filters.get("city").valueChanges.subscribe(selectedValue => {
+      let filters: OFFER_FILTERS;
+      filters = this.filters.value;
+      filters.city = selectedValue;
 
-    console.log(filters)
-  })
-  this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
-    let filters:OFFER_FILTERS;
-    filters=this.filters.value;
-    filters.postDate=selectedValue;
+      console.log(filters)
+    })
+    this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
+      let filters: OFFER_FILTERS;
+      filters = this.filters.value;
+      filters.postDate = selectedValue;
 
-    console.log(filters)
-  })
+      console.log(filters)
+    })
 
-}
+  }
 
 
 
-callOffersWithFilters(skip:number=0,take:number=10,filters:OFFER_FILTERS){
-  
-  this._offerService.getOfferBy(skip,take,filters).subscribe(res=>{
-    this.offers=[]
-   
-    const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-    console.log(response)
-    this.totalRecords=response.data.itemsNumber
-   
-    response.data.offer.forEach(element => {
-      this.offers.push(element)
-      console.table(this.offers)
-      
-    });
+  callOffersWithFilters(skip: number = 0, take: number = 10, filters: OFFER_FILTERS) {
 
- 
+    this._offerService.getOfferBy(skip, take, filters).subscribe(res => {
+      this.offers = []
 
-  
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      console.log(response)
+      this.totalRecords = response.data.itemsNumber
 
-  })
-}
+      response.data.offer.forEach(element => {
+        this.offers.push(element)
+        console.table(this.offers)
 
-  applyFilters(form){
+      });
+
+
+    })
+  }
+
+  applyFilters(form) {
     console.log(form.value)
   }
 
 
 
-  
+
   onChangePage(event: PageEvent) {
-   let supplierId:string = this.route.snapshot.paramMap.get("id"); 
-   let supplierEmail=null
-    this.data=[]
+    let supplierId: string = this.route.snapshot.paramMap.get("id");
+    let supplierEmail = null
+    this.data = []
 
     this.itemPerPage = event.pageSize
     this.page = event.pageIndex * event.pageSize
 
-    
-    let filters: OFFER_FILTERS = new OFFER_FILTERS() ;
-    filters.supplierEmail=supplierEmail;
-    filters.supplierId=supplierId;
-    this._offerService.getOfferBy( this.page,this.itemPerPage ,filters).subscribe(res => {
+
+    let filters: OFFER_FILTERS = new OFFER_FILTERS();
+    filters.supplierEmail = supplierEmail;
+    filters.supplierId = supplierId;
+    this._offerService.getOfferBy(this.page, this.itemPerPage, filters).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      this.offers = response.data;
-      this.offers= response.data.offer
+
+      this.offers = response.data.offer
 
       console.log(response)
-     
+
       console.log(this.totalRecords)
       this.tenders.map(tender => {
         let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
         let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();
         tender.startDate = startDate;
         tender.deadLine = deadLine;
-        this.data=this.tenders;
+        this.data = this.tenders;
 
+      })
     })
-  })
-     
 
-   
-}
 
-isEmptyOrNull(str:string| null):boolean{
-  if(str=="" || str==null)return true;
-  return false;
-  
 
-}
-isEmpty(filter:OFFER_FILTERS):boolean{
-  
-  if (filter==null) return true
-  return false;
-}
+  }
 
-deleteOffer(id){
-  console.log(id)
-  
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-  
-      this._offerService.deleteOffer(id).subscribe(res=>{
-        const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-        if(response.status){
-          var removeIndex = this.offers.map(item => item.id).indexOf(id);
-          this.offers.splice(removeIndex, 1);
-          Swal.fire(
-            'Deleted successfully!',
-            '',
-            'success'
-          )
-        }else{
-       
+  isEmptyOrNull(str: string | null): boolean {
+    if (str == "" || str == null) return true;
+    return false;
+
+
+  }
+  isEmpty(filter: OFFER_FILTERS): boolean {
+
+    if (filter == null) return true
+    return false;
+  }
+
+  deleteOffer(id) {
+    console.log(id)
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this._offerService.deleteOffer(id).subscribe(res => {
+          const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+          if (response.status) {
+            var removeIndex = this.offers.map(item => item.id).indexOf(id);
+            this.offers.splice(removeIndex, 1);
             Swal.fire(
-              'Error: '+response.message,
+              'Deleted successfully!',
+              '',
+              'success'
+            )
+          } else {
+
+            Swal.fire(
+              'Error: ' + response.message,
               '',
               'error'
             )
 
-        }
-    
-      })
-    }
-       });
+          }
 
-}
+        })
+      }
+    });
+
+  }
 
 
 }

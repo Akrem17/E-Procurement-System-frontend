@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { TENDER_CLASSIFICATION } from '../../Models/TENDER_CLASSIFICATION';
 
@@ -7,7 +8,7 @@ import { TENDER_CLASSIFICATION } from '../../Models/TENDER_CLASSIFICATION';
   providedIn: 'root'
 })
 export class TenderClassificationService {
-  private TCRoute=environment.apiUrl+"tenderClassifications/" 
+  private TCRoute=environment.apiUrl+Models.tenderClassifications
 
   constructor(private http:HttpClient) { }
   updateTC(id:string,tc:TENDER_CLASSIFICATION){

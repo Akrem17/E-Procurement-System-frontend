@@ -7,6 +7,9 @@ import { SpecificationService } from 'src/app/Shared/Services/SpecificationServi
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
 import { saveAs } from 'file-saver';
 import { HttpClient } from '@angular/common/http';
+import { OfferService } from 'src/app/Shared/Services/OfferService/offer.service';
+import { OFFER } from 'src/app/Shared/Models/OFFER';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-consult-single-tender',
@@ -21,8 +24,12 @@ export class ConsultSingleTenderComponent implements OnInit {
   page_size = 1;
   tenderSpecifications: any[] = [];
   id: string;
-
-  constructor(private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
+  offers:OFFER[];
+  itemPerPage: number = 5
+  page: number = 1
+  totalRecords: number;
+  data:OFFER[];
+  constructor(private _offerService :OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
 
 
 
@@ -38,18 +45,31 @@ export class ConsultSingleTenderComponent implements OnInit {
 
   }
 
+  
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id");
+
 
     this.tenderService.getTenderById(this.id).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.tender = response.data;
       this.tenderClassification = this.paginate(this.tender.tenderClassification, 3, 1);
-      //
-      console.log(this.tender);
-    })
+      this.offers=[... this.tender.offers]
+      this.totalRecords=this.tender.offers.length
 
+      this.data=this.paginate( this.offers,this.itemPerPage,this.page)
+  
+    })
+  }
+
+
+  onChangePage(event: PageEvent) {
+    this.data = []
+
+    this.itemPerPage = event.pageSize
+    this.page = (event.pageIndex * event.pageSize)+1
+    this.data=this.paginate( this.offers,this.itemPerPage,this.page)
 
   }
 

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Models } from 'src/app/endpoints';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class SpecificationService {
 
   constructor(private http: HttpClient) { }
 
-  private specificationURL: string = "https://localhost:7260/api/FileManager/"
+  private specificationURL: string = environment.apiUrl+Models.Specifications
 
   addSpecification(id: string, data: FormData) :Observable<any> {
    return this.http.post(this.specificationURL + '?tenderId=' + id, data);

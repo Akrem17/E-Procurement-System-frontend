@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Models } from 'src/app/endpoints';
 import { AuthService } from '../auth.service';
 
 @Injectable({
@@ -18,7 +19,7 @@ export class PreventLoggedInAccessGuard implements CanActivate {
     let isLoggedIn = this.authService.isUserLoggedIn?.value;
     console.log(isLoggedIn && this.authService.type.value != null)
     if (isLoggedIn && this.authService.type.value != null) {
-      this._router.navigate(['/tenders']);
+      this._router.navigate(["/"+Models.tenders]);
     }
 
     return !isLoggedIn;

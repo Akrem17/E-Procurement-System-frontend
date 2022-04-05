@@ -9,6 +9,7 @@ import { LOGIN } from '../Models/LOGIN';
 import { SUPPLIER } from '../Models/SUPPLIER';
 import { INSTITUTE } from '../Models/INSTITUTE';
 import { UserService } from './UserService/user.service';
+import { Auth } from 'src/app/endpoints';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,10 @@ import { UserService } from './UserService/user.service';
 export class AuthService {
 
 
-  private _registreUrl = environment.apiUrl + "signup/citizen";
-  private _registreSupplier = environment.apiUrl + "signup/supplier";
-  private _registreInstitute = environment.apiUrl + "signup/institute";
-  private _loginUrl = environment.apiUrl + "login"
+  private _registreUrl = environment.apiUrl +Auth.signupSupplier;
+  private _registreSupplier = environment.apiUrl + Auth.signupSupplier;
+  private _registreInstitute = environment.apiUrl +Auth.signupInstitute;
+  private _loginUrl = environment.apiUrl +Auth.login;
 
 
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(localStorage.getItem('token') && localStorage.getItem('token') != 'undefined');

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { USER } from '../../Models/USER';
 type Nullable<T> = T | null;
@@ -10,7 +11,7 @@ type Nullable<T> = T | null;
 })
 
 export class UserService {
-  private usersRoute=environment.apiUrl+"users/";
+  private usersRoute=environment.apiUrl+Models.users;
 
   constructor(private http:HttpClient) { }
 

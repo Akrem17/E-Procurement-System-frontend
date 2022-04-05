@@ -4,11 +4,12 @@ import { environment } from 'src/environments/environment';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
 import { Observable } from 'rxjs';
 import { OFFER_FILTERS } from '../../Models/OFFER_FILTERS';
+import { Models } from 'src/app/endpoints';
 @Injectable({
   providedIn: 'root'
 })
 export class OfferService {
-  private offerRoute = environment.apiUrl + "offers/"
+  private offerRoute = environment.apiUrl + Models.offer
   constructor(private http: HttpClient) { }
 
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { INSTITUTE } from '../../Models/INSTITUTE';
 import { INSTITUTE_FILTERS } from '../../Models/INSTITUTE_FILTERS';
@@ -9,7 +10,7 @@ import { INSTITUTE_FILTERS } from '../../Models/INSTITUTE_FILTERS';
   providedIn: 'root'
 })
 export class InstituteService {
-  private instituteRoute=environment.apiUrl+"institutes/" 
+  private instituteRoute=environment.apiUrl+Models.institute
 
   constructor(private http:HttpClient) { }
 

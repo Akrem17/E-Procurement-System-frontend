@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { REPRESENTATIVE } from '../../Models/REPRESENTATIVE';
 import { REPRESETATIVE_FILTERS } from '../../Models/REPRESENTATIVE_FILTERS';
@@ -10,7 +11,7 @@ import { REPRESETATIVE_FILTERS } from '../../Models/REPRESENTATIVE_FILTERS';
 })
 export class RepresentativeService {
 
-  private representativesRoute=environment.apiUrl+"Representatives/" 
+  private representativesRoute=environment.apiUrl+Models.representative
 
   constructor(private http:HttpClient) { }
 
