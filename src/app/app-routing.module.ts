@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AddOfferComponent } from './offer/add-offer/add-offer.component';
@@ -47,7 +48,12 @@ const routes: Routes = [
     canActivate: [PreventLoggedInAccessGuard],
     component: HomeComponent
   }
-
+  ,
+  {
+    path: 'error',
+    canActivate: [],
+    component: ErrorPageComponent
+  }
   ,
   {
     path: 'add-tender', component: AddTenderComponent,

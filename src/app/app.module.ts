@@ -56,6 +56,8 @@ import { ConsultOfferComponent } from './offer/consult-offer/consult-offer.compo
 import { SupplierOffersComponent } from './offer/supplier-offers/supplier-offers.component';
 import { EditOfferComponent } from './offer/edit-offer/edit-offer.component';
 import { DatePipe } from '@angular/common';
+import { LogInterceptorService } from './Shared/Services/LogService/log-interceptor.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 @NgModule({
@@ -88,7 +90,8 @@ import { DatePipe } from '@angular/common';
     AddOfferComponent,
     ConsultOfferComponent,
     SupplierOffersComponent,
-    EditOfferComponent
+    EditOfferComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +124,11 @@ import { DatePipe } from '@angular/common';
     {provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true
-    },DatePipe
+    },DatePipe,
+    {provide:HTTP_INTERCEPTORS,
+      useClass:LogInterceptorService,
+      multi:true
+      }
     
   
   ],
