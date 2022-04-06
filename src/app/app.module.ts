@@ -58,6 +58,8 @@ import { EditOfferComponent } from './offer/edit-offer/edit-offer.component';
 import { DatePipe } from '@angular/common';
 import { LogInterceptorService } from './Shared/Services/LogService/log-interceptor.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { EditSupplierComponent } from './supplier/edit-supplier/edit-supplier.component';
+import { ConsultSupplierComponent } from './supplier/consult-supplier/consult-supplier.component';
 
 
 @NgModule({
@@ -91,7 +93,9 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     ConsultOfferComponent,
     SupplierOffersComponent,
     EditOfferComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    EditSupplierComponent,
+    ConsultSupplierComponent
   ],
   imports: [
     BrowserModule,
