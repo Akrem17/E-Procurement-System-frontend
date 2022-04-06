@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { SUPPLIER } from '../../Models/SUPPLIER';
@@ -18,7 +19,7 @@ export class SupplierService {
     return this.http.get(this.supplierRoute);
   }
 
-  getSupplierById(id:string){
+  getSupplierById(id:string):Observable<any>{
     return this.http.get(this.supplierRoute+id);
   }
   updateSupplier(id:string,institute:SUPPLIER){

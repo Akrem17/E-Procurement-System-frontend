@@ -40,7 +40,8 @@
 
     <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/add-tender">Add Tender</a>
 
-    <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/2/offers">My Offers</a>
+    <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/{{userId}}/offers">My Offers</a>
+    <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/{{userId}}">Profile</a>
 
 
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Institution Space</a>
@@ -66,11 +67,11 @@
     <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus"
       routerLink="login">Login</a>
 
-    <a class="nav-link dropdown" *ngIf="(loginStatus$ | async) as loginStatus" routerLink="login"> <i
-        class="fa-solid fa-user-vneck"></i>Profile
+    <a class="nav-link dropdown" *ngIf="(loginStatus$ | async) as loginStatus" > <i
+        class="fa-solid fa-user-vneck"></i>Settings
 
       <div class="dropdown-content">
-        <a class="sublink" href="#">Edit Profile </a>
+        <a class="sublink" routerLink="supplier/{{userId}}/edit">Edit Profile </a>
         <a class="sublink" href="#">Edit Password</a>
         <a class="sublink" (click)="logout()" *ngIf="loginStatus$ | async as loginStatus">
           Logout</a>

@@ -11,6 +11,8 @@ import { AuthGuard } from './Shared/Services/GuardService/auth.guard';
 import { HasRoleGuard } from './Shared/Services/GuardService/has-role.guard';
 import { PreventLoggedInAccessGuard } from './Shared/Services/GuardService/prevent-logged-in-access.guard';
 import { SignupComponent } from './signup/signup.component';
+import { ConsultSupplierComponent } from './supplier/consult-supplier/consult-supplier.component';
+import { EditSupplierComponent } from './supplier/edit-supplier/edit-supplier.component';
 import { AddTenderComponent } from './tender/add-tender/add-tender.component';
 import { ConsultSingleTenderComponent } from './tender/consult-single-tender/consult-single-tender.component';
 import { ConsultTendersComponent } from './tender/consult-tenders/consult-tenders.component';
@@ -74,6 +76,25 @@ const routes: Routes = [
   }
   ,
   
+  
+  {
+    path: 'supplier/:id/edit', component: EditSupplierComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+    }
+  }
+  ,
+    
+  
+  {
+    path: 'supplier/:id', component: ConsultSupplierComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+    }
+  }
+  ,
   {
     path: 'offer/add/:id', component: AddOfferComponent,
     canActivate: [AuthGuard, HasRoleGuard],

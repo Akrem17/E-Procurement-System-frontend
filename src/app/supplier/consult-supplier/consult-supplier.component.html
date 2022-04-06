@@ -1,0 +1,183 @@
+
+<div class="container" *ngIf="supplier"> 
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="one">
+                    <h1>{{supplier.companyName}}</h1>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="three">
+                        <h1>Supplier Information</h1>
+
+                    </div><br>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" width="400">Supplier Name : </td>
+                                    <td>{{supplier.supplierName}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Company Name</td>
+                                    <td>{{supplier.companyName}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Category : </td>
+                                    <td>{{supplier.category}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Registration Number : </td>
+                                    <td>{{supplier.registrationNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Registration Date : </td>
+                                    <td>{{supplier.registrationDate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Tax Number : </td>
+                                    <td>{{supplier.taxId}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">CNSS Number: </td>
+                                    <td>{{supplier.cnssId}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Buisness Classification : </td>
+                                    <td>{{supplier.buisnessClassification}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Buisness Type</td>
+                                    <td>{{supplier.buisnessType}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Noticiation Email</td>
+                                    <td>{{supplier.replyEmail}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Phone</td>
+                                    <td>{{supplier.phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Fax</td>
+                                    <td>{{supplier.fax}}</td>
+                                </tr>
+                                  
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="three">
+                        <h1>Address Information </h1>
+                    </div><br>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" width="400">Postal Code</td>
+                                    <td>{{supplier.address.postalCode}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">City</td>
+                                    <td>{{supplier.address.city}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Street</td>
+                                    <td>{{supplier.address.street1}}</td>
+                                </tr>
+                             
+                                
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="three">
+                        <h1>Representative </h1>
+                    </div>
+
+                    <div class="table-responsive">
+
+
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" width="400">Name</td>
+                                    <td>{{supplier.representative.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Social Security Number</td>
+                                    <td>{{supplier.representative.socialSecurityNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Position</td>
+                                    <td>{{supplier.representative.position}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Social Security Number Date</td>
+                                    <td>{{supplier.representative.socialSecurityNumberDate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Phone</td>
+                                    <td>{{supplier.representative.phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Email</td>
+                                    <td>{{supplier.representative.email}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="three">
+                        <h1>Licence Information </h1>
+                    </div><br>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" width="400">Category</td>
+                                    <td>{{supplier.licence.category}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Name</td>
+                                    <td>{{supplier.licence.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Registration Number</td>
+                                    <td>{{supplier.licence.registrationNumber}}</td>
+                                </tr>
+                             
+                                <tr>
+                                    <td class="bold">Acquisition Date</td>
+                                    <td>{{supplier.licence.acquisitionDate}}</td>
+                                </tr>
+                             
+                                <tr>
+                                    <td class="bold">Issuing Institution Name</td>
+                                    <td>{{supplier.licence.issuingInstitutionName}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Expiration Date</td>
+                                    <td>{{supplier.licence.expirationDate}}</td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
