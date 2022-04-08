@@ -60,6 +60,8 @@ import { LogInterceptorService } from './Shared/Services/LogService/log-intercep
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { EditSupplierComponent } from './supplier/edit-supplier/edit-supplier.component';
 import { ConsultSupplierComponent } from './supplier/consult-supplier/consult-supplier.component';
+import { ConsultInstituteComponent } from './institute/consult-institute/consult-institute.component';
+import { EditInstituteComponent } from './institute/edit-institute/edit-institute.component';
 
 
 @NgModule({
@@ -95,7 +97,9 @@ import { ConsultSupplierComponent } from './supplier/consult-supplier/consult-su
     EditOfferComponent,
     ErrorPageComponent,
     EditSupplierComponent,
-    ConsultSupplierComponent
+    ConsultSupplierComponent,
+    ConsultInstituteComponent,
+    EditInstituteComponent
   ],
   imports: [
     BrowserModule,

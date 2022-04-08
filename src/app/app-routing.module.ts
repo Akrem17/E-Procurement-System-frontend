@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeComponent } from './home/home.component';
+import { ConsultInstituteComponent } from './institute/consult-institute/consult-institute.component';
+import { EditInstituteComponent } from './institute/edit-institute/edit-institute.component';
 import { LoginComponent } from './login/login.component';
 import { AddOfferComponent } from './offer/add-offer/add-offer.component';
 import { ConsultOfferComponent } from './offer/consult-offer/consult-offer.component';
@@ -85,7 +87,28 @@ const routes: Routes = [
     }
   }
   ,
-    
+  
+  
+  
+  {
+    path: 'institute/:id/edit', component: EditInstituteComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+    }
+  }
+  ,
+  
+  
+  
+  {
+    path: 'institute/:id', component: ConsultInstituteComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+    }
+  }
+  ,
   
   {
     path: 'supplier/:id', component: ConsultSupplierComponent,

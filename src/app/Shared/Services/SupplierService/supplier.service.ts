@@ -22,7 +22,7 @@ export class SupplierService {
   getSupplierById(id:string):Observable<any>{
     return this.http.get(this.supplierRoute+id);
   }
-  updateSupplier(id:string,institute:SUPPLIER){
+  updateSupplier(id:string,institute:SUPPLIER):Observable<any>{
     return this.http.put(this.supplierRoute+id,institute);
   }
   deleteSupplier(id:string){

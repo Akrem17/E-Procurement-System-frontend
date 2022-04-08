@@ -1,6 +1,6 @@
 export class ADDRESS {
 
-
+    public id!:number;
     public countryName!: string
     public postalCode!: string
     public city!: string
