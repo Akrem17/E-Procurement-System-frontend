@@ -14,6 +14,7 @@ export const Models = {
     representative:"Representatives/",
     offer:"offers/",
     institute:"institutes/" ,
-    citizen:"/citizens",
-    address:"/addresses"
+    citizen:"citizens/",
+    address:"addresses/",
+    licence:"Licences/"
 }

@@ -1,13 +1,13 @@
 <div class="wrp">
     <div class="wrapper">
         <div class="one">
-            <h1>Edit Supplier Informations</h1>
+            <h1>Edit Institute Informations</h1>
         </div>
         <div class="form "  *ngIf="myForm">
 
-            <div><span class=" red Segoe">Supplier Information</span></div><br><br><br>
+            <div><span class=" red Segoe">Institute Information</span></div><br><br><br>
 
-            <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="updateSupplier(myForm)">
+            <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="updateInsitute(myForm)">
                 <div class="divider">
                     <div>
                         <!-- suppleir name -->
@@ -17,7 +17,7 @@
                                 supplierName Name is required.
                             </mat-error> -->
                             <mat-label>Supplier Name : </mat-label>
-                            <input matInput formControlName="supplierName">
+                            <input matInput formControlName="nameFr">
                         </mat-form-field>
 
                         <!-- social Security Number  -->
@@ -25,68 +25,49 @@
                         <mat-form-field>
                           
                             <mat-label>Company Name</mat-label>
-                            <input matInput formControlName="companyName">
+                            <input matInput formControlName="nameAr">
                         </mat-form-field>
                         <mat-form-field>
                            
-                            <mat-label>Category</mat-label>
-                            <input matInput formControlName="category">
+                            <mat-label>Type Of Institute</mat-label>
+                            <input matInput formControlName="typeOfInstitute">
                         </mat-form-field>
                         <mat-form-field>
                           
                             <mat-label>Registration Number :</mat-label>
-                            <input matInput formControlName="registrationNumber">
+                            <input matInput formControlName="areaType">
                         </mat-form-field>
-                        <mat-form-field>
-                           
-                            <mat-label>Registration Date :</mat-label>
-                            <input matInput formControlName="registrationDate">
-                        </mat-form-field>
-                        <mat-form-field>
-                           
-                            <mat-label>Tax Number :</mat-label>
-                            <input matInput formControlName="taxId">
-                        </mat-form-field>
-                   
-
-
+                
 
 
                     </div>
 
                     <div>
                         <mat-form-field>
+                           
+                            <mat-label>Registration Date :</mat-label>
+                            <input matInput formControlName="representativeName">
+                        </mat-form-field>
+                        <mat-form-field>
+                           
+                            <mat-label>Tax Number :</mat-label>
+                            <input matInput formControlName="notificationEmail">
+                        </mat-form-field>
+                   
+
+
+                        <mat-form-field>
                           
                             <mat-label>Buisness Classification :</mat-label>
-                            <input matInput formControlName="buisnessClassification">
+                            <input matInput formControlName="phone">
                         </mat-form-field>
                         <mat-form-field>
                            
                             <mat-label>Buisness Type :</mat-label>
-                            <input matInput formControlName="buisnessType">
-                        </mat-form-field>
-
-                        <mat-form-field>
-                        
-                            <mat-label>Phone :</mat-label>
-                            <input matInput formControlName="phone">
-                        </mat-form-field>
-                        <mat-form-field>
-                            
-                            <mat-label>Fax:</mat-label>
                             <input matInput formControlName="fax">
                         </mat-form-field>
-                        <mat-form-field>
-                           
-                            <mat-label>CNSS Number:</mat-label>
-                            <input matInput formControlName="cnssId">
-                        </mat-form-field>
 
-                        <mat-form-field>
-                         
-                            <mat-label>Noticiation Email :</mat-label>
-                            <input matInput formControlName="replyEmail">
-                        </mat-form-field>
+                       
                     </div>
                 </div>
                 <div class="buttons">
@@ -130,59 +111,11 @@
             
         </div>
         
-        <div class="form"  *ngIf="licenceForm">
-
-            <div><span class=" red Segoe">Licence Information</span></div><br><br><br>
-
-            <form autocomplete="off" [formGroup]="licenceForm" (ngSubmit)="updateLicence(licenceForm)">
-                    <div>
-                        <!-- suppleir name -->
-                        <mat-form-field>
-                          
-                            <mat-label>Licence Name : </mat-label>
-                            <input matInput formControlName="name">
-                        </mat-form-field>
-
-                        <!-- social Security Number  -->
-
-                        <mat-form-field>
-                            
-                            <mat-label>Registration Number</mat-label>
-                            <input matInput formControlName="registrationNumber">
-                        </mat-form-field>
-                        <mat-form-field>
-                          
-                            <mat-label>Issuing Institution Name</mat-label>
-                            <input matInput formControlName="issuingInstitutionName">
-                        </mat-form-field>
-                        <mat-form-field>
-                            
-                            <mat-label>Expiration Date</mat-label>
-                            <input matInput formControlName="expirationDate">
-                        </mat-form-field>
-                        <mat-form-field>
-                           
-                            <mat-label>Acquisition Date</mat-label>
-                            <input matInput formControlName="acquisitionDate">
-                        </mat-form-field>
-                        <mat-form-field>
-                          
-                            <mat-label>Category</mat-label>
-                            <input matInput formControlName="category">
-                        </mat-form-field>
-                    </div>
-                    <div class="buttons">
-                        <button mat-button >Update</button>
-                    </div>
-            </form>
-            
-        </div>
-
 
 
         <div class="form "  *ngIf="representativeForm">
 
-            <div><span class=" red Segoe">Representative Information</span></div><br><br><br>
+            <div><span class=" red Segoe">Interlocutor Information</span></div><br><br><br>
 
             <form autocomplete="off" [formGroup]="representativeForm" (ngSubmit)="updateRepresentative(representativeForm)">
                     <div>

@@ -5,7 +5,6 @@ body{
 .card {
     margin-bottom: 30px;
 }
-
 .card {
     position: relative;
     display: flex;
@@ -35,11 +34,6 @@ mat-card-title, mat-card-subtitle{
 .limitTextHeight {
     height: 20px;
     overflow: hidden;
-}
-a {
-  color: black;
-
-  text-decoration: none
 }
 .table-product.table-striped tbody tr:nth-of-type(odd) {
     background-color: #f5f5f5!important;
@@ -95,6 +89,7 @@ h1 {
     text-align: center;
     text-transform: uppercase;
     padding-bottom: 5px;
+    line-height: 100%;
     margin: 20px;
   }
   .one h1:before {
@@ -141,6 +136,10 @@ h1 {
     background-color: #111;
     
     
+  }
+  a{
+    text-decoration: none;
+    color: black;
   }
   .three h1:after {
     content: "";

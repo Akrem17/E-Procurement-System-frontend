@@ -11,6 +11,8 @@ export class INSTITUTE extends USER{
     public notificationEmail!: string
     public phone!: string
     public fax!: string
+    public addressId!:number
     public address!: ADDRESS
+    public interlocutorId!:number
     public interlocutor!:REPRESENTATIVE
 } 

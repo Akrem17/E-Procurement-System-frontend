@@ -1,0 +1,128 @@
+
+<div class="container" *ngIf="institute"> 
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="one">
+                    <h1>{{institute.nameFr}}</h1>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="three">
+                        <h1>institute Information</h1>
+
+                    </div><br>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" width="400">institute Name : </td>
+                                    <td>{{institute.nameFr}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Company Name</td>
+                                    <td>{{institute.nameAr}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Category : </td>
+                                    <td>{{institute.typeOfInstitute}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Registration Number : </td>
+                                    <td>{{institute.areaType}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Registration Date : </td>
+                                    <td>{{institute.representativeName}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Tax Number : </td>
+                                    <td>{{institute.notificationEmail}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">CNSS Number: </td>
+                                    <td>{{institute.phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Buisness Classification : </td>
+                                    <td>{{institute.fax}}</td>
+                                </tr>
+                               
+                                  
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="three">
+                        <h1>Address Information </h1>
+                    </div><br>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" width="400">Postal Code</td>
+                                    <td>{{institute.address.postalCode}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">City</td>
+                                    <td>{{institute.address.city}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Street</td>
+                                    <td>{{institute.address.street1}}</td>
+                                </tr>
+                             
+                                
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="three">
+                        <h1>Representative </h1>
+                    </div>
+
+                    <div class="table-responsive">
+
+
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td class="bold" width="400">Name</td>
+                                    <td>{{institute.interlocutor.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Social Security Number</td>
+                                    <td>{{institute.interlocutor.socialSecurityNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Position</td>
+                                    <td>{{institute.interlocutor.position}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Social Security Number Date</td>
+                                    <td>{{institute.interlocutor.socialSecurityNumberDate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Phone</td>
+                                    <td>{{institute.interlocutor.phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">Email</td>
+                                    <td>{{institute.interlocutor.email}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

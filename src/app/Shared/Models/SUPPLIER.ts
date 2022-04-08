@@ -20,7 +20,10 @@ export class SUPPLIER extends USER  {
     public phone!: string
     public fax!: string
     public representative!:REPRESENTATIVE
+    public representativeId!:number;
+    public licenceId!:number;
     public licence!:LICENCE
+    public addressId!:number;
     public address!:ADDRESS
     
  

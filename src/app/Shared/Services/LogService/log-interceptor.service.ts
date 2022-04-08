@@ -1,6 +1,6 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {  Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -33,7 +33,7 @@ export class LogInterceptorService implements HttpInterceptor{
                     errorMsg,
                     'error'
                   ).then(()=>{
-                    this.route.navigate(['/error']);
+                    //this.route.navigate(['/error']);
 
                   })
 

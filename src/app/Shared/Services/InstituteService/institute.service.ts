@@ -22,7 +22,7 @@ export class InstituteService {
     return this.http.get(this.instituteRoute+id);
   }
 
-  updateInstitute(id:string,institute:INSTITUTE){
+  updateInstitute(id:string,institute:INSTITUTE):Observable<any>{
     return this.http.put(this.instituteRoute+id,institute);
   }
   deleteInstitute(id:string){

@@ -42,6 +42,7 @@
 
     <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/{{userId}}/offers">My Offers</a>
     <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/{{userId}}">Profile</a>
+    <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/institute/{{userId}}">Profile</a>
 
 
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Institution Space</a>
@@ -67,7 +68,7 @@
     <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus"
       routerLink="login">Login</a>
 
-    <a class="nav-link dropdown" *ngIf="(loginStatus$ | async) as loginStatus" > <i
+    <a class="nav-link dropdown" *ngIf="(type$ |async)=='supplier'"  > <i
         class="fa-solid fa-user-vneck"></i>Settings
 
       <div class="dropdown-content">
@@ -79,6 +80,17 @@
       </div>
     </a>
 
+    <a class="nav-link dropdown" *ngIf="(type$ |async)=='institute'"  > <i
+      class="fa-solid fa-user-vneck"></i>Settings
+
+    <div class="dropdown-content">
+      <a class="sublink" routerLink="institute/{{userId}}/edit">Edit Profile </a>
+      <a class="sublink" href="#">Edit Password</a>
+      <a class="sublink" (click)="logout()" *ngIf="loginStatus$ | async as loginStatus">
+        Logout</a>
+
+    </div>
+  </a>
 
     <a href="javascript:void(0);" class="icon" (click)="toggle()">
       <i class="fa fa-bars"></i>
