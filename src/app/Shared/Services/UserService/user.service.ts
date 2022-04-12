@@ -21,7 +21,7 @@ getAllUsers(){
   this.http.get(this.usersRoute);
 
 }
-getUserById(id :string){
+getUserById(id :string):Observable<any>{
 
   return this.http.get(this.usersRoute+id);
 
