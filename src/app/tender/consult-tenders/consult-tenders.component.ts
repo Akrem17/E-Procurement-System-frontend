@@ -27,9 +27,7 @@ export class ConsultTendersComponent implements OnInit {
     this.tenderService.getTenders(this.page, this.itemPerPage).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.tenders = response.data.tenders;
-      console.log(response)
       this.totalRecords = response.data.items;
-      console.log(this.totalRecords)
       this.tenders?.map(tender => {
         let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
         let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();
@@ -89,14 +87,12 @@ export class ConsultTendersComponent implements OnInit {
       filters = this.filters.value;
       filters.city = selectedValue;
 
-      console.log(filters)
     })
     this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
       let filters: TENDER_FILTERS;
       filters = this.filters.value;
       filters.postDate = selectedValue;
 
-      console.log(filters)
     })
 
   }
@@ -123,7 +119,6 @@ export class ConsultTendersComponent implements OnInit {
   }
 
   applyFilters(form) {
-    console.log(form.value)
   }
 
 
@@ -140,7 +135,6 @@ export class ConsultTendersComponent implements OnInit {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.tenders = response.data.tenders;
       this.totalRecords = response.data.items;
-      console.log(this.totalRecords)
       this.tenders.map(tender => {
         let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
         let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();

@@ -41,8 +41,10 @@
     <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/add-tender">Add Tender</a>
 
     <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/{{userId}}/offers">My Offers</a>
+    <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}">My tenders</a>
+
     <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/{{userId}}">Profile</a>
-    <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/institute/{{userId}}">Profile</a>
+    <a  *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/institute/{{userId}}">Profile</a>
 
 
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Institution Space</a>
@@ -58,8 +60,16 @@
 
 
 
-    <a *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}">My tenders</a>
+    <a style="float: right;" *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}"><i class="fa fa-bell" aria-hidden="true"></i></a>
 
+    <a  class="nav-link dropdown" ><i class="fa fa-bell" aria-hidden="true"></i>
+
+      <div class="dropdown-content" >
+        <a class="sublink"  *ngFor="let message of messages" >{{message}} </a>
+    
+
+      </div>
+    </a>
 
 
     <!-- <a class="nav-link" href="#" *ngIf="email$ | async as email">{{email | uppercase}}</a> -->
@@ -68,8 +78,7 @@
     <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus"
       routerLink="login">Login</a>
 
-    <a class="nav-link dropdown" *ngIf="(type$ |async)=='supplier'"  > <i
-        class="fa-solid fa-user-vneck"></i>Settings
+    <a  class="nav-link dropdown" *ngIf="(type$ |async)=='supplier'"  >Settings
 
       <div class="dropdown-content">
         <a class="sublink" routerLink="supplier/{{userId}}/edit">Edit Profile </a>
@@ -80,7 +89,7 @@
       </div>
     </a>
 
-    <a class="nav-link dropdown" *ngIf="(type$ |async)=='institute'"  > <i
+    <a   class="nav-link dropdown" *ngIf="(type$ |async)=='institute'"  > <i
       class="fa-solid fa-user-vneck"></i>Settings
 
     <div class="dropdown-content">

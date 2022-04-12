@@ -46,7 +46,6 @@ export class AddOfferComponent implements OnInit {
     const pdfBytePattern = "25504446"
     const fileHeader = await this.specificationService. getFileHeader( event.target.files[0]).then((res)=>{
 
-      console.log(res)
       if(res!=pdfBytePattern){
         Swal.fire('Error!', 'Please enter only pdf files.', 'error')
         event.target.value = null;
@@ -61,14 +60,12 @@ export class AddOfferComponent implements OnInit {
       }
       
     }});
-    console.table(this.myFiles)
 
 }
   
   
   onSubmit(form: FormGroup) {
     
-    console.log(form)
     this.basicInfo=form
       //set the next component visibilty to true
      // this.next=true;
@@ -80,22 +77,18 @@ export class AddOfferComponent implements OnInit {
     if(response.status){
       let tenderId = this.route.snapshot.paramMap.get("id");
       supplierId=response.data[0].id;
-      console.log(supplierId)
      let offer:OFFER = new OFFER();
      offer.supplierId=supplierId;
      offer.tenderId=parseInt(tenderId);
      offer.totalMontant=form.get("totalAmount").value;
      
      offer.name=form.get("name").value;
-     console.log(offer);
      
       this.offerService.createOffer(offer).subscribe(res=>{
         let NewOffer: RESPONSE = { status: res.status, message: res.message, data: res.data };
 
-        console.log(NewOffer)
         
         const formData = new FormData();
-        console.table(this.myFiles)
         this.myFiles.forEach((file) => {
           
           formData.append('MyFile', file); 
@@ -125,7 +118,6 @@ export class AddOfferComponent implements OnInit {
               '',
               'error'
             )
-          console.log(res)
           }
            
         
