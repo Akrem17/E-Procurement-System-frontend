@@ -45,7 +45,7 @@ export class AuthService {
     if (localStorage.getItem('token') && localStorage.getItem('token') != 'undefined')
     this.isUserLoggedIn.next(true);
     this.type.next(localStorage.getItem('type'))
-    this.email.next(localStorage.getItem('email'))
+   // this.email.next(localStorage.getItem('email')) //hedhi nahit'ha khatr email traja3 twice as observable 
 
     return !!(localStorage.getItem('token') && (localStorage.getItem('token') != 'undefined'));
   }

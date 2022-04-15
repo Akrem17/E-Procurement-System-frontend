@@ -16,5 +16,7 @@ export const Models = {
     institute:"institutes/" ,
     citizen:"citizens/",
     address:"addresses/",
-    licence:"Licences/"
+    licence:"Licences/",
+    notification:"Notificaiton/",
+    socketURI:"toastr/"
 }
