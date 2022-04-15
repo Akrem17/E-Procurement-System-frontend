@@ -209,4 +209,6 @@ text-align: center;
   .dropdown:hover .dropbtn {
     background-color: #992323;
   }
-  
+  .red{
+    color: red
+  }
