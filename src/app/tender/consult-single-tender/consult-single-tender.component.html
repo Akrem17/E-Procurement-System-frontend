@@ -15,7 +15,6 @@
                     </div>
 
                     <div class="table-responsive">
-                      
                         <table  class="table table-striped table-product">
                             <tbody>
                                 <tr>
@@ -223,7 +222,7 @@
                  
 
                         
-                        
+      
   <table class="table" >
     <thead>
       <tr>
@@ -265,12 +264,14 @@
     </tbody>
     
   </table>
+  <div style="float: left; margin-bottom: 10px !important;">   <button (click)="extractResult()">Extract result</button></div>
+
                         <mat-paginator aria-label="Select page" showFirstLastButtons [length]=totalRecords [pageSize]=itemPerPage [pageSizeOptions]="[1,5, 10, 25, 100]"
                         aria-label="Select page" showFirstLastButtons (page)="onChangePage($event)">
 
                         </mat-paginator>
                     </div>
-                    <div class="mid">
+                    <div class="mid" *ngIf="!winner">
                         <a mat-button mat-raised-button #tooltip="matTooltip" matTooltip="Participate to tender"
                         href="offer/add/{{tender.id}}"tender.id matTooltipHideDelay="250"
                             style="width: 200px; margin-top: 60px;" >Participate</a>
@@ -278,6 +279,17 @@
                             (click)="loadMoreClassification()" matTooltipHideDelay="250"
                             style="width: 200px; margin-top: 60px;">Repport</button>
                     </div>
+                    <div class="three">
+                        <h1>Winner</h1>
+                    </div>
+                        <a *ngIf="winner" href="offers/{{winner.id}}">
+                        <div  style="margin-bottom: 30px;">
+                            <app-custom-card [title]="winner.name" [subtitle]="winner.totalMontant"
+                                [actions]="winner.name"></app-custom-card>
+                        </div>
+                    </a>
+                   
+
                 </div>
             </div>
         </div>

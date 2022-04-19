@@ -28,11 +28,9 @@ export class AddTenderAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      countryName: ['', [Validators.required]],
       postalCode: ['', [Validators.required ]],
       city: ['', [Validators.required]],
       street1: ['', [Validators.required]],
-      street2: ['', [Validators.required]],   
 
     });
   

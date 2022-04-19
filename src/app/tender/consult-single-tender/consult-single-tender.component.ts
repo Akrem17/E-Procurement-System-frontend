@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { OfferService } from 'src/app/Shared/Services/OfferService/offer.service';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
 import { PageEvent } from '@angular/material/paginator';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-consult-single-tender',
@@ -29,6 +30,7 @@ export class ConsultSingleTenderComponent implements OnInit {
   page: number = 1
   totalRecords: number;
   data:OFFER[];
+  winner:OFFER;
   constructor(private _offerService :OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
 
 
@@ -45,7 +47,19 @@ export class ConsultSingleTenderComponent implements OnInit {
 
   }
 
-  
+  extractResult(){
+    this.tenderService.extractResult(this.id).subscribe(res=>{
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      console.log(response)
+      if (!response.status){
+        Swal.fire(
+          'Cannot be extracted',
+          response.message,
+          'error'
+        )
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("id");
@@ -57,9 +71,16 @@ export class ConsultSingleTenderComponent implements OnInit {
       this.tenderClassification = this.paginate(this.tender.tenderClassification, 3, 1);
       this.offers=[... this.tender.offers]
       this.totalRecords=this.tender.offers.length
-
       this.data=this.paginate( this.offers,this.itemPerPage,this.page)
-  
+        
+    })
+
+    this.tenderService.extractResult(this.id).subscribe((res)=>{
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      if(response.status){
+        console.log(response.data)
+        this.winner=response.data;
+      }
     })
   }
 
