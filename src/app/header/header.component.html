@@ -62,14 +62,16 @@
 
     <a style="float: right;" *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}"></a>
 
-    <a (mouseover)='RemoveNotification()' class="nav-link dropdown" ><i class="fa fa-bell " aria-hidden="true"> </i><sup *ngIf="notificationsCount>0">{{notificationsCount}}</sup>
+    <a  (mouseover)='RemoveNotification()' class="nav-link dropdown " ><i class="fa fa-bell " aria-hidden="true"> </i><sup *ngIf="notificationsCount>0">{{notificationsCount}}</sup>
 
-      <div class="dropdown-content" >
-        <a class="sublink "  *ngFor="let message of messages" >
+      <div  class="dropdown-content " >
+        <div class="test" >
+        <div class="sublink "    >
           
-        <a  routerLink="/offers/{{message.offerId}}"> A new offer from {{message.offer.supplier.supplierName}} </a>
+        <a  *ngFor="let message of messages"  routerLink="/offers/{{message.offerId}}"> A new offer from {{message.offer.supplier.supplierName}} </a>
         
-        </a>
+        </div>
+      </div>
     
 
       </div>

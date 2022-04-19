@@ -29,8 +29,7 @@ export class AddTenderComponent implements OnInit {
       startDate: ['', [Validators.required]],
       deadLine: ['', [Validators.required]],
       evaluationMethod: ['', [Validators.required]],
-      departement: ['', [Validators.required]],
-      specificationURL: ['', [Validators.required]]
+      departement: ['', [Validators.required]]
 
     });
     

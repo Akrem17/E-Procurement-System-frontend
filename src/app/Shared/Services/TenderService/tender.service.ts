@@ -39,7 +39,9 @@ export class TenderService {
    
     }); 
     return this.http.get(this.tendersRoute+"?"+filter);
-  
   }
+  extractResult(id:string):Observable<any>{
+    return this.http.get(this.tendersRoute+id+"/extract");
+  } 
   
 }

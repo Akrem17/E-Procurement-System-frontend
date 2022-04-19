@@ -2,6 +2,7 @@ import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, Input, OnInit, VERSION } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Models } from 'src/app/endpoints';
 import { ADDRESS } from 'src/app/Shared/Models/ADDRESS';
 import { REPRESENTATIVE } from 'src/app/Shared/Models/REPRESENTATIVE';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
@@ -128,7 +129,7 @@ export class AddTenderSpecificationsComponent implements OnInit {
             'success'
           )
             })
-            this._router.navigate(['/consulting']);
+            this._router.navigate([Models.tenders]);
 
         }
        })

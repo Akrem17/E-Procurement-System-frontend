@@ -31,26 +31,7 @@
               </div><br><br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   
-         
-              <!-- social Security Number  -->
-                      <!-- Supplier buisnessType -->
-            <mat-form-field>
-                <mat-error
-                *ngIf="(myForm.get('countryName')?.touched || myForm.get('countryName')?.dirty) && myForm.get('countryName')?.invalid">
-                Country is required.
-              </mat-error>
-                <mat-label>Country</mat-label>
-                <mat-select formControlName="countryName">
-                  <mat-option value="type1">
-                    Tunisia
-                  </mat-option>
-              
-                </mat-select>
-              </mat-form-field>
-  
-        
-              <!-- supplier category -->
-      
+    
   
               <!-- position  -->
                       <!-- Supplier buisnessType -->
@@ -88,22 +69,12 @@
                   *ngIf="(myForm.get('street1')?.touched || myForm.get('street1')?.dirty) && myForm.get('street1')?.invalid">
                   Street1 Name is required.
                 </mat-error>
-                <mat-label>Street 1</mat-label>
+                <mat-label>Street </mat-label>
                 <input formControlName="street1" type="text" matInput>
               </mat-form-field>
   
                 <br>
-                <!-- phone taxId -->
-                <mat-form-field>
-                    <mat-error
-                    *ngIf="(myForm.get('street2')?.touched || myForm.get('street2')?.dirty) && myForm.get('street2')?.invalid">
-                    Street2 Name is required. 
-                    </mat-error>
-                    <mat-label>Street 2</mat-label>
-                    <input formControlName="street2" type="text" matInput>
-                </mat-form-field><br>
-
-  
+       
               <div style="text-align: center;">
                 <button mat-button type="submit" class="login"  [disabled]="myForm.invalid" >SUBMIT </button>
                 <br><br>
