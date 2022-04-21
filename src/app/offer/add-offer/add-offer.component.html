@@ -26,7 +26,7 @@
 
               <!-- social Security Number  -->
        
-              <mat-form-field>
+              <!-- <mat-form-field>
                 <mat-error
                   *ngIf="(myForm.get('businessKind')?.touched || myForm.get('businessKind')?.dirty) && myForm.get('businessKind')?.invalid">
                   Tender Name is required.
@@ -34,10 +34,31 @@
                 <mat-label>Total Amount (TND)</mat-label>
                 <input matInput formControlName="totalAmount" >
               </mat-form-field>
-            
+             -->
               <br><br>
+              <div class="three">
+                <h1>Classifications</h1>
+
+            </div>
+            <div style="margin-top: 30px;" class="row" *ngIf="tenderClassification?.length>0">
+                <div class="col-md-4" *ngFor="let classifciation of tenderClassification">
+
+                    <div style="margin-bottom: 30px;">
+                        <app-offer-classification-card (data)="addItem($event)" [id]="classifciation.id" [title]="classifciation.name" [subtitle]="classifciation.amount"
+                            [actions]="classifciation.description"></app-offer-classification-card>
+                    </div>
+
+                </div>
+
+          
+
+            </div>
+            
+ 
+      <br>   <br>
+    Total Amount : {{totalAmount}} TND<br>   <br>
  <mat-label>Financial</mat-label>
- <br>
+ <br>  
     <br>
 
     <input 

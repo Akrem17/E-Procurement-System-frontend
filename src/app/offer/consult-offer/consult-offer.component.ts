@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as saveAs from 'file-saver';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
+import { OFFER_CLASSIFICATION } from 'src/app/Shared/Models/OFFER_CLASSIFICATIONS';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { SPECIFICATION } from 'src/app/Shared/Models/SPECIFICATION';
 import { TENDER } from 'src/app/Shared/Models/TENDER';
@@ -21,27 +22,28 @@ export class ConsultOfferComponent implements OnInit {
   
   tender!: TENDER;
   editForm: boolean = false;
-  tenderClassification: TENDER_CLASSIFICATION[] = [];
+  offerClassification: OFFER_CLASSIFICATION[] = [];
   page_size = 1;
-  tenderSpecifications: any[] = [];
   id: string;
   offer!:OFFER;
   financial!:SPECIFICATION;
+  consume="read";
+  readTotalPrice
   constructor(private offerService:OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
 
 
 
-  paginate(array, page_size, page_number) {
-    // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
-    return array?.slice((page_number - 1) * page_size, page_number * page_size);
-  }
+  // paginate(array, page_size, page_number) {
+  //   // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+  //   return array?.slice((page_number - 1) * page_size, page_number * page_size);
+  // }
 
 
-  loadMoreClassification() {
-    this.page_size++;
-    this.tenderClassification.push(...this.paginate(this.tender?.tenderClassification, 3, this.page_size));
+  // loadMoreClassification() {
+  //   this.page_size++;
+  //   this.offerClassification.push(...this.paginate(this.tender?.tenderClassification, 3, this.page_size));
 
-  }
+  // }
 
 
   ngOnInit(): void {
@@ -54,19 +56,10 @@ export class ConsultOfferComponent implements OnInit {
       this.financial=this.offer.files[0];
       console.log(this.financial)
 
-      
+      this.offerClassification=response.data.offerClassification;
 
     })
-    this.id = "250";
-
-    this.tenderService.getTenderById(this.id).subscribe(res => {
-      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      this.tender = response.data;
-      this.tenderClassification = this.paginate(this.tender?.tenderClassification, 3, 1);
-      
-      console.log(this.tender);
-    })
-
+    //this.offerClassification = this.paginate(this.tender?.tenderClassification, 3, 1);
 
   }
 

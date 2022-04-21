@@ -78,7 +78,6 @@ export class ConsultSingleTenderComponent implements OnInit {
     this.tenderService.extractResult(this.id).subscribe((res)=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       if(response.status){
-        console.log(response.data)
         this.winner=response.data;
       }
     })

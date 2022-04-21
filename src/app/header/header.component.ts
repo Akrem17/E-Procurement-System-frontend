@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
               const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
 
               if (response.data.email == resEmail) {
-                this.messages.push(data)
+                this.messages.unshift(data)
                 this.notificationsCount++;
 
               }

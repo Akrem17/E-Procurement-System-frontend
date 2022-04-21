@@ -62,14 +62,14 @@
                         <h1>Representative </h1>
                     </div>
 
-                    <div class="table-responsive">
+                    <!-- <div class="table-responsive">
 
 
                         <table class="table table-striped table-product">
                             <tbody>
                                 <tr>
                                     <td class="bold" width="400">Name</td>
-                                    <td>{{tender.responsible.name}}</td>
+                                    <td>{{offer.responsible.name}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Social Security Number</td>
@@ -94,7 +94,7 @@
 
                             </tbody>
                         </table>
-                    </div>
+                    </div> -->
 
                     <div class="three">
                         <h1>Offer Informations </h1>
@@ -110,7 +110,7 @@
                                 </tr>
                                 <tr>
                                     <td class="bold">Total Amount (TND) </td>
-                                    <td>{{offer.totalMontant}}</td>
+                                    <td>{{offer.totalMontant}} TND</td>
                                 </tr>
 
                                 <tr>
@@ -130,6 +130,29 @@
 
 
 
+                    <div class="three">
+                        <h1>Classifications</h1>
+
+                    </div>
+                    <div style="margin-top: 30px;" class="row" *ngIf="offerClassification.length>0">
+                        <div class="col-md-4" *ngFor="let classifciation of offerClassification">
+
+                            <div style="margin-bottom: 30px;">
+                                <app-offer-classification-card [title]="classifciation.name" [subtitle]="classifciation.qte"
+                                    [actions]="classifciation.description" [consume]="consume" [readTotalPrice]="classifciation.amount"> </app-offer-classification-card>
+                            </div>
+
+                        </div>
+<!-- 
+                        <div class="mid">
+                            <button mat-button mat-raised-button #tooltip="matTooltip"
+                                matTooltip="See more classifications" (click)="loadMoreClassification()"
+                                matTooltipHideDelay="250" style="width: 200px; margin-top: 60px;">See more</button>
+
+                        </div> -->
+
+                    </div>
+
 
                     <div class="three">
                         <h1>Financial </h1>
@@ -137,7 +160,7 @@
                     </div>
 
 
-                    <div style="margin-top: 30px;" class="table-responsive">
+                     <div style="margin-top: 30px;" class="table-responsive">
                         <mat-list>
                             <div mat-subheader>Financial:</div>
                             <mat-list-item>
