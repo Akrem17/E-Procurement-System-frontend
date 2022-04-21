@@ -62,6 +62,7 @@ import { EditSupplierComponent } from './supplier/edit-supplier/edit-supplier.co
 import { ConsultSupplierComponent } from './supplier/consult-supplier/consult-supplier.component';
 import { ConsultInstituteComponent } from './institute/consult-institute/consult-institute.component';
 import { EditInstituteComponent } from './institute/edit-institute/edit-institute.component';
+import { OfferClassificationCardComponent } from './custom-card/offer-classification-card/offer-classification-card.component';
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import { EditInstituteComponent } from './institute/edit-institute/edit-institut
     EditSupplierComponent,
     ConsultSupplierComponent,
     ConsultInstituteComponent,
-    EditInstituteComponent
+    EditInstituteComponent,
+    OfferClassificationCardComponent
   ],
   imports: [
     BrowserModule,

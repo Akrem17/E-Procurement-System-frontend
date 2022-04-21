@@ -1,7 +1,8 @@
 <mat-card>
     <mat-card-title>{{title}} </mat-card-title>
-    <mat-card-subtitle>Starting price {{subtitle}} TND</mat-card-subtitle>
+    <mat-card-subtitle>Quantity : {{subtitle}} </mat-card-subtitle>
     <mat-card-actions>
+        Description:
         <p [ngClass]="{'limitTextHeight': isReadMore}">
             {{actions}}
         </p>

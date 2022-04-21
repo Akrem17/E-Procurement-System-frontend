@@ -108,11 +108,12 @@ export class AddTenderSpecificationsComponent implements OnInit {
   //modeling tender
     let tender :TENDER = new TENDER();
     tender.addressReceipt=adrress;tender.responsible=responsable;tender.budget=this.basicInfo.value.budget;tender.tenderClassification=tendersClass;tender.businessKind=this.basicInfo.value.businessKind;tender.departement=this.basicInfo.value.departement;tender.evaluationMethod=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.evaluationMethod;tender.financing=this.basicInfo.value.financing;tender.name=this.basicInfo.value.name;tender.specificationURL=this.basicInfo.value.specificationURL;tender.startDate=this.basicInfo.value.startDate;tender.deadLine=this.basicInfo.value.deadLine;
-  
+    console.log(tender)
 
     this.userService.FilterUserBy(this._auth.email.value).subscribe(res=>{
        let response: RESPONSE = { status: res.status, message: res.message, data: res.data };
        if(response.status){
+         
         tender.instituteId=response.data[0].id;
         //call specification service
         this.tenderService.postTender(tender).subscribe(res=>{

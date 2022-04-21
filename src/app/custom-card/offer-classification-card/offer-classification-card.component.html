@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-title>{{title}} </mat-card-title>
+    <mat-card-subtitle>Quantity : {{subtitle}} </mat-card-subtitle>
+    <mat-card-actions>
+        <p [ngClass]="{'limitTextHeight': isReadMore}">
+            {{actions}}<br>
+        </p>
+        <button mat-button (click)="showText($event)">
+            {{ isReadMore ? 'Read More': 'Read Less' }}
+        </button><br>
+       <span  style="color:red"> Total price:<span *ngIf="readTotalPrice" > <span>{{readTotalPrice}} </span><span *ngIf="consume!='read'">{{ (totalPrice )}}</span>  TND </span></span><br><br>
+
+        <mat-form-field *ngIf="consume!='read'">
+            <!-- <mat-error
+              *ngIf="(myForm.get('businessKind')?.touched || myForm.get('businessKind')?.dirty) && myForm.get('businessKind')?.invalid">
+              Tender Name is required.
+            </mat-error> -->
+            <mat-label>Price per unit (TND)</mat-label>
+            <input matInput (keyup)="setTotalPrice()" [(ngModel)]="unitPrice" name="example">
+          </mat-form-field>
+        
+    
+    </mat-card-actions>
+
+</mat-card>

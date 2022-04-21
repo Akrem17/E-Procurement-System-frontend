@@ -1,6 +1,7 @@
 import { TENDER } from "./TENDER"
 import { SUPPLIER } from "./SUPPLIER"
 import { SPECIFICATION } from "./SPECIFICATION";
+import { OFFER_CLASSIFICATION } from "./OFFER_CLASSIFICATIONS";
 
 
 export class OFFER {
@@ -16,7 +17,7 @@ export class OFFER {
     public tender:TENDER=null;
     public tenderInfo:TENDER=null;
     public files!:SPECIFICATION[];
-    
+    public offerClassification:OFFER_CLASSIFICATION[];
 
 
 
