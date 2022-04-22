@@ -266,7 +266,7 @@
   </table>
   <div style="float: left; margin-bottom: 10px !important;">   <button (click)="extractResult()">Extract result</button></div>
 
-                        <mat-paginator aria-label="Select page" showFirstLastButtons [length]=totalRecords [pageSize]=itemPerPage [pageSizeOptions]="[1,5, 10, 25, 100]"
+                        <mat-paginator aria-label="Select page" [pageIndex]="pageNo" showFirstLastButtons [length]=totalRecords [pageSize]=itemPerPage [pageSizeOptions]="[1,5, 10, 25, 100]"
                         aria-label="Select page" showFirstLastButtons (page)="onChangePage($event)">
 
                         </mat-paginator>

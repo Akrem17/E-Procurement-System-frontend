@@ -31,6 +31,8 @@ export class ConsultSingleTenderComponent implements OnInit {
   totalRecords: number;
   data:OFFER[];
   winner:OFFER;
+  pageNo: number;
+
   constructor(private _offerService :OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
 
 
@@ -62,6 +64,7 @@ export class ConsultSingleTenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.pageNo = 0;
     this.id = this.route.snapshot.paramMap.get("id");
 
 
@@ -71,8 +74,10 @@ export class ConsultSingleTenderComponent implements OnInit {
       this.tenderClassification = this.paginate(this.tender.tenderClassification, 3, 1);
       this.offers=[... this.tender.offers]
       this.totalRecords=this.tender.offers.length
+      console.log(this.offers)
+
       this.data=this.paginate( this.offers,this.itemPerPage,this.page)
-        
+
     })
 
     this.tenderService.extractResult(this.id).subscribe((res)=>{
@@ -88,8 +93,11 @@ export class ConsultSingleTenderComponent implements OnInit {
     this.data = []
 
     this.itemPerPage = event.pageSize
-    this.page = (event.pageIndex * event.pageSize)+1
+    event.pageIndex > event.previousPageIndex? this.page ++:this.page --
+    console.log(event)
+    console.log(   this.itemPerPage,this.page)
     this.data=this.paginate( this.offers,this.itemPerPage,this.page)
+    console.log(this.data)
 
   }
 
