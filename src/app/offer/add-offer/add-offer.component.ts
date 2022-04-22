@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
+import { REPRESENTATIVE } from 'src/app/Shared/Models/REPRESENTATIVE';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { SUPPLIER } from 'src/app/Shared/Models/SUPPLIER';
 import { TENDER } from 'src/app/Shared/Models/TENDER';
@@ -84,6 +85,11 @@ export class AddOfferComponent implements OnInit {
 
     this.myForm = this.fb.group({
       name: ['', [Validators.required]],
+      representativeName: ['', [Validators.required]],
+      socialSecurityNumber: ['', [Validators.required]],
+      position: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       financial: ['', [Validators.required]],
       technical: ['', [Validators.required]],
       other: ['', [Validators.required]],
@@ -119,6 +125,21 @@ export class AddOfferComponent implements OnInit {
         let tenderId = this.route.snapshot.paramMap.get("id");
         supplierId = response.data[0].id;
         let offer: OFFER = new OFFER();
+        console.log(form.value)
+         let representative:REPRESENTATIVE =new REPRESENTATIVE();
+        representative.email=form.get("email").value;
+    
+        representative.name=form.get("representativeName").value;
+ 
+        representative.phone=form.get("phone").value;
+
+        representative.position=form.get("position").value;
+
+        representative.socialSecurityNumber=form.get("socialSecurityNumber").value;
+
+        representative.socialSecurityNumberDate="09/09/2022";
+        offer.representative=representative;
+
         offer.supplierId = supplierId;
         offer.tenderId = parseInt(tenderId);
         offer.totalMontant = this.totalAmount;
