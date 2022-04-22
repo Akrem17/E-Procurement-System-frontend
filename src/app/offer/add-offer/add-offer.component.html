@@ -23,18 +23,50 @@
                 <mat-label>Offer Name</mat-label>
                 <input matInput formControlName="name" >
               </mat-form-field>
+              <mat-form-field>
+                <mat-error
+                  *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
+                  Tender Name is required.
+                </mat-error>
+                <mat-label>Representative Name</mat-label>
+                <input matInput formControlName="representativeName" >
+              </mat-form-field>
+              <mat-form-field>
+                <mat-error
+                  *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
+                  Tender Name is required.
+                </mat-error>
+                <mat-label>Representative Cin Number</mat-label>
+                <input matInput formControlName="socialSecurityNumber" >
+              </mat-form-field>
+              <mat-form-field>
+                <mat-error
+                  *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
+                  Tender Name is required.
+                </mat-error>
+                <mat-label>Representative Position</mat-label>
+                <input matInput formControlName="position" >
+              </mat-form-field>
+              <mat-form-field>
+                <mat-error
+                  *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
+                  Tender Name is required.
+                </mat-error>
+                <mat-label> Representative Phone</mat-label>
+                <input matInput formControlName="phone" >
+              </mat-form-field>
+              <mat-form-field>
+                <mat-error
+                  *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
+                  Tender Name is required.
+                </mat-error>
+                <mat-label>Representative Email</mat-label>
+                <input matInput formControlName="email" >
+              </mat-form-field>
 
               <!-- social Security Number  -->
        
-              <!-- <mat-form-field>
-                <mat-error
-                  *ngIf="(myForm.get('businessKind')?.touched || myForm.get('businessKind')?.dirty) && myForm.get('businessKind')?.invalid">
-                  Tender Name is required.
-                </mat-error>
-                <mat-label>Total Amount (TND)</mat-label>
-                <input matInput formControlName="totalAmount" >
-              </mat-form-field>
-             -->
+      
               <br><br>
               <div class="three">
                 <h1>Classifications</h1>
