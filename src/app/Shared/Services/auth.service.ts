@@ -17,7 +17,7 @@ import { Auth } from 'src/app/endpoints';
 export class AuthService {
 
 
-  private _registreUrl = environment.apiUrl +Auth.signupSupplier;
+  private _registreCitizen = environment.apiUrl +Auth.signupCitizen;
   private _registreSupplier = environment.apiUrl + Auth.signupSupplier;
   private _registreInstitute = environment.apiUrl +Auth.signupInstitute;
   private _loginUrl = environment.apiUrl +Auth.login;
@@ -31,7 +31,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router,private userService:UserService) { }
 
   registreCitizen(citizen: CITIZEN) :Observable<any>{
-    return this.http.post<CITIZEN>(this._registreUrl, citizen);
+    return this.http.post<CITIZEN>(this._registreCitizen, citizen);
   }
 
   loginUser(user: LOGIN):Observable<any> {

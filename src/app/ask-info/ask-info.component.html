@@ -1,0 +1,93 @@
+<div class="body ">
+    <div class="container center">
+
+        <div class="card " >
+           <div style="text-align: center;"> Ask {{tender?.institute?.nameFr}}</div><br>
+
+            <form class="center" autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+             
+                <div class="wrapper">
+                    
+                <div class="part1">
+                <mat-form-field>
+                  <mat-label>Asker Firstname</mat-label>
+                  <input autocomplete="false" formControlName="firstName" type="email" matInput>
+                </mat-form-field><br><br>
+                <mat-form-field>
+                    <mat-label>Asker LastName</mat-label>
+                    <input autocomplete="false" formControlName="lastName" type="email" matInput>
+                  </mat-form-field><br><br>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input autocomplete="false" formControlName="address" type="email" matInput>
+                  </mat-form-field><br><br>
+               
+             
+                </div>
+                
+                <div class="part2">
+                    <mat-form-field>
+                        <mat-label>Phone</mat-label>
+                        <input autocomplete="false" formControlName="phone" type="email" matInput>
+                      </mat-form-field><br><br>
+                    <mat-form-field>
+                      <mat-label>Fax</mat-label>
+                      <input autocomplete="false" formControlName="fax" type="email" matInput>
+                    </mat-form-field><br><br>
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input autocomplete="false" formControlName="email" type="email" matInput>
+                      </mat-form-field><br><br>
+                   
+                    </div>
+                    
+                </div>
+                <br>
+                <mat-form-field class="example-full-width" >
+                    <mat-label>The question</mat-label>
+                    <textarea formControlName="info"  matInput placeholder="Ex. It makes me feel..."></textarea>
+                  </mat-form-field><br><br>
+
+                  <mat-label>How you want to recieve result? </mat-label>
+
+                  <section class="example-section ">
+                    <mat-checkbox  formControlName="sendToEmail" class="example-margin">Paper</mat-checkbox>
+                    <mat-checkbox  formControlName="sendToAddress" class="example-margin">Email</mat-checkbox>
+                    <mat-checkbox  formControlName="sendToChat" class="example-margin">chat</mat-checkbox>
+
+                  </section>
+                  <br><br>
+                  <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                         <b> Click to see Tunisian ask for information law</b>
+                        </mat-panel-title>
+                     
+                      </mat-expansion-panel-header>
+                      <h2>Legal texts related to access to information: </h2>
+                      <a   target="_blank" href="http://www.inat.tn/sites/default/files/images/ta2016221_0.pdf"> - Law No. 2016-22 of March 24, 2016</a>
+                      <br><br>
+                      <a   target="_blank" href="http://www.inat.tn/sites/default/files/images/18.pdf">-  Prime Minister's Circular No. 25 dated May 05, 2012 on access to administrative documents of public structures</a>
+                      <br><br>
+                      <a   target="_blank" href="http://www.inat.tn/sites/default/files/images/circ16_0.pdf">- Circular No. 16 dated March 27, 2012 on establishing transparency, good governance and combating corruption.</a>
+                      <br><br>
+                      <a   target="_blank" href="http://www.inat.tn/sites/default/files/images/circ16_0.pdf">- Decree No. 2011-41 dated May 26, 2011 relating to access to administrative documents of public structures, as revised and completed by Decree No. 2011-54 dated June 11, 2011</a>
+                     
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                   
+                      <p>I'm visible because I am open</p>
+                    </mat-expansion-panel>
+                  </mat-accordion><br><br>
+                  <button mat-button type="submit">Send</button>
+
+            </form>
+
+        </div>
+
+        
+ 
+</div>

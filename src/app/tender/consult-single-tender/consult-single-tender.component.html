@@ -271,13 +271,19 @@
 
                         </mat-paginator>
                     </div>
-                    <div class="mid" *ngIf="!winner">
+                    <div class="mid" *ngIf="!winner && userType!='citizen'" >
                         <a mat-button mat-raised-button #tooltip="matTooltip" matTooltip="Participate to tender"
                         href="offer/add/{{tender.id}}"tender.id matTooltipHideDelay="250"
                             style="width: 200px; margin-top: 60px;" >Participate</a>
                         <button mat-button mat-raised-button #tooltip="matTooltip" matTooltip="Repport the tender"
                             (click)="loadMoreClassification()" matTooltipHideDelay="250"
                             style="width: 200px; margin-top: 60px;">Repport</button>
+                    </div>
+                    <div class="mid" *ngIf="userType=='citizen'" >
+                      
+                        <button mat-button mat-raised-button #tooltip="matTooltip" matTooltip="Repport the tender"
+                            routerLink="information" matTooltipHideDelay="250"
+                            style="width: 200px; margin-top: 60px;">Ask for information</button>
                     </div>
                     <div class="three">
                         <h1>Winner</h1>
