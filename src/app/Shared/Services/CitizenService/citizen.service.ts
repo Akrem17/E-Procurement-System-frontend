@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { CITIZEN } from '../../Models/CITIZEN';
@@ -29,7 +30,7 @@ export class CitizenService {
     return this.http.delete(this.citizenRoute+id);
   }
 
-  FilterCitizenBy(filters:CITIZEN_FILTERS ){
+  FilterCitizenBy(filters:CITIZEN_FILTERS ):Observable<any>{
     let filter="";
     Object.entries(filters).forEach(res=>{
       filter+="&"+res[0]+"="+res[1];

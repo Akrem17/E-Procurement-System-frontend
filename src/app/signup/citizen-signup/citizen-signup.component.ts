@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Auth } from 'src/app/endpoints';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import Swal from 'sweetalert2';
 import { CITIZEN } from '../../Shared/Models/CITIZEN';
@@ -29,6 +30,7 @@ export class CitizenSignupComponent implements OnInit {
 
     });
   }
+
   onSubmit(form: FormGroup) {
     this.type = form.value.type;
     //create a citizen object
@@ -48,7 +50,7 @@ export class CitizenSignupComponent implements OnInit {
               ).then(()=>{
                     //the state sent with the navigate is to popup message to user to verify his email after sending him a confirmation email(catch it in login component)
 
-                this._router.navigate(['/login'],{'state':{'verify':'true'}});
+                this._router.navigate([Auth.login],{'state':{'verify':'true'}});
       
               }) }
                       

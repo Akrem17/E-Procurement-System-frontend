@@ -11,6 +11,7 @@ import { OfferService } from 'src/app/Shared/Services/OfferService/offer.service
 import { OFFER } from 'src/app/Shared/Models/OFFER';
 import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
+import { AuthService } from 'src/app/Shared/Services/auth.service';
 
 @Component({
   selector: 'app-consult-single-tender',
@@ -32,8 +33,8 @@ export class ConsultSingleTenderComponent implements OnInit {
   data:OFFER[];
   winner:OFFER;
   pageNo: number;
-
-  constructor(private _offerService :OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
+  userType:string;
+  constructor(private authService :AuthService, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
 
 
 
@@ -65,6 +66,10 @@ export class ConsultSingleTenderComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageNo = 0;
+    this.authService.type.subscribe(res=>{
+      this.userType=res;
+      console.log(this.userType)
+    })
     this.id = this.route.snapshot.paramMap.get("id");
 
 
