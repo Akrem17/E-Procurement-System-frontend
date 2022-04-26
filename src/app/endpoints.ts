@@ -18,5 +18,6 @@ export const Models = {
     address:"addresses/",
     licence:"Licences/",
     notification:"Notificaiton/",
+    askInfo:"AskForInfos/",
     socketURI:"toastr/"
 }
