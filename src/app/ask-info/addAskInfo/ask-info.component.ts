@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ASK_INFO } from '../Shared/Models/ASK_INFO';
-import { CITIZEN_FILTERS } from '../Shared/Models/CITIZEN_FILTERS';
-import { RESPONSE } from '../Shared/Models/RESPONSE';
-import { TENDER } from '../Shared/Models/TENDER';
-import { AskInfoService } from '../Shared/Services/AskInfoService/ask-info.service';
-import { AuthService } from '../Shared/Services/auth.service';
-import { CitizenService } from '../Shared/Services/CitizenService/citizen.service';
-import { TenderService } from '../Shared/Services/TenderService/tender.service';
+import { ASK_INFO } from '../../Shared/Models/ASK_INFO';
+import { CITIZEN_FILTERS } from '../../Shared/Models/CITIZEN_FILTERS';
+import { RESPONSE } from '../../Shared/Models/RESPONSE';
+import { TENDER } from '../../Shared/Models/TENDER';
+import { AskInfoService } from '../../Shared/Services/AskInfoService/ask-info.service';
+import { AuthService } from '../../Shared/Services/auth.service';
+import { CitizenService } from '../../Shared/Services/CitizenService/citizen.service';
+import { TenderService } from '../../Shared/Services/TenderService/tender.service';
 
 @Component({
   selector: 'app-ask-info',
