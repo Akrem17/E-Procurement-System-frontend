@@ -8,6 +8,7 @@ import { TENDER } from "./TENDER";
     public lastName: string | null;
     public address: string | null;
     public fax: string | null;
+    public phone: string | null;
     public email: string | null;
     public sendToEmail: boolean | null;
     public sendToChat: boolean | null;
