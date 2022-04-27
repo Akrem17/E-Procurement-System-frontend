@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AskInfoComponent } from './ask-info/ask-info.component';
+import { AskInfoComponent } from './ask-info/addAskInfo/ask-info.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeComponent } from './home/home.component';
 import { ConsultInstituteComponent } from './institute/consult-institute/consult-institute.component';
@@ -29,25 +29,28 @@ const routes: Routes = [
     path: 'login',
     canActivate: [PreventLoggedInAccessGuard],
     component: LoginComponent
-  },
+  }
+  ,
   {
     path: 'signup',
     canActivate: [PreventLoggedInAccessGuard],
     component: SignupComponent
-  },
+  }
+  ,
   {
     path: 'tenders', component: ConsultTendersComponent,
     canActivate: [AuthGuard, HasRoleGuard],
     data: {
       type: ['citizen', 'institute', 'supplier']
     }
-  },
-
+  }
+  ,
   {
     path: 'tender/:id',
     canActivate: [AuthGuard],
     component: ConsultSingleTenderComponent
-  },
+  }
+  ,
   {
     path: '',
     canActivate: [PreventLoggedInAccessGuard],
@@ -68,8 +71,6 @@ const routes: Routes = [
     }
   }
   ,
-
-  
   {
     path: 'supplier/:id/offers', component: SupplierOffersComponent,
     canActivate: [AuthGuard, HasRoleGuard],
@@ -78,8 +79,6 @@ const routes: Routes = [
     }
   }
   ,
-  
-  
   {
     path: 'supplier/:id/edit', component: EditSupplierComponent,
     canActivate: [AuthGuard, HasRoleGuard],
@@ -88,9 +87,6 @@ const routes: Routes = [
     }
   }
   ,
-  
-  
-  
   {
     path: 'tender/:id/information', component: AskInfoComponent,
     canActivate: [AuthGuard, HasRoleGuard],
@@ -99,8 +95,6 @@ const routes: Routes = [
     }
   }
   ,
-  
-  
   {
     path: 'institute/:id/edit', component: EditInstituteComponent,
     canActivate: [AuthGuard, HasRoleGuard],
@@ -109,9 +103,6 @@ const routes: Routes = [
     }
   }
   ,
-  
-  
-  
   {
     path: 'institute/:id', component: ConsultInstituteComponent,
     canActivate: [AuthGuard, HasRoleGuard],
@@ -120,7 +111,6 @@ const routes: Routes = [
     }
   }
   ,
-  
   {
     path: 'supplier/:id', component: ConsultSupplierComponent,
     canActivate: [AuthGuard, HasRoleGuard],
@@ -137,8 +127,6 @@ const routes: Routes = [
     }
   }
   ,
-  
-  
   {
     path: 'offer/edit/:id', component: EditOfferComponent,
     canActivate: [AuthGuard, HasRoleGuard],
@@ -147,7 +135,6 @@ const routes: Routes = [
     }
   }
   ,
-  
   {
     path: 'tender/edit/:id', component: EditTenderComponent,
     canActivate: [AuthGuard, HasRoleGuard],
@@ -169,8 +156,9 @@ const routes: Routes = [
     canActivate: [AuthGuard, HasRoleGuard],
     data: {
       type: ['citizen', 'institute', 'supplier']
-    
-  }}
+
+    }
+  }
 ];
 
 @NgModule({

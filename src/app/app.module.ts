@@ -63,9 +63,10 @@ import { ConsultSupplierComponent } from './supplier/consult-supplier/consult-su
 import { ConsultInstituteComponent } from './institute/consult-institute/consult-institute.component';
 import { EditInstituteComponent } from './institute/edit-institute/edit-institute.component';
 import { OfferClassificationCardComponent } from './custom-card/offer-classification-card/offer-classification-card.component';
-import { AskInfoComponent } from './ask-info/ask-info.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { AskInfoComponent } from './ask-info/addAskInfo/ask-info.component';
+import { ConsultInstituteAskInfoComponent } from './ask-info/consult-institute-ask-info/consult-institute-ask-info.component';
 
 
 @NgModule({
@@ -105,7 +106,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ConsultInstituteComponent,
     EditInstituteComponent,
     OfferClassificationCardComponent,
-    AskInfoComponent
+    AskInfoComponent,
+    ConsultInstituteAskInfoComponent
   ],
   imports: [
     BrowserModule,
