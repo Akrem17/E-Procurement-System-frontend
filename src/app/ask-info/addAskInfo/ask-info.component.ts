@@ -57,7 +57,6 @@ export class AskInfoComponent implements OnInit {
     })
   }
   onSubmit(e){
-    console.log(e.value)
     let askInfo:ASK_INFO = new  ASK_INFO();
     askInfo=e.value;
     askInfo.tenderId=parseInt(this.tenderId);

@@ -85,7 +85,7 @@
     <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus"
       routerLink="login">Login</a>
 
-    <a  class="nav-link dropdown" *ngIf="(type$ |async)=='supplier'"  >Settings
+    <a  class="nav-link dropdown"   >Settings
 
       <div class="dropdown-content">
         <a class="sublink" routerLink="supplier/{{userId}}/edit">Edit Profile </a>
