@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Models } from 'src/app/endpoints';
 import { environment } from 'src/environments/environment';
 import { ASK_INFO } from '../../Models/ASK_INFO';
+import { ASK_INFO_FILTERS } from '../../Models/ASK_INFO_FILTERS';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,16 @@ export class AskInfoService {
 
   
   constructor(private http:HttpClient) { }
-  getAskInfo(){
-    return this.http.get(this.askInfoRoute);
+  getAskInfo(askForInfoFilters:ASK_INFO_FILTERS):Observable<any>{
+    let filter="";
+    Object.entries(askForInfoFilters).forEach(res=>{
+      filter+="&"+res[0]+"="+res[1];
+   
+    }); 
+    console.log(filter)
+    return this.http.get(this.askInfoRoute+"?"+filter);
   }
-  getAskInfoById(id:string){
+  getAskInfoById(id:string):Observable<any>{
     return this.http.get(this.askInfoRoute+id);
   }
   

@@ -1,23 +1,12 @@
 <div class="messanger">
         <div class="wrapper">
 
-            <div class="askTitles">
-
-                <div class="headerClass">
-                    <h3>Akrem Hammami</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type spec</p>
-                </div>
-                <div class="headerClass">
-                    <h3>Akrem Hammami</h3>
-                    <p> but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets c</p>
-                    </div>
-                <div class="headerClass">
-                    <h3>Akrem Hammami</h3>
-                    <p>that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making </p>
-                    </div>
-                <div class="headerClass">
-                    <h3>Akrem Hammami</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type spec</p>
+            <div class="askTitles" >
+                
+          
+                <div class="headerClass" *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
+                    <h3> {{askInfo.firstName}} {{askInfo.lastName}}</h3>
+                    <p>{{askInfo.information}}</p>
                 </div>
 
 
@@ -25,31 +14,41 @@
             <div class="askDetails">
 
 
-                <div class="title"> <h1>Akrem Hammami</h1></div>    
-
-                <div>
-                    <span>Phone : 2827563</span>
-                </div>
-                <div>
-                    <span>Fax : 785484</span>
-                </div>
-                <div>
-                    <span>Email : akremhammami@outlook.com</span>
-                </div>
-
-                <br><br><br>
-                <p class="center">
-
-                    able content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various
-                </p>
-                <br><br>
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Leave an answer</mat-label>
-                    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-                  </mat-form-field>
-                  <input type="file" #UploadFileInput id="fileUpload"  name="fileUpload"
-                  multiple="multiple" accept="image/*" />Uplaod Files
+                  
+                  <div *ngIf="shownAskInfo" class="container">
           
+                  <div class="title"> <h1>{{shownAskInfo.firstName}} {{shownAskInfo.lastName}}</h1></div>    
+
+                  <div>
+                      <span>Phone : {{shownAskInfo.phone}}</span>
+                  </div>
+                  <div>
+                      <span>Fax : {{shownAskInfo.fax}}</span>
+                  </div>
+                  <div >
+                      <span>Email : {{shownAskInfo.email}}</span>
+                  </div>
+  
+                  <br><br><br>
+                  <div style="border: 3px solid black;">
+
+                  <p class="">{{shownAskInfo.information}}</p>
+                  </div>
+                  <br><br>
+                  <div  class="answer" *ngIf="shownAskInfo.askForInfoAnswer" style="border: 3px solid rgb(71, 56, 236);" >
+                  <p >{{shownAskInfo.askForInfoAnswer.message}}</p>
+                </div>
+                  <mat-form-field  *ngIf="!shownAskInfo.askForInfoAnswer" class="example-full-width" appearance="fill">
+                      <mat-label>Leave an answer</mat-label>
+                      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                    </mat-form-field>
+                    <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg">
+
+
+                    
+                </div>
             </div>
+        
+                
         </div>
 </div>
