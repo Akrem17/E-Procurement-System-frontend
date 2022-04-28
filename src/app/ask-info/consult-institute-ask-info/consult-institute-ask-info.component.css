@@ -1,0 +1,63 @@
+.askTitles{
+
+    border: 2px solid black;
+    min-height: 400px;
+
+}
+
+.askDetails{
+
+    border: 2px solid red;
+    min-height: 400px;
+
+}
+.wrapper{
+
+    display: grid;
+    grid-template-columns: 3fr 6fr;
+
+}
+.headerClass{
+    border: 3px solid black;
+}
+.title{
+    text-align: center;
+}
+.center{
+    text-align: center;
+}
+.example-full-width{
+    width: 100%;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-toolbar-single-row {
+    height: auto !important;
+    background: transparent;
+
+   
+}
+button {
+    width: 30%;
+}
+.myform-wrapper {
+    margin: 50px;
+    width: 350px;
+
+
+
+}
+
+#fileUpload {
+    position: absolute;
+    z-index: 9;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+}

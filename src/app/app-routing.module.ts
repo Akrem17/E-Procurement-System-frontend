@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AskInfoComponent } from './ask-info/addAskInfo/ask-info.component';
+import { ConsultInstituteAskInfoComponent } from './ask-info/consult-institute-ask-info/consult-institute-ask-info.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeComponent } from './home/home.component';
 import { ConsultInstituteComponent } from './institute/consult-institute/consult-institute.component';
@@ -153,6 +154,15 @@ const routes: Routes = [
   ,
   {
     path: 'offers/:id', component: ConsultOfferComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+
+    }
+  }
+  ,
+  {
+    path: 'institute/:id/information', component: ConsultInstituteAskInfoComponent,
     canActivate: [AuthGuard, HasRoleGuard],
     data: {
       type: ['citizen', 'institute', 'supplier']

@@ -58,6 +58,7 @@
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" href="#">About</a>
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" href="#">Contact us</a>
 
+    <a  *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/institute/{{userId}}/information">Information</a>
 
 
     <a style="float: right;" *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}"></a>
