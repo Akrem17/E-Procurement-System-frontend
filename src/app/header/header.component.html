@@ -78,15 +78,10 @@
       </div>
     </a>
 
-
-    <!-- <a class="nav-link" href="#" *ngIf="email$ | async as email">{{email | uppercase}}</a> -->
-
-
     <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus"
       routerLink="login">Login</a>
 
-    <a  class="nav-link dropdown"   >Settings
-
+    <a  class="nav-link dropdown"   >Setting
       <div class="dropdown-content">
         <a class="sublink" routerLink="supplier/{{userId}}/edit">Edit Profile </a>
         <a class="sublink" href="#">Edit Password</a>

@@ -18,7 +18,7 @@ import { TENDER } from "./TENDER";
     public tenderId: number | null;
     public citizen: CITIZEN | null;
     public tender: TENDER | null;
-    public askForInfoAnswerId: TENDER | null;
+    public askForInfoAnswerId: number | null;
     public askForInfoAnswer: ASK_INFO_ANSWER | null;
 
 

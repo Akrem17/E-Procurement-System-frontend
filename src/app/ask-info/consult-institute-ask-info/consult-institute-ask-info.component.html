@@ -40,10 +40,12 @@
                 </div>
                   <mat-form-field  *ngIf="!shownAskInfo.askForInfoAnswer" class="example-full-width" appearance="fill">
                       <mat-label>Leave an answer</mat-label>
-                      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                      <textarea [(ngModel)]='answer' matInput placeholder="Ex. It makes me feel..."></textarea>
+
                     </mat-form-field>
                     <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg">
 
+                    <button mat-button color="primary" (click)="answerCitizen()">Answer</button>
 
                     
                 </div>
