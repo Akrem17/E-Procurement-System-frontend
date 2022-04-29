@@ -1,10 +1,4 @@
 
-export const Auth = {
-    login: "login",
-    signupInstitute:"signup/institute",
-    signupSupplier:"signup/supplier",
-    signupCitizen:"signup/citizen"
-}
 export const Models = {
     users: "users/",
     tenders:"tenders/",
@@ -19,5 +13,12 @@ export const Models = {
     licence:"Licences/",
     notification:"Notificaiton/",
     askInfo:"AskForInfos/",
-    socketURI:"toastr/"
+    socketURI:"toastr/",
+    AskForInfoAnswers:"AskForInfoAnswers/",
+}
+export const Auth = {
+    login: "login",
+    signupInstitute:"signup/institute",
+    signupSupplier:"signup/supplier",
+    signupCitizen:"signup/citizen"
 }

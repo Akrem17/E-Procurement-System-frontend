@@ -6,6 +6,6 @@
     "\\src\\app\\login",
     "\\src\\app\\signup"
   ],
-  "SelectedNode": "\\src\\app\\signup\\signup.component.html",
+  "SelectedNode": "\\src\\app\\signup\\signup.component.ts",
   "PreviewInSolutionExplorer": false
 }
