@@ -11,70 +11,18 @@ import { AskInfoService } from 'src/app/Shared/Services/AskInfoService/ask-info.
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-consult-institute-ask-info',
-  templateUrl: './consult-institute-ask-info.component.html',
-  styleUrls: ['./consult-institute-ask-info.component.css']
+  selector: 'app-consult-citizen-ask-info',
+  templateUrl: './consult-citizen-ask-info.component.html',
+  styleUrls: ['./consult-citizen-ask-info.component.css']
 })
-export class ConsultInstituteAskInfoComponent implements OnInit {
+export class ConsultCitizenAskInfoComponent implements OnInit {
 
+  
 askForInfos:ASK_INFO[]=[];
 shownAskInfo!:ASK_INFO;
 answer:string=""
 private _hubConnection: HubConnection | undefined;
-
-  constructor(private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { 
-
-  }
-
-  ngOnInit(): void {
-
-    let askForInfoFilters:ASK_INFO_FILTERS = new ASK_INFO_FILTERS()
-    askForInfoFilters.instituteId="1";//get the id of user
-    this.askInfoService.getAskInfo(askForInfoFilters).subscribe(res=>{
-      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-
-      this.askForInfos=response.data
-      
-
-      console.log(this.askForInfos)
-      
-
-
-    })
-
-
-    this._hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl(environment.socketUrl + Models.socketURI, { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
-    .configureLogging(signalR.LogLevel.Information)
-    .build();
-
- 
-    this._hubConnection.start().then(() => {
-      console.log("connnntected to socket chat")
-  
-      this._hubConnection?.on('SendMessage', (data: string) => {
-        console.log(data)
-  })
-    }).catch(err => console.error(err.toString()));
-  
-
-
-  // this._hubConnection.on('Send', (data: NOTIFICATION) => {
-  //   console.log(data)
-  //   this.user.getUserById(data.instituteId.toString()).subscribe(res => {
-  //     const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-
-  //     if (response.data.email == resEmail) {
-  //       this.messages.unshift(data)
-  //       this.notificationsCount++;
-
-  //     }
-  //   });
-  // })
-
-
     
-  }
   answerCitizen(){
 console.log(this.answer)
 let askInfoAnswer:ASK_INFO_ANSWER= new ASK_INFO_ANSWER()
@@ -98,8 +46,8 @@ this.askInfoAnswerService.createAskInfo(askInfoAnswer).subscribe(res=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.shownAskInfo=response.data;
       console.log(this.shownAskInfo)
-      this._hubConnection.invoke("joinAskInfoChat",this.shownAskInfo.id.toString());
-  
+      this._hubConnection?.invoke("joinAskInfoChat",this.shownAskInfo.id.toString());
+
 
     
   })}
@@ -116,5 +64,37 @@ this.askInfoAnswerService.createAskInfo(askInfoAnswer).subscribe(res=>{
    
     
   
+  constructor(private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { }
+
+  ngOnInit(): void {
+
+    let filters:ASK_INFO_FILTERS = new ASK_INFO_FILTERS();
+    filters.citizenId="3";
+    this.askInfoService.getAskInfo(filters).subscribe(res=>{
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      this.askForInfos=response.data
+
+      console.log(res)
+    })
+    this._hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl(environment.socketUrl + Models.socketURI, { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
+    .configureLogging(signalR.LogLevel.Information)
+    .build();
+
+    this._hubConnection.start().then(() => {
+      console.log("connnntected to socket chat")
+      
+
+      this._hubConnection?.on('SendMessage', (data: string) => {
+        console.log(data)
+  })
+    }).catch(err => console.error(err.toString()));
+  
+
+    
+ 
+
+  }
+
 
 }

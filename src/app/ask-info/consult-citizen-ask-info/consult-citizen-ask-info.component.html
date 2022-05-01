@@ -1,0 +1,56 @@
+<div class="messanger">
+    <div class="wrapper">
+
+        <div class="askTitles" >
+            
+      
+            <div class="headerClass" *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
+                <h3> {{askInfo.firstName}} {{askInfo.lastName}}</h3>
+                <p>{{askInfo.information}}</p>
+            </div>
+
+
+        </div>
+        <div class="askDetails">
+
+
+              
+              <div *ngIf="shownAskInfo" class="container">
+      
+              <div class="title"> <h1>{{shownAskInfo.firstName}} {{shownAskInfo.lastName}}</h1></div>    
+
+              <div>
+                  <span>Phone : {{shownAskInfo.phone}}</span>
+              </div>
+              <div>
+                  <span>Fax : {{shownAskInfo.fax}}</span>
+              </div>
+              <div >
+                  <span>Email : {{shownAskInfo.email}}</span>
+              </div>
+
+              <br><br><br>
+              <div style="border: 3px solid black;">
+
+              <p class="">{{shownAskInfo.information}}</p>
+              </div>
+              <br><br>
+              <div  class="answer" *ngIf="shownAskInfo.askForInfoAnswer" style="border: 3px solid rgb(71, 56, 236);" >
+              <p >{{shownAskInfo.askForInfoAnswer.message}}</p>
+            </div>
+              <mat-form-field  *ngIf="!shownAskInfo.askForInfoAnswer" class="example-full-width" appearance="fill">
+                  <mat-label>Leave an answer</mat-label>
+                  <textarea [(ngModel)]='answer' matInput placeholder="Ex. It makes me feel..."></textarea>
+
+                </mat-form-field>
+                <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg">
+
+                <button mat-button color="primary" (click)="answerCitizen()">Answer</button>
+
+                
+            </div>
+        </div>
+    
+            
+    </div>
+</div>
