@@ -52,6 +52,13 @@ export class HeaderComponent implements OnInit {
 
           this._hubConnection.start().then(() => {
             console.log("connnntected to socket")
+            this._authService.type.subscribe(res=>{
+              console.log(res)
+              if (res=="institute"){
+                this._hubConnection.invoke("joinInstituteNotificationCenter");
+
+              }
+            })
 
           }).catch(err => console.error(err.toString()));
 

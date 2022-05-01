@@ -35,15 +35,29 @@
                   <p class="">{{shownAskInfo.information}}</p>
                   </div>
                   <br><br>
-                  <div  class="answer" *ngIf="shownAskInfo.askForInfoAnswer" style="border: 3px solid rgb(71, 56, 236);" >
+                  <div   class="answer" *ngIf="shownAskInfo.askForInfoAnswer" style="border: 3px solid rgb(71, 56, 236);" >
                   <p >{{shownAskInfo.askForInfoAnswer.message}}</p>
-                </div>
-                  <mat-form-field  *ngIf="!shownAskInfo.askForInfoAnswer" class="example-full-width" appearance="fill">
+            
+                 </div>
+                <!-- *ngIf="!shownAskInfo.askForInfoAnswer" -->
+                  
+                <!-- <div  *ngFor="let message of messages">
+                    <div *ngIf="message.askForInfoId.toString()==shownAskInfo.id">
+                        <div *ngIf="message.from==userType">
+                        <p style="text-align: right; background-color: gray !important;">{{message.message}} </p>
+                        </div>
+                     <div *ngIf="message.from!=userType">
+                    <p  style="background-color: lightblue !important;"> {{message.message}}</p>
+                     </div>
+                    </div>
+
+                </div>                     -->
+                <mat-form-field   class="example-full-width" appearance="fill">
                       <mat-label>Leave an answer</mat-label>
                       <textarea [(ngModel)]='answer' matInput placeholder="Ex. It makes me feel..."></textarea>
 
                     </mat-form-field>
-                    <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg">
+                    <!-- <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg"> -->
 
                     <button mat-button color="primary" (click)="answerCitizen()">Answer</button>
 

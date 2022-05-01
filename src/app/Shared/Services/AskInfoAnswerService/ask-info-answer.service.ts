@@ -18,5 +18,9 @@ export class AskInfoAnswerService {
   createAskInfo(askInfoAnswer: ASK_INFO_ANSWER): Observable<any> {
     return this.http.post(this.askInfoAnswerRoute, askInfoAnswer);
   }
+  updateAskInfoAnswer(id:string,askInfoAnswer: ASK_INFO_ANSWER): Observable<any> {
+    return this.http.put(this.askInfoAnswerRoute+id, askInfoAnswer);
+  }
+
 
 }

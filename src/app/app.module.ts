@@ -67,6 +67,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AskInfoComponent } from './ask-info/addAskInfo/ask-info.component';
 import { ConsultInstituteAskInfoComponent } from './ask-info/consult-institute-ask-info/consult-institute-ask-info.component';
+import { ConsultCitizenAskInfoComponent } from './ask-info/consult-citizen-ask-info/consult-citizen-ask-info.component';
 
 
 @NgModule({
@@ -107,7 +108,8 @@ import { ConsultInstituteAskInfoComponent } from './ask-info/consult-institute-a
     EditInstituteComponent,
     OfferClassificationCardComponent,
     AskInfoComponent,
-    ConsultInstituteAskInfoComponent
+    ConsultInstituteAskInfoComponent,
+    ConsultCitizenAskInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -6,22 +6,6 @@ import * as signalR from "@aspnet/signalr";
 export class SignalRService {
   public hubConnection: signalR.HubConnection
 
-  // constructor() { }
-  // public startConnection = () => {
-  //   this.hubConnection = new signalR.HubConnectionBuilder()
-  //                           .withUrl('https://localhost:7260/Citizen')
-  //                           .build();
-  //   this.hubConnection
-  //     .start()
-  //     .then(() => console.log('Connection started'))
-  //     .catch(err => console.log('Error while starting connection: ' + err))
-  // }
-  // public addTransferChartDataListener = () => {
-  //   this.hubConnection.on('transferchartdata', (data) => {
-  //     console.log(data);
-  //   });
-  
-
 
   startConnection = () => {
       this.hubConnection = new signalR.HubConnectionBuilder()
@@ -35,6 +19,7 @@ export class SignalRService {
       .start()
       .then(() => {
           console.log('Hub Connection Started!');
+          this.hubConnection.invoke("joinCallCenters");
       })
       .catch(err => console.log('Error while starting connection: ' + err))
   }

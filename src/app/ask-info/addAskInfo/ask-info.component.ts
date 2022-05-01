@@ -61,6 +61,7 @@ export class AskInfoComponent implements OnInit {
     askInfo=e.value;
     askInfo.tenderId=parseInt(this.tenderId);
     askInfo.citizenId=this.CitizenId;
+    
     console.log(askInfo)
     this.askInfoService.createAskInfo(askInfo).subscribe(res=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
