@@ -4,7 +4,9 @@
     min-height: 400px;
 
 }
-
+.right{
+    float: right;
+}
 .askDetails{
 
     border: 2px solid red;

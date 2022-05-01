@@ -8,6 +8,7 @@ import { ASK_INFO_FILTERS } from 'src/app/Shared/Models/ASK_INFO_FILTERS';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { AskInfoAnswerService } from 'src/app/Shared/Services/AskInfoAnswerService/ask-info-answer.service';
 import { AskInfoService } from 'src/app/Shared/Services/AskInfoService/ask-info.service';
+import { AuthService } from 'src/app/Shared/Services/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,84 +18,121 @@ import { environment } from 'src/environments/environment';
 })
 export class ConsultCitizenAskInfoComponent implements OnInit {
 
-  
-askForInfos:ASK_INFO[]=[];
-shownAskInfo!:ASK_INFO;
-answer:string=""
-private _hubConnection: HubConnection | undefined;
-    
-  answerCitizen(){
-console.log(this.answer)
-let askInfoAnswer:ASK_INFO_ANSWER= new ASK_INFO_ANSWER()
-askInfoAnswer.message=this.answer;
-askInfoAnswer.AskForInfoId=parseInt(this.shownAskInfo.id);
-console.log(askInfoAnswer)
-this.askInfoAnswerService.createAskInfo(askInfoAnswer).subscribe(res=>{
-  const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-  if(response.status){
-    this.shownAskInfo.askForInfoAnswer=askInfoAnswer;
-    this.shownAskInfo.askForInfoAnswerId=parseInt(askInfoAnswer.id)
-    this.answer="";
+  messages: ASK_INFO_ANSWER[] = [];
+
+  askForInfos: ASK_INFO[] = [];
+  shownAskInfo!: ASK_INFO;
+  answer: string = ""
+  userType: string = ""
+  notif: string = "notif";
+  notifList: string[] = []
+  private _hubConnection: HubConnection | undefined;
+
+  answerCitizen() {
+
+    this.authService.type.subscribe(res => {
+      this.userType = res;
+      let askInfoAnswer: ASK_INFO_ANSWER = new ASK_INFO_ANSWER()
+      askInfoAnswer.message = this.answer;
+      askInfoAnswer.askForInfoId = parseInt(this.shownAskInfo.id);
+      askInfoAnswer.from = res;
+      this.askInfoAnswerService.createAskInfo(askInfoAnswer).subscribe(res => {
+        const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+        if (response.status) {
+
+          this.shownAskInfo.askForInfoAnswer = askInfoAnswer;
+          this.shownAskInfo.askForInfoAnswerId = parseInt(askInfoAnswer.id)
+          this.answer = "";
+
+        }
+      })
+
+    })
+  }
+
+  removeAskInfoFromNotif(AskInfoId:string){
+    this.notifList = this.notifList.filter(x => x.toString() !== AskInfoId);
 
   }
-})
-    
-  }
-  showAskOffer(askInfo:ASK_INFO){
-    
-    this.askInfoService.getAskInfoById(askInfo.id).subscribe(res=>{
+  showAskOffer(askInfo: ASK_INFO) {
+      this.removeAskInfoFromNotif(askInfo.id.toString())
+      if(askInfo.askForInfoAnswer)
+      {
+        askInfo.askForInfoAnswer.seen=true;
+      this.askInfoAnswerService.updateAskInfoAnswer(askInfo.askForInfoAnswerId.toString(),askInfo.askForInfoAnswer)
+      .subscribe(res=>{
+        console.log(res)
+      })
+    }
+       this.askInfoService.getAskInfoById(askInfo.id).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      this.shownAskInfo=response.data;
-      console.log(this.shownAskInfo)
-      this._hubConnection?.invoke("joinAskInfoChat",this.shownAskInfo.id.toString());
-
-
-    
-  })}
-          //   this.user.getUserById(data.instituteId.toString()).subscribe(res => {
-          //     const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-
-          //     if (response.data.email == resEmail) {
-          //       this.messages.unshift(data)
-          //       this.notificationsCount++;
-
-          //     }
-          //   });
-          // })
-   
-    
+      this.shownAskInfo = response.data;
   
-  constructor(private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { }
+      this._hubConnection?.invoke("joinAskInfoChat", this.shownAskInfo.id.toString());
+
+
+    })
+  }
+  //   this.user.getUserById(data.instituteId.toString()).subscribe(res => {
+  //     const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+
+  //     if (response.data.email == resEmail) {
+  //       this.messages.unshift(data)
+  //       this.notificationsCount++;
+
+  //     }
+  //   });
+  // })
+
+
+
+  constructor(private authService: AuthService, private askInfoService: AskInfoService, private askInfoAnswerService: AskInfoAnswerService) { }
 
   ngOnInit(): void {
 
-    let filters:ASK_INFO_FILTERS = new ASK_INFO_FILTERS();
-    filters.citizenId="3";
-    this.askInfoService.getAskInfo(filters).subscribe(res=>{
+    let filters: ASK_INFO_FILTERS = new ASK_INFO_FILTERS();
+    filters.citizenId = "3";
+    this.askInfoService.getAskInfo(filters).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      this.askForInfos=response.data
+      this.askForInfos = response.data
 
       console.log(res)
     })
     this._hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl(environment.socketUrl + Models.socketURI, { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
-    .configureLogging(signalR.LogLevel.Information)
-    .build();
+      .withUrl(environment.socketUrl + Models.socketURI, { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
 
     this._hubConnection.start().then(() => {
       console.log("connnntected to socket chat")
-      
 
-      this._hubConnection?.on('SendMessage', (data: string) => {
+
+      this._hubConnection?.on('SendMessage', (data: ASK_INFO_ANSWER) => {
+        let answer: ASK_INFO_ANSWER = new ASK_INFO_ANSWER();
+        answer = data
+        this.shownAskInfo.askForInfoAnswer = answer
+        this.messages.push(data)
+      })
+      this._hubConnection?.invoke("joinAskInfoNotificationCitizen");
+
+
+      this._hubConnection?.on('NewAnswer', (data: ASK_INFO_ANSWER) => {
         console.log(data)
-  })
-    }).catch(err => console.error(err.toString()));
-  
+        this.notifList.push(data.askForInfoId.toString())
+        let el = this.askForInfos.find(el => el.id == data.askForInfoId.toString())
+        
+        this.askForInfos = this.askForInfos.filter(x => x.id.toString() !== data.askForInfoId.toString());
+        this.askForInfos.unshift(el)
+        console.log(this.askForInfos)
+      })
 
-    
- 
+
+    }).catch(err => console.error(err.toString()));
+
+
+
+
 
   }
-
 
 }

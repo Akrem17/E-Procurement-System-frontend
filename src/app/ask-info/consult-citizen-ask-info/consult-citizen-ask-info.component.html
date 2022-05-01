@@ -3,19 +3,27 @@
 
         <div class="askTitles" >
             
+           
       
-            <div class="headerClass" *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
+            <div class="headerClass " *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
+              <div [ngStyle]="{backgroundColor: notifList.includes(askInfo.id.toString())  ? 'red' : ''} ">
+
+                <div [ngStyle]="{backgroundColor: askInfo.askForInfoAnswer?.seen  ? '' : 'red'} ">
+
                 <h3> {{askInfo.firstName}} {{askInfo.lastName}}</h3>
                 <p>{{askInfo.information}}</p>
+                </div>
+            </div>
             </div>
 
 
         </div>
-        <div class="askDetails">
+        
+        <div class="askDetails" >
 
 
               
-              <div *ngIf="shownAskInfo" class="container">
+              <div *ngIf="shownAskInfo" class="container" (click)="removeAskInfoFromNotif(shownAskInfo.id.toString())">
       
               <div class="title"> <h1>{{shownAskInfo.firstName}} {{shownAskInfo.lastName}}</h1></div>    
 
@@ -35,16 +43,30 @@
               <p class="">{{shownAskInfo.information}}</p>
               </div>
               <br><br>
+              
               <div  class="answer" *ngIf="shownAskInfo.askForInfoAnswer" style="border: 3px solid rgb(71, 56, 236);" >
               <p >{{shownAskInfo.askForInfoAnswer.message}}</p>
+          
             </div>
-              <mat-form-field  *ngIf="!shownAskInfo.askForInfoAnswer" class="example-full-width" appearance="fill">
+            <!-- <div  *ngFor="let message of messages">
+                <div *ngIf="message.askForInfoId.toString()==shownAskInfo.id">
+                    <div *ngIf="message.from==userType">
+                    <p style="text-align: right;">{{message.message}} </p>
+                    </div>
+                 <div *ngIf="message.from!=userType">
+                <p> {{message.message}}</p>
+                 </div>
+                </div>
+                
+            </div> -->
+            <!-- *ngIf="!shownAskInfo.askForInfoAnswer" -->
+              <mat-form-field   class="example-full-width" appearance="fill">
                   <mat-label>Leave an answer</mat-label>
                   <textarea [(ngModel)]='answer' matInput placeholder="Ex. It makes me feel..."></textarea>
 
                 </mat-form-field>
-                <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg">
-
+                <!-- <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg">
+ -->
                 <button mat-button color="primary" (click)="answerCitizen()">Answer</button>
 
                 

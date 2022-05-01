@@ -50,7 +50,9 @@ button {
 
 
 }
-
+.notif{
+    background-color: red !important;
+}
 #fileUpload {
     position: absolute;
     z-index: 9;

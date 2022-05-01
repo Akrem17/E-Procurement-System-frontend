@@ -8,6 +8,7 @@ import { ASK_INFO_FILTERS } from 'src/app/Shared/Models/ASK_INFO_FILTERS';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { AskInfoAnswerService } from 'src/app/Shared/Services/AskInfoAnswerService/ask-info-answer.service';
 import { AskInfoService } from 'src/app/Shared/Services/AskInfoService/ask-info.service';
+import { AuthService } from 'src/app/Shared/Services/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,9 +21,11 @@ export class ConsultInstituteAskInfoComponent implements OnInit {
 askForInfos:ASK_INFO[]=[];
 shownAskInfo!:ASK_INFO;
 answer:string=""
+userType:string="bla";
+
 private _hubConnection: HubConnection | undefined;
 
-  constructor(private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { 
+  constructor(private authService: AuthService ,private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { 
 
   }
 
@@ -52,8 +55,9 @@ private _hubConnection: HubConnection | undefined;
     this._hubConnection.start().then(() => {
       console.log("connnntected to socket chat")
   
-      this._hubConnection?.on('SendMessage', (data: string) => {
+      this._hubConnection?.on('SendMessage', (data: ASK_INFO_ANSWER) => {
         console.log(data)
+        this.messages.push(data)
   })
     }).catch(err => console.error(err.toString()));
   
@@ -75,20 +79,26 @@ private _hubConnection: HubConnection | undefined;
 
     
   }
+  messages:ASK_INFO_ANSWER[]=[]
   answerCitizen(){
 console.log(this.answer)
-let askInfoAnswer:ASK_INFO_ANSWER= new ASK_INFO_ANSWER()
-askInfoAnswer.message=this.answer;
-askInfoAnswer.AskForInfoId=parseInt(this.shownAskInfo.id);
-console.log(askInfoAnswer)
-this.askInfoAnswerService.createAskInfo(askInfoAnswer).subscribe(res=>{
-  const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-  if(response.status){
-    this.shownAskInfo.askForInfoAnswer=askInfoAnswer;
-    this.shownAskInfo.askForInfoAnswerId=parseInt(askInfoAnswer.id)
-    this.answer="";
 
-  }
+this.authService.type.subscribe(res=>{
+  this.userType=res
+  let askInfoAnswer:ASK_INFO_ANSWER= new ASK_INFO_ANSWER()
+  askInfoAnswer.message=this.answer;
+  askInfoAnswer.askForInfoId=parseInt(this.shownAskInfo.id);
+  askInfoAnswer.from=res;
+  this.askInfoAnswerService.createAskInfo(askInfoAnswer).subscribe(res=>{
+    const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+    if(response.status){
+      this.shownAskInfo.askForInfoAnswer=askInfoAnswer;
+      this.shownAskInfo.askForInfoAnswerId=parseInt(askInfoAnswer.id)
+      this.answer="";
+  
+    }
+  })
+
 })
     
   }
@@ -99,7 +109,7 @@ this.askInfoAnswerService.createAskInfo(askInfoAnswer).subscribe(res=>{
       this.shownAskInfo=response.data;
       console.log(this.shownAskInfo)
       this._hubConnection.invoke("joinAskInfoChat",this.shownAskInfo.id.toString());
-  
+      
 
     
   })}

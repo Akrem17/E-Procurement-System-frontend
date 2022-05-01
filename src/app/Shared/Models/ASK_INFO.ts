@@ -9,12 +9,15 @@ import { TENDER } from "./TENDER";
     public lastName: string | null;
     public address: string | null;
     public fax: string | null;
+    public seen: boolean | null;
+
     public phone: string | null;
     public email: string | null;
     public sendToEmail: boolean | null;
     public sendToChat: boolean | null;
     public sendToAddress: boolean | null;
     public citizenId: number | null;
+    
     public tenderId: number | null;
     public citizen: CITIZEN | null;
     public tender: TENDER | null;
