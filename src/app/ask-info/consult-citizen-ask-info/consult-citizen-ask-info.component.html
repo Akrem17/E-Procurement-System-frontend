@@ -8,12 +8,11 @@
             <div class="headerClass " *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
               <div [ngStyle]="{backgroundColor: notifList.includes(askInfo.id.toString())  ? 'red' : ''} ">
 
-                <div [ngStyle]="{backgroundColor: askInfo.askForInfoAnswer?.seen  ? '' : 'red'} ">
-
+                <div [ngStyle]="{backgroundColor: askInfo.askForInfoAnswer?.seen ||askInfo.askForInfoAnswer==null  ? '' : 'red'} ">
                 <h3> {{askInfo.firstName}} {{askInfo.lastName}}</h3>
                 <p>{{askInfo.information}}</p>
                 </div>
-            </div>
+                </div>
             </div>
 
 
@@ -76,3 +75,5 @@
             
     </div>
 </div>
+
+

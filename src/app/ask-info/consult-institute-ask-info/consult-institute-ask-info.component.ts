@@ -39,7 +39,6 @@ private _hubConnection: HubConnection | undefined;
       this.askForInfos=response.data
       
 
-      console.log(this.askForInfos)
       
 
 
@@ -81,7 +80,6 @@ private _hubConnection: HubConnection | undefined;
   }
   messages:ASK_INFO_ANSWER[]=[]
   answerCitizen(){
-console.log(this.answer)
 
 this.authService.type.subscribe(res=>{
   this.userType=res

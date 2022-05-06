@@ -58,7 +58,7 @@
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" href="#">About</a>
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" href="#">Contact us</a>
 
-    <a  *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/institute/{{userId}}/information">Information</a>
+    <!-- <a  *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/institute/{{userId}}/information">Information</a> -->
 
 
     <a style="float: right;" *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}"></a>
@@ -78,10 +78,39 @@
       </div>
     </a>
 
+    
+    <a *ngIf="(type$ |async)=='citizen'" routerLink="/citizen/{{userId}}/information" class="nav-link  " ><i class="fa-solid fa-message"></i><sup *ngIf="notificationsMessageCount>0">{{notificationsMessageCount}}</sup>
+
+      <div  class="dropdown-content " >
+        <div class="test" >
+        <div class="sublink "    >
+          
+        
+        
+        </div>
+      </div>
+    
+
+      </div>
+    </a>
+    <a *ngIf="(type$ |async)=='institute'" routerLink="/institute/{{userId}}/information" class="nav-link  " ><i class="fa-solid fa-message"></i>
+
+      <div  class="dropdown-content " >
+        <div class="test" >
+        <div class="sublink "    >
+          
+        
+        
+        </div>
+      </div>
+    
+
+      </div>
+    </a>
     <a class="nav-link" style="float: right;" *ngIf="!(loginStatus$ | async) as loginStatus"
       routerLink="login">Login</a>
 
-    <a  class="nav-link dropdown"   >Settings
+    <a  class="nav-link dropdown"    *ngIf="(type$ |async)=='supplier'"  >Settings
       <div class="dropdown-content">
         <a class="sublink" routerLink="supplier/{{userId}}/edit">Edit Profile </a>
         <a class="sublink" href="#">Edit Password</a>

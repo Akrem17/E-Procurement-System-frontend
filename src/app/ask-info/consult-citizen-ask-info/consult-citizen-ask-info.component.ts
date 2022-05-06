@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { HubConnection } from '@aspnet/signalr';
+import { BehaviorSubject } from 'rxjs';
 import { Models } from 'src/app/endpoints';
 import { ASK_INFO } from 'src/app/Shared/Models/ASK_INFO';
 import { ASK_INFO_ANSWER } from 'src/app/Shared/Models/ASK_INFO_ANSWER';
@@ -9,6 +10,7 @@ import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { AskInfoAnswerService } from 'src/app/Shared/Services/AskInfoAnswerService/ask-info-answer.service';
 import { AskInfoService } from 'src/app/Shared/Services/AskInfoService/ask-info.service';
 import { AuthService } from 'src/app/Shared/Services/auth.service';
+import { NotificationService } from 'src/app/Shared/Services/NotificationService/notification.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -26,6 +28,7 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
   userType: string = ""
   notif: string = "notif";
   notifList: string[] = []
+  
   private _hubConnection: HubConnection | undefined;
 
   answerCitizen() {
@@ -52,7 +55,7 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
 
   removeAskInfoFromNotif(AskInfoId:string){
     this.notifList = this.notifList.filter(x => x.toString() !== AskInfoId);
-
+    this.notficationService.notificationNumber.next(this.notifList.length)
   }
   showAskOffer(askInfo: ASK_INFO) {
       this.removeAskInfoFromNotif(askInfo.id.toString())
@@ -61,7 +64,6 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
         askInfo.askForInfoAnswer.seen=true;
       this.askInfoAnswerService.updateAskInfoAnswer(askInfo.askForInfoAnswerId.toString(),askInfo.askForInfoAnswer)
       .subscribe(res=>{
-        console.log(res)
       })
     }
        this.askInfoService.getAskInfoById(askInfo.id).subscribe(res => {
@@ -86,17 +88,16 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
 
 
 
-  constructor(private authService: AuthService, private askInfoService: AskInfoService, private askInfoAnswerService: AskInfoAnswerService) { }
+  constructor(private notficationService:NotificationService, private authService: AuthService, private askInfoService: AskInfoService, private askInfoAnswerService: AskInfoAnswerService) { }
 
   ngOnInit(): void {
-
+    console.log(this.notifList)
     let filters: ASK_INFO_FILTERS = new ASK_INFO_FILTERS();
     filters.citizenId = "3";
     this.askInfoService.getAskInfo(filters).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.askForInfos = response.data
 
-      console.log(res)
     })
     this._hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(environment.socketUrl + Models.socketURI, { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
@@ -117,8 +118,11 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
 
 
       this._hubConnection?.on('NewAnswer', (data: ASK_INFO_ANSWER) => {
-        console.log(data)
         this.notifList.push(data.askForInfoId.toString())
+        console.log(  this.notifList)
+
+        this.notficationService.notificationNumber.next(this.notifList.length)
+
         let el = this.askForInfos.find(el => el.id == data.askForInfoId.toString())
         
         this.askForInfos = this.askForInfos.filter(x => x.id.toString() !== data.askForInfoId.toString());
