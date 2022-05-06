@@ -27,13 +27,18 @@ export class HeaderComponent implements OnInit {
   userId: string;
   date!: string;
   notificationsCount: number = 0;
+  notificationsMessageCount: number = 0;
   private _hubConnection: HubConnection | undefined;
   messages: NOTIFICATION[] = [];
+  
   constructor(private notificationService: NotificationService, private _authService: AuthService, private _userService: UserService, public signalRService: SignalRService, private http: HttpClient, private auth: AuthService, private user: UserService) { }
 
 
 
   ngOnInit(): void {
+    this.notificationService.notificationNumber.subscribe(res=>{
+      console.log(res)
+      this.notificationsMessageCount=res          })
     this.generateDateForTheApp();
     this.loginStatus$ = this._authService.isUserLoggedIn;
     this.type$ = this._authService.type;
@@ -58,6 +63,10 @@ export class HeaderComponent implements OnInit {
                 this._hubConnection.invoke("joinInstituteNotificationCenter");
 
               }
+              if (res=="citizen"){
+                this._hubConnection.invoke("joinCitizenNotificationCenter");
+
+              }
             })
 
           }).catch(err => console.error(err.toString()));
@@ -74,6 +83,11 @@ export class HeaderComponent implements OnInit {
 
               }
             });
+          })
+          this._hubConnection.on('aswerAskInfoNotification', (data: NOTIFICATION) => {
+        
+
+           
           })
         })
       })
