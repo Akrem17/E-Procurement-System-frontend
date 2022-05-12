@@ -31,5 +31,9 @@ export class AskInfoService {
   createAskInfo(askInfo: ASK_INFO): Observable<any> {
     return this.http.post(this.askInfoRoute, askInfo);
   }
+  updateeAskInfo(id:string,askInfo: ASK_INFO): Observable<any> {
+    return this.http.put(this.askInfoRoute+id, askInfo);
+  }
 
 }
+export type Fruit = "none" | "Apple" | "Banana";

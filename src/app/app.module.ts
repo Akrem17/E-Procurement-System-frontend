@@ -68,6 +68,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { AskInfoComponent } from './ask-info/addAskInfo/ask-info.component';
 import { ConsultInstituteAskInfoComponent } from './ask-info/consult-institute-ask-info/consult-institute-ask-info.component';
 import { ConsultCitizenAskInfoComponent } from './ask-info/consult-citizen-ask-info/consult-citizen-ask-info.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 
 @NgModule({
@@ -109,7 +110,8 @@ import { ConsultCitizenAskInfoComponent } from './ask-info/consult-citizen-ask-i
     OfferClassificationCardComponent,
     AskInfoComponent,
     ConsultInstituteAskInfoComponent,
-    ConsultCitizenAskInfoComponent
+    ConsultCitizenAskInfoComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

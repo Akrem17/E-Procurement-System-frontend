@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Auth } from '../endpoints';
 import { LOGIN } from '../Shared/Models/LOGIN';
 import { RESPONSE } from '../Shared/Models/RESPONSE';
 import { AuthService } from '../Shared/Services/auth.service';
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   verifyEmail: boolean = false;
   error: boolean = false;
   errorMessage!: string;
-
+  endpointsAuth=Auth;
 
   constructor(private fb: FormBuilder, private _auth: AuthService, private router: Router) {
 

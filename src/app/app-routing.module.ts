@@ -4,6 +4,7 @@ import { AskInfoComponent } from './ask-info/addAskInfo/ask-info.component';
 import { ConsultCitizenAskInfoComponent } from './ask-info/consult-citizen-ask-info/consult-citizen-ask-info.component';
 import { ConsultInstituteAskInfoComponent } from './ask-info/consult-institute-ask-info/consult-institute-ask-info.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { HomeComponent } from './home/home.component';
 import { ConsultInstituteComponent } from './institute/consult-institute/consult-institute.component';
 import { EditInstituteComponent } from './institute/edit-institute/edit-institute.component';
@@ -179,6 +180,13 @@ const routes: Routes = [
 
     }
   }
+
+    ,
+    {
+      path: 'resetpassword', component: ForgetPasswordComponent,
+  
+  }
+
 ];
 
 @NgModule({

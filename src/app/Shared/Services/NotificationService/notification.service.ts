@@ -12,6 +12,7 @@ export class NotificationService {
 
   constructor(private http: HttpClient) { }
   public notificationNumber: BehaviorSubject<number>  = new BehaviorSubject<number>(0);
+  public notificationNumberInstitute: BehaviorSubject<number>  = new BehaviorSubject<number>(0);
 
   private specificationURL: string = environment.apiUrl+Models.notification
 

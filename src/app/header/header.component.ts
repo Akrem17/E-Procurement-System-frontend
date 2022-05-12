@@ -28,6 +28,8 @@ export class HeaderComponent implements OnInit {
   date!: string;
   notificationsCount: number = 0;
   notificationsMessageCount: number = 0;
+
+  notificationsMessageCountInstitute: number = 0;
   private _hubConnection: HubConnection | undefined;
   messages: NOTIFICATION[] = [];
   
@@ -36,9 +38,13 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     this.notificationService.notificationNumber.subscribe(res=>{
       console.log(res)
       this.notificationsMessageCount=res          })
+      this.notificationService.notificationNumberInstitute.subscribe(res=>{
+        console.log(res)
+        this.notificationsMessageCountInstitute=res          })
     this.generateDateForTheApp();
     this.loginStatus$ = this._authService.isUserLoggedIn;
     this.type$ = this._authService.type;

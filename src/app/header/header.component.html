@@ -93,7 +93,7 @@
 
       </div>
     </a>
-    <a *ngIf="(type$ |async)=='institute'" routerLink="/institute/{{userId}}/information" class="nav-link  " ><i class="fa-solid fa-message"></i>
+    <a *ngIf="(type$ |async)=='institute'" routerLink="/institute/{{userId}}/information" class="nav-link  " > <i class="fa-solid fa-message"></i> <sup *ngIf="notificationsMessageCountInstitute>0">{{notificationsMessageCountInstitute}}</sup>
 
       <div  class="dropdown-content " >
         <div class="test" >
