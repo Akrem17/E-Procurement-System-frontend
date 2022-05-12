@@ -1,70 +1,295 @@
-<div class="messanger">
-        <div class="wrapper">
+<!-- 
 
-            <div class="askTitles" >
-                
-          
-                <div class="headerClass" *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
-                    <h3> {{askInfo.firstName}} {{askInfo.lastName}}</h3>
-                    <p>{{askInfo.information}}</p>
-                </div>
-
-
-            </div>
-            <div class="askDetails">
-
-
-                  
-                  <div *ngIf="shownAskInfo" class="container">
-          
-                  <div class="title"> <h1>{{shownAskInfo.firstName}} {{shownAskInfo.lastName}}</h1></div>    
-
-                  <div>
-                      <span>Phone : {{shownAskInfo.phone}}</span>
-                  </div>
-                  <div>
-                      <span>Fax : {{shownAskInfo.fax}}</span>
-                  </div>
-                  <div >
-                      <span>Email : {{shownAskInfo.email}}</span>
-                  </div>
-  
-                  <br><br><br>
-                  <div style="border: 3px solid black;">
-
-                  <p class="">{{shownAskInfo.information}}</p>
-                  </div>
-                  <br><br>
-                  <div   class="answer" *ngIf="shownAskInfo.askForInfoAnswer" style="border: 3px solid rgb(71, 56, 236);" >
-                  <p >{{shownAskInfo.askForInfoAnswer.message}}</p>
+<div class="row">
+    <div class="col-md-4 scroll">
+        <div class="header">
             
-                 </div>
-                <!-- *ngIf="!shownAskInfo.askForInfoAnswer" -->
-                  
-                <!-- <div  *ngFor="let message of messages">
-                    <div *ngIf="message.askForInfoId.toString()==shownAskInfo.id">
-                        <div *ngIf="message.from==userType">
-                        <p style="text-align: right; background-color: gray !important;">{{message.message}} </p>
-                        </div>
-                     <div *ngIf="message.from!=userType">
-                    <p  style="background-color: lightblue !important;"> {{message.message}}</p>
-                     </div>
-                    </div>
+         
+                <mat-form-field >
+                  <mat-label class="lable">    <i class="fa-solid fa-magnifying-glass"> </i> <span class="search"> Search </span>
+                  </mat-label>
+                  <input matInput placeholder="Write sender name">
+                </mat-form-field>
+           
+        </div>
+        <div class="chatGroup" style="overflow:scroll;">
 
-                </div>                     -->
-                <mat-form-field   class="example-full-width" appearance="fill">
-                      <mat-label>Leave an answer</mat-label>
-                      <textarea [(ngModel)]='answer' matInput placeholder="Ex. It makes me feel..."></textarea>
+      
+        <div class="chat">
+        <div class="sender">
+            <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                     
 
-                    </mat-form-field>
-                    <!-- <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg"> -->
+        </div>   
+        <div class="briefContent">
+            a type specimen book. It has surviv, but also the leap into elg essentially unchanged. It was popu
+        </div>
 
-                    <button mat-button color="primary" (click)="answerCitizen()">Answer</button>
-
-                    
+        </div>
+        <hr>
+        
+      
+        <div class="chat">
+            <div class="sender">
+                <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                         
+    
+            </div>   
+            <div class="briefContent">
+                a type specimen book. It has surviv, but also the leap into elg essentially unchanged. It was popu
+            </div>
+    
+            </div>
+            <hr>
+      
+        <div class="chat">
+            <div class="sender">
+                <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                         
+    
+            </div>   
+            <div class="briefContent">
+                a type specimen book. It has surviv, but also the leap into elg essentially unchanged. It was popu
+            </div>
+    
+            </div>
+            <hr>
+      
+        <div class="chat">
+            <div class="sender">
+                <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                         
+    
+            </div>   
+            <div class="briefContent">
+                a type specimen book. It has surviv, but also the leap into elg essentially unchanged. It was popu
+            </div>
+    
+            </div>
+            <hr>
+        <div class="chat">
+            <div class="sender">
+                <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                         
+    
+            </div>   
+            <div class="briefContent">
+                a type specimen book. It has survivthe leap into electronic typesetting, remaining essentially unchanged. It was popu
+            </div>
+    
+            </div>
+            <hr>
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                             
+        
+                </div>   
+                <div class="briefContent">
+                    a type specimen book. It has survivthe leap into electronic typesetting, remaining essentially unchanged. It was popu
                 </div>
+        
+                </div>
+                <hr>
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                             
+        
+                </div>   
+                <div class="briefContent">
+                    a type specimen book. It has survived not only five centuriing essentially unchanged. It was popu
+                </div>
+        
+                </div>
+                <hr>
+         
+                       
+                        <div class="chat">
+                            <div class="sender">
+                                <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                                         
+                    
+                            </div>   
+                            <div class="briefContent">
+                                a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popu
+                            </div>
+                    
+                            </div>
+                            <hr>
+                            <div class="chat">
+                                <div class="sender">
+                                    <h2>Akrem Hammami    <span class="time" >12:58</span></h2>
+                                             
+                        
+                                </div>   
+                                <div class="briefContent">
+                                    a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popu
+                                </div>
+                        
+                                </div>
+                                <hr>
+                                <div class="chat">
+                                    <div class="sender">
+                                        <h2>Akrem Hammami    <span style="float: right;">12:58</span></h2>
+                                    </div>   
+                                    <div class="briefContent">
+                                        dfdfdfdfdfdfdfdfdfdfdfdfdfdfdf
+                                    </div>
+                            
+                                    </div>  
+                                </div>    
+                             
+    </div>
+    
+    <div class="col-md-8">     
+           <div class="header">
+            
+        Akrem Hammami 
+   
+</div>
+<div class="message" >
+    <div  style="margin-bottom: 50px; font-size: 15px; " class="info">.</div>
+
+    <div class="messageContent" style="background-color: white;"> and a search for 'lorem ipsum' will  their infancy. Various versions have evolved over the years, someti<br>   </div>
+      <span class="time"> 11:24 am</span>
+
+
+    <br>
+    <div class="messageAnswer">lorem ipsum' will  their i lorem irious versions  their i</div>
+    <br>  <br> 
+    <span class="time floatRight" > 13:40 pm</span>
+<div class="answer">
+    f
+</div>
+</div>
+
+    </div>
+</div>
+
+-------------------- -->
+
+<div class="containers">
+
+    <div class="content">
+
+    <div class="left chatGroup  ">
+        <div style="background-color: white ;" class="header">
+            <mat-form-field style="margin-left: 20px">
+                <mat-label class="lable">    <i class="fa-solid fa-magnifying-glass"> </i> <span class="search"> Search </span>
+                </mat-label>
+                <input matInput >
+              </mat-form-field>
+           </div>
+        <div class="sidebar-item " *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
+            <div  [ngStyle]="{backgroundColor: notifList.includes(askInfo.id.toString())  ? 'red' : ''} ">
+                <div [ngStyle]="{backgroundColor: askInfo.seen  ? '' : 'red'} ">
+            <div class="chat">
+                <div class="sender">
+                    <h2> {{askInfo.firstName}} {{askInfo.lastName}} <span style="float: right;"  class="time">12:58</span></h2>
+        
+        
+                </div>
+                <!-- <div class="briefContent">
+                    <p>{{askInfo.information}}</p>
+                </div> -->
+        </div></div>
+            </div>
+            
+          
+        </div>
+    
+  
+        <div class="sidebar-item">
+        
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
+        
+        
+                </div>
+             
+        
+            </div>
+           
+        </div>
+       
+        
+        <div class="sidebar-item">
+        
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
+        
+        
+               </div>
+           
+            </div>
+         
+        </div>
+
+        
+        <div class="sidebar-item">
+        
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
+        
+        
+                </div>
+              
+        
             </div>
         
-                
         </div>
+
+        
+        <div class="sidebar-item">
+        
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
+        
+        
+                </div>
+          
+        
+            </div>
+        
+        </div>
+     
+    </div>
+    <div *ngIf="shownAskInfo" class="container" class="right message">
+        <div class="header mid" >
+            {{shownAskInfo.firstName}} {{shownAskInfo.lastName}}<br><span style="font-size: 15px">17/08/2022</span>
+        </div>
+        <div class="sidebar-item">
+            <div class="messageContent" style="background-color: white;"> {{shownAskInfo.information}}<br>   </div>
+      <span class="time"> 11:24 am</span>
+
+
+    <br>
+    <div *ngIf="shownAskInfo.askForInfoAnswer" >
+    <div class="messageAnswer">{{shownAskInfo.askForInfoAnswer.message}}</div>
+    <br>  <br> 
+    <span class="time floatRight" > 13:40 pm</span>
+</div>
+</div>
+
+<div class="bottom chatBack" >
+    <mat-form-field   class="example-full-width" >
+        <mat-label>Leave an answer</mat-label>
+        <textarea [(ngModel)]='answer' matInput placeholder="Ex. It makes me feel..."></textarea>
+
+      </mat-form-field>
+      <!-- <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg"> -->
+
+      <button mat-button color="primary" (click)="answerCitizen()">Answer</button>
+
+      
+</div>
+    </div>
+    
+</div>
+
 </div>

@@ -1,4 +1,4 @@
-.askTitles{
+/* .askTitles{
 
     min-height: 400px;
 
@@ -62,4 +62,208 @@ button {
     cursor: pointer;
 }
 .answer{
-text-align: right;}
+text-align: right;} */
+
+.askTitles{
+
+    border: 2px solid black;
+    min-height: 400px;
+
+}
+.right{
+    float: right;
+}
+.askDetails{
+
+    border: 2px solid red;
+    min-height: 400px;
+
+}
+.wrapper{
+    max-height: 100%;
+    display: flex;
+
+
+}
+.headerClass{
+    border: 3px solid black;
+}
+.title{
+    text-align: center;
+}
+.center{
+    text-align: center;
+}
+.example-full-width{
+    width: 100%;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-toolbar-single-row {
+    height: auto !important;
+    background: transparent;
+
+   
+}
+button {
+    width: 30%;
+}
+.myform-wrapper {
+    margin: 50px;
+    width: 350px;
+
+
+
+}
+
+#fileUpload {
+    position: absolute;
+    z-index: 9;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+}
+.answer{
+text-align: right;
+}
+.time{
+    opacity: 0.7 !important;
+    font-size: 16px;
+
+}
+.floatRight{
+    float: right;
+
+}
+.chat{
+  
+}
+.mid{
+    padding:20px;    
+    text-align: center;
+}
+hr{
+    margin: auto;
+    width: 80%;
+    color: red;
+    height: 4px;
+}
+.messageAnswer{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    background-color: rgb(245, 207, 207);
+    float: right;
+}
+.chatGroup{
+    background-color: rgb(245, 207, 207);
+    overflow: scroll;
+
+}
+.messageContent{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+
+}
+.input{
+    border: 0px ;
+}
+
+.mat-form-field-wrapper .ng-tns-c68-0 {
+    padding: 0px !important;
+}
+ input {
+    border: none;
+}
+::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+  .lable{
+      padding-left: 20px;
+
+    
+  }
+  .search{
+      margin-left: 15px;
+  }
+  .briefContent{
+    opacity: 0.7 !important;
+
+  }
+  .message{
+    background-color: rgb(245, 240, 240);
+  }
+  .all{
+      max-height: 100%;
+  }
+  .answer{
+      background-color: white;
+      position: fixed;
+        bottom: 0;
+        width: 100%;
+  }
+
+  .containers {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.left {
+    width: 30%;
+    overflow: auto;
+    scroll-behavior: smooth;
+    height: 100%;
+    
+
+}
+.right {
+    flex:1;
+    overflow: auto;
+    scroll-behavior: smooth;
+    display: table-cell;
+    vertical-align: bottom;
+}
+.sidebar-item {
+    display: block;
+    margin: 15px;
+    min-height: 3em;
+    padding: 10px 10px 10px 10px;
+    margin:  10px 10px 10px 10px;;
+    box-shadow: 0 0px 1px 0px rgba(0, 0, 0, 0.2);
+
+    font-family: 'Roboto Slab', serif;
+}
+.header {
+    display: block;
+    height: 70px;
+    flex:none;
+    box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.2);
+
+}
+.content {
+    flex:1;
+    display: flex;
+    overflow: auto;
+}
+.bottom{
+    width: auto;
+display: 'inline-block';
+
+}
+.chatBack{
+    background-color: white;
+    
+}
+input{
+    width: 100%;
+}
+
+  
+  

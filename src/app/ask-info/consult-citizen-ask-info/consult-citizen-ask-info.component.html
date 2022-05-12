@@ -1,4 +1,4 @@
-<div class="messanger">
+<!-- <div class="messanger">
     <div class="wrapper">
 
         <div class="askTitles" >
@@ -47,25 +47,13 @@
               <p >{{shownAskInfo.askForInfoAnswer.message}}</p>
           
             </div>
-            <!-- <div  *ngFor="let message of messages">
-                <div *ngIf="message.askForInfoId.toString()==shownAskInfo.id">
-                    <div *ngIf="message.from==userType">
-                    <p style="text-align: right;">{{message.message}} </p>
-                    </div>
-                 <div *ngIf="message.from!=userType">
-                <p> {{message.message}}</p>
-                 </div>
-                </div>
-                
-            </div> -->
-            <!-- *ngIf="!shownAskInfo.askForInfoAnswer" -->
+
               <mat-form-field   class="example-full-width" appearance="fill">
                   <mat-label>Leave an answer</mat-label>
                   <textarea [(ngModel)]='answer' matInput placeholder="Ex. It makes me feel..."></textarea>
 
                 </mat-form-field>
-                <!-- <img  *ngIf="shownAskInfo.askForInfoAnswer" src="https://www.situationalcommunication.com/app/uploads/2015/11/The-Answer-698x428-e1445614683535.jpg">
- -->
+
                 <button mat-button color="primary" (click)="answerCitizen()">Answer</button>
 
                 
@@ -77,3 +65,122 @@
 </div>
 
 
+ -->
+
+ 
+<div class="containers">
+
+    <div class="content">
+
+    <div class="left chatGroup  ">
+        <div style="background-color: white ;" class="header">
+            <mat-form-field style="margin-left: 20px">
+                <mat-label class="lable">    <i class="fa-solid fa-magnifying-glass"> </i> <span class="search"> Search </span>
+                </mat-label>
+                <input matInput >
+              </mat-form-field>
+           </div>
+        <div class="sidebar-item " *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
+            <div  [ngStyle]="{backgroundColor: notifList.includes(askInfo.id.toString())  ? 'red' : ''} ">
+                <div [ngStyle]="{backgroundColor: askInfo.seen  ? '' : 'red'} ">
+            <div class="chat">
+                <div class="sender">
+                    <h2> {{askInfo.firstName}} {{askInfo.lastName}} <span style="float: right;"  class="time">12:58</span></h2>
+        
+        
+                </div>
+            
+        </div></div>
+            </div>
+            
+            <hr>
+        </div>
+    
+  
+        <div class="sidebar-item">
+        
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
+        
+        
+                </div>
+       
+        
+            </div>
+           
+        </div>
+        <hr>
+        
+        <div class="sidebar-item">
+        
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
+        
+        
+                </div>
+           
+        
+            </div>
+         
+        </div>
+
+        <hr>
+        <div class="sidebar-item">
+        
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
+        
+        
+                </div>
+           
+        
+            </div>
+        
+        </div>
+
+        <hr>
+        <div class="sidebar-item">
+        
+            <div class="chat">
+                <div class="sender">
+                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
+        
+        
+                </div>
+                <div class="briefContent">
+                    a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining essentially unchanged. It was popu
+                </div>
+        
+            </div>
+        
+        </div>
+     
+    </div>
+    <div  (click)="removeAskInfoFromNotif(shownAskInfo.id.toString())" *ngIf="shownAskInfo" class="container" class="right message">
+        <div class="header mid" >
+            {{shownAskInfo.firstName}} {{shownAskInfo.lastName}}<br><span style="font-size: 15px">17/08/2022</span>
+        </div>
+        <div class="sidebar-item">
+            <div class="messageContent" style="background-color: white;"> {{shownAskInfo.information}}<br>   </div>
+      <span class="time"> 11:24 am</span>
+
+
+    <br>
+    <div *ngIf="shownAskInfo.askForInfoAnswer" >
+    <div class="messageAnswer">{{shownAskInfo.askForInfoAnswer.message}}</div>
+    <br>  <br> 
+    <span class="time floatRight" > 13:40 pm</span>
+</div>
+</div>
+
+    </div>
+    
+</div>
+
+</div>
+
+<!-- Bsh nbadel notification ki yji answer juste verify al attribute seen fl answer -->

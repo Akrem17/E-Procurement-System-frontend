@@ -1,4 +1,6 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MatFormFieldAppearance } from '@angular/material/form-field';
 import * as signalR from '@aspnet/signalr';
 import { HubConnection } from '@aspnet/signalr';
 import { Models } from 'src/app/endpoints';
@@ -7,8 +9,9 @@ import { ASK_INFO_ANSWER } from 'src/app/Shared/Models/ASK_INFO_ANSWER';
 import { ASK_INFO_FILTERS } from 'src/app/Shared/Models/ASK_INFO_FILTERS';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { AskInfoAnswerService } from 'src/app/Shared/Services/AskInfoAnswerService/ask-info-answer.service';
-import { AskInfoService } from 'src/app/Shared/Services/AskInfoService/ask-info.service';
+import { AskInfoService, Fruit } from 'src/app/Shared/Services/AskInfoService/ask-info.service';
 import { AuthService } from 'src/app/Shared/Services/auth.service';
+import { NotificationService } from 'src/app/Shared/Services/NotificationService/notification.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,19 +19,24 @@ import { environment } from 'src/environments/environment';
   templateUrl: './consult-institute-ask-info.component.html',
   styleUrls: ['./consult-institute-ask-info.component.css']
 })
+
 export class ConsultInstituteAskInfoComponent implements OnInit {
 
 askForInfos:ASK_INFO[]=[];
 shownAskInfo!:ASK_INFO;
 answer:string=""
 userType:string="bla";
+notifList: string[] = []
 
 private _hubConnection: HubConnection | undefined;
 
-  constructor(private authService: AuthService ,private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { 
+  constructor(private notficationService:NotificationService, private authService: AuthService ,private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { 
 
   }
-
+  removeAskInfoFromNotif(AskInfoId:string){
+    this.notifList = this.notifList.filter(x => x.toString() !== AskInfoId);
+    this.notficationService.notificationNumberInstitute.next(this.notifList.length)
+  }
   ngOnInit(): void {
 
     let askForInfoFilters:ASK_INFO_FILTERS = new ASK_INFO_FILTERS()
@@ -37,10 +45,8 @@ private _hubConnection: HubConnection | undefined;
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
 
       this.askForInfos=response.data
-      
-
-      
-
+      console.log(this.askForInfos)
+      console.log(this.notifList)
 
     })
 
@@ -54,12 +60,35 @@ private _hubConnection: HubConnection | undefined;
     this._hubConnection.start().then(() => {
       console.log("connnntected to socket chat")
   
+      this._hubConnection?.invoke("joinAskInfoNotificationInstitute");
+
+
+
       this._hubConnection?.on('SendMessage', (data: ASK_INFO_ANSWER) => {
         console.log(data)
         this.messages.push(data)
   })
+
+  this._hubConnection?.on('NewAsk', (data: ASK_INFO) => {
+    console.log(data)
+    this.askForInfos.push(data)
+     this.notifList.push(data.id.toString())
+     console.log( this.notifList)
+
+
+     this.notficationService.notificationNumberInstitute.next(this.notifList.length)
+    
+
+      let el = this.askForInfos.find(el => el.id == data.id.toString())
+      console.log(  el)
+
+      this.askForInfos = this.askForInfos.filter(x => x.id.toString() !== data.id.toString());
+      this.askForInfos.unshift(el)
+     console.log(this.askForInfos)
+  })
+
     }).catch(err => console.error(err.toString()));
-  
+
 
 
   // this._hubConnection.on('Send', (data: NOTIFICATION) => {
@@ -101,7 +130,14 @@ this.authService.type.subscribe(res=>{
     
   }
   showAskOffer(askInfo:ASK_INFO){
+    this.removeAskInfoFromNotif(askInfo.id)
     
+      askInfo.seen=true;
+    this.askInfoService.updateeAskInfo(askInfo.id.toString(),askInfo)
+    .subscribe(res=>{
+      console.log(res)
+    })
+  
     this.askInfoService.getAskInfoById(askInfo.id).subscribe(res=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.shownAskInfo=response.data;

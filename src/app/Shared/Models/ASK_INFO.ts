@@ -10,7 +10,6 @@ import { TENDER } from "./TENDER";
     public address: string | null;
     public fax: string | null;
     public seen: boolean | null;
-
     public phone: string | null;
     public email: string | null;
     public sendToEmail: boolean | null;
