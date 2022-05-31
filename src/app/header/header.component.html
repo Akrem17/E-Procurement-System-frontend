@@ -45,6 +45,7 @@
 
     <a *ngIf="(type$ |async)=='supplier'" class="nav-link" routerLink="/supplier/{{userId}}">Profile</a>
     <a  *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/institute/{{userId}}">Profile</a>
+    <a  *ngIf="(type$ |async)=='citizen'" class="nav-link" routerLink="/citizen/{{userId}}">Profile</a>
 
 
     <a *ngIf="!(loginStatus$ | async) as loginStatus" class="nav-link" routerLink="/login">Institution Space</a>
@@ -63,7 +64,7 @@
 
     <a style="float: right;" *ngIf="(type$ |async)=='institute'" class="nav-link" routerLink="/tenders/{{userId}}"></a>
 
-    <a  (mouseover)='RemoveNotification()' class="nav-link dropdown " ><i class="fa fa-bell " aria-hidden="true"> </i><sup *ngIf="notificationsCount>0">{{notificationsCount}}</sup>
+    <a  *ngIf="(type$ |async)=='institute'"  (mouseover)='RemoveNotification()' class="nav-link dropdown " ><i class="fa fa-bell " aria-hidden="true"> </i><sup *ngIf="notificationsCount>0">{{notificationsCount}}</sup>
 
       <div  class="dropdown-content " >
         <div class="test" >
@@ -98,9 +99,7 @@
       <div  class="dropdown-content " >
         <div class="test" >
         <div class="sublink "    >
-          
-        
-        
+      
         </div>
       </div>
     
@@ -120,6 +119,15 @@
       </div>
     </a>
 
+    <a  class="nav-link dropdown"    *ngIf="(type$ |async)=='citizen'"  >Settings
+      <div class="dropdown-content">
+        <a class="sublink" routerLink="citizen/{{userId}}/edit">Edit Profile </a>
+        <a class="sublink" href="#">Edit Password</a>
+        <a class="sublink" (click)="logout()" *ngIf="loginStatus$ | async as loginStatus">
+          Logout</a>
+
+      </div>
+    </a>
     <a   class="nav-link dropdown" *ngIf="(type$ |async)=='institute'"  > <i
       class="fa-solid fa-user-vneck"></i>Settings
 

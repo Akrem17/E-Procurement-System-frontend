@@ -19,11 +19,11 @@ export class CitizenService {
     return this.http.get(this.citizenRoute);
   }
 
-  getCitizenById(id:string){
+  getCitizenById(id:string):Observable<any>{
     return this.http.get(this.citizenRoute+id);
   }
 
-  updateCitizen(id:string,institute:CITIZEN){
+  updateCitizen(id:string,institute:CITIZEN):Observable<any>{
     return this.http.put(this.citizenRoute+id,institute);
   }
   deleteCitizen(id:string){
