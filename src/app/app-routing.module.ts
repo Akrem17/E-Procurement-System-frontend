@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AskInfoComponent } from './ask-info/addAskInfo/ask-info.component';
 import { ConsultCitizenAskInfoComponent } from './ask-info/consult-citizen-ask-info/consult-citizen-ask-info.component';
 import { ConsultInstituteAskInfoComponent } from './ask-info/consult-institute-ask-info/consult-institute-ask-info.component';
+import { ConsultCitizenComponent } from './citizen/consult-citizen/consult-citizen.component';
+import { EditCitizenComponent } from './citizen/edit-citizen/edit-citizen.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { HomeComponent } from './home/home.component';
@@ -180,7 +182,25 @@ const routes: Routes = [
 
     }
   }
+  ,
+  {
+    path: 'citizen/:id', component: ConsultCitizenComponent,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
 
+    }
+  }
+  ,
+  {
+    path: 'citizen/:id/edit', component: EditCitizenComponent
+    ,
+    canActivate: [AuthGuard, HasRoleGuard],
+    data: {
+      type: ['citizen', 'institute', 'supplier']
+
+    }
+  }
     ,
     {
       path: 'resetpassword', component: ForgetPasswordComponent,

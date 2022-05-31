@@ -69,6 +69,8 @@ import { AskInfoComponent } from './ask-info/addAskInfo/ask-info.component';
 import { ConsultInstituteAskInfoComponent } from './ask-info/consult-institute-ask-info/consult-institute-ask-info.component';
 import { ConsultCitizenAskInfoComponent } from './ask-info/consult-citizen-ask-info/consult-citizen-ask-info.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ConsultCitizenComponent } from './citizen/consult-citizen/consult-citizen.component';
+import { EditCitizenComponent } from './citizen/edit-citizen/edit-citizen.component';
 
 
 @NgModule({
@@ -111,7 +113,9 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
     AskInfoComponent,
     ConsultInstituteAskInfoComponent,
     ConsultCitizenAskInfoComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    ConsultCitizenComponent,
+    EditCitizenComponent
   ],
   imports: [
     BrowserModule,

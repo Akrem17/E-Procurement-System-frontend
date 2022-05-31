@@ -1,0 +1,61 @@
+<div class="wrp">
+    <div class="wrapper">
+        <div class="one">
+            <h1>Edit Citizen Informations</h1>
+        </div>
+
+        <div class="form" *ngIf="myForm">
+
+            <div><span class=" red Segoe">Citizen Information</span></div><br><br><br>
+
+            <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="updateInsitute(myForm)">
+               
+                   <div class="divider">
+                     
+                        <mat-form-field>
+                            <!-- <mat-error
+                                *ngIf="(myForm.get('supplierName')?.touched || myForm.get('supplierName')?.dirty) && myForm.get('supplierName')?.invalid">
+                                supplierName Name is required.
+                            </mat-error> -->
+                            <mat-label>Firstname : </mat-label>
+                            <input matInput formControlName="firstName">
+                        </mat-form-field>
+
+                        <!-- social Security Number  -->
+
+                        <mat-form-field>
+                          
+                            <mat-label>Lastname</mat-label>
+                            <input matInput formControlName="lastName">
+                        </mat-form-field>
+                   
+                        <mat-form-field>
+                      
+                            <mat-label>Type Of Institute</mat-label>
+                            <input matInput formControlName="email">
+                        </mat-form-field>
+                        <mat-form-field>
+                          
+                            <mat-label>Registration Number :</mat-label>
+                            <input matInput formControlName="cin">
+                        </mat-form-field>
+                   
+                        <mat-form-field>
+                           
+                            <mat-label>Registration Date :</mat-label>
+                            <input matInput formControlName="phone">
+                        </mat-form-field>
+                          
+                       
+                    </div>
+         
+                <div class="buttons">
+                    <button mat-button >Update</button>
+                </div>
+            </form>
+
+        </div>
+
+
+    
+</div>
