@@ -22,8 +22,9 @@ export class AuthService {
   private _registreInstitute = environment.apiUrl +Auth.signupInstitute;
   private _verifyUser=environment.apiUrl +Auth.verifyAccount;
   private _loginUrl = environment.apiUrl +Auth.login;
-
-
+  private _resetPasswordTokenUrl=environment.apiUrl+Auth.resetPasswordToken;
+  private _verifyCode=environment.apiUrl+Auth.verifyCode;
+  private _resetPassword=environment.apiUrl+Auth.resetPassword;
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(localStorage.getItem('token') && localStorage.getItem('token') != 'undefined');
   public email: BehaviorSubject<string> = new BehaviorSubject<string>(localStorage.getItem('email'));
   public type: BehaviorSubject<string> = new BehaviorSubject<string>(localStorage.getItem('type'));
@@ -56,6 +57,7 @@ validateEmail(id,token):Observable<any> {
     return localStorage.getItem('token');
   }
 
+  
   logout() {
 
     localStorage.removeItem('token');
@@ -67,12 +69,24 @@ validateEmail(id,token):Observable<any> {
     this.router.navigate(['/login'])
 
   }
+  verifyCode(email,code):Observable<any>{
+    return this.http.post<any>(this._verifyCode, {email,code});
 
+  }
   registreSupplier(supplier: SUPPLIER) :Observable<any>{
     return this.http.post<any>(this._registreSupplier, supplier);
   }
   registerInstitute(institute: INSTITUTE) {
     return this.http.post<any>(this._registreInstitute, institute);
+  }
+  resetPassword(email:string){
+    return this.http.post<any>(this._resetPasswordTokenUrl, {email});
+
+  }
+  changePassword(email,ConfirmPassword,NewPassword,token):Observable<any>{
+    console.log(this._resetPassword)
+    
+    return this.http.post<any>(this._resetPassword, {email,ConfirmPassword,NewPassword,token});
   }
 
   
