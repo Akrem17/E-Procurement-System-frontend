@@ -21,7 +21,7 @@ export class InstituteSignupinterlocutorComponent implements OnInit {
     console.log(this.basicInfo)
     this.myForm = this.fb.group({
       name: ['', [Validators.required]],
-      socialSecurityNumber: ['', [Validators.required,Validators.maxLength(10),Validators.minLength(10)]],
+      socialSecurityNumber: ['', [Validators.required,Validators.maxLength(8),Validators.minLength(8)]],
       position: ['', [Validators.required]],
       socialSecurityNumberDate: ['', [Validators.required]],
       phone: ['', [Validators.required,Validators.min(20000000), Validators.max(99999999)]],

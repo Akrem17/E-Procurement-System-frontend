@@ -21,6 +21,8 @@ export const Auth = {
     signupInstitute:"signup/institute",
     signupSupplier:"signup/supplier",
     signupCitizen:"signup/citizen",
-    resetPassword:"/resetpassword",
-    verifyAccount:"verify-account/"
+    verifyAccount:"verify-account/",
+    resetPasswordToken:"reset-password-token/",
+    verifyCode:"verify-code/",
+    resetPassword:"reset-password/"
 }

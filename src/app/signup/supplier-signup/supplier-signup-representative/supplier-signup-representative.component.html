@@ -34,9 +34,9 @@
       <mat-form-field>
         <mat-error
           *ngIf="(myForm.get('socialSecurityNumber')?.touched || myForm.get('socialSecurityNumber')?.dirty) && myForm.get('socialSecurityNumber')?.invalid">
-          Social Security Number Should be 10 caracters.
+          CIN Number Should be 10 caracters.
         </mat-error>
-        <mat-label>Social Security Number</mat-label>
+        <mat-label>CIN</mat-label>
         <input matInput formControlName="socialSecurityNumber">
       </mat-form-field>
       <br><br>
@@ -57,9 +57,9 @@
 
         <mat-error
           *ngIf="(myForm.get('socialSecurityNumberDate')?.touched || myForm.get('socialSecurityNumberDate')?.dirty) && myForm.get('socialSecurityNumberDate')?.invalid">
-          SocialSecurity Number Date is required.
+          CIN Date is required.
         </mat-error>
-        <mat-label>SocialSecurity Number Date</mat-label>
+        <mat-label>CIN acquisition Date</mat-label>
         <input formControlName="socialSecurityNumberDate" matInput [matDatepicker]="picker">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
