@@ -26,6 +26,7 @@ import { ConsultSingleTenderComponent } from './tender/consult-single-tender/con
 import { ConsultTendersComponent } from './tender/consult-tenders/consult-tenders.component';
 import { EditTenderComponent } from './tender/edit-tender/edit-tender.component';
 import { TendersOfInstituteComponent } from './tender/tenders-of-institute/tenders-of-institute.component';
+import { ValidateAUTHComponent } from './validate-auth/validate-auth.component';
 
 const routes: Routes = [
 
@@ -206,6 +207,11 @@ const routes: Routes = [
       path: 'resetpassword', component: ForgetPasswordComponent,
   
   }
+  ,
+  {
+    path: 'verify/:id/:token', component: ValidateAUTHComponent,
+
+}
 
 ];
 

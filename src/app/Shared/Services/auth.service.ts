@@ -20,6 +20,7 @@ export class AuthService {
   private _registreCitizen = environment.apiUrl +Auth.signupCitizen;
   private _registreSupplier = environment.apiUrl + Auth.signupSupplier;
   private _registreInstitute = environment.apiUrl +Auth.signupInstitute;
+  private _verifyUser=environment.apiUrl +Auth.verifyAccount;
   private _loginUrl = environment.apiUrl +Auth.login;
 
 
@@ -39,7 +40,9 @@ export class AuthService {
 
   }
 
-
+validateEmail(id,token):Observable<any> {
+  return this.http.get(this._verifyUser + id + "/" + token);
+}
   loggedIn() {
 
     if (localStorage.getItem('token') && localStorage.getItem('token') != 'undefined')
