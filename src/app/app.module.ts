@@ -71,6 +71,7 @@ import { ConsultCitizenAskInfoComponent } from './ask-info/consult-citizen-ask-i
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ConsultCitizenComponent } from './citizen/consult-citizen/consult-citizen.component';
 import { EditCitizenComponent } from './citizen/edit-citizen/edit-citizen.component';
+import { ValidateAUTHComponent } from './validate-auth/validate-auth.component';
 
 
 @NgModule({
@@ -115,7 +116,8 @@ import { EditCitizenComponent } from './citizen/edit-citizen/edit-citizen.compon
     ConsultCitizenAskInfoComponent,
     ForgetPasswordComponent,
     ConsultCitizenComponent,
-    EditCitizenComponent
+    EditCitizenComponent,
+    ValidateAUTHComponent
   ],
   imports: [
     BrowserModule,
