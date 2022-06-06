@@ -28,7 +28,6 @@ export class ValidateAUTHComponent implements OnInit {
           'success'
         ).then(res=>{
           this._router.navigate([Auth.login]);
-
         })
       }else{
         Swal.fire(
