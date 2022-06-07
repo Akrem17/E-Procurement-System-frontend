@@ -143,8 +143,8 @@ import { ValidateAUTHComponent } from './validate-auth/validate-auth.component';
     FormsModule,
     MdbCheckboxModule,
     MatCheckboxModule,
-    MatExpansionModule,
-  
+    MatExpansionModule
+    
     
     
     

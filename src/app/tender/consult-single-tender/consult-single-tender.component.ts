@@ -12,6 +12,7 @@ import { OFFER } from 'src/app/Shared/Models/OFFER';
 import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/Shared/Services/auth.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-consult-single-tender',
@@ -76,7 +77,11 @@ export class ConsultSingleTenderComponent implements OnInit {
     this.tenderService.getTenderById(this.id).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.tender = response.data;
-      this.tenderClassification = this.paginate(this.tender.tenderClassification, 3, 1);
+      this.tender.startDate=moment(this.tender.startDate).utc().format('MM/DD/YYYY')
+      this.tender.deadLine=moment(this.tender.deadLine).utc().format('MM/DD/YYYY')
+      this.tender.addressReceipt.countryName="Tunisia"
+      this.tender.responsible.socialSecurityNumberDate=moment(  this.tender.responsible.socialSecurityNumberDate).utc().format('MM/DD/YYYY')
+     this.tenderClassification = this.paginate(this.tender.tenderClassification, 3, 1);
       this.offers=[... this.tender.offers]
       this.totalRecords=this.tender.offers.length
       console.log(this.offers)
@@ -99,10 +104,7 @@ export class ConsultSingleTenderComponent implements OnInit {
 
     this.itemPerPage = event.pageSize
     event.pageIndex > event.previousPageIndex? this.page ++:this.page --
-    console.log(event)
-    console.log(   this.itemPerPage,this.page)
     this.data=this.paginate( this.offers,this.itemPerPage,this.page)
-    console.log(this.data)
 
   }
 
@@ -121,7 +123,6 @@ export class ConsultSingleTenderComponent implements OnInit {
 
     this.specificationService.downloadSpecification(id).subscribe(file => {
       this.specificationService.getSpecifications(id).subscribe(res => {
-        console.log(res)
         saveAs(file, res.data.fileName);
       })
 

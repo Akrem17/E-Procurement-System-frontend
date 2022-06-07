@@ -8,7 +8,7 @@
         <div class="container">
   
           <div class="signin">
-  
+          
             
             <div><span class=" red Segoe">Tender Informations</span></div><br><br><br>
             <div class="stepper-wrapper">
@@ -22,7 +22,7 @@
               </div>
               <div class="stepper-item ">
                 <div class="step-counter">3</div>
-                <div class="step-name">Classifications</div>
+                <div class="step-name">Tender line</div>
               </div>
               <div class="stepper-item ">
                   <div class="step-counter">4</div>
@@ -34,7 +34,7 @@
                 </div>
             </div><br><br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-  
+              <mat-error style="font-size: 18px">(*) The field is required</mat-error><br>
               <!-- suppleir name -->
               <mat-form-field>
                 <mat-error
@@ -55,11 +55,20 @@
               </mat-error>
                 <mat-label>Business Kind</mat-label>
                 <mat-select formControlName="businessKind">
-                  <mat-option value="type1">
-                    type 1
+                  <mat-option value="construction-work">
+                    Construction work
                   </mat-option>
-                  <mat-option value="type2">
-                    type 2
+                  <mat-option value="good">
+                    Goods & Equipments
+                  </mat-option>
+                  <mat-option value="service">
+                    Services  
+                  </mat-option>
+                  <mat-option value="study">
+                    Study
+                  </mat-option>
+                  <mat-option value="other">
+                    Other
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -75,10 +84,10 @@
                 </mat-error>
                 <mat-label>Financing</mat-label>
                 <mat-select formControlName="financing">
-                  <mat-option value="type1">
+                  <mat-option value="With">
                     With
                   </mat-option>
-                  <mat-option value="type2">
+                  <mat-option value="Without">
                     Without
                   </mat-option>
                 </mat-select>
@@ -90,7 +99,7 @@
                       *ngIf="(myForm.get('budget')?.touched || myForm.get('budget')?.dirty) && myForm.get('budget')?.invalid">
                       Budget.
                     </mat-error>
-                    <mat-label> Budget</mat-label>
+                    <mat-label> Budget (TND)</mat-label>
                     <input formControlName="budget" type="text" matInput>
                   </mat-form-field><br>
       
@@ -98,9 +107,9 @@
            
                 <mat-error
                   *ngIf="(myForm.get('startDate')?.touched || myForm.get('startDate')?.dirty) && myForm.get('startDate')?.invalid">
-                  Start Date
+                  Start acquisition date
                 </mat-error>
-                <mat-label>Start Date</mat-label>
+                <mat-label>Starting date</mat-label>
                 <input formControlName="startDate" matInput [matDatepicker]="picker">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -136,14 +145,16 @@
                 departement.
               </mat-error>
                 <mat-label>Departement</mat-label>
-                <mat-select formControlName="departement">
+                <input formControlName="departement" type="text" matInput>
+
+                <!-- <mat-select formControlName="departement">
                   <mat-option value="type1">
                     type 1
                   </mat-option>
                   <mat-option value="type2">
                     type 2
                   </mat-option>
-                </mat-select>
+                </mat-select> -->
               </mat-form-field>
   
               <!-- Email cnssID -->

@@ -89,7 +89,7 @@ export class AddTenderSpecificationsComponent implements OnInit {
 
     //modeling address
     let adrress:ADDRESS = new ADDRESS();
-    adrress.city =this.basicInfo.value.address.city; adrress.countryName = this.basicInfo.value.address.countryName; adrress.postalCode = this.basicInfo.value.address.postalCode; adrress.street1 = this.basicInfo.value.address.street1; adrress.street2 = this.basicInfo.value.address.street2;
+    adrress.city =this.basicInfo.value.address.city; adrress.countryName = "Tunisia"; adrress.postalCode = this.basicInfo.value.address.postalCode; adrress.street1 = this.basicInfo.value.address.street1; adrress.street2 = this.basicInfo.value.address.street2;
 
   //modeling classification
     let tendersClass:TENDER_CLASSIFICATION[] =[];

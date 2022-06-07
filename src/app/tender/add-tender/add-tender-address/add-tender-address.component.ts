@@ -38,8 +38,7 @@ export class AddTenderAddressComponent implements OnInit {
 
   
   onSubmit(form: FormGroup) {
-
-    this.basicInfo.addControl('address', new FormGroup(form.controls)); 
+          this.basicInfo.addControl('address', new FormGroup(form.controls)); 
 
     this.specificationPage=true;
     //scroll to the top of page

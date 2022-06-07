@@ -16,6 +16,8 @@ import { TenderService } from 'src/app/Shared/Services/TenderService/tender.serv
 import { EditTenderClassificationComponent } from './edit-tender-classification/edit-tender-classification.component';
 import { saveAs } from 'file-saver';
 import Swal from 'sweetalert2'
+import * as moment from 'moment';
+import { OFFER } from 'src/app/Shared/Models/OFFER';
 
 @Component({
   selector: 'app-edit-tender',
@@ -35,7 +37,7 @@ export class EditTenderComponent implements OnInit {
   tenderClassification: TENDER_CLASSIFICATION[] = [];
   page_size = 1;
   id!: string;
-
+  data:OFFER[]=[];
 
   constructor(private specificationService:SpecificationService,private tinderClassificationService:TenderClassificationService, public dialog: MatDialog ,private representativeService: RepresentativeService, private tenderService: TenderService, private fb: FormBuilder, private route: ActivatedRoute, private addressService: AddressService) { }
 
@@ -60,9 +62,12 @@ export class EditTenderComponent implements OnInit {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
 
       this.tender = response.data;
-      console.log(this.tender);
+      this.tender.startDate=moment(this.tender.startDate).utc().format('MM/DD/YYYY')
+      this.tender.deadLine=moment(this.tender.deadLine).utc().format('MM/DD/YYYY')
+      this.tender.addressReceipt.countryName="Tunisia"
+      this.tender.responsible.socialSecurityNumberDate=moment(  this.tender.responsible.socialSecurityNumberDate).utc().format('MM/DD/YYYY')
       this.tenderClassification = this.paginate(this.tender.tenderClassification, 3, 1);
-
+      this.data=this.tender.offers;
       this.RepresentativeForm = this.fb.group({
         name: [this.tender.responsible.name, [Validators.required]],
         socialSecurityNumber: [this.tender.responsible.socialSecurityNumber, [Validators.required]],
