@@ -28,9 +28,14 @@
                     <div class="step-counter">4</div>
                     <div class="step-name">Address</div>
                   </div>
+                  <div class="stepper-item ">
+                    <div class="step-counter">5</div>
+                    <div class="step-name">Specifications</div>
+                  </div>
               </div><br><br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-  
+              <mat-error style="font-size: 18px">(*) The field is required</mat-error><br>
+
     
   
               <!-- position  -->
@@ -42,11 +47,74 @@
                       </mat-error>
                         <mat-label>City</mat-label>
                         <mat-select formControlName="city">
-                          <mat-option value="type1">
-                            type 1
+                          <mat-option value="Tunis">
+                            Tunis
                           </mat-option>
-                          <mat-option value="type2">
-                            type 2
+                          <mat-option value="Ariana">
+                            Ariana
+                          </mat-option>
+                          <mat-option value="Ben Arous">
+                            Ben Arous
+                          </mat-option>
+                          <mat-option value="Manouba">
+                            Manouba
+                          </mat-option>
+                          <mat-option value="Nabeul">
+                            Nabeul
+                          </mat-option>
+                          <mat-option value="Zaghouan">
+                            Zaghouan
+                          </mat-option>
+                          <mat-option value="Bizerte">
+                            Bizerte
+                          </mat-option>
+                          <mat-option value="Beja">
+                            Beja
+                          </mat-option>
+                          <mat-option value="Jendouba">
+                            Jendouba
+                          </mat-option>
+                          <mat-option value="Kef">
+                            Kef
+                          </mat-option>
+                          <mat-option value="Siliana">
+                            Siliana
+                          </mat-option>
+                          <mat-option value="Sousse">
+                            Sousse
+                          </mat-option>
+                          <mat-option value="Monastir">
+                            Monastir
+                          </mat-option>
+                          <mat-option value="Mahdia">
+                            Mahdia
+                          </mat-option>
+                          <mat-option value="Sfax">
+                            Sfax
+                          </mat-option>  <mat-option value="Kairouan">
+                            Kairouan
+                          </mat-option>  <mat-option value="Kasserine">
+                            Kasserine
+                          </mat-option>  <mat-option value="Sidi Bouzid">
+                            Sidi Bouzid
+                          </mat-option>
+                          <mat-option value="Gabes">
+                            Gabes
+                          </mat-option>
+                          <mat-option value="Mednine">
+                            Mednine
+                          </mat-option>
+                          <mat-option value="Tataouine">
+                            Tataouine
+                          </mat-option>
+                          <mat-option value="Gafsa">
+                            Gafsa
+                          </mat-option>
+                          <mat-option value="Tozeur">
+                            Tozeur
+                          </mat-option>
+                          <mat-option value="Kebili">
+                            Kebili
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -58,7 +126,7 @@
               Postal Code Name is required.
             </mat-error>
             <mat-label>Postal Code</mat-label>
-            <input matInput formControlName="postalCode" >
+            <input matInput formControlName="postalCode" type="text" >
           </mat-form-field>
 
           <br>

@@ -9,7 +9,7 @@
         <div class="signin">
 
 
-          <div><span class=" red Segoe">Represntative Informations</span></div><br><br><br>
+          <div><span class=" red Segoe">Tender lines informations</span></div><br><br><br>
           <div class="stepper-wrapper">
             <div class="stepper-item completed">
               <div class="step-counter">1</div>
@@ -21,15 +21,20 @@
               </div>
               <div class="stepper-item active">
                 <div class="step-counter">3</div>
-                <div class="step-name">Classifications</div>
+                <div class="step-name">Tender line</div>
               </div>
             <div class="stepper-item ">
               <div class="step-counter">4</div>
               <div class="step-name">Address</div>
             </div>
+            <div class="stepper-item ">
+              <div class="step-counter">5</div>
+              <div class="step-name">Specifications</div>
+            </div>
           </div><br><br>
           <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
+            <mat-error style="font-size: 18px">(*) The field is required</mat-error><br>
 
 
             <div formArrayName="classification">
@@ -39,14 +44,14 @@
 
 
                   <mat-card>
-                    <mat-card-title>Classification {{i+1}}</mat-card-title>
+                    <mat-card-title>Tender line {{i+1}}</mat-card-title>
                     <mat-card-subtitle>Tender </mat-card-subtitle>
                     <mat-form-field>
                       <mat-error
                         *ngIf="(myForm.get('name')?.touched || myForm.get('name')?.dirty) && myForm.get('name')?.invalid">
                         Verify phone number.
                       </mat-error>
-                      <mat-label>Name</mat-label>
+                      <mat-label>Name*</mat-label>
                       <input formControlName="name" type="text" matInput>
                     </mat-form-field><br>
                     <!-- phone taxId -->
@@ -55,7 +60,7 @@
                         *ngIf="(myForm.get('description')?.touched || myForm.get('description')?.dirty) && myForm.get('description')?.invalid">
                         Verify phone number.
                       </mat-error>
-                      <mat-label>Description</mat-label>
+                      <mat-label>Description*</mat-label>
                       <input formControlName="description" type="text" matInput>
                     </mat-form-field><br>
                     <mat-form-field>
@@ -63,7 +68,7 @@
                         *ngIf="(myForm.get('amount')?.touched || myForm.get('amount')?.dirty) && myForm.get('amount')?.invalid">
                         Verify phone number.
                       </mat-error>
-                      <mat-label>Qantity</mat-label>
+                      <mat-label>Qantity*</mat-label>
                       <input formControlName="amount" type="text" matInput>
                     </mat-form-field><br>
 
@@ -71,8 +76,6 @@
                       <button mat-fab color="warn" (click)="removeSkill(i)">Remove</button>
                     </mat-card-actions>
                   </mat-card>
-
-
 
                 </div>
 

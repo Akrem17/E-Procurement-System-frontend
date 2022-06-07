@@ -17,19 +17,24 @@
               </div>
               <div class="stepper-item active ">
                 <div class="step-counter">2</div>
-                <div class="step-name"> Responsible</div>
+                <div class="step-name"> Represntative</div>
               </div>
               <div class="stepper-item ">
                 <div class="step-counter">3</div>
-                <div class="step-name">Classifications</div>
+                <div class="step-name">Tender line</div>
               </div>
               <div class="stepper-item ">
                   <div class="step-counter">4</div>
                   <div class="step-name">Address</div>
                 </div>
+                <div class="stepper-item">
+                  <div class="step-counter">5</div>
+                  <div class="step-name">Specifications</div>
+                </div>
             </div><br><br>
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-  
+              <mat-error style="font-size: 18px">(*) The field is required</mat-error><br>
+
                 <mat-form-field>
                     <mat-error
                       *ngIf="(myForm.get('socialSecurityNumber')?.touched || myForm.get('socialSecurityNumber')?.dirty) && myForm.get('socialSecurityNumber')?.invalid">
@@ -67,9 +72,9 @@
            
                 <mat-error
                   *ngIf="(myForm.get('socialSecurityNumberDate')?.touched || myForm.get('socialSecurityNumberDate')?.dirty) && myForm.get('socialSecurityNumberDate')?.invalid">
-                  SocialSecurity Number Date is required.
+                  CIN Date is required.
                 </mat-error>
-                <mat-label>SocialSecurity Number Date</mat-label>
+                <mat-label>CIN  Date</mat-label>
                 <input formControlName="socialSecurityNumberDate" matInput [matDatepicker]="picker">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>

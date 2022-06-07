@@ -47,15 +47,16 @@ export class ForgetPasswordComponent implements OnInit {
 
 
   onSubmit(form: FormGroup) {
+
                          //@ts-ignore
-
     if(form.controls.code.status=="DISABLED"){
-                        //@ts-ignore
 
+                        //@ts-ignore
       console.log(form.controls.email.value)
+
                      //@ts-ignore
       this._auth.changePassword(form.controls.email.value,form.value.password,form.value.passwordConfirm,this.token).subscribe(res=>{
-        console.log(res)
+
         const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
         if(response.status){
           Swal.fire(
