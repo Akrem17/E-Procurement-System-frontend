@@ -58,7 +58,7 @@ export class ConsultTendersComponent implements OnInit {
       filters = this.filters.value;
       filters.bidNumber = selectedValue;
 
-      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber))) {
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber) &&this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate))) {
 
         this.callTendersWithFilters(filters)
       }
@@ -74,7 +74,7 @@ export class ConsultTendersComponent implements OnInit {
       filters.bidName = selectedValue;
 
 
-      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber))) {
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)&& this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate))) {
 
         this.callTendersWithFilters(filters)
       }
@@ -86,27 +86,48 @@ export class ConsultTendersComponent implements OnInit {
       let filters: TENDER_FILTERS;
       filters = this.filters.value;
       filters.city = selectedValue;
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)  && this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate) )) {
+        this.callTendersWithFilters(filters)
+      }
+      else {
+        this.callAllTenders()
+      }
+
+
 
     })
     this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
       let filters: TENDER_FILTERS;
       filters = this.filters.value;
       filters.postDate = selectedValue;
+      filters.postDate = new Date(filters.postDate )?.toISOString()
 
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)  && this.isEmptyOrNull(filters?.city) && this.isEmptyOrNull(filters?.postDate))) {
+        this.callTendersWithFilters(filters)
+      }
+      else {
+        this.callAllTenders()
+      }
     })
 
   }
 
-
+  clearDate(){
+    this.filters.get("postDate").setValue("")
+  }
 
   callTendersWithFilters(filters: TENDER_FILTERS) {
-
     this.tenderService.FilterTenderBy(filters).subscribe(res => {
-      this.data = []
-      //@ts-ignore
+
+      this.data = [];
+      
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      console.log(response)
+
       this.tenders = response.data;
       this.tenders?.map(tender => {
+        console.log(tender)
+
         let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
         let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();
         tender.startDate = startDate;

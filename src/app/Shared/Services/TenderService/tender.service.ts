@@ -32,7 +32,7 @@ export class TenderService {
 
     return this.http.put(this.tendersRoute+id,tender);
    }
-   FilterTenderBy(filters:TENDER_FILTERS ){
+   FilterTenderBy(filters:TENDER_FILTERS ):Observable<any>{
     let filter="";
     Object.entries(filters).forEach(res=>{
       filter+="&"+res[0]+"="+res[1];
