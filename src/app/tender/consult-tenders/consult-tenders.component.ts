@@ -57,7 +57,13 @@ export class ConsultTendersComponent implements OnInit {
       let filters: TENDER_FILTERS;
       filters = this.filters.value;
       filters.bidNumber = selectedValue;
-
+      //filters.postDate = new Date(filters.postDate )?.toISOString()
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
       if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber) &&this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate))) {
 
         this.callTendersWithFilters(filters)
@@ -72,7 +78,13 @@ export class ConsultTendersComponent implements OnInit {
       let filters: TENDER_FILTERS;
       filters = this.filters.value;
       filters.bidName = selectedValue;
-
+      //filters.postDate = new Date(filters.postDate )?.toISOString()
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
 
       if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)&& this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate))) {
 
@@ -86,6 +98,12 @@ export class ConsultTendersComponent implements OnInit {
       let filters: TENDER_FILTERS;
       filters = this.filters.value;
       filters.city = selectedValue;
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
       if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)  && this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate) )) {
         this.callTendersWithFilters(filters)
       }
@@ -96,12 +114,17 @@ export class ConsultTendersComponent implements OnInit {
 
 
     })
+    
     this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
       let filters: TENDER_FILTERS;
       filters = this.filters.value;
+      if(selectedValue!=""){
       filters.postDate = selectedValue;
+      
       filters.postDate = new Date(filters.postDate )?.toISOString()
-
+    }else{
+      filters.postDate=''
+    }
       if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)  && this.isEmptyOrNull(filters?.city) && this.isEmptyOrNull(filters?.postDate))) {
         this.callTendersWithFilters(filters)
       }
@@ -113,7 +136,9 @@ export class ConsultTendersComponent implements OnInit {
   }
 
   clearDate(){
-    this.filters.get("postDate").setValue("")
+    this.filters.get("postDate").setValue('');
+    console.log(this.filters.value)
+    
   }
 
   callTendersWithFilters(filters: TENDER_FILTERS) {
@@ -122,11 +147,9 @@ export class ConsultTendersComponent implements OnInit {
       this.data = [];
       
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      console.log(response)
 
       this.tenders = response.data;
       this.tenders?.map(tender => {
-        console.log(tender)
 
         let startDate = moment(new Date(tender.startDate)).format('DD-MM-YYYY').toString();
         let deadLine = moment(new Date(tender.deadLine)).format('DD-MM-YYYY').toString();

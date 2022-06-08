@@ -38,6 +38,7 @@ export class TenderService {
       filter+="&"+res[0]+"="+res[1];
    
     }); 
+    console.log(filters);
     return this.http.get(this.tendersRoute+"?"+filter);
   }
   extractResult(id:string):Observable<any>{
