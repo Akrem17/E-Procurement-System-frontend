@@ -228,7 +228,7 @@
     <thead>
       <tr>
         <th scope="col">Supplier Name</th>
-        <th scope="col">Representative Name</th>
+        <th scope="col">Category</th>
         <th scope="col">Accepted</th>
         <th scope="col">Details</th>
         
@@ -252,8 +252,8 @@
 
       </tr>
       <tr *ngFor="let offer of data">
-        <td data-label="Account">{{offer.name}}</td>
-        <td data-label="Due Date">{{offer.totalMontant}}</td>
+        <td data-label="Account">{{offer.supplier.supplierName}}</td>
+        <td data-label="Due Date">{{offer.supplier.category}}</td>
     
         <td *ngIf="offer.isAccepted==null" data-label="Amount">Not reviewed yet</td>
         <td *ngIf="offer.isAccepted==false" data-label="Amount">Rejected</td>

@@ -172,6 +172,15 @@
                                     <div mat-line>{{niceBytes(financial.fileSize)}}</div>
                                 </a>
                             </mat-list-item>
+                            <div mat-subheader>Technical:</div>
+                            <mat-list-item>
+                                <mat-icon  (click)="downloadPDF(other.id)" mat-list-icon>picture_as_pdf</mat-icon>
+
+                                <a href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(other.id)">
+                                    <div mat-line>{{other.fileName}}</div>
+                                    <div mat-line>{{niceBytes(other.fileSize)}}</div>
+                                </a>
+                            </mat-list-item>
 
                         </mat-list>
 

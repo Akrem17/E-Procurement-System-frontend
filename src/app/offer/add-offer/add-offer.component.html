@@ -13,7 +13,8 @@
             <div><span class=" red Segoe">Offer Informations</span></div><br><br><br>
      
             <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-  
+              <mat-error style="font-size: 18px">(*) The field is required</mat-error><br>
+
               <!-- suppleir name -->
               <mat-form-field>
                 <mat-error
