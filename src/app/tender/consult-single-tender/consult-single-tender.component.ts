@@ -75,8 +75,13 @@ export class ConsultSingleTenderComponent implements OnInit {
 
 
     this.tenderService.getTenderById(this.id).subscribe(res => {
+      console.log(res)
+
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      this.tender = response.data;
+      this.tender = response.data.tender;
+
+      this.tender.offers= response.data.offers;
+      console.log(this.tender)
       this.tender.startDate=moment(this.tender.startDate).utc().format('MM/DD/YYYY')
       this.tender.deadLine=moment(this.tender.deadLine).utc().format('MM/DD/YYYY')
       this.tender.addressReceipt.countryName="Tunisia"

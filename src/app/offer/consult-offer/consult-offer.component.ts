@@ -27,6 +27,8 @@ export class ConsultOfferComponent implements OnInit {
   id: string;
   offer!:OFFER;
   financial!:SPECIFICATION;
+  other!:SPECIFICATION;
+
   consume="read";
   readTotalPrice
   constructor(private offerService:OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
@@ -54,6 +56,7 @@ export class ConsultOfferComponent implements OnInit {
       this.offer=response.data;
       //@ts-ignore
       this.financial=this.offer.files[0];
+      this.other=this.offer.files[1];
       console.log(this.financial)
 
       this.offerClassification=response.data.offerClassification;

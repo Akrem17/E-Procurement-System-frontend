@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { ADDRESS } from 'src/app/Shared/Models/ADDRESS';
 import { INSTITUTE } from 'src/app/Shared/Models/INSTITUTE';
 import { LICENCE } from 'src/app/Shared/Models/LICENCE';
@@ -50,10 +51,10 @@ export class EditInstituteComponent implements OnInit {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
    
       if(response.status)
+      
          this.institute=response.data;
-         console.log(  this.institute)
-
-        this.myForm = this.fb.group({
+         this.institute.interlocutor.socialSecurityNumberDate = moment(new Date(   this.institute.interlocutor.socialSecurityNumberDate)).format('DD-MM-YYYY').toString();
+         this.myForm = this.fb.group({
           nameFr: [this.institute.nameFr, [Validators.required]],
           nameAr: [this.institute.nameAr, [Validators.required]],
           typeOfInstitute: [this.institute.typeOfInstitute, [Validators.required]],
