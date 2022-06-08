@@ -42,7 +42,7 @@ callTendersWithFilters(filters:TENDER_FILTERS){
   
   this.tenderService.FilterTenderBy(filters).subscribe(res=>{
     this.data=[]
-    //@ts-ignore
+   
     const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
     this.tenders = response.data;
     this.tenders?.map(tender => {
@@ -51,7 +51,6 @@ callTendersWithFilters(filters:TENDER_FILTERS){
       tender.startDate = startDate;
       tender.deadLine = deadLine;
       this.data=this.tenders;
-
   })
 
   })
@@ -95,9 +94,14 @@ callAllTenders(id:string){
       let filters: TENDER_FILTERS;
       filters = this.filters.value;
       filters.bidNumber = selectedValue;
-      
-
-      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber))) {
+      //filters.postDate = new Date(filters.postDate )?.toISOString()
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber) &&this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate))) {
 
         this.callTendersWithFilters(filters)
       }
@@ -105,7 +109,71 @@ callAllTenders(id:string){
         this.callAllTenders(id)
       }
     })
+
+
+    this.filters.get("bidName").valueChanges.subscribe(selectedValue => {
+      let filters: TENDER_FILTERS;
+      filters = this.filters.value;
+      filters.bidName = selectedValue;
+      //filters.postDate = new Date(filters.postDate )?.toISOString()
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
+
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)&& this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate))) {
+
+        this.callTendersWithFilters(filters)
+      }
+      else {
+        this.callAllTenders(id)
+      }
+    })
+    this.filters.get("city").valueChanges.subscribe(selectedValue => {
+      let filters: TENDER_FILTERS;
+      filters = this.filters.value;
+      filters.city = selectedValue;
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)  && this.isEmptyOrNull(filters?.city)  && this.isEmptyOrNull(filters?.postDate) )) {
+        this.callTendersWithFilters(filters)
+      }
+      else {
+        this.callAllTenders(id)
+      }
+
+
+
+    })
     
+    this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
+      let filters: TENDER_FILTERS;
+      filters = this.filters.value;
+      if(selectedValue!=""){
+      filters.postDate = selectedValue;
+      
+      filters.postDate = new Date(filters.postDate )?.toISOString()
+    }else{
+      filters.postDate=''
+    }
+      if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)  && this.isEmptyOrNull(filters?.city) && this.isEmptyOrNull(filters?.postDate))) {
+        this.callTendersWithFilters(filters)
+      }
+      else {
+        this.callAllTenders(id)
+      }
+    })
+  
+  
+
+
+
     this.instuteService.GetTendersOfInstitute(id,this.page,this.itemPerPage).subscribe(res=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.tenders = response.data?.tenders;
@@ -122,7 +190,10 @@ callAllTenders(id:string){
   })
 
 }
-
+clearDate(){
+  this.filters.get("postDate").setValue('');
+  console.log(this.filters.value)
+}
 
   onChangePage(event: PageEvent) {
     this.data=[]
