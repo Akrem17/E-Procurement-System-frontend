@@ -64,54 +64,162 @@ export class SupplierOffersComponent implements OnInit {
       tenderName: ["", [Validators.required]],
       city: ["", [Validators.required]],
       postDate: ["", [Validators.required]],
+      supplierEmail: ["", [Validators.required]],
 
     });
 
 
+    // this.filters.get("offerNumber").valueChanges.subscribe(selectedValue => {
+
+    //   let filters: OFFER_FILTERS = new OFFER_FILTERS();
+    //   filters.offerNumber = selectedValue;
+    //   filters.supplierId = this.supplierId;
+
+    //   if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
+
+    //     this.callOffersWithFilters(this.page, this.itemPerPage, filters)
+    //   }
+    //   else {
+    //     //this.callAllTenders()
+    //   }
+    // })
+
+
+    // this.filters.get("tenderName").valueChanges.subscribe(selectedValue => {
+    //   let filters: OFFER_FILTERS = new OFFER_FILTERS();
+    //   filters = this.filters.value;
+    //   filters.tenderName = selectedValue;
+
+
+    //   if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
+
+    //     this.callOffersWithFilters(this.page, this.itemPerPage, filters)
+    //   }
+    //   else {
+    //     //this.callAllTenders()
+    //   }
+    // })
+    // this.filters.get("city").valueChanges.subscribe(selectedValue => {
+    //   let filters: OFFER_FILTERS;
+    //   filters = this.filters.value;
+    //   filters.city = selectedValue;
+
+    //   console.log(filters)
+    // })
+    // this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
+    //   let filters: OFFER_FILTERS;
+    //   filters = this.filters.value;
+    //   filters.postDate = selectedValue;
+
+    //   console.log(filters)
+    // })
+
+
+    
     this.filters.get("offerNumber").valueChanges.subscribe(selectedValue => {
 
-      let filters: OFFER_FILTERS = new OFFER_FILTERS();
+      let filters: OFFER_FILTERS;
+      filters = this.filters.value;
       filters.offerNumber = selectedValue;
-      filters.supplierId = this.supplierId;
-
-      if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
+      //filters.postDate = new Date(filters.postDate )?.toISOString()
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
+      if (!(this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
 
         this.callOffersWithFilters(this.page, this.itemPerPage, filters)
       }
       else {
-        //this.callAllTenders()
+        //this.callAllTenders(id)
       }
     })
 
 
     this.filters.get("tenderName").valueChanges.subscribe(selectedValue => {
-      let filters: OFFER_FILTERS = new OFFER_FILTERS();
+      let filters: OFFER_FILTERS;
       filters = this.filters.value;
       filters.tenderName = selectedValue;
+      //filters.postDate = new Date(filters.postDate )?.toISOString()
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
 
-
-      if (!(this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.offerNumber))) {
+      if (!( this.isEmptyOrNull(filters?.supplierEmail)  && this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
 
         this.callOffersWithFilters(this.page, this.itemPerPage, filters)
       }
       else {
-        //this.callAllTenders()
+     //   this.callAllTenders(id)
+      }
+    })
+
+
+    this.filters.get("supplierEmail").valueChanges.subscribe(selectedValue => {
+      let filters: OFFER_FILTERS;
+      filters = this.filters.value;
+      filters.tenderName = selectedValue;
+      //filters.postDate = new Date(filters.postDate )?.toISOString()
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
+
+      if (!(this.isEmptyOrNull(filters?.supplierEmail)  && this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
+
+        this.callOffersWithFilters(this.page, this.itemPerPage, filters)
+      }
+      else {
+     //   this.callAllTenders(id)
       }
     })
     this.filters.get("city").valueChanges.subscribe(selectedValue => {
       let filters: OFFER_FILTERS;
       filters = this.filters.value;
       filters.city = selectedValue;
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
+      if (!(this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
+        this.callOffersWithFilters(this.page, this.itemPerPage, filters)
+      }
+      else {
+//        this.callAllTenders(id)
+      }
 
-      console.log(filters)
-    })
-    this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
-      let filters: OFFER_FILTERS;
-      filters = this.filters.value;
-      filters.postDate = selectedValue;
 
-      console.log(filters)
-    })
+
+     })
+    
+    // this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
+    //   let filters: TENDER_FILTERS;
+    //   filters = this.filters.value;
+    //   if(selectedValue!=""){
+    //   filters.postDate = selectedValue;
+      
+    //   filters.postDate = new Date(filters.postDate )?.toISOString()
+    // }else{
+    //   filters.postDate=''
+    // }
+    //   if (!(this.isEmptyOrNull(filters?.bidName) && this.isEmptyOrNull(filters?.bidNumber)  && this.isEmptyOrNull(filters?.city) && this.isEmptyOrNull(filters?.postDate))) {
+    //     this.callTendersWithFilters(filters)
+    //   }
+    //   else {
+    //     this.callAllTenders(id)
+    //   }
+    // })
+  
+  
 
   }
 
