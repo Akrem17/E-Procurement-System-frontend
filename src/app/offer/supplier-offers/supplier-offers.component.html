@@ -13,8 +13,16 @@
       <mat-label>Search by bid name</mat-label>
       <input matInput formControlName="tenderName">
     </mat-form-field>
+      <mat-form-field style="margin: 30px;">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="">
+          All
+        </mat-option>
+        </mat-select>
+        </mat-form-field>
     <mat-form-field style="margin: 30px;">
-      <mat-label>Search by Representative CIN</mat-label>
+      <mat-label>Representative CIN</mat-label>
       <input matInput formControlName="city">
     </mat-form-field>
     <!-- <mat-form-field style="margin: 30px;">
@@ -95,11 +103,16 @@
       </mat-select>
     </mat-form-field> -->
     <mat-form-field style="margin: 30px;">
-      <mat-label>Post date</mat-label>
+      <mat-label>Deadline</mat-label>
+      
       <input matInput [matDatepicker]="picker" formControlName="postDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker #picker>    
+      </mat-datepicker>
+      <mat-datepicker-toggle matSuffix>  <mat-icon matDatepickerToggleIcon (click)="clearDate()">clear</mat-icon>
+      </mat-datepicker-toggle>
     </mat-form-field>
+
   </form>
   <br>
   <div class="table">
