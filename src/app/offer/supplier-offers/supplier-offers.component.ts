@@ -41,13 +41,15 @@ export class SupplierOffersComponent implements OnInit {
     filters.supplierEmail = supplierEmail;
     filters.supplierId = supplierId;
     this._offerService.getOfferBy(skip, take, filters).subscribe(res => {
-      console.log(res)
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.totalRecords = response.data.itemsNumber
 
       response.data.offer.forEach(element => {
+        console.log(element)
+        element.tenderInfo.startDate=moment(new Date(element.tenderInfo.startDate)).format('DD-MM-YYYY').toString();
+        element.tenderInfo.deadLine=moment(new Date(element.tenderInfo.deadLine)).format('DD-MM-YYYY').toString();
         this.offers.push(element)
-        console.table(this.offers)
+   
 
       });
 
@@ -65,6 +67,7 @@ export class SupplierOffersComponent implements OnInit {
       city: ["", [Validators.required]],
       postDate: ["", [Validators.required]],
       supplierEmail: ["", [Validators.required]],
+      status: ["", [Validators.required]],
 
     });
 
@@ -128,12 +131,12 @@ export class SupplierOffersComponent implements OnInit {
       }else{
         filters.postDate=''
       }
-      if (!(this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
+      if (!(this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
 
         this.callOffersWithFilters(this.page, this.itemPerPage, filters)
       }
       else {
-        //this.callAllTenders(id)
+        this.callOffers()
       }
     })
 
@@ -150,12 +153,12 @@ export class SupplierOffersComponent implements OnInit {
         filters.postDate=''
       }
 
-      if (!( this.isEmptyOrNull(filters?.supplierEmail)  && this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
+      if (!(this.isEmptyOrNull(filters?.offerNumber)  && this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
 
         this.callOffersWithFilters(this.page, this.itemPerPage, filters)
       }
       else {
-     //   this.callAllTenders(id)
+        this.callOffers()
       }
     })
 
@@ -172,12 +175,12 @@ export class SupplierOffersComponent implements OnInit {
         filters.postDate=''
       }
 
-      if (!(this.isEmptyOrNull(filters?.supplierEmail)  && this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
+      if (!(this.isEmptyOrNull(filters?.offerNumber)  && this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
 
         this.callOffersWithFilters(this.page, this.itemPerPage, filters)
       }
       else {
-     //   this.callAllTenders(id)
+        this.callOffers()
       }
     })
     this.filters.get("city").valueChanges.subscribe(selectedValue => {
@@ -190,14 +193,30 @@ export class SupplierOffersComponent implements OnInit {
       }else{
         filters.postDate=''
       }
-      if (!(this.isEmptyOrNull(filters?.offerNumber) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
+      if (!(this.isEmptyOrNull(filters?.offerNumber)  && this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
         this.callOffersWithFilters(this.page, this.itemPerPage, filters)
       }
       else {
-//        this.callAllTenders(id)
+        this.callOffers()
       }
 
-
+     })
+     this.filters.get("postDate").valueChanges.subscribe(selectedValue => {
+      let filters: OFFER_FILTERS;
+      filters = this.filters.value;
+      filters.postDate = selectedValue;
+      if( filters.postDate!=""){
+        
+        filters.postDate = new Date(filters.postDate )?.toISOString()
+      }else{
+        filters.postDate=''
+      }
+      if (!(this.isEmptyOrNull(filters?.offerNumber)  && this.isEmptyOrNull(filters?.tenderName) && this.isEmptyOrNull(filters?.city) &&this.isEmptyOrNull(filters?.postDate)  && this.isEmptyOrNull(filters?.supplierEmail))) {
+        this.callOffersWithFilters(this.page, this.itemPerPage, filters)
+      }
+      else {
+        this.callOffers()
+      }
 
      })
     
@@ -223,7 +242,10 @@ export class SupplierOffersComponent implements OnInit {
 
   }
 
-
+  clearDate(){
+    this.filters.get("postDate").setValue('');
+    console.log(this.filters.value)
+  }
 
   callOffersWithFilters(skip: number = 0, take: number = 10, filters: OFFER_FILTERS) {
 

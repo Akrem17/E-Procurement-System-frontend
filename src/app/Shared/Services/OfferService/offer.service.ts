@@ -43,7 +43,7 @@ export class OfferService {
       filter+="&"+res[0]+"="+res[1];
    
     }); 
-    console.log(this.offerRoute+"?skip="+skip+"&take="+take+filter)
+    console.log(filters)
 
     return this.http.get(this.offerRoute+"?skip="+skip+"&take="+take+filter);
   }
