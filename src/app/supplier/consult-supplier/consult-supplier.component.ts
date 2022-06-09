@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as saveAs from 'file-saver';
+import * as moment from 'moment';
 import { INSTITUTE } from 'src/app/Shared/Models/INSTITUTE';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
 import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
@@ -58,6 +59,11 @@ export class ConsultSupplierComponent implements OnInit {
 
       if(response.data){
         this.supplier=response.data;
+        this.supplier.registrationDate=moment(new Date(this.supplier.registrationDate)).format('DD-MM-YYYY').toString();
+        this.supplier.representative.socialSecurityNumberDate=moment(new Date(this.supplier.representative.socialSecurityNumberDate)).format('DD-MM-YYYY').toString();
+        this.supplier.licence.acquisitionDate=moment(new Date(this.supplier.licence.acquisitionDate)).format('DD-MM-YYYY').toString();
+        this.supplier.licence.expirationDate=moment(new Date(this.supplier.licence.expirationDate)).format('DD-MM-YYYY').toString();
+
         console.log(this.supplier)
 
 
