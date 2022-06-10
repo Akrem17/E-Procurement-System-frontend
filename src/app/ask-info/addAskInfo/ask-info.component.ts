@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Models } from 'src/app/endpoints';
+import Swal from 'sweetalert2';
 import { ASK_INFO } from '../../Shared/Models/ASK_INFO';
 import { CITIZEN_FILTERS } from '../../Shared/Models/CITIZEN_FILTERS';
 import { RESPONSE } from '../../Shared/Models/RESPONSE';
@@ -17,7 +19,7 @@ import { TenderService } from '../../Shared/Services/TenderService/tender.servic
 })
 export class AskInfoComponent implements OnInit {
 
-  constructor(private askInfoService:AskInfoService, private authService:AuthService, private citizenService:CitizenService, private fb: FormBuilder,private tenderService: TenderService ,private route: ActivatedRoute,) { }
+  constructor(private askInfoService:AskInfoService, private _router:Router,private authService:AuthService, private citizenService:CitizenService, private fb: FormBuilder,private tenderService: TenderService ,private route: ActivatedRoute,) { }
   myForm!: FormGroup;
   panelOpenState:boolean=false;
   tenderId!:string;
@@ -66,7 +68,26 @@ export class AskInfoComponent implements OnInit {
     this.askInfoService.createAskInfo(askInfo).subscribe(res=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       console.log(response)
+      if(response.status){
+        Swal.fire(
+          'Demand snet with success !',
+          '',
+          'success'
+        ).then(res=>{
+          this._router.navigate([Models.tenders]);
 
+        })
+      
+      }else{
+        Swal.fire(
+          'Error while updating !',
+          '',
+          'error'
+        )
+      
+      }
+   
+      
     })
     //naamel model fl angular(tansesh tzid attribut user)
     //backend
