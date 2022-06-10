@@ -44,7 +44,7 @@ export class EditCitizenComponent implements OnInit {
          console.log(  this.citizen)
 
         this.myForm = this.fb.group({
-          firstName: [this.citizen.firstName, [Validators.required]],
+          firstName: [this.citizen?.firstName, [Validators.required]],
           lastName: [this.citizen.lastName, [Validators.required]],
           email: [this.citizen.email, [Validators.required]],
           cin: [this.citizen.cin, [Validators.required]],

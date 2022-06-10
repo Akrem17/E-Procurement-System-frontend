@@ -44,5 +44,6 @@ export class AddTenderComponent implements OnInit {
          //scroll to the top of page
     document.body.scrollTop = document.documentElement.scrollTop = 0;
 
+
   }
 }

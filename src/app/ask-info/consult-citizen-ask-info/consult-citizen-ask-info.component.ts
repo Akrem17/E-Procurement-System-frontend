@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { HubConnection } from '@aspnet/signalr';
-import { BehaviorSubject } from 'rxjs';
 import { Models } from 'src/app/endpoints';
 import { ASK_INFO } from 'src/app/Shared/Models/ASK_INFO';
 import { ASK_INFO_ANSWER } from 'src/app/Shared/Models/ASK_INFO_ANSWER';
