@@ -74,6 +74,7 @@ import { EditCitizenComponent } from './citizen/edit-citizen/edit-citizen.compon
 import { ValidateAUTHComponent } from './validate-auth/validate-auth.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -143,7 +144,9 @@ import { ValidateAUTHComponent } from './validate-auth/validate-auth.component';
     FormsModule,
     MdbCheckboxModule,
     MatCheckboxModule,
-    MatExpansionModule
+    MatExpansionModule,
+    BrowserAnimationsModule
+    
     
     
     

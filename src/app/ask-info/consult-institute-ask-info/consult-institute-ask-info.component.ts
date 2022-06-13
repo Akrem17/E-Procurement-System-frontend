@@ -38,13 +38,17 @@ private _hubConnection: HubConnection | undefined;
     this.notficationService.notificationNumberInstitute.next(this.notifList.length)
   }
   ngOnInit(): void {
-
     let askForInfoFilters:ASK_INFO_FILTERS = new ASK_INFO_FILTERS()
     askForInfoFilters.instituteId="1";//get the id of user
     this.askInfoService.getAskInfo(askForInfoFilters).subscribe(res=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-
-      this.askForInfos=response.data
+     let ask=[];
+      response.data.forEach(element => {
+          if (element.askForInfoAnswerId==null){
+            ask.push(element)
+          }
+      });
+      this.askForInfos=ask
       console.log(this.askForInfos)
       console.log(this.notifList)
 
@@ -62,8 +66,6 @@ private _hubConnection: HubConnection | undefined;
   
       this._hubConnection?.invoke("joinAskInfoNotificationInstitute");
 
-
-
       this._hubConnection?.on('SendMessage', (data: ASK_INFO_ANSWER) => {
         console.log(data)
         this.messages.push(data)
@@ -71,6 +73,8 @@ private _hubConnection: HubConnection | undefined;
 
   this._hubConnection?.on('NewAsk', (data: ASK_INFO) => {
     console.log(data)
+
+    console.log("lenaa")
     this.askForInfos.push(data)
      this.notifList.push(data.id.toString())
      console.log( this.notifList)
@@ -81,7 +85,7 @@ private _hubConnection: HubConnection | undefined;
 
       let el = this.askForInfos.find(el => el.id == data.id.toString())
       console.log(  el)
-
+      
       this.askForInfos = this.askForInfos.filter(x => x.id.toString() !== data.id.toString());
       this.askForInfos.unshift(el)
      console.log(this.askForInfos)
