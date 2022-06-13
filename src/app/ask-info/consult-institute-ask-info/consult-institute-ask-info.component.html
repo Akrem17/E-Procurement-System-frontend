@@ -182,20 +182,22 @@
               </mat-form-field>
            </div>
         <div class="sidebar-item " *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
-            <div  [ngStyle]="{backgroundColor: notifList.includes(askInfo.id.toString())  ? 'red' : ''} ">
-                <div [ngStyle]="{backgroundColor: askInfo.seen  ? '' : 'red'} ">
+            <!-- <div  [ngStyle]="{backgroundColor: notifList.includes(askInfo.id.toString())  ? 'red' : ''} "> -->
+                <!-- //<div [ngStyle]="{backgroundColor: askInfo.seen  ? '' : 'red'} "> -->
             <div class="chat">
                 <div class="sender">
                     <h2> {{askInfo.firstName}} {{askInfo.lastName}} <span style="float: right;"  class="time">12:58</span></h2>
         
         
                 </div>
-                <div style="background-color: rgb(65, 249, 95); width: fit-content;
+
+                <div *ngIf="askInfo.seen" style="background-color: rgb(65, 249, 95); width: fit-content;
                 height: fit-content;
                 padding: 10px;">
                     Red
                 </div>
-                <div style="background-color: rgb(249, 65, 65); width: fit-content;
+
+                <div *ngIf="!askInfo.seen" style="background-color: rgb(249, 65, 65); width: fit-content;
                 height: fit-content;
                 padding: 10px;">
                     Unred
@@ -204,8 +206,7 @@
                 <!-- <div class="briefContent">
                     <p>{{askInfo.information}}</p>
                 </div> -->
-        </div></div>
-            </div>
+        </div>
             
           
         </div>

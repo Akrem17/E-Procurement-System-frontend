@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { Models } from 'src/app/endpoints';
 import Swal from 'sweetalert2';
 import { ASK_INFO } from '../../Shared/Models/ASK_INFO';
@@ -18,14 +20,19 @@ import { TenderService } from '../../Shared/Services/TenderService/tender.servic
   styleUrls: ['./ask-info.component.css']
 })
 export class AskInfoComponent implements OnInit {
+  private readonly notifier: NotifierService;
 
-  constructor(private askInfoService:AskInfoService, private _router:Router,private authService:AuthService, private citizenService:CitizenService, private fb: FormBuilder,private tenderService: TenderService ,private route: ActivatedRoute,) { }
+  constructor(private askInfoService:AskInfoService, private _router:Router,private authService:AuthService, private citizenService:CitizenService, private fb: FormBuilder,private tenderService: TenderService ,private route: ActivatedRoute,) {
+
+
+   }
   myForm!: FormGroup;
   panelOpenState:boolean=false;
   tenderId!:string;
   tender!:TENDER
   CitizenId!:number;
   ngOnInit(): void {
+
     this.myForm = this.fb.group({
       information: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
@@ -74,7 +81,7 @@ export class AskInfoComponent implements OnInit {
           '',
           'success'
         ).then(res=>{
-          this._router.navigate([Models.tenders]);
+          //this._router.navigate([Models.tenders]);
 
         })
       

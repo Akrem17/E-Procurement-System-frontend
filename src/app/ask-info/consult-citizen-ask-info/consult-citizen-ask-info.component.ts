@@ -96,7 +96,7 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
     this.askInfoService.getAskInfo(filters).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       this.askForInfos = response.data
-
+       console.log(  this.askForInfos)
     })
     this._hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(environment.socketUrl + Models.socketURI, { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { HubConnection } from '@aspnet/signalr';
@@ -12,6 +12,7 @@ import { NotificationService } from '../Shared/Services/NotificationService/noti
 import { NOTIFICATION } from '../Shared/Models/NOTIFICATION';
 import { environment } from 'src/environments/environment';
 import { Models } from '../endpoints';
+import { ASK_INFO } from '../Shared/Models/ASK_INFO';
 
 
 @Component({
@@ -32,8 +33,8 @@ export class HeaderComponent implements OnInit {
   notificationsMessageCountInstitute: number = 0;
   private _hubConnection: HubConnection | undefined;
   messages: NOTIFICATION[] = [];
-  
-  constructor(private notificationService: NotificationService, private _authService: AuthService, private _userService: UserService, public signalRService: SignalRService, private http: HttpClient, private auth: AuthService, private user: UserService) { }
+  private notifNumber:BehaviorSubject<string>= new  BehaviorSubject<string>("0")
+  constructor( private notficationService:NotificationService,private notificationService: NotificationService, private _authService: AuthService, private _userService: UserService, public signalRService: SignalRService, private http: HttpClient, private auth: AuthService, private user: UserService) { }
 
 
 
@@ -63,8 +64,14 @@ export class HeaderComponent implements OnInit {
 
           this._hubConnection.start().then(() => {
             console.log("connnntected to socket")
+            this._hubConnection?.on('NewAsk', (data: ASK_INFO) => {
+              console.log(data)
+          
+              console.log("lenaa")
+             
+              })
             this._authService.type.subscribe(res=>{
-              console.log(res)
+            
               if (res=="institute"){
                 this._hubConnection.invoke("joinInstituteNotificationCenter");
 
@@ -91,18 +98,21 @@ export class HeaderComponent implements OnInit {
             });
           })
           this._hubConnection.on('aswerAskInfoNotification', (data: NOTIFICATION) => {
-        
 
            
           })
         })
       })
     })
+   
+
+  
   }
 
 
 
 
+  
   logout() {
     this._authService.logout();
   }

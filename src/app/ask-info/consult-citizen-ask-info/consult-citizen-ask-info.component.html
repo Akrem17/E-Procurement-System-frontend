@@ -89,12 +89,12 @@
                         <!-- <div style="background-color: rgb(65, 249, 95); ">
                             Sent
                         </div> -->
-                        <div style="background-color: rgb(65, 249, 95); width: fit-content;
+                        <div *ngIf="askInfo?.askForInfoAnswer?.seen" style="background-color: rgb(65, 249, 95); width: fit-content;
                         height: fit-content;
                         padding: 10px;">
                             Red
                         </div>
-                        <div style="background-color: rgb(249, 65, 65); width: fit-content;
+                        <div *ngIf="!askInfo?.askForInfoAnswer?.seen" style="background-color: rgb(249, 65, 65); width: fit-content;
                         height: fit-content;
                         padding: 10px;">
                             Unred
