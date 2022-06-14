@@ -161,10 +161,10 @@ hr{
     background-color: rgb(245, 207, 207);
     float: right;
 }
+
 .chatGroup{
     background-color: rgb(245, 207, 207);
     overflow: scroll;
-
 }
 .messageContent{
     width: fit-content;

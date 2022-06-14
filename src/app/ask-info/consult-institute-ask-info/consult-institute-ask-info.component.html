@@ -178,15 +178,20 @@
             <mat-form-field style="margin-left: 20px">
                 <mat-label class="lable">    <i class="fa-solid fa-magnifying-glass"> </i> <span class="search"> Search </span>
                 </mat-label>
-                <input matInput >
+                <input matInput> 
               </mat-form-field>
            </div>
-        <div class="sidebar-item " *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
+           <div style="padding: 10px">
+<div *ngIf="display" style="float: right;" (click)="changeDisplay()" > See sent messages</div>
+<div *ngIf="!display" style="float: right;" (click)="changeDisplay()" > See answered messages</div>
+</div>
+<div *ngIf="!display" >
+<div  class="sidebar-item " *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
             <!-- <div  [ngStyle]="{backgroundColor: notifList.includes(askInfo.id.toString())  ? 'red' : ''} "> -->
                 <!-- //<div [ngStyle]="{backgroundColor: askInfo.seen  ? '' : 'red'} "> -->
-            <div class="chat">
+            <div  class="chat">
                 <div class="sender">
-                    <h2> {{askInfo.firstName}} {{askInfo.lastName}} <span style="float: right;"  class="time">12:58</span></h2>
+                    <h2> {{askInfo.firstName}} {{askInfo.lastName}} <span style="float: right;"  class="time">{{askInfo.createdAt}}</span></h2>
         
         
                 </div>
@@ -194,15 +199,44 @@
                 <div *ngIf="askInfo.seen" style="background-color: rgb(65, 249, 95); width: fit-content;
                 height: fit-content;
                 padding: 10px;">
-                    Red
+                    Seen
                 </div>
 
                 <div *ngIf="!askInfo.seen" style="background-color: rgb(249, 65, 65); width: fit-content;
                 height: fit-content;
                 padding: 10px;">
-                    Unred
+                    Unseen
                 </div>
                 <br>
+                <!-- <div class="briefContent">
+                    <p>{{askInfo.information}}</p>
+                </div> -->
+        </div>
+
+        </div>
+        </div>
+    <div *ngIf="display" >
+        <div class="sidebar-item " *ngFor="let askInfo of askForInfosSent" (click)="showAskOffer(askInfo)">
+                       <div class="chat">
+                <div class="sender">
+                    <h2> {{askInfo.firstName}} {{askInfo.lastName}} <span style="float: right;"  class="time">{{askInfo.createdAt}}</span></h2>
+        
+        
+                </div>
+
+                <div *ngIf="askInfo.seen" style="background-color: rgb(65, 249, 95); width: fit-content;
+                height: fit-content;
+                padding: 10px;">
+                    Seen
+                </div>
+
+                <div *ngIf="!askInfo.seen" style="background-color: rgb(249, 65, 65); width: fit-content;
+                height: fit-content;
+                padding: 10px;">
+                    Unseen
+                </div>
+                <br>
+
                 <!-- <div class="briefContent">
                     <p>{{askInfo.information}}</p>
                 </div> -->
@@ -210,65 +244,13 @@
             
           
         </div>
-    
-  
-        <div class="sidebar-item">
-        
-            <div class="chat">
-                <div class="sender">
-                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
-        
-        
-                </div>
-             
-        
-            </div>
-           
-        </div>
+    </div>
+   
        
         
-        <div class="sidebar-item">
-        
-            <div class="chat">
-                <div class="sender">
-                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
-        
-        
-               </div>
-           
-            </div>
-         
-        </div>
+    
 
         
-        <div class="sidebar-item">
-        
-            <div class="chat">
-                <div class="sender">
-                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
-        
-        
-                </div>
-              
-        
-            </div>
-        
-        </div>
-
-        
-        <div class="sidebar-item">
-        
-            <div class="chat">
-                <div class="sender">
-                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
-        
-        
-                </div>
-          
-        
-            </div>
-        
-        </div>
      
     </div>
     <div *ngIf="shownAskInfo" class="container" class="right message">
@@ -277,7 +259,7 @@
         </div>
         <div class="sidebar-item">
             <div class="messageContent" style="background-color: white;"> {{shownAskInfo.information}}<br>   </div>
-      <span class="time"> 11:24 am</span>
+      <span class="time"> {{shownAskInfo.createdAt}} am</span>
 
 
     <br>
@@ -288,7 +270,7 @@
 </div>
 </div>
 
-<div class="bottom chatBack" >
+<div *ngIf="shownAskInfo.askForInfoAnswer==null"class="bottom chatBack" >
     <mat-form-field   class="example-full-width" >
         <mat-label>Leave an answer</mat-label>
         <textarea [(ngModel)]='answer' matInput placeholder="Ex. It makes me feel..."></textarea>

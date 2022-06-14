@@ -22,6 +22,7 @@ import { TENDER } from "./TENDER";
     public tender: TENDER | null;
     public askForInfoAnswerId: number | null;
     public askForInfoAnswer: ASK_INFO_ANSWER | null;
+    public createdAt: string | null;
 
 
 

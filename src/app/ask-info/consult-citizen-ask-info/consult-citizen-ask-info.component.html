@@ -80,24 +80,23 @@
                 <input matInput >
               </mat-form-field>
            </div>
+           
         <div class="sidebar-item " *ngFor="let askInfo of askForInfos" (click)="showAskOffer(askInfo)">
             <div  [ngStyle]="{backgroundColor: notifList.includes(askInfo.id.toString())  ? 'red' : ''} ">
                 <div [ngStyle]="{backgroundColor: askInfo.seen  ? '' : ''} ">
             <div class="chat">
                 <div class="sender">
-                    <h2> {{askInfo.firstName}} {{askInfo.lastName}} <span style="float: right;"  class="time">12:58</span></h2>
-                        <!-- <div style="background-color: rgb(65, 249, 95); ">
-                            Sent
-                        </div> -->
+                    <h2> {{askInfo.tender.institute.nameFr}} <span style="float: right;"  class="time">12:58</span></h2>
+
                         <div *ngIf="askInfo?.askForInfoAnswer?.seen" style="background-color: rgb(65, 249, 95); width: fit-content;
                         height: fit-content;
                         padding: 10px;">
-                            Red
+                            Seen
                         </div>
                         <div *ngIf="!askInfo?.askForInfoAnswer?.seen" style="background-color: rgb(249, 65, 65); width: fit-content;
                         height: fit-content;
                         padding: 10px;">
-                            Unred
+                            Unseen
                         </div>
                         <br>
                 </div>
@@ -109,72 +108,11 @@
         </div>
     
   
-        <div class="sidebar-item">
-        
-            <div class="chat">
-                <div class="sender">
-                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
-        
-        
-                </div>
-       
-        
-            </div>
-           
-        </div>
-        <hr>
-        
-        <div class="sidebar-item">
-        
-            <div class="chat">
-                <div class="sender">
-                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
-        
-        
-                </div>
-           
-        
-            </div>
-         
-        </div>
-
-        <hr>
-        <div class="sidebar-item">
-        
-            <div class="chat">
-                <div class="sender">
-                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
-        
-        
-                </div>
-           
-        
-            </div>
-        
-        </div>
-
-        <hr>
-        <div class="sidebar-item">
-        
-            <div class="chat">
-                <div class="sender">
-                    <h2>Akrem Hammami <span class="time">12:58</span></h2>
-        
-        
-                </div>
-                <div class="briefContent">
-                    a type specimen book. It has survived not only five centuries, but also the leap into electronic
-                    typesetting, remaining essentially unchanged. It was popu
-                </div>
-        
-            </div>
-        
-        </div>
-     
+   
     </div>
     <div  (click)="removeAskInfoFromNotif(shownAskInfo.id.toString())" *ngIf="shownAskInfo" class="container" class="right message">
         <div class="header mid" >
-            {{shownAskInfo.firstName}} {{shownAskInfo.lastName}}<br><span style="font-size: 15px">17/08/2022</span>
+            {{shownAskInfo.tender.institute.nameFr}}<br><span style="font-size: 15px">17/08/2022</span>
         </div>
         <div class="sidebar-item">
             <div class="messageContent" style="background-color: white;"> {{shownAskInfo.information}}<br>   </div>
@@ -195,4 +133,3 @@
 
 </div>
 
-<!-- Bsh nbadel notification ki yji answer juste verify al attribute seen fl answer -->
