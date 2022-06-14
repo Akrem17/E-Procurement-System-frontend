@@ -1,6 +1,7 @@
 import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatFormFieldAppearance } from '@angular/material/form-field';
+import { ActivatedRoute } from '@angular/router';
 import * as signalR from '@aspnet/signalr';
 import { HubConnection } from '@aspnet/signalr';
 import { Models } from 'src/app/endpoints';
@@ -23,14 +24,19 @@ import { environment } from 'src/environments/environment';
 export class ConsultInstituteAskInfoComponent implements OnInit {
 
 askForInfos:ASK_INFO[]=[];
+askForInfosSent:ASK_INFO[]=[];
 shownAskInfo!:ASK_INFO;
 answer:string=""
 userType:string="bla";
 notifList: string[] = []
+display:boolean=false;
+changeDisplay(){
+  this.display=!this.display;
+}
 
 private _hubConnection: HubConnection | undefined;
 
-  constructor(private notficationService:NotificationService, private authService: AuthService ,private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { 
+  constructor(private route: ActivatedRoute,private notficationService:NotificationService, private authService: AuthService ,private askInfoService:AskInfoService,private askInfoAnswerService:AskInfoAnswerService) { 
 
   }
   removeAskInfoFromNotif(AskInfoId:string){
@@ -38,17 +44,40 @@ private _hubConnection: HubConnection | undefined;
     this.notficationService.notificationNumberInstitute.next(this.notifList.length)
   }
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get("id");
+
     let askForInfoFilters:ASK_INFO_FILTERS = new ASK_INFO_FILTERS()
-    askForInfoFilters.instituteId="1";//get the id of user
+    console.log(this.userType)
+    askForInfoFilters.instituteId=id;//get the id of user
     this.askInfoService.getAskInfo(askForInfoFilters).subscribe(res=>{
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
      let ask=[];
+     let sent=[];
       response.data.forEach(element => {
           if (element.askForInfoAnswerId==null){
-            ask.push(element)
+            console.log( element.createdAt)
+
+             element.createdAt = new Date(parseInt( element.createdAt)).toTimeString();
+             console.log( element.createdAt)
+             element.createdAt=(element.createdAt.split(":")[0]+":"+element.createdAt.split(":")[1])
+             ask.push(element)
+             
+            } 
+          else{
+            console.log( element.createdAt)
+
+            element.createdAt= new Date(parseInt( element.createdAt)).toTimeString();
+            console.log( element.createdAt)
+
+            element.createdAt=(element.createdAt.split(":")[0]+":"+element.createdAt.split(":")[1])
+            sent.push(element)
+
           }
       });
+    
       this.askForInfos=ask
+      this.askForInfosSent=sent
+
       console.log(this.askForInfos)
       console.log(this.notifList)
 
@@ -59,7 +88,6 @@ private _hubConnection: HubConnection | undefined;
     .withUrl(environment.socketUrl + Models.socketURI, { skipNegotiation: true, transport: signalR.HttpTransportType.WebSockets })
     .configureLogging(signalR.LogLevel.Information)
     .build();
-
  
     this._hubConnection.start().then(() => {
       console.log("connnntected to socket chat")
@@ -89,6 +117,8 @@ private _hubConnection: HubConnection | undefined;
       this.askForInfos = this.askForInfos.filter(x => x.id.toString() !== data.id.toString());
       this.askForInfos.unshift(el)
      console.log(this.askForInfos)
+
+
   })
 
     }).catch(err => console.error(err.toString()));
@@ -113,7 +143,16 @@ private _hubConnection: HubConnection | undefined;
   }
   messages:ASK_INFO_ANSWER[]=[]
   answerCitizen(){
+    console.log(this.askForInfos)
+    const indexOfObject = this.askForInfos.findIndex(object => {
+      return object.id === this.shownAskInfo.id;
+    });
+    this.askForInfos.splice(indexOfObject, 1);
+    this.shownAskInfo.seen=true;
+    this.askForInfosSent.unshift(this.shownAskInfo)
+    this.display=!this.display
 
+    
 this.authService.type.subscribe(res=>{
   this.userType=res
   let askInfoAnswer:ASK_INFO_ANSWER= new ASK_INFO_ANSWER()
@@ -135,22 +174,33 @@ this.authService.type.subscribe(res=>{
   }
   showAskOffer(askInfo:ASK_INFO){
     this.removeAskInfoFromNotif(askInfo.id)
-    
       askInfo.seen=true;
+      console.log(askInfo)
+      //askInfo.createdAt=(askInfo.createdAt.split(":")[0]+":"+askInfo.createdAt.split(":")[1])
+      console.log(this.askForInfos)
+      console.log(this.askForInfosSent)
     this.askInfoService.updateeAskInfo(askInfo.id.toString(),askInfo)
     .subscribe(res=>{
       console.log(res)
     })
   
     this.askInfoService.getAskInfoById(askInfo.id).subscribe(res=>{
+      
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      
       this.shownAskInfo=response.data;
+      this.shownAskInfo.createdAt= new Date(parseInt(   this.shownAskInfo.createdAt)  ).toTimeString();
+
+      this.shownAskInfo.createdAt=(this.shownAskInfo.createdAt.split(":")[0]+":"+this.shownAskInfo.createdAt.split(":")[1])
+
       console.log(this.shownAskInfo)
       this._hubConnection.invoke("joinAskInfoChat",this.shownAskInfo.id.toString());
       
 
     
   })}
+
+
           //   this.user.getUserById(data.instituteId.toString()).subscribe(res => {
           //     const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
 

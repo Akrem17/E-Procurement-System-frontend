@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as signalR from '@aspnet/signalr';
 import { HubConnection } from '@aspnet/signalr';
 import { Models } from 'src/app/endpoints';
@@ -53,10 +54,13 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
   }
 
   removeAskInfoFromNotif(AskInfoId:string){
+
     this.notifList = this.notifList.filter(x => x.toString() !== AskInfoId);
     this.notficationService.notificationNumber.next(this.notifList.length)
   }
   showAskOffer(askInfo: ASK_INFO) {
+      askInfo.seen=true
+      
       this.removeAskInfoFromNotif(askInfo.id.toString())
       if(askInfo.askForInfoAnswer)
       {
@@ -87,14 +91,16 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
 
 
 
-  constructor(private notficationService:NotificationService, private authService: AuthService, private askInfoService: AskInfoService, private askInfoAnswerService: AskInfoAnswerService) { }
+  constructor(private route: ActivatedRoute,private notficationService:NotificationService, private authService: AuthService, private askInfoService: AskInfoService, private askInfoAnswerService: AskInfoAnswerService) { }
 
   ngOnInit(): void {
     console.log(this.notifList)
     let filters: ASK_INFO_FILTERS = new ASK_INFO_FILTERS();
-    filters.citizenId = "3";
+    let id = this.route.snapshot.paramMap.get("id");
+    filters.citizenId = id;
     this.askInfoService.getAskInfo(filters).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      
       this.askForInfos = response.data
        console.log(  this.askForInfos)
     })
