@@ -8,6 +8,16 @@
                 <div class="one">
                     <h1>Offer details</h1>
                 </div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Status</mat-label>
+                    <select matNativeControl required [formControl]="status" >
+                      <option value='1'>Approve</option>
+                      <option value='0'>Reject</option>
+                    </select>
+
+                  </mat-form-field>
+                  <button mat-button color="primary" (click)="changeStatus()">Change status</button>
+
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="three">
                         <h1>Supplier Information</h1>
@@ -70,27 +80,27 @@
                             <tbody>
                                 <tr>
                                     <td class="bold" width="400">Name</td>
-                                    <td>{{offer.representative.name}}</td>
+                                    <td>{{offer.representative?.name}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Social Security Number</td>
-                                    <td>{{offer.representative.socialSecurityNumber}}</td>
+                                    <td>{{offer.representative?.socialSecurityNumber}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Position</td>
-                                    <td>{{offer.representative.position}}</td>
+                                    <td>{{offer.representative?.position}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Social Security Number Date</td>
-                                    <td>{{offer.representative.socialSecurityNumberDate}}</td>
+                                    <td>{{offer.representative?.socialSecurityNumberDate}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Phone</td>
-                                    <td>{{offer.representative.phone}}</td>
+                                    <td>{{offer.representative?.phone}}</td>
                                 </tr>
                                 <tr>
                                     <td class="bold">Email</td>
-                                    <td>{{offer.representative.email}}</td>
+                                    <td>{{offer.representative?.email}}</td>
                                 </tr>
 
                             </tbody>
@@ -159,26 +169,26 @@
                         <h1>Financial </h1>
 
                     </div>
-
+                
 
                      <div style="margin-top: 30px;" class="table-responsive">
                         <mat-list>
                             <div mat-subheader>Financial:</div>
                             <mat-list-item>
-                                <mat-icon  (click)="downloadPDF(financial.id)" mat-list-icon>picture_as_pdf</mat-icon>
+                                <mat-icon  (click)="downloadPDF(financial?.id)" mat-list-icon>picture_as_pdf</mat-icon>
 
-                                <a href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(financial.id)">
-                                    <div mat-line>{{financial.fileName}}</div>
-                                    <div mat-line>{{niceBytes(financial.fileSize)}}</div>
+                                <a href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(financial?.id)">
+                                    <div mat-line>{{financial?.fileName}}</div>
+                                    <div mat-line>{{niceBytes(financial?.fileSize)}}</div>
                                 </a>
                             </mat-list-item>
                             <div mat-subheader>Technical:</div>
                             <mat-list-item>
-                                <mat-icon  (click)="downloadPDF(other.id)" mat-list-icon>picture_as_pdf</mat-icon>
+                                <mat-icon  (click)="downloadPDF(other?.id)" mat-list-icon>picture_as_pdf</mat-icon>
 
-                                <a href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(other.id)">
-                                    <div mat-line>{{other.fileName}}</div>
-                                    <div mat-line>{{niceBytes(other.fileSize)}}</div>
+                                <a href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(other?.id)">
+                                    <div mat-line>{{other?.fileName}}</div>
+                                    <div mat-line>{{niceBytes(other?.fileSize)}}</div>
                                 </a>
                             </mat-list-item>
 
@@ -186,7 +196,8 @@
 
                     </div>
 
-
+                    
+                      
                 </div>
             </div>
         </div>
