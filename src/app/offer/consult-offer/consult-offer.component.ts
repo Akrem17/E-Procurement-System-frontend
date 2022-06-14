@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import * as saveAs from 'file-saver';
 import { OFFER } from 'src/app/Shared/Models/OFFER';
@@ -11,6 +12,7 @@ import { TENDER_CLASSIFICATION } from 'src/app/Shared/Models/TENDER_CLASSIFICATI
 import { OfferService } from 'src/app/Shared/Services/OfferService/offer.service';
 import { SpecificationService } from 'src/app/Shared/Services/SpecificationService/specification.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-consult-offer',
@@ -28,12 +30,44 @@ export class ConsultOfferComponent implements OnInit {
   offer!:OFFER;
   financial!:SPECIFICATION;
   other!:SPECIFICATION;
+  status = new FormControl('');
 
   consume="read";
   readTotalPrice
   constructor(private offerService:OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
 
+  changeStatus(){
+    let offer=new OFFER();
 
+    if (this.status.value=='0'){
+      offer.isAccepted=false
+      this.offer.isAccepted=false
+
+    }else
+    offer.isAccepted=true
+    this.offer.isAccepted=true
+
+   offer.name=this.offer.name;
+   offer.totalMontant=this.offer.totalMontant;
+   offer.finalTotalMontant=this.offer.finalTotalMontant;
+   offer.tenderId=this.offer.tenderId;
+   offer.supplierId=this.offer.supplierId
+   offer.representativeId=this.offer.representativeId; 
+   console.log(offer)
+    
+   this.offerService.updateOffer(this.id,offer).subscribe(res=>{
+    console.log(res)
+    const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      if(response.status){
+        Swal.fire(
+          'Status changed with success',
+          '',
+          'success'
+        )
+      }
+   })
+
+  }
 
   // paginate(array, page_size, page_number) {
   //   // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
