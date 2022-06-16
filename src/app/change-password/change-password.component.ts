@@ -29,23 +29,36 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      oldPassword: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.email]],
+      oldPassword: ['', [Validators.required]],
+      password: ['', [Validators.required]],
       passwordConfirmation: ['', [Validators.required]]});
  
   }
 
 
   onSubmit(form: FormGroup) {
+    if(form.value.password != form.value.passwordConfirmation){
+      Swal.fire("Passsword not matched","","error")
+    }else
     this.authSerivce.email.subscribe(res=>{
       let log= new LOGIN()
 
       log.email=res
       log.password=form.value.oldPassword;
+      
       this.authSerivce.loginUser(log).subscribe(res=>{
         if(res.status){
-          
+          this.authSerivce.changePasswordProfile(log.email,form.value.password)
+          .subscribe(res=>{
+            if (res.status) {
+            Swal.fire("Passsword changed","","success").then(res=>
+             this.router.navigate["./tenders"]
+            )
+          }
+          })
         }
+        Swal.fire("Error",res.message,"error")
+
         console.log( res);
 
       })
