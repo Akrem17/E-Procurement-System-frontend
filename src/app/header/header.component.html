@@ -128,7 +128,7 @@
 
     <div class="dropdown-content">
       <a class="sublink" routerLink="institute/{{userId}}/edit">Edit Profile </a>
-      <a class="sublink" href="#">Edit Password</a>
+      <a class="sublink" href="password">Edit Password</a>
       <a class="sublink" (click)="logout()" *ngIf="loginStatus$ | async as loginStatus">
         Logout</a>
 

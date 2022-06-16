@@ -8,7 +8,7 @@
                 <div class="one">
                     <h1>Offer details</h1>
                 </div>
-                <mat-form-field appearance="fill">
+                <mat-form-field  appearance="fill" *ngIf="offer.tenderInfo.institute.email==email">
                     <mat-label>Status</mat-label>
                     <select matNativeControl required [formControl]="status" >
                       <option value='1'>Approve</option>
