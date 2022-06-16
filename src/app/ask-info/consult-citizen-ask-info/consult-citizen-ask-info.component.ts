@@ -98,6 +98,7 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
     let filters: ASK_INFO_FILTERS = new ASK_INFO_FILTERS();
     let id = this.route.snapshot.paramMap.get("id");
     filters.citizenId = id;
+    
     this.askInfoService.getAskInfo(filters).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       

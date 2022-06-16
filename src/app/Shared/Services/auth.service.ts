@@ -25,11 +25,11 @@ export class AuthService {
   private _resetPasswordTokenUrl=environment.apiUrl+Auth.resetPasswordToken;
   private _verifyCode=environment.apiUrl+Auth.verifyCode;
   private _resetPassword=environment.apiUrl+Auth.resetPassword;
+  private _changePassword=environment.apiUrl+Auth.changePassword;
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(localStorage.getItem('token') && localStorage.getItem('token') != 'undefined');
   public email: BehaviorSubject<string> = new BehaviorSubject<string>(localStorage.getItem('email'));
   public type: BehaviorSubject<string> = new BehaviorSubject<string>(localStorage.getItem('type'));
   //user!: TOKEN_INFO;
-
   constructor(private http: HttpClient, private router: Router,private userService:UserService) { }
 
   registreCitizen(citizen: CITIZEN) :Observable<any>{
@@ -90,6 +90,9 @@ validateEmail(id,token):Observable<any> {
   }
 
   
+  changePasswordProfile(email,password):Observable<any>{
+    return this.http.post<any>(this._changePassword+"?email="+email+"&password="+password,{});
+  }
   // getConnectedUser(token: string) {
    // this.getConnectedUser(localStorage.getItem('token'));
   //   this.user = new TOKEN_INFO();
