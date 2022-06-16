@@ -9,6 +9,7 @@ import { RESPONSE } from 'src/app/Shared/Models/RESPONSE';
 import { SPECIFICATION } from 'src/app/Shared/Models/SPECIFICATION';
 import { TENDER } from 'src/app/Shared/Models/TENDER';
 import { TENDER_CLASSIFICATION } from 'src/app/Shared/Models/TENDER_CLASSIFICATION';
+import { AuthService } from 'src/app/Shared/Services/auth.service';
 import { OfferService } from 'src/app/Shared/Services/OfferService/offer.service';
 import { SpecificationService } from 'src/app/Shared/Services/SpecificationService/specification.service';
 import { TenderService } from 'src/app/Shared/Services/TenderService/tender.service';
@@ -21,51 +22,52 @@ import Swal from 'sweetalert2';
 })
 export class ConsultOfferComponent implements OnInit {
 
-  
+
   tender!: TENDER;
   editForm: boolean = false;
   offerClassification: OFFER_CLASSIFICATION[] = [];
   page_size = 1;
   id: string;
-  offer!:OFFER;
-  financial!:SPECIFICATION;
-  other!:SPECIFICATION;
+  offer!: OFFER;
+  financial!: SPECIFICATION;
+  other!: SPECIFICATION;
   status = new FormControl('');
 
-  consume="read";
+  consume = "read";
   readTotalPrice
-  constructor(private offerService:OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
+  email: string="";
+  constructor(private authService: AuthService, private offerService: OfferService, private http: HttpClient, private tenderService: TenderService, private route: ActivatedRoute, private specificationService: SpecificationService) { }
 
-  changeStatus(){
-    let offer=new OFFER();
+  changeStatus() {
+    let offer = new OFFER();
 
-    if (this.status.value=='0'){
-      offer.isAccepted=false
-      this.offer.isAccepted=false
+    if (this.status.value == '0') {
+      offer.isAccepted = false
+      this.offer.isAccepted = false
 
-    }else
-    offer.isAccepted=true
-    this.offer.isAccepted=true
+    } else {
+      offer.isAccepted = true
+      this.offer.isAccepted = true
+    }
+    offer.name = this.offer.name;
+    offer.totalMontant = this.offer.totalMontant;
+    offer.finalTotalMontant = this.offer.finalTotalMontant;
+    offer.tenderId = this.offer.tenderId;
+    offer.supplierId = this.offer.supplierId
+    offer.representativeId = this.offer.representativeId;
+    console.log(this.offer)
 
-   offer.name=this.offer.name;
-   offer.totalMontant=this.offer.totalMontant;
-   offer.finalTotalMontant=this.offer.finalTotalMontant;
-   offer.tenderId=this.offer.tenderId;
-   offer.supplierId=this.offer.supplierId
-   offer.representativeId=this.offer.representativeId; 
-   console.log(offer)
-    
-   this.offerService.updateOffer(this.id,offer).subscribe(res=>{
-    console.log(res)
-    const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      if(response.status){
+    this.offerService.updateOffer(this.id, offer).subscribe(res => {
+      console.log(res)
+      const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+      if (response.status) {
         Swal.fire(
           'Status changed with success',
           '',
           'success'
         )
       }
-   })
+    })
 
   }
 
@@ -83,35 +85,41 @@ export class ConsultOfferComponent implements OnInit {
 
 
   ngOnInit(): void {
+  //  this.authService.
+     this.authService.email.subscribe(res=>{
+      this.email=res;
+     })
     this.id = this.route.snapshot.paramMap.get("id");
-    this.offerService.getSingleOffer(this.id).subscribe(res=>{
+   
+    this.offerService.getSingleOffer(this.id).subscribe(res => {
       console.log(res)
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-      this.offer=response.data;
+      this.offer = response.data;
       //@ts-ignore
-      this.financial=this.offer.files[0];
-      this.other=this.offer.files[1];
-      console.log(this.financial)
+      this.financial = this.offer.files[0];
+      this.other = this.offer.files[1];
+      console.log(this.offer)
 
-      this.offerClassification=response.data.offerClassification;
+      this.offerClassification = response.data.offerClassification;
 
     })
+
     //this.offerClassification = this.paginate(this.tender?.tenderClassification, 3, 1);
 
   }
 
 
-   niceBytes(x){
+  niceBytes(x) {
     const units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-     let l = 0, n = parseInt(x, 10) || 0;
-     while(n >= 1024 && ++l){
-         n = n/1024;
-     }
-     return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
-   }
-   
+    let l = 0, n = parseInt(x, 10) || 0;
+    while (n >= 1024 && ++l) {
+      n = n / 1024;
+    }
+    return (n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
+  }
 
-  enableEdit() {this.editForm = true}
+
+  enableEdit() { this.editForm = true }
 
   downloadPDF(id) {
 

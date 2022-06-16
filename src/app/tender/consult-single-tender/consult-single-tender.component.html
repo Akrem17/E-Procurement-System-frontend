@@ -71,7 +71,7 @@
 
                             </tbody>
                         </table>
-                        <button mat-button >Save</button>
+                        <!-- <button mat-button >Save</button> -->
                     </div>
 
          
@@ -265,7 +265,7 @@
     </tbody>
     
   </table>
-  <div style="float: left; margin-bottom: 10px !important;">   <button (click)="extractResult()">Extract result</button></div>
+  <div style="float: left; margin-bottom: 10px !important;">   <button mat-button (click)="extractResult()">Extract result</button></div>
 
                         <mat-paginator aria-label="Select page" [pageIndex]="pageNo" showFirstLastButtons [length]=totalRecords [pageSize]=itemPerPage [pageSizeOptions]="[1,5, 10, 25, 100]"
                         aria-label="Select page" showFirstLastButtons (page)="onChangePage($event)">

@@ -72,6 +72,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ConsultCitizenComponent } from './citizen/consult-citizen/consult-citizen.component';
 import { EditCitizenComponent } from './citizen/edit-citizen/edit-citizen.component';
 import { ValidateAUTHComponent } from './validate-auth/validate-auth.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
@@ -118,7 +119,8 @@ import { ValidateAUTHComponent } from './validate-auth/validate-auth.component';
     ForgetPasswordComponent,
     ConsultCitizenComponent,
     EditCitizenComponent,
-    ValidateAUTHComponent
+    ValidateAUTHComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
