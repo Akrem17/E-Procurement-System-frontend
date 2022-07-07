@@ -103,6 +103,7 @@ export class ConsultCitizenAskInfoComponent implements OnInit {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       
       this.askForInfos = response.data
+//      this.askForInfos.reverse();
        console.log(  this.askForInfos)
     })
     this._hubConnection = new signalR.HubConnectionBuilder()

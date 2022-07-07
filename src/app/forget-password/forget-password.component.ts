@@ -88,6 +88,7 @@ export class ForgetPasswordComponent implements OnInit {
 
     }
 
+    
              //@ts-ignore
              if(form.controls.email.status=="DISABLED" && form.controls.code.status!="DISABLED"){
                //@ts-ignore
@@ -109,12 +110,11 @@ export class ForgetPasswordComponent implements OnInit {
                   })
                 }
                })
-              //if(  this.code==form.value.code.toString()
-              
              }
              //@ts-ignore
              if(form.controls.email.status!="DISABLED"){
     this._auth.resetPassword(form.value.email).subscribe(res=>{
+
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
       if(response.status){
         Swal.fire(

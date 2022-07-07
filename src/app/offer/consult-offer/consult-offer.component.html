@@ -16,7 +16,7 @@
                     </select>
 
                   </mat-form-field>
-                  <button mat-button color="primary" (click)="changeStatus()">Change status</button>
+                  <button   *ngIf="offer.tenderInfo.institute.email==email" mat-button color="primary" (click)="changeStatus()">Change status</button>
 
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="three">
@@ -129,48 +129,32 @@
                                     <td *ngIf="offer.isAccepted==null">Not reviewed yet</td>
                                     <td *ngIf="offer.isAccepted">Accepted</td>
                                     <td *ngIf="offer.isAccepted==false">Rejected</td>
-
                                 </tr>
-
-
-
                             </tbody>
                         </table>
                     </div>
-
-
-
-
                     <div class="three">
                         <h1>Classifications</h1>
-
                     </div>
                     <div style="margin-top: 30px;" class="row" *ngIf="offerClassification.length>0">
                         <div class="col-md-4" *ngFor="let classifciation of offerClassification">
-
-                            <div style="margin-bottom: 30px;">
+                            <div style="margin-bottom: 30px;"
+                            >
                                 <app-offer-classification-card [title]="classifciation.name" [subtitle]="classifciation.qte"
                                     [actions]="classifciation.description" [consume]="consume" [readTotalPrice]="classifciation.amount"> </app-offer-classification-card>
                             </div>
-
                         </div>
-<!-- 
+                        <!-- 
                         <div class="mid">
                             <button mat-button mat-raised-button #tooltip="matTooltip"
                                 matTooltip="See more classifications" (click)="loadMoreClassification()"
                                 matTooltipHideDelay="250" style="width: 200px; margin-top: 60px;">See more</button>
 
                         </div> -->
-
                     </div>
-
-
                     <div class="three">
                         <h1>Financial </h1>
-
                     </div>
-                
-
                      <div style="margin-top: 30px;" class="table-responsive">
                         <mat-list>
                             <div mat-subheader>Financial:</div>
@@ -191,13 +175,8 @@
                                     <div mat-line>{{niceBytes(other?.fileSize)}}</div>
                                 </a>
                             </mat-list-item>
-
                         </mat-list>
-
                     </div>
-
-                    
-                      
                 </div>
             </div>
         </div>

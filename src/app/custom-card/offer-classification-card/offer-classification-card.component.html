@@ -8,7 +8,7 @@
         <button mat-button (click)="showText($event)">
             {{ isReadMore ? 'Read More': 'Read Less' }}
         </button><br>
-       <span  style="color:red"> Total price:<span *ngIf="readTotalPrice" > <span>{{readTotalPrice}} </span><span *ngIf="consume!='read'">{{ (totalPrice )}}</span>  TND </span></span><br><br>
+       <span  style="color:red"> Total price: <span *ngIf="totalPrice">{{ totalPrice }}</span><span *ngIf="readTotalPrice" > <span>{{readTotalPrice}} </span>  TND </span></span><br><br>
 
         <mat-form-field *ngIf="consume!='read'">
             <!-- <mat-error

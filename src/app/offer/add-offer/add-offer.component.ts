@@ -36,8 +36,8 @@ export class AddOfferComponent implements OnInit {
   page: number = 1
   page_size = 1;
   totalRecords: number;
-  tenderClassification: TENDER_CLASSIFICATION[];
-  tender: TENDER;
+  tenderClassification: TENDER_CLASSIFICATION[]=[];
+  tender: TENDER ;
   data: any[] = [];
   totalAmount: number = 0;
   constructor(private tenderService: TenderService, private specificationService: SpecificationService, private route: ActivatedRoute, private _auth: AuthService, private fb: FormBuilder, private offerService: OfferService, private userService: UserService, private _router: Router) { }
@@ -78,9 +78,11 @@ export class AddOfferComponent implements OnInit {
 
     this.tenderService.getTenderById(this.tenerId).subscribe(res => {
       let response: RESPONSE = { status: res.status, message: res.message, data: res.data };
+
       this.tender = response.data;
-      this.tenderClassification = response.data.tenderClassification;
-    })
+      
+      this.tenderClassification = response.data.tender.tenderClassification;
+    })  
 
 
     this.myForm = this.fb.group({

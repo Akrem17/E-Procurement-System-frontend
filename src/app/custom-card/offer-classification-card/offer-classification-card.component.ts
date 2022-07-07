@@ -36,7 +36,7 @@ export class OfferClassificationCardComponent implements OnInit {
   setTotalPrice(){
    this.totalPrice=(parseInt( this.unitPrice)*parseInt(this.subtitle));
    let classification =new OFFER_CLASSIFICATION ()
-   console.log(this.id)
+   console.log(this.totalPrice)
    classification.frontId=this.id.toString();
    classification.qte=this.subtitle;
    classification.description=this.actions;
