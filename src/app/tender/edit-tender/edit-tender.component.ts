@@ -60,8 +60,8 @@ export class EditTenderComponent implements OnInit {
 
     this.tenderService.getTenderById(this.id).subscribe(res => {
       const response: RESPONSE = { status: res.status, message: res.message, data: res.data };
-
-      this.tender = response.data;
+      console.log(response)
+      this.tender = response.data.tender;
       this.tender.startDate=moment(this.tender.startDate).utc().format('MM/DD/YYYY')
       this.tender.deadLine=moment(this.tender.deadLine).utc().format('MM/DD/YYYY')
       this.tender.addressReceipt.countryName="Tunisia"

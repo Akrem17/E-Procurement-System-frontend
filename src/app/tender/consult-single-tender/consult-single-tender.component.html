@@ -192,7 +192,7 @@
                             <mat-list-item *ngFor="let specification of tender.specifications">
                                 <mat-icon   (click)="downloadPDF(specification.id)" mat-list-icon>picture_as_pdf</mat-icon>
 
-                                <a  href="\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(specification.id)">
+                                <a  href="\\" #tooltip="matTooltip" matTooltip="Click to downlaod" (click)="downloadPDF(specification.id)">
                                 <div mat-line>{{specification.fileName}}</div>
                                 <div mat-line>{{niceBytes(specification.fileSize)}}</div>
                             </a>
@@ -234,22 +234,20 @@
         
       </tr>
     </thead>
+
     <tbody>
       <tr >
         <td data-label="Account">SOBIG</td>
         <td data-label="Due Date">Abed Elkader Ben Hlima</td>
         <td data-label="Amount">Not yet</td>
        <td data-label="Period">  <a class="mat-button" ><i class="fas fa-plus"></i> Details</a> </td>
-
       </tr>
-
 
       <tr>
         <td data-label="Account">Star Mécanique</td>
         <td data-label="Due Date">Abed Elkader Ben Hlima</td>
         <td data-label="Amount">Not yet</td>
        <td data-label="Period">  <a class="mat-button" ><i class="fas fa-plus"></i> Details</a> </td>
-
       </tr>
       <tr *ngFor="let offer of data">
         <td data-label="Account">{{offer.supplier.supplierName}}</td>

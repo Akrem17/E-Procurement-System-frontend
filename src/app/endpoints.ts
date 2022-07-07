@@ -24,6 +24,8 @@ export const Auth = {
     verifyAccount:"verify-account/",
     resetPasswordToken:"reset-password-token/",
     verifyCode:"verify-code/",
-    resetPassword:"resetpassword/",
+    resetPassword:"reset-password/",
+    resetPasswords:"resetpassword/",
+
     changePassword:"password"
 }

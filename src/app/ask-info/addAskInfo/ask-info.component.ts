@@ -77,11 +77,11 @@ export class AskInfoComponent implements OnInit {
       console.log(response)
       if(response.status){
         Swal.fire(
-          'Demand snet with success !',
+          'Demand sent with success !',
           '',
           'success'
         ).then(res=>{
-          //this._router.navigate([Models.tenders]);
+          this._router.navigate([Models.tenders]);
 
         })
       
